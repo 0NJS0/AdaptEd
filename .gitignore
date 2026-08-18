@@ -1,0 +1,29 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Environment & secrets
+.env
+
+# Local-only agent/work files
+AGENTS.md
+PROGRESS.md
+
+# Runtime artifacts
+storage/
+*.db
+*.sqlite3
+coverage.xml
+.pytest_cache/
+.ruff_cache/
+*.log
+
+# OS
+.DS_Store
