@@ -12,6 +12,21 @@ except ImportError:
 
 st.set_page_config(page_title="AdaptED", page_icon="🎓", layout="wide")
 
+_BLOOM = {
+    1: "Remembering",
+    2: "Understanding",
+    3: "Applying",
+    4: "Analyzing",
+    5: "Evaluating",
+    6: "Creating",
+}
+
+
+def _bloom_label(level: int | None) -> str:
+    if level is None:
+        return "—"
+    return f"{level} ({_BLOOM.get(level, '?')})"
+
 
 def _client() -> APIClient:
     if "api_client" not in st.session_state:
@@ -134,7 +149,7 @@ def sidebar() -> str | None:
 
     nav = ["Dashboard"]
     if role == "teacher":
-        nav += ["Curriculum", "Class", "Review Queue", "Operations"]
+        nav += ["Curriculum", "Class", "Review Queue", "OBE Mapping", "Operations"]
     else:
         nav += ["Study Plan", "Learn", "Quizzes", "My Progress", "Recommendations"]
 
@@ -923,6 +938,181 @@ def student_recommendations() -> None:
                     st.rerun()
 
 
+# ======================================================= OBE MAPPING (teacher)
+
+
+def teacher_obe() -> None:
+    client = _client()
+    st.header("🧭 OBE Mapping Assistant")
+    st.caption(
+        "Upload an AIUB CS course outline (.pdf, .docx, .txt, .md). The OBE agent "
+        "extracts the CO ↔ PO structure, validates it against the AIUB CS OBE Manual, "
+        "suggests corrected mappings, and drafts the mapping summary. **Your file is "
+        "never stored or modified.**"
+    )
+
+    up_col, opt_col = st.columns([3, 2])
+    with up_col:
+        f = st.file_uploader(
+            "Course outline", type=["pdf", "docx", "txt", "md"], key="obe_file"
+        )
+    with opt_col:
+        polish = st.checkbox(
+            "Polish summary with LLM",
+            value=False,
+            help="Optional. Uses the configured LLM provider (needs an API key). "
+            "Leave off for the deterministic, offline summary.",
+        )
+
+    if f is not None and st.button("🔍 Analyze outline", type="primary"):
+        res, err = _attempt(
+            lambda: client.analyze_obe(
+                f.name, f.getvalue(), f.type or "application/octet-stream", polish
+            )
+        )
+        if err:
+            st.error(err)
+        else:
+            st.session_state.obe_result = res
+            st.session_state.obe_filename = f.name
+
+    result = st.session_state.get("obe_result")
+    if result:
+        _render_obe_result(result, st.session_state.get("obe_filename", "outline"))
+
+    with st.expander("⚡ Quick check — map a single Course Outcome"):
+        desc = st.text_area(
+            "CO description",
+            placeholder="e.g. Design a solution for a complex engineering problem using UML.",
+            key="obe_quick_desc",
+        )
+        if st.button("Suggest mapping", key="obe_quick_btn"):
+            if not desc.strip():
+                st.warning("Enter a CO description first.")
+            else:
+                res, err = _attempt(lambda: client.suggest_obe(desc))
+                if err:
+                    st.error(err)
+                else:
+                    for s in res.get("suggestions", []):
+                        st.markdown(
+                            f"**Bloom:** {_bloom_label(s.get('suggested_bloom_level'))} · "
+                            f"**PO:** {', '.join(s.get('suggested_pos') or []) or '—'}"
+                        )
+                        kpa = s.get("suggested_kpa", {})
+                        st.caption(
+                            f"K: {', '.join(kpa.get('k', [])) or '—'} · "
+                            f"P: {', '.join(kpa.get('p', [])) or '—'} · "
+                            f"A: {', '.join(kpa.get('a', [])) or '—'}"
+                        )
+                        for r in s.get("rationale", []):
+                            st.caption(f"• {r}")
+
+
+def _render_obe_result(result: dict, filename: str) -> None:
+    ext = result.get("extraction", {})
+    report = result.get("report", {})
+    course = ext.get("course", {})
+    errors = report.get("error_count", 0)
+    warnings = report.get("warning_count", 0)
+
+    st.markdown(f"### {course.get('code', '')} — {course.get('title', filename)}")
+    if course.get("semester"):
+        st.caption(f"{course.get('semester')} · {course.get('credit') or '?'} credit")
+
+    if errors == 0:
+        st.success(
+            f"✅ Mapping consistent — no blocking errors. "
+            f"{warnings} advisory warning(s) to review."
+        )
+    else:
+        st.error(
+            f"❌ {errors} blocking error(s) and {warnings} warning(s). "
+            "Correct before sign-off."
+        )
+
+    m1, m2, m3, m4 = st.columns(4)
+    m1.metric("Course Outcomes", len(ext.get("cos", [])))
+    m2.metric("PO indicators", len(ext.get("po_indicators", [])))
+    m3.metric("Errors", errors)
+    m4.metric("Warnings", warnings)
+
+    tab_m, tab_f, tab_s, tab_sum = st.tabs(
+        ["CO ↔ PO Matrix", f"Findings ({len(report.get('findings', []))})",
+         "Suggested fixes", "Summary"]
+    )
+
+    with tab_m:
+        co_rows = [
+            {
+                "CO": co.get("id"),
+                "Description": co.get("description"),
+                "Verb": co.get("verb"),
+                "Bloom": _bloom_label(co.get("bloom_level")),
+                "Mapped PO": ", ".join(co.get("mapped_pos", [])),
+            }
+            for co in ext.get("cos", [])
+        ]
+        if co_rows:
+            st.dataframe(co_rows, use_container_width=True, hide_index=True)
+        st.markdown("**PO indicators & K–P–A**")
+        po_rows = [
+            {
+                "Indicator": p.get("id"),
+                "Domain / Bloom": f"{p.get('bloom_domain', '').title()} L{p.get('bloom_level')}",
+                "K": ", ".join(dict.fromkeys(p.get("kpa", {}).get("k", []))),
+                "P": ", ".join(dict.fromkeys(p.get("kpa", {}).get("p", []))),
+                "A": ", ".join(dict.fromkeys(p.get("kpa", {}).get("a", []))),
+            }
+            for p in ext.get("po_indicators", [])
+        ]
+        if po_rows:
+            st.dataframe(po_rows, use_container_width=True, hide_index=True)
+
+    with tab_f:
+        findings = report.get("findings", [])
+        if not findings:
+            st.success("No issues detected — the mapping is internally consistent.")
+        for fd in findings:
+            sev = fd.get("severity")
+            msg = f"**{fd.get('location')}** · `{fd.get('code')}` — {fd.get('message')}"
+            if sev == "error":
+                st.error(msg)
+            elif sev == "warning":
+                st.warning(msg)
+            else:
+                st.info(msg)
+            if fd.get("suggestion"):
+                st.caption(f"💡 Suggested fix: {fd['suggestion']}")
+
+    with tab_s:
+        for s in result.get("suggestions", []):
+            with st.container(border=True):
+                st.markdown(
+                    f"**{s.get('co_id')}** · verb “{s.get('verb')}” → "
+                    f"Bloom **{_bloom_label(s.get('suggested_bloom_level'))}** · "
+                    f"PO **{', '.join(s.get('suggested_pos') or []) or '—'}**"
+                )
+                kpa = s.get("suggested_kpa", {})
+                st.caption(
+                    f"Suggested K–P–A · K: {', '.join(kpa.get('k', [])) or '—'} · "
+                    f"P: {', '.join(kpa.get('p', [])) or '—'} · "
+                    f"A: {', '.join(kpa.get('a', [])) or '—'}"
+                )
+                for r in s.get("rationale", []):
+                    st.caption(f"• {r}")
+
+    with tab_sum:
+        md = result.get("summary_markdown", "")
+        st.download_button(
+            "⬇ Download summary (.md)",
+            data=md,
+            file_name=f"OBE_Summary_{course.get('code', 'course').replace(' ', '_')}.md",
+            mime="text/markdown",
+        )
+        st.markdown(md)
+
+
 # ============================================================ OPS (teacher)
 
 
@@ -991,6 +1181,8 @@ def main() -> None:
         teacher_class()
     elif choice == "Review Queue":
         teacher_review_queue()
+    elif choice == "OBE Mapping":
+        teacher_obe()
     elif choice == "Operations":
         operations_view()
     elif choice == "Study Plan":

@@ -25,6 +25,10 @@ MESSAGE_ACTIONS = {
     "recommend.generate",
     "memory.update",
     "supervisor.route",
+    "obe.extract",
+    "obe.validate",
+    "obe.suggest_mapping",
+    "obe.summarize",
 }
 
 

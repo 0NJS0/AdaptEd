@@ -24,6 +24,11 @@ WORKFLOWS: dict[str, dict[str, str]] = {
     "quiz_submit": {"workflow": "quiz_submit", "first_action": "attempt.grade"},
     "generate_recommendation": {"workflow": "recommend", "first_action": "recommend.generate"},
     "generate_reassessment": {"workflow": "lesson", "first_action": "lesson.generate"},
+    # OBE / CO-PO mapping workflows
+    "extract_outline": {"workflow": "obe_extract", "first_action": "obe.extract"},
+    "validate_outline": {"workflow": "obe_validate", "first_action": "obe.validate"},
+    "suggest_co_mapping": {"workflow": "obe_suggest", "first_action": "obe.suggest_mapping"},
+    "analyze_outline": {"workflow": "obe_summary", "first_action": "obe.summarize"},
 }
 
 
@@ -85,6 +90,10 @@ class Supervisor:
             "attempt.grade": "grading_agent",
             "performance.analyze": "performance_agent",
             "recommend.generate": "recommendation_agent",
+            "obe.extract": "obe_agent",
+            "obe.validate": "obe_agent",
+            "obe.suggest_mapping": "obe_agent",
+            "obe.summarize": "obe_agent",
         }
         return mapping.get(action, "unknown")
 
