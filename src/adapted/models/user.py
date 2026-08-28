@@ -49,7 +49,6 @@ class Student(Base):
     user_id: Mapped[str] = mapped_column(
         String(40), ForeignKey("users.id", ondelete="CASCADE"), primary_key=True
     )
-    grade_level: Mapped[str | None] = mapped_column(String(100), nullable=True)
     daily_study_minutes: Mapped[int] = mapped_column(Integer, default=90, nullable=False)
     timezone: Mapped[str] = mapped_column(String(50), default="UTC")
 

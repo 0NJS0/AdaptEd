@@ -51,7 +51,6 @@ def search_users(
                 email=u.email,
                 full_name=u.full_name,
                 role=u.role,
-                grade_level=student.grade_level if student else None,
                 daily_study_minutes=student.daily_study_minutes if student else None,
             )
         )

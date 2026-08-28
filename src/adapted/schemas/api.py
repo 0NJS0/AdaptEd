@@ -13,7 +13,6 @@ class RegisterRequest(BaseModel):
     password: str = Field(min_length=6)
     full_name: str
     role: str  # teacher | student
-    grade_level: str | None = None
     daily_study_minutes: int | None = None
 
 
@@ -33,7 +32,6 @@ class UserOut(BaseModel):
     email: str
     full_name: str
     role: str
-    grade_level: str | None = None
     daily_study_minutes: int | None = None
 
     model_config = {"from_attributes": True}

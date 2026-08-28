@@ -47,7 +47,6 @@ class APIClient:
         password: str,
         full_name: str,
         role: str,
-        grade_level: str | None = None,
         daily_study_minutes: int | None = None,
     ) -> dict:
         body = {
@@ -55,7 +54,6 @@ class APIClient:
             "password": password,
             "full_name": full_name,
             "role": role,
-            "grade_level": grade_level,
             "daily_study_minutes": daily_study_minutes,
         }
         resp = self._client.post(f"{self.base_url}/auth/register", json=body)
@@ -266,6 +264,23 @@ class APIClient:
         if is_correct is not None:
             body["is_correct"] = is_correct
         return self._patch(f"/classes/answers/{answer_id}", json=body)
+
+    # --------------------------------------------------------------------- OBE
+    def analyze_obe(
+        self, filename: str, content: bytes, content_type: str, polish: bool = False
+    ) -> dict:
+        resp = self._client.post(
+            f"{self.base_url}/obe/analyze",
+            headers=self._headers(),
+            files={"file": (filename, content, content_type)},
+            data={"polish": str(polish).lower()},
+        )
+        if resp.status_code >= 400:
+            self._raise(resp)
+        return resp.json()
+
+    def suggest_obe(self, description: str, co_id: str | None = None) -> dict:
+        return self._post("/obe/suggest", json={"description": description, "co_id": co_id})
 
     # ----------------------------------------------------------------- helpers
     def _get(self, path: str, params: dict | None = None) -> object:
