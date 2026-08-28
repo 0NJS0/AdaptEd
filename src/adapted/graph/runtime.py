@@ -37,6 +37,7 @@ class AgentRuntime:
         from ..agents.curriculum_agent import CurriculumAnalyzerAgent
         from ..agents.grading_agent import GradingAgent
         from ..agents.lesson_agent import LessonAgent
+        from ..agents.obe_agent import OBEAgent
         from ..agents.performance_agent import PerformanceAnalysisAgent
         from ..agents.planner_agent import StudyPlannerAgent
         from ..agents.quiz_agent import QuizAgent
@@ -51,6 +52,7 @@ class AgentRuntime:
             "grading_agent": GradingAgent(db, provider, bus),
             "performance_agent": PerformanceAnalysisAgent(db, provider, bus),
             "recommendation_agent": RecommendationAgent(db, provider, bus),
+            "obe_agent": OBEAgent(db, provider, bus),
         }
 
     def _dispatch_node(self, agent_name: str, action: str, receiver_name: str | None = None):
@@ -167,6 +169,11 @@ class AgentRuntime:
             "recommendation_agent",
             self._dispatch_node("recommendation_agent", "recommend.generate"),
         )
+        # OBE / CO-PO mapping: each intent is a single terminal agent hop
+        g.add_node("obe_extract", self._dispatch_node("obe_agent", "obe.extract"))
+        g.add_node("obe_validate", self._dispatch_node("obe_agent", "obe.validate"))
+        g.add_node("obe_suggest", self._dispatch_node("obe_agent", "obe.suggest_mapping"))
+        g.add_node("obe_summarize", self._dispatch_node("obe_agent", "obe.summarize"))
         g.add_node("finalize", self.finalize_node)
 
         g.add_edge(START, "supervisor")
@@ -181,6 +188,10 @@ class AgentRuntime:
                 "quiz_agent": "quiz_agent",
                 "grading_agent": "grading_agent",
                 "recommendation_agent": "recommendation_agent",
+                "obe_extract": "obe_extract",
+                "obe_validate": "obe_validate",
+                "obe_suggest": "obe_suggest",
+                "obe_summarize": "obe_summarize",
                 "finalize": "finalize",
             },
         )
@@ -205,6 +216,10 @@ class AgentRuntime:
         g.add_edge("quiz_agent", "finalize")
         g.add_edge("curriculum_agent", "finalize")
         g.add_edge("plan_create", "finalize")
+        g.add_edge("obe_extract", "finalize")
+        g.add_edge("obe_validate", "finalize")
+        g.add_edge("obe_suggest", "finalize")
+        g.add_edge("obe_summarize", "finalize")
         return g.compile()
 
     def supervisor_node(self, state: GraphState) -> dict[str, Any]:
@@ -256,6 +271,10 @@ class AgentRuntime:
             "generate_quiz": "quiz_agent",
             "quiz_submit": "grading_agent",
             "generate_recommendation": "recommendation_agent",
+            "extract_outline": "obe_extract",
+            "validate_outline": "obe_validate",
+            "suggest_co_mapping": "obe_suggest",
+            "analyze_outline": "obe_summarize",
         }.get(state["intent"], "finalize")
 
     def finalize_node(self, state: GraphState) -> dict[str, Any]:

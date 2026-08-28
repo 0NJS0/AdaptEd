@@ -48,6 +48,7 @@ def create_app() -> FastAPI:
         curriculum,
         lessons,
         logs,
+        obe,
         quizzes,
         students,
         study_plans,
@@ -68,6 +69,7 @@ def create_app() -> FastAPI:
     app.include_router(agent_ops.router)
     app.include_router(logs.router)
     app.include_router(users.router)
+    app.include_router(obe.router)
 
     @app.get("/health", tags=["system"])
     def health() -> dict:
