@@ -16,6 +16,7 @@ wheels/
 AGENTS.md
 PROGRESS.md
 
+
 # Runtime artifacts
 storage/
 *.db
@@ -24,6 +25,8 @@ coverage.xml
 .pytest_cache/
 .ruff_cache/
 *.log
-
+.ua/
+opencode.json
+.agents/
 # OS
 .DS_Store

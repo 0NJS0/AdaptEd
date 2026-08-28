@@ -46,7 +46,6 @@ def class_students(
             "student_id": s.user_id,
             "name": u.full_name,
             "email": u.email,
-            "grade_level": s.grade_level,
             "daily_study_minutes": s.daily_study_minutes,
         }
         for s, u in rows

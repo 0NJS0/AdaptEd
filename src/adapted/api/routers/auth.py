@@ -43,7 +43,6 @@ def register(body: RegisterRequest, db: Annotated[Session, Depends(get_db)]) -> 
         db.add(
             Student(
                 user_id=user.id,
-                grade_level=body.grade_level,
                 daily_study_minutes=body.daily_study_minutes or 90,
             )
         )
@@ -51,16 +50,15 @@ def register(body: RegisterRequest, db: Annotated[Session, Depends(get_db)]) -> 
     token = create_access_token(user.id, user.role)
 
     student = db.scalars(select(Student).where(Student.user_id == user.id)).first()
-    out_kwargs = {"grade_level": None, "daily_study_minutes": None}
-    if student:
-        out_kwargs = {
-            "grade_level": student.grade_level,
-            "daily_study_minutes": student.daily_study_minutes,
-        }
+    daily_minutes = student.daily_study_minutes if student else None
     return TokenResponse(
         access_token=token,
         user=UserOut(
-            id=user.id, email=user.email, full_name=user.full_name, role=user.role, **out_kwargs
+            id=user.id,
+            email=user.email,
+            full_name=user.full_name,
+            role=user.role,
+            daily_study_minutes=daily_minutes,
         ),
     )
 
@@ -72,16 +70,15 @@ def login(body: LoginRequest, db: Annotated[Session, Depends(get_db)]) -> TokenR
         raise HTTPException(401, "Invalid credentials")
     token = create_access_token(user.id, user.role)
     student = db.scalars(select(Student).where(Student.user_id == user.id)).first()
-    out_kwargs = {"grade_level": None, "daily_study_minutes": None}
-    if student:
-        out_kwargs = {
-            "grade_level": student.grade_level,
-            "daily_study_minutes": student.daily_study_minutes,
-        }
+    daily_minutes = student.daily_study_minutes if student else None
     return TokenResponse(
         access_token=token,
         user=UserOut(
-            id=user.id, email=user.email, full_name=user.full_name, role=user.role, **out_kwargs
+            id=user.id,
+            email=user.email,
+            full_name=user.full_name,
+            role=user.role,
+            daily_study_minutes=daily_minutes,
         ),
     )
 
