@@ -4,12 +4,15 @@ import time
 from typing import Any, TypedDict
 
 from langgraph.graph import START, StateGraph
+from sqlalchemy import select
 
 from ..agents.base import AgentResult
 from ..agents.message import AgentMessage
 from ..agents.supervisor import Supervisor
 from ..config import settings
+from ..llm import usage as usage_meter
 from ..logging.logger import get_logger
+from ..models import AgentTask
 
 log = get_logger("adapted.graph")
 
@@ -55,8 +58,27 @@ class AgentRuntime:
             "obe_agent": OBEAgent(db, provider, bus),
         }
 
+    def _control(self, task_id: str) -> str:
+        """Read the current human-in-the-loop control signal for a task.
+
+        ``populate_existing`` forces a re-read so a cancel/pause committed by the
+        API in another session is seen between graph nodes (Postgres READ COMMITTED).
+        """
+        row = self.db.scalars(
+            select(AgentTask)
+            .where(AgentTask.task_id == task_id)
+            .execution_options(populate_existing=True)
+        ).first()
+        return row.control if row else "run"
+
     def _dispatch_node(self, agent_name: str, action: str, receiver_name: str | None = None):
         def _node(state: GraphState) -> dict[str, Any]:
+            # human-in-the-loop: stop entering new agents once cancelled/paused
+            signal = self._control(state["task_id"])
+            if signal in ("cancel", "pause"):
+                return {"status": "cancelled" if signal == "cancel" else "paused"}
+            if state.get("status") in ("cancelled", "paused"):
+                return {"status": state["status"]}
             agent = self.agents[agent_name]
             receiver = receiver_name or agent.name
             merged = self._chain_payload(state, action)
@@ -278,6 +300,8 @@ class AgentRuntime:
         }.get(state["intent"], "finalize")
 
     def finalize_node(self, state: GraphState) -> dict[str, Any]:
+        if state.get("status") in ("cancelled", "paused"):
+            return {"status": state["status"], "context": state.get("context", {})}
         errors = state.get("errors") or []
         status = "success" if not errors and state.get("context") is not None else "failed"
         return {"status": status, "context": state.get("context", {})}
@@ -296,6 +320,7 @@ class AgentRuntime:
             self.db.commit()  # persist the task so failures remain observable
             task_id, correlation_id = task.task_id, task.correlation_id
         start = time.perf_counter()
+        usage_meter.start()  # begin token accounting for this run
 
         graph = self.compile(intent)
         initial: GraphState = {
@@ -320,14 +345,20 @@ class AgentRuntime:
             raise RuntimeError(f"Agent pipeline failed: {exc}") from exc
 
         errors = final.get("errors") or []
-        status = "success" if not errors else "failed"
+        final_status = final.get("status")
+        if final_status in ("cancelled", "paused"):
+            status = final_status
+        else:
+            status = "success" if not errors else "failed"
         duration = int((time.perf_counter() - start) * 1000)
+        used = usage_meter.current()
         supervisor.finish_task(
             task_id,
             status,
             error="; ".join(errors) if errors else None,
             result=final.get("context") or {},
             duration_ms=duration,
+            usage=used,
         )
         self.db.commit()
         log.info(

@@ -20,15 +20,23 @@ log = get_logger("adapted.tasks")
 _executor = ThreadPoolExecutor(max_workers=4, thread_name_prefix="adapted-agent")
 
 
-def submit_pipeline(intent: str, payload: dict[str, Any], user_id: str | None) -> tuple[str, str]:
-    """Persist a 'started' agent task and run it in the background.
+def submit_pipeline(
+    intent: str,
+    payload: dict[str, Any],
+    user_id: str | None,
+    require_approval: bool = False,
+) -> tuple[str, str]:
+    """Persist an agent task and (unless it needs approval) run it in the background.
 
-    Returns (task_id, correlation_id) immediately; callers poll
-    ``GET /agent/tasks/{task_id}`` for the outcome.
+    Returns (task_id, correlation_id) immediately. With ``require_approval`` the
+    task is parked in status ``awaiting_approval`` and only runs once a human
+    calls :func:`approve_task` — the human-in-the-loop gate.
     """
     db = SessionLocal()
     try:
         task = Supervisor(db).start_task(intent, payload, user_id)
+        if require_approval:
+            task.status = "awaiting_approval"
         db.commit()
         task_id, correlation_id = task.task_id, task.correlation_id
     except Exception as exc:
@@ -37,8 +45,44 @@ def submit_pipeline(intent: str, payload: dict[str, Any], user_id: str | None) -
         raise
     finally:
         db.close()
-    _executor.submit(_run_in_thread, intent, payload, user_id, task_id, correlation_id)
+    if not require_approval:
+        _executor.submit(_run_in_thread, intent, payload, user_id, task_id, correlation_id)
     return task_id, correlation_id
+
+
+def approve_task(task_id: str) -> bool:
+    """Release an ``awaiting_approval`` task into execution. Returns False if not gated."""
+    db = SessionLocal()
+    try:
+        task = db.scalars(select(AgentTask).where(AgentTask.task_id == task_id)).first()
+        if task is None or task.status != "awaiting_approval":
+            return False
+        task.status = "started"
+        task.control = "run"
+        intent, payload, user_id = task.intent, dict(task.payload or {}), task.user_id
+        cid = task.correlation_id
+        db.commit()
+    finally:
+        db.close()
+    _executor.submit(_run_in_thread, intent, payload, user_id, task_id, cid)
+    return True
+
+
+def retry_task(task_id: str) -> tuple[str, str] | None:
+    """Re-run a task's intent/payload as a fresh task. Used for retry and resume.
+
+    Resume re-runs the whole workflow (the pipeline is not mid-graph checkpointed),
+    which is safe because agent writes are idempotent per savepoint.
+    """
+    db = SessionLocal()
+    try:
+        task = db.scalars(select(AgentTask).where(AgentTask.task_id == task_id)).first()
+        if task is None:
+            return None
+        intent, payload, user_id = task.intent, dict(task.payload or {}), task.user_id
+    finally:
+        db.close()
+    return submit_pipeline(intent, payload, user_id)
 
 
 def _run_in_thread(

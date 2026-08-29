@@ -146,11 +146,26 @@ class APIClient:
         return self._get(f"/courses/{course_id}/topics/{topic_id}")
 
     # ------------------------------------------------------------ agent/ops
-    def run_agent(self, intent: str, payload: dict) -> dict:
-        return self._post("/agent/run", json={"intent": intent, "payload": payload})
+    def run_agent(self, intent: str, payload: dict, require_approval: bool = False) -> dict:
+        return self._post(
+            "/agent/run",
+            json={"intent": intent, "payload": payload, "require_approval": require_approval},
+        )
 
     def get_task(self, task_id: str) -> dict:
         return self._get(f"/agent/tasks/{task_id}")
+
+    # --- agent console: execution graph, usage, human-in-the-loop controls ---
+    def agent_graph(self, task_id: str | None = None) -> dict:
+        params = {"task_id": task_id} if task_id else None
+        return self._get("/agent/graph", params=params)
+
+    def agent_usage(self, limit: int = 200) -> dict:
+        return self._get("/agent/usage", params={"limit": limit})
+
+    def task_action(self, task_id: str, action: str) -> dict:
+        # action in: cancel | pause | approve | reject | retry | resume
+        return self._post(f"/agent/tasks/{task_id}/{action}")
 
     def agent_tasks(self, limit: int = 50, workflow: str | None = None) -> list[dict]:
         params = {"limit": limit}

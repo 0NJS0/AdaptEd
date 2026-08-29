@@ -149,7 +149,14 @@ def sidebar() -> str | None:
 
     nav = ["Dashboard"]
     if role == "teacher":
-        nav += ["Curriculum", "Class", "Review Queue", "OBE Mapping", "Operations"]
+        nav += [
+            "Curriculum",
+            "Class",
+            "Review Queue",
+            "OBE Mapping",
+            "Agent Console",
+            "Operations",
+        ]
     else:
         nav += ["Study Plan", "Learn", "Quizzes", "My Progress", "Recommendations"]
 
@@ -1113,6 +1120,452 @@ def _render_obe_result(result: dict, filename: str) -> None:
         st.markdown(md)
 
 
+# ======================================================= AGENT CONSOLE (teacher)
+
+_AGENT_ROSTER = [
+    ("supervisor", "🧭 Supervisor"),
+    ("curriculum_agent", "📖 Curriculum"),
+    ("planner_agent", "📅 Planner"),
+    ("lesson_agent", "📝 Lesson"),
+    ("quiz_agent", "❓ Quiz"),
+    ("grading_agent", "✅ Grading"),
+    ("performance_agent", "📊 Performance"),
+    ("recommendation_agent", "💡 Recommendation"),
+    ("obe_agent", "🧭 OBE Mapping"),
+]
+
+_STATUS_ICON = {
+    "started": "⏳",
+    "running": "⏳",
+    "success": "✅",
+    "failed": "❌",
+    "cancelled": "🚫",
+    "paused": "⏸️",
+    "awaiting_approval": "🕓",
+    "retrying": "🔁",
+}
+
+
+def _sicon(status: str | None) -> str:
+    return _STATUS_ICON.get(status or "", "•")
+
+
+def agent_console() -> None:
+    client = _client()
+    st.header("🛰️ Agent Console")
+    st.caption(
+        "Live observability and control for the multi-agent pipeline — dashboard, execution trace, "
+        "graph, token/cost, logs, memory, human-in-the-loop controls and the final report."
+    )
+
+    tabs = st.tabs(
+        [
+            "📊 Dashboard",
+            "🕸️ Execution graph",
+            "📡 Live trace",
+            "✉️ Messages",
+            "🪙 Tokens & cost",
+            "🪵 Logs & errors",
+            "🧠 Memory",
+            "🎛️ Controls",
+            "📄 Report",
+        ]
+    )
+
+    with tabs[0]:
+        _console_dashboard(client)
+    with tabs[1]:
+        _console_graph(client)
+    with tabs[2]:
+        _console_trace(client)
+    with tabs[3]:
+        _console_messages(client)
+    with tabs[4]:
+        _console_usage(client)
+    with tabs[5]:
+        _console_logs(client)
+    with tabs[6]:
+        _console_memory(client)
+    with tabs[7]:
+        _console_controls(client)
+    with tabs[8]:
+        _console_report(client)
+
+
+def _console_dashboard(client: APIClient) -> None:
+    tasks, err = _attempt(lambda: client.agent_tasks(limit=100))
+    if err:
+        st.error(err)
+        return
+    tasks = tasks or []
+    msgs, _ = _attempt(lambda: client.agent_messages(limit=200))
+    msgs = msgs or []
+
+    running = [t for t in tasks if t["status"] in ("started", "running", "retrying")]
+    done = [t for t in tasks if t["status"] in ("success", "failed", "cancelled")]
+    ok = [t for t in done if t["status"] == "success"]
+
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Total runs", len(tasks))
+    c2.metric("Running now", len(running))
+    c3.metric("Success rate", f"{(len(ok) / len(done) * 100) if done else 0:.0f}%")
+    c4.metric("Total cost (est.)", f"${sum(t.get('cost_usd', 0) or 0 for t in tasks):.4f}")
+
+    st.subheader("Active agents")
+    counts: dict[str, int] = {}
+    for m in msgs:
+        counts[m["receiver"]] = counts.get(m["receiver"], 0) + 1
+    active_receivers = {m["receiver"] for t in running for m in msgs if m["task_id"] == t["task_id"]}
+    cols = st.columns(3)
+    for i, (name, label) in enumerate(_AGENT_ROSTER):
+        with cols[i % 3].container(border=True):
+            dot = "🟢" if name in active_receivers else "⚪"
+            st.markdown(f"{dot} **{label}**")
+            st.caption(f"`{name}` · {counts.get(name, 0)} recent messages")
+
+    st.subheader("Recent workflow runs")
+    if not tasks:
+        st.info("No agent runs yet. Trigger a workflow (e.g. analyze curriculum, submit a quiz, or analyze an outline).")
+        return
+    rows = [
+        {
+            "": _sicon(t["status"]),
+            "Intent": t["intent"],
+            "Status": t["status"],
+            "Duration": f"{t.get('duration_ms', 0)} ms",
+            "Tokens": (t.get("prompt_tokens", 0) or 0) + (t.get("completion_tokens", 0) or 0),
+            "Cost": f"${t.get('cost_usd', 0) or 0:.4f}",
+            "Task": t["task_id"],
+            "Started": _fmt(t.get("started_at")),
+        }
+        for t in tasks[:25]
+    ]
+    st.dataframe(rows, use_container_width=True, hide_index=True)
+
+
+def _console_graph(client: APIClient) -> None:
+    st.caption("The LangGraph pipeline. Pick a run to highlight the path it actually took.")
+    tasks, _ = _attempt(lambda: client.agent_tasks(limit=50))
+    tasks = tasks or []
+    opts = {"— whole pipeline —": None}
+    for t in tasks:
+        opts[f"{_sicon(t['status'])} {t['intent']} · {t['task_id']}"] = t["task_id"]
+    pick = st.selectbox("Highlight run", list(opts.keys()), key="graph_pick")
+    graph, err = _attempt(lambda: client.agent_graph(opts[pick]))
+    if err:
+        st.error(err)
+        return
+    st.graphviz_chart(graph.get("dot", ""), use_container_width=True)
+    if graph.get("visited"):
+        st.caption("Path: " + " → ".join(graph["visited"]))
+
+
+def _console_trace(client: APIClient) -> None:
+    st.caption("Live, auto-refreshing trace of a single run's agent hops.")
+    tasks, _ = _attempt(lambda: client.agent_tasks(limit=50))
+    tasks = tasks or []
+    if not tasks:
+        st.info("No runs to trace yet.")
+        return
+    opts = {f"{_sicon(t['status'])} {t['intent']} · {t['task_id']}": t["task_id"] for t in tasks}
+    pick = st.selectbox("Run to trace", list(opts.keys()), key="trace_pick")
+    task_id = opts[pick]
+
+    @st.fragment(run_every=3.0)
+    def _trace() -> None:
+        task, terr = _attempt(lambda: client.get_task(task_id))
+        if terr:
+            st.error(terr)
+            return
+        st.markdown(
+            f"**{_sicon(task['status'])} {task['intent']}** — status `{task['status']}` · "
+            f"{task.get('duration_ms', 0)} ms · {task.get('llm_calls', 0)} LLM calls"
+        )
+        if task.get("status") in ("started", "running", "retrying"):
+            st.caption("🔴 live — refreshing every 3s")
+        mm, _e = _attempt(lambda: client.agent_messages(task_id=task_id, limit=100))
+        mm = list(reversed(mm or []))  # oldest first
+        if not mm:
+            st.caption("Waiting for the first agent hop…")
+        for m in mm:
+            st.markdown(
+                f"{_sicon(m['status'])} `{m['sender']} → {m['receiver']}` "
+                f"**{m['action']}** · {m['status']} · {m.get('duration_ms', 0)} ms"
+            )
+            if m.get("error"):
+                st.caption(f"⚠️ {m['error']}")
+        if task.get("error"):
+            st.error(task["error"])
+
+    _trace()
+
+
+def _console_messages(client: APIClient) -> None:
+    st.caption("Full agent-to-agent communication history (the message bus).")
+    task_filter = st.text_input("Filter by task id (optional)", key="msg_filter")
+    msgs, err = _attempt(
+        lambda: client.agent_messages(task_id=task_filter or None, limit=300)
+    )
+    if err:
+        st.error(err)
+        return
+    rows = [
+        {
+            "": _sicon(m["status"]),
+            "From": m["sender"],
+            "To": m["receiver"],
+            "Action": m["action"],
+            "Status": m["status"],
+            "ms": m.get("duration_ms", 0),
+            "Task": m["task_id"],
+        }
+        for m in (msgs or [])
+    ]
+    if rows:
+        st.dataframe(rows, use_container_width=True, hide_index=True)
+    else:
+        st.info("No messages yet.")
+
+
+def _console_usage(client: APIClient) -> None:
+    usage, err = _attempt(lambda: client.agent_usage(limit=300))
+    if err:
+        st.error(err)
+        return
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Prompt tokens", f"{usage.get('prompt_tokens', 0):,}")
+    c2.metric("Completion tokens", f"{usage.get('completion_tokens', 0):,}")
+    c3.metric("LLM calls", usage.get("llm_calls", 0))
+    c4.metric("Est. cost", f"${usage.get('cost_usd', 0):.4f}")
+    st.caption(
+        "Costs are estimates from configured per-1K-token prices (0 for free models; "
+        "in mock mode tokens are approximated from text length). Set `LLM_PRICE_INPUT_PER_1K` / "
+        "`LLM_PRICE_OUTPUT_PER_1K` in `.env` for real rates."
+    )
+    by_intent = usage.get("by_intent", [])
+    if by_intent:
+        st.subheader("By workflow")
+        st.dataframe(
+            [
+                {
+                    "Intent": r["intent"],
+                    "Runs": r["tasks"],
+                    "Total tokens": r["total_tokens"],
+                    "Cost": f"${r['cost_usd']:.4f}",
+                }
+                for r in by_intent
+            ],
+            use_container_width=True,
+            hide_index=True,
+        )
+
+
+def _console_logs(client: APIClient) -> None:
+    st.subheader("Failed runs")
+    tasks, _ = _attempt(lambda: client.agent_tasks(limit=100))
+    failed = [t for t in (tasks or []) if t["status"] == "failed"]
+    if not failed:
+        st.success("No failed runs.")
+    for t in failed:
+        with st.expander(f"❌ {t['intent']} · {t['task_id']} · {_fmt(t.get('started_at'))}"):
+            st.error(t.get("error") or "unknown error")
+            st.json(t.get("result") or {})
+
+    st.subheader("Failed messages")
+    msgs, _ = _attempt(lambda: client.agent_messages(limit=300))
+    failed_msgs = [m for m in (msgs or []) if m["status"] == "failed"]
+    for m in failed_msgs:
+        st.markdown(f"❌ `{m['sender']}→{m['receiver']}` **{m['action']}** — {m.get('error')}")
+    if not failed_msgs:
+        st.caption("No failed messages.")
+
+    st.subheader("Audit log")
+    logs, _ = _attempt(lambda: client.audit_logs(limit=50))
+    for l in logs or []:
+        st.markdown(
+            f"- `{l['action']}` on `{l.get('resource_type')}/{l.get('resource_id')}` "
+            f"by {l.get('role')} — {_fmt(l.get('timestamp'))}"
+        )
+
+
+def _console_memory(client: APIClient) -> None:
+    st.caption("Inspect the persistent student memory and the curriculum (RAG) memory.")
+    cid = _course_selector("Course")
+    if not cid:
+        return
+    students, serr = _attempt(lambda: client.class_students(cid))
+    if serr:
+        st.error(serr)
+        return
+    if not students:
+        st.info("No students enrolled in this course.")
+        return
+    opts = {f"{s['name']} ({s['student_id'][:8]}…)": s["student_id"] for s in students}
+    pick = st.selectbox("Student", list(opts.keys()), key="mem_student")
+    sid = opts[pick]
+
+    profile, perr = _attempt(lambda: client.student_profile(sid))
+    if perr:
+        st.error(perr)
+        return
+    st.metric("Overall mastery", f"{profile.get('overall_mastery', 0):.0f}%")
+    mc1, mc2 = st.columns(2)
+    with mc1:
+        st.subheader("Topic mastery")
+        for m in profile.get("mastery", []):
+            st.progress(
+                min(m["mastery"] / 100, 1.0), text=f"{m['topic_title']} — {m['mastery']:.0f}%"
+            )
+        if not profile.get("mastery"):
+            st.caption("No mastery recorded yet.")
+    with mc2:
+        st.subheader("Preferences")
+        for k, v in (profile.get("preferences") or {}).items():
+            st.markdown(f"- `{k}`: {v}")
+        st.subheader("Recommendations")
+        recs, _ = _attempt(lambda: client.recommendations(sid))
+        for r in (recs or [])[:5]:
+            st.markdown(f"- {r.get('title')} · `{r.get('status')}`")
+        if not recs:
+            st.caption("No recommendations yet.")
+
+    with st.expander("🔎 Raw profile JSON"):
+        st.json(profile)
+
+
+def _console_controls(client: APIClient) -> None:
+    st.caption("Human-in-the-loop: approve gated runs, and pause / cancel / retry / resume.")
+    tasks, err = _attempt(lambda: client.agent_tasks(limit=60))
+    if err:
+        st.error(err)
+        return
+    tasks = tasks or []
+
+    def _do(task_id: str, action: str) -> None:
+        res, aerr = _attempt(lambda: client.task_action(task_id, action))
+        if aerr:
+            st.error(aerr)
+        else:
+            st.toast(res.get("message", action))
+            st.rerun()
+
+    awaiting = [t for t in tasks if t["status"] == "awaiting_approval"]
+    st.subheader(f"🕓 Awaiting approval ({len(awaiting)})")
+    for t in awaiting:
+        with st.container(border=True):
+            st.markdown(f"**{t['intent']}** · `{t['task_id']}`")
+            st.caption(f"workflow `{t.get('workflow')}` · submitted {_fmt(t.get('started_at'))}")
+            a, b = st.columns(2)
+            if a.button("✅ Approve", key=f"appr_{t['task_id']}", use_container_width=True):
+                _do(t["task_id"], "approve")
+            if b.button("🚫 Reject", key=f"rej_{t['task_id']}", use_container_width=True):
+                _do(t["task_id"], "reject")
+    if not awaiting:
+        st.caption("Nothing awaiting approval.")
+
+    running = [t for t in tasks if t["status"] in ("started", "running", "retrying")]
+    st.subheader(f"⏳ Running ({len(running)})")
+    for t in running:
+        with st.container(border=True):
+            st.markdown(f"**{t['intent']}** · `{t['task_id']}`")
+            a, b = st.columns(2)
+            if a.button("⏸️ Pause", key=f"pause_{t['task_id']}", use_container_width=True):
+                _do(t["task_id"], "pause")
+            if b.button("🛑 Cancel", key=f"cancel_{t['task_id']}", use_container_width=True):
+                _do(t["task_id"], "cancel")
+    if not running:
+        st.caption("No runs in progress.")
+
+    stopped = [t for t in tasks if t["status"] in ("failed", "cancelled", "paused")]
+    st.subheader(f"🔁 Failed / paused / cancelled ({len(stopped)})")
+    for t in stopped[:15]:
+        with st.container(border=True):
+            st.markdown(f"{_sicon(t['status'])} **{t['intent']}** · `{t['task_id']}` — {t['status']}")
+            if t.get("error"):
+                st.caption(f"⚠️ {t['error']}")
+            a, b = st.columns(2)
+            if a.button("🔁 Retry", key=f"retry_{t['task_id']}", use_container_width=True):
+                _do(t["task_id"], "retry")
+            if b.button("▶️ Resume", key=f"resume_{t['task_id']}", use_container_width=True):
+                _do(t["task_id"], "resume")
+
+    with st.expander("🚀 Launch a workflow with an approval gate (advanced)"):
+        st.caption(
+            "Submits a workflow that will not run until you approve it above. "
+            "Payload is JSON, e.g. `{\"course_id\": \"…\", \"document_id\": \"…\"}`."
+        )
+        intent = st.selectbox(
+            "Intent",
+            [
+                "analyze_curriculum",
+                "create_plan",
+                "generate_lesson",
+                "generate_quiz",
+                "quiz_submit",
+                "generate_recommendation",
+                "analyze_outline",
+            ],
+            key="launch_intent",
+        )
+        payload_txt = st.text_area("Payload (JSON)", value="{}", key="launch_payload")
+        if st.button("Submit for approval", key="launch_btn"):
+            import json as _json
+
+            try:
+                payload = _json.loads(payload_txt or "{}")
+            except Exception as exc:  # noqa: BLE001
+                st.error(f"Invalid JSON: {exc}")
+            else:
+                res, lerr = _attempt(
+                    lambda: client.run_agent(intent, payload, require_approval=True)
+                )
+                if lerr:
+                    st.error(lerr)
+                else:
+                    st.success(
+                        f"Submitted `{res['task_id']}` (status: {res['status']}). "
+                        "Approve it above to run."
+                    )
+                    st.rerun()
+
+
+def _console_report(client: APIClient) -> None:
+    st.caption("The final output of a completed run.")
+    tasks, _ = _attempt(lambda: client.agent_tasks(limit=60))
+    finished = [t for t in (tasks or []) if t["status"] in ("success", "failed", "cancelled")]
+    if not finished:
+        st.info("No completed runs yet.")
+        return
+    opts = {f"{_sicon(t['status'])} {t['intent']} · {t['task_id']}": t["task_id"] for t in finished}
+    pick = st.selectbox("Completed run", list(opts.keys()), key="report_pick")
+    task, err = _attempt(lambda: client.get_task(opts[pick]))
+    if err:
+        st.error(err)
+        return
+
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Status", task["status"])
+    c2.metric("Duration", f"{task.get('duration_ms', 0)} ms")
+    c3.metric("Tokens", (task.get("prompt_tokens", 0) or 0) + (task.get("completion_tokens", 0) or 0))
+    c4.metric("Cost", f"${task.get('cost_usd', 0) or 0:.4f}")
+    if task.get("error"):
+        st.error(task["error"])
+
+    result = task.get("result") or {}
+    # OBE runs carry a ready-made markdown summary
+    obe = result.get("obe_agent") or {}
+    if obe.get("summary_markdown"):
+        st.subheader("OBE mapping summary")
+        st.markdown(obe["summary_markdown"])
+
+    st.subheader("Per-agent output")
+    if not result:
+        st.caption("No structured result recorded.")
+    for agent_name, output in result.items():
+        with st.expander(f"🔹 {agent_name}"):
+            st.json(output)
+
+
 # ============================================================ OPS (teacher)
 
 
@@ -1183,6 +1636,8 @@ def main() -> None:
         teacher_review_queue()
     elif choice == "OBE Mapping":
         teacher_obe()
+    elif choice == "Agent Console":
+        agent_console()
     elif choice == "Operations":
         operations_view()
     elif choice == "Study Plan":

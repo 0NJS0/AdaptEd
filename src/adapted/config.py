@@ -33,6 +33,12 @@ class Settings(BaseSettings):
     llm_model: str = "openrouter/free"
     embed_model: str = "nvidia/nemotron-3-embed-1b:free"
 
+    # --- LLM cost estimation (USD per 1000 tokens; 0 for free models) ---
+    # Used only to estimate spend for the observability dashboard. Set these to
+    # your model's real rates for accurate figures.
+    llm_price_input_per_1k: float = 0.0
+    llm_price_output_per_1k: float = 0.0
+
     # --- Embeddings ---
     # Real embeddings come from the OpenRouter embed provider (free models only).
     # "mock" keeps vectors deterministic for offline dev/test runs.

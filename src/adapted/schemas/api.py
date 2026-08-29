@@ -300,6 +300,11 @@ class AgentTaskOut(BaseModel):
     started_at: datetime
     finished_at: datetime | None
     duration_ms: int
+    prompt_tokens: int = 0
+    completion_tokens: int = 0
+    llm_calls: int = 0
+    cost_usd: float = 0.0
+    control: str = "run"
 
     model_config = {"from_attributes": True}
 
@@ -310,3 +315,44 @@ class PipelineResult(BaseModel):
     status: str
     errors: list[str] = []
     context: dict[str, Any] = {}
+
+
+# ---------------------------------------------------------------- agent console
+
+
+class GraphNodeOut(BaseModel):
+    id: str
+    label: str
+    agent: str | None = None
+    kind: str = "agent"
+
+
+class GraphEdgeOut(BaseModel):
+    source: str
+    target: str
+    label: str | None = None
+
+
+class ExecutionGraphOut(BaseModel):
+    nodes: list[GraphNodeOut] = []
+    edges: list[GraphEdgeOut] = []
+    dot: str = ""
+    visited: list[str] = []
+
+
+class UsageSummaryOut(BaseModel):
+    tasks: int = 0
+    prompt_tokens: int = 0
+    completion_tokens: int = 0
+    total_tokens: int = 0
+    llm_calls: int = 0
+    cost_usd: float = 0.0
+    currency: str = "USD"
+    by_intent: list[dict] = []
+
+
+class TaskActionResult(BaseModel):
+    task_id: str
+    status: str
+    message: str
+    new_task_id: str | None = None

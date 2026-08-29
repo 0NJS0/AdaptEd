@@ -48,6 +48,7 @@ class OpenAICompatibleProvider(LLMProvider):
                     {"role": "user", "content": request.prompt},
                 ],
             )
+            self._record_usage(resp)
             content = resp.choices[0].message.content or "{}"
             return json.loads(content)
         except Exception as exc:
@@ -67,6 +68,7 @@ class OpenAICompatibleProvider(LLMProvider):
         if mode and self._query_aware:
             kwargs["extra_body"] = {"input_type": mode}
         resp = self.client.embeddings.create(**kwargs)
+        self._record_usage(resp)
         embeds = [item.embedding for item in resp.data]
         expected = settings.embedding_dim
         for embedding in embeds:
@@ -77,6 +79,19 @@ class OpenAICompatibleProvider(LLMProvider):
                     "Align .env EMBEDDING_DIM with the model's output dimension."
                 )
         return embeds
+
+    @staticmethod
+    def _record_usage(resp: Any) -> None:
+        """Record token usage from an OpenAI-style response into the run counter."""
+        from .usage import record
+
+        u = getattr(resp, "usage", None)
+        if u is None:
+            return
+        record(
+            prompt=getattr(u, "prompt_tokens", 0) or 0,
+            completion=getattr(u, "completion_tokens", 0) or 0,
+        )
 
     @property
     def is_mock(self) -> bool:

@@ -140,6 +140,23 @@ Full step-by-step (including whether you need an API key) is in **[SETUP.md](SET
 
 ---
 
+## Agent Console (observability &amp; control)
+
+A teacher-facing **Agent Console** page gives full visibility into and control over the
+multi-agent pipeline:
+
+- **Dashboard** — active agents, live run counts, success rate, total estimated cost.
+- **Execution graph** — the LangGraph pipeline rendered with the path a chosen run took highlighted.
+- **Live trace** — an auto-refreshing view of a single run's agent hops.
+- **Communication history** — the full agent-to-agent message bus.
+- **Tokens &amp; cost** — per-run and per-workflow token usage with cost estimation.
+- **Logs &amp; errors** — failed runs/messages and the audit log.
+- **Memory viewer** — a student's mastery, preferences and recommendations; curriculum memory.
+- **Human-in-the-loop controls** — approve/reject gated runs, and pause / cancel / retry / resume.
+- **Report viewer** — the final per-agent output of a completed run (OBE runs show the mapping summary).
+
+Backed by `GET /agent/graph`, `GET /agent/usage`, and `POST /agent/tasks/{id}/{approve|reject|cancel|pause|retry|resume}`.
+
 ## Architecture
 
 ```mermaid

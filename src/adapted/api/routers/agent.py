@@ -15,6 +15,7 @@ router = APIRouter(prefix="/agent", tags=["agent"])
 class AgentRunRequest(BaseModel):
     intent: str
     payload: dict[str, object] = Field(default_factory=dict)
+    require_approval: bool = False
 
 
 @router.post("/run", response_model=PipelineResult)
@@ -34,10 +35,13 @@ def run_agent_pipeline(
     if body.intent not in WORKFLOWS:
         raise HTTPException(400, f"Unknown intent '{body.intent}'")
     try:
-        task_id, correlation_id = submit_pipeline(body.intent, body.payload, user.id)
+        task_id, correlation_id = submit_pipeline(
+            body.intent, body.payload, user.id, require_approval=body.require_approval
+        )
     except RuntimeError as exc:
         raise HTTPException(502, str(exc)) from exc
     except Exception as exc:
         log.error("agent_pipeline_submit_error", intent=body.intent, error=str(exc))
         raise HTTPException(500, f"Pipeline submission failed: {exc}") from exc
-    return PipelineResult(task_id=task_id, correlation_id=correlation_id, status="started")
+    status = "awaiting_approval" if body.require_approval else "started"
+    return PipelineResult(task_id=task_id, correlation_id=correlation_id, status=status)
