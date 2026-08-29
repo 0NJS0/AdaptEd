@@ -72,12 +72,14 @@ them over a persisted message bus.
 | **Performance Agent** | `performance_agent` | `performance.analyze` | Surfaces weak/strong topics, topic mastery, and misconceptions |
 | **Recommendation Agent** | `recommendation_agent` | `recommend.generate` | Decides what the student should study next |
 | **OBE Mapping Agent** ⭐ | `obe_agent` | `obe.extract`, `obe.validate`, `obe.suggest_mapping`, `obe.summarize` | Extracts & validates CO ↔ PO ↔ Bloom ↔ K-P-A mappings from a course outline against the OBE Manual; suggests fixes; drafts the mapping summary |
+| **OBE Authoring Agent** ⭐ | `obe_author_agent` | `obe.author`, `obe.improve` | *Generates* OBE-compliant Course Outcomes (Bloom spread + PO + K-P-A) and *rewrites* a flagged CO to fix its verb/Bloom/PO — the "author" half of the analyze-and-author pair |
 
 ### Supervisor intents
 
 `analyze_curriculum` · `create_plan` · `adapt_plan` · `generate_lesson` ·
 `generate_quiz` · `quiz_submit` · `generate_recommendation` · `generate_reassessment` ·
-`extract_outline` · `validate_outline` · `suggest_co_mapping` · `analyze_outline`
+`extract_outline` · `validate_outline` · `suggest_co_mapping` · `analyze_outline` ·
+`author_outcomes` · `improve_outcome`
 
 ---
 

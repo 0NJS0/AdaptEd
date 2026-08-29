@@ -29,6 +29,9 @@ WORKFLOWS: dict[str, dict[str, str]] = {
     "validate_outline": {"workflow": "obe_validate", "first_action": "obe.validate"},
     "suggest_co_mapping": {"workflow": "obe_suggest", "first_action": "obe.suggest_mapping"},
     "analyze_outline": {"workflow": "obe_summary", "first_action": "obe.summarize"},
+    # OBE authoring workflows (second OBE agent)
+    "author_outcomes": {"workflow": "obe_author", "first_action": "obe.author"},
+    "improve_outcome": {"workflow": "obe_improve", "first_action": "obe.improve"},
 }
 
 
@@ -94,6 +97,8 @@ class Supervisor:
             "obe.validate": "obe_agent",
             "obe.suggest_mapping": "obe_agent",
             "obe.summarize": "obe_agent",
+            "obe.author": "obe_author_agent",
+            "obe.improve": "obe_author_agent",
         }
         return mapping.get(action, "unknown")
 

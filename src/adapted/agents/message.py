@@ -29,6 +29,8 @@ MESSAGE_ACTIONS = {
     "obe.validate",
     "obe.suggest_mapping",
     "obe.summarize",
+    "obe.author",
+    "obe.improve",
 }
 
 

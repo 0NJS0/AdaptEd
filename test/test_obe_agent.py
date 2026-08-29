@@ -14,6 +14,7 @@ import pytest
 try:
     from adapted.agents.message import AgentMessage
     from adapted.agents.obe_agent import OBEAgent
+    from adapted.agents.obe_author_agent import OBEAuthorAgent
     from adapted.llm.mock import MockProvider
     from adapted.obe import runner
 
@@ -95,3 +96,36 @@ def test_runner_analyze_text():
 def test_runner_suggest():
     res = runner.suggest(description="Apply sorting algorithms.", provider=MockProvider())
     assert res["suggestions"][0]["suggested_bloom_level"] == 3
+
+
+# --- OBE Authoring agent (second OBE agent) ---
+def _author_agent():
+    return OBEAuthorAgent(db=None, provider=MockProvider(), bus=None)
+
+
+def test_author_agent_generates_cos():
+    out = _author_agent().handle(
+        _msg("obe.author", {"subject": "computer science", "count": 4})
+    )
+    assert out.error is None
+    assert len(out.output["cos"]) == 4
+
+
+def test_author_agent_improve():
+    out = _author_agent().handle(
+        _msg("obe.improve", {"description": "Explain the design of a system.", "target_level": 6})
+    )
+    assert out.error is None
+    assert out.output["improved"]["improved_description"].startswith("Design")
+
+
+def test_author_agent_improve_requires_description():
+    out = _author_agent().handle(_msg("obe.improve", {}))
+    assert out.error is not None
+
+
+def test_runner_author_and_improve():
+    a = runner.author(subject="math", count=3, provider=MockProvider())
+    assert len(a["cos"]) == 3
+    b = runner.improve(description="Explain recursion.", target_level=4, provider=MockProvider())
+    assert b["improved"]["bloom_level"] == 4

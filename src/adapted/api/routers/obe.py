@@ -20,6 +20,21 @@ class SuggestRequest(BaseModel):
     co_id: str | None = None
 
 
+class AuthorRequest(BaseModel):
+    course_title: str = ""
+    subject: str = ""
+    topics: list[str] = Field(default_factory=list)
+    count: int = Field(4, ge=1, le=12)
+    po_hint: str | None = None
+
+
+class ImproveRequest(BaseModel):
+    description: str = Field(..., min_length=3)
+    target_level: int | None = Field(None, ge=1, le=6)
+    target_po: str | None = None
+    co_id: str | None = None
+
+
 @router.post("/analyze")
 def analyze_outline(
     user: TeacherDep,
@@ -79,3 +94,32 @@ def suggest_mapping(user: TeacherDep, body: SuggestRequest) -> dict:
         return runner.suggest(description=body.description, co_id=body.co_id)
     except Exception as exc:  # noqa: BLE001
         raise HTTPException(502, f"Suggestion failed: {exc}") from exc
+
+
+@router.post("/author")
+def author_outcomes(user: TeacherDep, body: AuthorRequest) -> dict:
+    """Generate OBE-compliant Course Outcomes for a course/topic set (OBE Authoring agent)."""
+    try:
+        return runner.author(
+            course_title=body.course_title,
+            subject=body.subject,
+            topics=body.topics,
+            count=body.count,
+            po_hint=body.po_hint,
+        )
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(502, f"Authoring failed: {exc}") from exc
+
+
+@router.post("/improve")
+def improve_outcome(user: TeacherDep, body: ImproveRequest) -> dict:
+    """Rewrite a single Course Outcome so its verb, Bloom level and PO/K-P-A align."""
+    try:
+        return runner.improve(
+            description=body.description,
+            target_level=body.target_level,
+            target_po=body.target_po,
+            co_id=body.co_id,
+        )
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(502, f"Improve failed: {exc}") from exc

@@ -105,3 +105,31 @@ class MappingSuggestion(BaseModel):
 class OBESummary(BaseModel):
     course_code: str = ""
     markdown: str = ""
+
+
+class AuthoredCO(BaseModel):
+    """A freshly generated, OBE-compliant Course Outcome."""
+
+    id: str
+    description: str
+    verb: str = ""
+    bloom_level: int | None = None
+    bloom_name: str = ""
+    suggested_pos: list[str] = Field(default_factory=list)
+    suggested_kpa: KPA = Field(default_factory=KPA)
+    rationale: list[str] = Field(default_factory=list)
+
+
+class ImprovedCO(BaseModel):
+    """A rewritten Course Outcome with the changes made and why."""
+
+    co_id: str = "CO1"
+    original_description: str = ""
+    improved_description: str = ""
+    verb: str = ""
+    bloom_level: int | None = None
+    bloom_name: str = ""
+    suggested_pos: list[str] = Field(default_factory=list)
+    suggested_kpa: KPA = Field(default_factory=KPA)
+    changes: list[str] = Field(default_factory=list)
+    rationale: list[str] = Field(default_factory=list)

@@ -13,6 +13,7 @@ from typing import Any
 
 from ..agents.message import AgentMessage
 from ..agents.obe_agent import OBEAgent
+from ..agents.obe_author_agent import OBEAuthorAgent
 
 
 def _provider(provider: Any | None) -> Any:
@@ -72,6 +73,53 @@ def suggest(
         raise ValueError("Provide 'description' or a 'cos' list.")
     agent = OBEAgent(db=None, provider=_provider(provider), bus=None)
     result = agent.handle(_message("obe.suggest_mapping", payload))
+    if result.error:
+        raise RuntimeError(result.error)
+    return result.output
+
+
+def author(
+    *,
+    course_title: str = "",
+    subject: str = "",
+    topics: list[str] | None = None,
+    count: int = 4,
+    po_hint: str | None = None,
+    provider: Any | None = None,
+) -> dict[str, Any]:
+    """Generate a set of OBE-compliant Course Outcomes."""
+    payload = {
+        "course_title": course_title,
+        "subject": subject,
+        "topics": topics or [],
+        "count": count,
+        "po_hint": po_hint,
+    }
+    agent = OBEAuthorAgent(db=None, provider=_provider(provider), bus=None)
+    result = agent.handle(_message("obe.author", payload))
+    if result.error:
+        raise RuntimeError(result.error)
+    return result.output
+
+
+def improve(
+    *,
+    description: str,
+    target_level: int | None = None,
+    target_po: str | None = None,
+    co_id: str | None = None,
+    provider: Any | None = None,
+) -> dict[str, Any]:
+    """Rewrite a single Course Outcome for Bloom/PO consistency."""
+    payload: dict[str, Any] = {"description": description}
+    if target_level is not None:
+        payload["target_level"] = target_level
+    if target_po:
+        payload["target_po"] = target_po
+    if co_id:
+        payload["co_id"] = co_id
+    agent = OBEAuthorAgent(db=None, provider=_provider(provider), bus=None)
+    result = agent.handle(_message("obe.improve", payload))
     if result.error:
         raise RuntimeError(result.error)
     return result.output

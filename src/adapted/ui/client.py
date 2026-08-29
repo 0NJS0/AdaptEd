@@ -299,6 +299,42 @@ class APIClient:
     def suggest_obe(self, description: str, co_id: str | None = None) -> dict:
         return self._post("/obe/suggest", json={"description": description, "co_id": co_id})
 
+    def author_obe(
+        self,
+        course_title: str = "",
+        subject: str = "",
+        topics: list[str] | None = None,
+        count: int = 4,
+        po_hint: str | None = None,
+    ) -> dict:
+        return self._post(
+            "/obe/author",
+            json={
+                "course_title": course_title,
+                "subject": subject,
+                "topics": topics or [],
+                "count": count,
+                "po_hint": po_hint,
+            },
+        )
+
+    def improve_obe(
+        self,
+        description: str,
+        target_level: int | None = None,
+        target_po: str | None = None,
+        co_id: str | None = None,
+    ) -> dict:
+        return self._post(
+            "/obe/improve",
+            json={
+                "description": description,
+                "target_level": target_level,
+                "target_po": target_po,
+                "co_id": co_id,
+            },
+        )
+
     # ----------------------------------------------------------------- helpers
     def _get(self, path: str, params: dict | None = None) -> object:
         resp = self._client.get(f"{self.base_url}{path}", headers=self._headers(), params=params)
