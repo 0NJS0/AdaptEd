@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import random
 import re
 from collections.abc import Callable
@@ -496,9 +497,15 @@ class MockProvider(LLMProvider):
 
     def generate(self, request: LLMRequest) -> dict[str, Any]:
         handler = self.HANDLERS.get(request.task)
-        if handler is None:
-            return {}
-        return handler(request.meta)
+        output = handler(request.meta) if handler is not None else {}
+        # estimate token usage so the observability dashboard has figures offline
+        from .usage import estimate_tokens, record
+
+        try:
+            record(estimate_tokens(request.prompt), estimate_tokens(json.dumps(output)))
+        except Exception:  # noqa: BLE001, S110
+            pass
+        return output
 
     def embed(
         self,

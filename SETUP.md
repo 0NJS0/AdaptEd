@@ -258,3 +258,8 @@ uv run pytest test/test_obe.py -q
 | `401 Not authenticated` on `/obe/*` | Include a valid **teacher** JWT: `Authorization: Bearer <token>`. |
 | UI can't reach the API | Confirm the API is up on port 8001 and `ADAPTED_API_URL` matches. |
 | Want real AI content | Set `LLM_PROVIDER=openrouter` + `OPENROUTER_API_KEY` (section 5). |
+| Agent Console shows a column error (e.g. `column agent_tasks.prompt_tokens does not exist`) | The Agent Console added token/cost/control columns. On a **fresh** DB they're created automatically; on an **existing** DB, run the additive migration once: `uv run python scripts/migrate_agent_console.py` (safe, non-destructive). |
+
+> **Optional — LLM cost rates:** to show real spend in the Agent Console's *Tokens &amp; cost* tab, set
+> `LLM_PRICE_INPUT_PER_1K` and `LLM_PRICE_OUTPUT_PER_1K` in `.env` to your model's USD price per 1000 tokens
+> (they default to `0`, correct for free models). In mock mode, tokens are estimated from text length.

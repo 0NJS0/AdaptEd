@@ -104,6 +104,7 @@ class Supervisor:
         error: str | None = None,
         result: dict | None = None,
         duration_ms: int = 0,
+        usage: Any | None = None,
     ) -> None:
         task = self.db.scalars(select(AgentTask).where(AgentTask.task_id == task_id)).first()
         if task is None:
@@ -112,6 +113,13 @@ class Supervisor:
         task.error = error
         task.result = result
         task.duration_ms = duration_ms
+        if usage is not None:
+            from ..llm.usage import estimate_cost
+
+            task.prompt_tokens = usage.prompt_tokens
+            task.completion_tokens = usage.completion_tokens
+            task.llm_calls = usage.calls
+            task.cost_usd = estimate_cost(usage.prompt_tokens, usage.completion_tokens)
         from datetime import datetime
 
         task.finished_at = datetime.now(UTC)
