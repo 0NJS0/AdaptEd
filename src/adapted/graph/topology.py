@@ -22,6 +22,8 @@ NODES: dict[str, tuple[str, str | None]] = {
     "obe_validate": ("OBE · validate", "obe_agent"),
     "obe_suggest": ("OBE · suggest", "obe_agent"),
     "obe_summarize": ("OBE · summarize", "obe_agent"),
+    "obe_author": ("OBE · author", "obe_author_agent"),
+    "obe_improve": ("OBE · improve", "obe_author_agent"),
     "finalize": ("Finalize", None),
 }
 
@@ -38,6 +40,8 @@ EDGES: list[tuple[str, str, str | None]] = [
     ("supervisor", "obe_validate", "validate_outline"),
     ("supervisor", "obe_suggest", "suggest_co_mapping"),
     ("supervisor", "obe_summarize", "analyze_outline"),
+    ("supervisor", "obe_author", "author_outcomes"),
+    ("supervisor", "obe_improve", "improve_outcome"),
     ("grading_agent", "performance_agent", None),
     ("performance_agent", "recommendation_agent", None),
     ("recommendation_agent", "plan_modify", "needs remediation"),
@@ -51,6 +55,8 @@ EDGES: list[tuple[str, str, str | None]] = [
     ("obe_validate", "finalize", None),
     ("obe_suggest", "finalize", None),
     ("obe_summarize", "finalize", None),
+    ("obe_author", "finalize", None),
+    ("obe_improve", "finalize", None),
 ]
 
 # message action -> node id (to reconstruct the path a run took from its messages)
@@ -67,6 +73,8 @@ ACTION_TO_NODE: dict[str, str] = {
     "obe.validate": "obe_validate",
     "obe.suggest_mapping": "obe_suggest",
     "obe.summarize": "obe_summarize",
+    "obe.author": "obe_author",
+    "obe.improve": "obe_improve",
 }
 
 

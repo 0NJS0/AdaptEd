@@ -1015,6 +1015,87 @@ def teacher_obe() -> None:
                         for r in s.get("rationale", []):
                             st.caption(f"• {r}")
 
+    _obe_authoring_tools(client)
+
+
+def _obe_authoring_tools(client: APIClient) -> None:
+    """The OBE Authoring agent: generate compliant COs, and rewrite a flagged one."""
+    with st.expander("✍️ Author new Course Outcomes (OBE Authoring agent)"):
+        st.caption(
+            "Generate OBE-compliant Course Outcomes with a proper Bloom spread, "
+            "suggested PO and K-P-A — ready to drop into a new outline."
+        )
+        a1, a2 = st.columns(2)
+        title = a1.text_input("Course title", key="author_title", placeholder="e.g. Data Structures")
+        subject = a2.text_input("Subject", key="author_subject", placeholder="e.g. computer science")
+        topics_raw = st.text_input(
+            "Key topics (comma-separated, optional)",
+            key="author_topics",
+            placeholder="e.g. sorting, trees, graphs, complexity",
+        )
+        n = st.slider("How many COs", 2, 8, 4, key="author_count")
+        if st.button("Generate Course Outcomes", key="author_btn"):
+            topics = [t.strip() for t in topics_raw.split(",") if t.strip()]
+            res, err = _attempt(
+                lambda: client.author_obe(
+                    course_title=title, subject=subject, topics=topics, count=int(n)
+                )
+            )
+            if err:
+                st.error(err)
+            else:
+                for c in res.get("cos", []):
+                    with st.container(border=True):
+                        st.markdown(
+                            f"**{c['id']}** — {c['description']}"
+                        )
+                        kpa = c.get("suggested_kpa", {})
+                        st.caption(
+                            f"Bloom {_bloom_label(c.get('bloom_level'))} · "
+                            f"PO {', '.join(c.get('suggested_pos') or []) or '—'} · "
+                            f"K {', '.join(kpa.get('k', [])) or '—'} / "
+                            f"P {', '.join(kpa.get('p', [])) or '—'} / "
+                            f"A {', '.join(kpa.get('a', [])) or '—'}"
+                        )
+
+    with st.expander("🔧 Improve a Course Outcome"):
+        st.caption(
+            "Rewrite a CO the validator flagged so its verb, Bloom level and PO/K-P-A line up."
+        )
+        desc = st.text_area(
+            "Course Outcome to fix",
+            key="improve_desc",
+            placeholder="e.g. Explain the design of a complex system using UML. (tagged Bloom L5)",
+        )
+        lvl = st.selectbox(
+            "Target Bloom level (optional)",
+            ["auto", 1, 2, 3, 4, 5, 6],
+            key="improve_level",
+            help="1 Remember · 2 Understand · 3 Apply · 4 Analyze · 5 Evaluate · 6 Create",
+        )
+        if st.button("Improve outcome", key="improve_btn"):
+            if not desc.strip():
+                st.warning("Enter a Course Outcome first.")
+            else:
+                target = None if lvl == "auto" else int(lvl)
+                res, err = _attempt(lambda: client.improve_obe(desc, target_level=target))
+                if err:
+                    st.error(err)
+                else:
+                    imp = res.get("improved", {})
+                    st.markdown(f"**Original:** {imp.get('original_description')}")
+                    st.success(f"**Improved:** {imp.get('improved_description')}")
+                    kpa = imp.get("suggested_kpa", {})
+                    st.caption(
+                        f"Bloom {_bloom_label(imp.get('bloom_level'))} · "
+                        f"PO {', '.join(imp.get('suggested_pos') or []) or '—'} · "
+                        f"K {', '.join(kpa.get('k', [])) or '—'} / "
+                        f"P {', '.join(kpa.get('p', [])) or '—'} / "
+                        f"A {', '.join(kpa.get('a', [])) or '—'}"
+                    )
+                    for ch in imp.get("changes", []):
+                        st.markdown(f"- 🔧 {ch}")
+
 
 def _render_obe_result(result: dict, filename: str) -> None:
     ext = result.get("extraction", {})

@@ -41,6 +41,7 @@ class AgentRuntime:
         from ..agents.grading_agent import GradingAgent
         from ..agents.lesson_agent import LessonAgent
         from ..agents.obe_agent import OBEAgent
+        from ..agents.obe_author_agent import OBEAuthorAgent
         from ..agents.performance_agent import PerformanceAnalysisAgent
         from ..agents.planner_agent import StudyPlannerAgent
         from ..agents.quiz_agent import QuizAgent
@@ -56,6 +57,7 @@ class AgentRuntime:
             "performance_agent": PerformanceAnalysisAgent(db, provider, bus),
             "recommendation_agent": RecommendationAgent(db, provider, bus),
             "obe_agent": OBEAgent(db, provider, bus),
+            "obe_author_agent": OBEAuthorAgent(db, provider, bus),
         }
 
     def _control(self, task_id: str) -> str:
@@ -196,6 +198,8 @@ class AgentRuntime:
         g.add_node("obe_validate", self._dispatch_node("obe_agent", "obe.validate"))
         g.add_node("obe_suggest", self._dispatch_node("obe_agent", "obe.suggest_mapping"))
         g.add_node("obe_summarize", self._dispatch_node("obe_agent", "obe.summarize"))
+        g.add_node("obe_author", self._dispatch_node("obe_author_agent", "obe.author"))
+        g.add_node("obe_improve", self._dispatch_node("obe_author_agent", "obe.improve"))
         g.add_node("finalize", self.finalize_node)
 
         g.add_edge(START, "supervisor")
@@ -214,6 +218,8 @@ class AgentRuntime:
                 "obe_validate": "obe_validate",
                 "obe_suggest": "obe_suggest",
                 "obe_summarize": "obe_summarize",
+                "obe_author": "obe_author",
+                "obe_improve": "obe_improve",
                 "finalize": "finalize",
             },
         )
@@ -242,6 +248,8 @@ class AgentRuntime:
         g.add_edge("obe_validate", "finalize")
         g.add_edge("obe_suggest", "finalize")
         g.add_edge("obe_summarize", "finalize")
+        g.add_edge("obe_author", "finalize")
+        g.add_edge("obe_improve", "finalize")
         return g.compile()
 
     def supervisor_node(self, state: GraphState) -> dict[str, Any]:
@@ -297,6 +305,8 @@ class AgentRuntime:
             "validate_outline": "obe_validate",
             "suggest_co_mapping": "obe_suggest",
             "analyze_outline": "obe_summarize",
+            "author_outcomes": "obe_author",
+            "improve_outcome": "obe_improve",
         }.get(state["intent"], "finalize")
 
     def finalize_node(self, state: GraphState) -> dict[str, Any]:
