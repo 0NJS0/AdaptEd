@@ -1,0 +1,150 @@
+{
+ "projectRoot": "/home/njs/Desktop/AdaptED/AdaptEd",
+ "batchFiles": [
+  {
+   "path": "src/adapted/agents/base.py",
+   "language": "python",
+   "sizeLines": 76,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/adapted/agents/curriculum_agent.py",
+   "language": "python",
+   "sizeLines": 231,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/adapted/agents/grading_agent.py",
+   "language": "python",
+   "sizeLines": 184,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/adapted/agents/message.py",
+   "language": "python",
+   "sizeLines": 115,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/adapted/agents/performance_agent.py",
+   "language": "python",
+   "sizeLines": 174,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/adapted/agents/planner_agent.py",
+   "language": "python",
+   "sizeLines": 250,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/adapted/agents/quiz_agent.py",
+   "language": "python",
+   "sizeLines": 190,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/adapted/agents/recommendation_agent.py",
+   "language": "python",
+   "sizeLines": 159,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/adapted/agents/supervisor.py",
+   "language": "python",
+   "sizeLines": 118,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/adapted/graph/runtime.py",
+   "language": "python",
+   "sizeLines": 327,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/adapted/logging/logger.py",
+   "language": "python",
+   "sizeLines": 41,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/adapted/services/grading.py",
+   "language": "python",
+   "sizeLines": 52,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/adapted/services/scheduler.py",
+   "language": "python",
+   "sizeLines": 260,
+   "fileCategory": "code"
+  }
+ ],
+ "batchImportData": {
+  "src/adapted/agents/base.py": [
+   "src/adapted/agents/message.py",
+   "src/adapted/logging/logger.py"
+  ],
+  "src/adapted/agents/curriculum_agent.py": [
+   "src/adapted/agents/base.py",
+   "src/adapted/agents/message.py",
+   "src/adapted/logging/logger.py",
+   "src/adapted/models/__init__.py",
+   "src/adapted/rag/parser.py"
+  ],
+  "src/adapted/agents/grading_agent.py": [
+   "src/adapted/agents/base.py",
+   "src/adapted/agents/message.py",
+   "src/adapted/logging/logger.py",
+   "src/adapted/models/__init__.py",
+   "src/adapted/services/grading.py"
+  ],
+  "src/adapted/agents/message.py": [
+   "src/adapted/logging/logger.py",
+   "src/adapted/models/__init__.py"
+  ],
+  "src/adapted/agents/performance_agent.py": [
+   "src/adapted/agents/base.py",
+   "src/adapted/agents/message.py",
+   "src/adapted/logging/logger.py",
+   "src/adapted/models/__init__.py"
+  ],
+  "src/adapted/agents/planner_agent.py": [
+   "src/adapted/agents/base.py",
+   "src/adapted/agents/message.py",
+   "src/adapted/logging/logger.py",
+   "src/adapted/models/__init__.py",
+   "src/adapted/services/scheduler.py"
+  ],
+  "src/adapted/agents/quiz_agent.py": [
+   "src/adapted/agents/base.py",
+   "src/adapted/agents/message.py",
+   "src/adapted/logging/logger.py",
+   "src/adapted/models/__init__.py",
+   "src/adapted/services/grading.py"
+  ],
+  "src/adapted/agents/recommendation_agent.py": [
+   "src/adapted/agents/base.py",
+   "src/adapted/agents/message.py",
+   "src/adapted/logging/logger.py",
+   "src/adapted/models/__init__.py"
+  ],
+  "src/adapted/agents/supervisor.py": [
+   "src/adapted/agents/message.py",
+   "src/adapted/logging/logger.py",
+   "src/adapted/models/__init__.py"
+  ],
+  "src/adapted/graph/runtime.py": [
+   "src/adapted/agents/base.py",
+   "src/adapted/agents/message.py",
+   "src/adapted/agents/supervisor.py",
+   "src/adapted/config.py",
+   "src/adapted/logging/logger.py"
+  ],
+  "src/adapted/logging/logger.py": [
+   "src/adapted/config.py"
+  ],
+  "src/adapted/services/grading.py": [],
+  "src/adapted/services/scheduler.py": []
+ }
+}

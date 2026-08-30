@@ -1,0 +1,863 @@
+{
+ "nodes": [
+  {
+   "id": "file:src/adapted/agents/recommendation_agent.py",
+   "type": "file",
+   "name": "recommendation_agent.py",
+   "filePath": "src/adapted/agents/recommendation_agent.py",
+   "summary": "RecommendationAgent picks the next best action (e.g. review_topic) from weak topics via _decide, then renders a learner-facing narrative using an LLM prompt with a deterministic mock fallback before persisting a Recommendation row.",
+   "tags": [
+    "agent",
+    "recommendations",
+    "llm",
+    "fallback"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "class:src/adapted/agents/recommendation_agent.py:RecommendationOut",
+   "type": "class",
+   "name": "RecommendationOut",
+   "filePath": "src/adapted/agents/recommendation_agent.py",
+   "lineRange": [
+    15,
+    21
+   ],
+   "summary": "Single recommendation contract: action, topic, reason fields used in agent output.",
+   "tags": [
+    "schema-definition",
+    "recommendations",
+    "type-definition"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "class:src/adapted/agents/recommendation_agent.py:RecommendationOutput",
+   "type": "class",
+   "name": "RecommendationOutput",
+   "filePath": "src/adapted/agents/recommendation_agent.py",
+   "lineRange": [
+    24,
+    28
+   ],
+   "summary": "List wrapper for recommendations emitted by the agent.",
+   "tags": [
+    "schema-definition",
+    "recommendations",
+    "type-definition"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "class:src/adapted/agents/recommendation_agent.py:RecommendationAgent",
+   "type": "class",
+   "name": "RecommendationAgent",
+   "filePath": "src/adapted/agents/recommendation_agent.py",
+   "lineRange": [
+    31,
+    159
+   ],
+   "summary": "Decides actions from performance weak topics, generates the explanation text via _llm_narrative (with _mock_narrative fallback), and persists Recommendation rows for the student/course.",
+   "tags": [
+    "agent",
+    "recommendations",
+    "llm"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:src/adapted/agents/supervisor.py",
+   "type": "file",
+   "name": "supervisor.py",
+   "filePath": "src/adapted/agents/supervisor.py",
+   "summary": "Supervisor coordinates pipeline execution: classifies intents into agent action chains, starts/persists AgentTask rows, emits the initial message, routes each action to its receiver agent, and finalizes tasks.",
+   "tags": [
+    "orchestration",
+    "supervisor",
+    "task-management"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "class:src/adapted/agents/supervisor.py:Supervisor",
+   "type": "class",
+   "name": "Supervisor",
+   "filePath": "src/adapted/agents/supervisor.py",
+   "lineRange": [
+    30,
+    118
+   ],
+   "summary": "Intent router and task owner: classify maps intents like analyze_curriculum or quiz_submit to action sequences, start_task/finish_task manage task lifecycle rows, and _receiver_for_action dispatches work to the right agent.",
+   "tags": [
+    "orchestration",
+    "routing",
+    "state-machine"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:src/adapted/graph/runtime.py",
+   "type": "file",
+   "name": "runtime.py",
+   "filePath": "src/adapted/graph/runtime.py",
+   "summary": "LangGraph-style AgentRuntime: registers all agents, threads a GraphState payload through supervisor-defined chains, executes each node with savepoint-backed retries (_run_with_retry with backoff and empty-output detection), and manages overall task success/failure.",
+   "tags": [
+    "graph-runtime",
+    "orchestration",
+    "retry",
+    "pipeline"
+   ],
+   "complexity": "complex",
+   "languageNotes": "Savepoint rollback per failed node attempt keeps partial DB writes from leaking between retries; retries are bounded by settings.agent_max_retries."
+  },
+  {
+   "id": "class:src/adapted/graph/runtime.py:GraphState",
+   "type": "class",
+   "name": "GraphState",
+   "filePath": "src/adapted/graph/runtime.py",
+   "lineRange": [
+    17,
+    25
+   ],
+   "summary": "TypedDict-style state bag passed between graph nodes holding payload, per-agent results, and error accumulation.",
+   "tags": [
+    "state-machine",
+    "type-definition",
+    "pipeline"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "class:src/adapted/graph/runtime.py:AgentRuntime",
+   "type": "class",
+   "name": "AgentRuntime",
+   "filePath": "src/adapted/graph/runtime.py",
+   "lineRange": [
+    28,
+    327
+   ],
+   "summary": "Compiles and runs agent graphs: build_agents instantiates the registry, compile wires supervisor chains into a dispatch graph, _run_with_retry wraps each agent.handle in savepoint+backoff logic, and run() drives start_task through finish_task.",
+   "tags": [
+    "graph-runtime",
+    "orchestration",
+    "retry"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:src/adapted/logging/logger.py",
+   "type": "file",
+   "name": "logger.py",
+   "filePath": "src/adapted/logging/logger.py",
+   "summary": "Logging bootstrap: configures root logging once from Settings, exposes get_logger(name), and bind_task to attach task/correlation ids as contextual log fields.",
+   "tags": [
+    "logging",
+    "observability",
+    "utility"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/adapted/logging/logger.py:_configure",
+   "type": "function",
+   "name": "_configure",
+   "filePath": "src/adapted/logging/logger.py",
+   "lineRange": [
+    14,
+    30
+   ],
+   "summary": "One-time root logger setup applying the configured level and format, guarded against duplicate handlers.",
+   "tags": [
+    "logging",
+    "configuration",
+    "utility"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/adapted/logging/logger.py:get_logger",
+   "type": "function",
+   "name": "get_logger",
+   "filePath": "src/adapted/logging/logger.py",
+   "lineRange": [
+    33,
+    35
+   ],
+   "summary": "Returns a named logger, triggering configuration on first use.",
+   "tags": [
+    "logging",
+    "utility",
+    "factory"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/adapted/logging/logger.py:bind_task",
+   "type": "function",
+   "name": "bind_task",
+   "filePath": "src/adapted/logging/logger.py",
+   "lineRange": [
+    38,
+    41
+   ],
+   "summary": "Adapter adding task_id/correlation_id context to every log record for a run.",
+   "tags": [
+    "logging",
+    "observability",
+    "utility"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:src/adapted/services/grading.py",
+   "type": "file",
+   "name": "grading.py",
+   "filePath": "src/adapted/services/grading.py",
+   "summary": "Pure deterministic grading helpers: stable question_hash/is_duplicate dedup keys, rule-based grade_objective for MCQ/true-false/numerical answers (numeric tolerance via _numeric_equal), compute_attempt_score totals, and rubric_default prompts.",
+   "tags": [
+    "grading",
+    "utility",
+    "scoring",
+    "deterministic"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/adapted/services/grading.py:question_hash",
+   "type": "function",
+   "name": "question_hash",
+   "filePath": "src/adapted/services/grading.py",
+   "lineRange": [
+    8,
+    10
+   ],
+   "summary": "Stable hash of a question prompt for cross-version deduplication.",
+   "tags": [
+    "grading",
+    "deduplication",
+    "utility"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/adapted/services/grading.py:is_duplicate",
+   "type": "function",
+   "name": "is_duplicate",
+   "filePath": "src/adapted/services/grading.py",
+   "lineRange": [
+    13,
+    14
+   ],
+   "summary": "Checks whether a hash already exists in a supplied collection.",
+   "tags": [
+    "grading",
+    "deduplication",
+    "utility"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/adapted/services/grading.py:grade_objective",
+   "type": "function",
+   "name": "grade_objective",
+   "filePath": "src/adapted/services/grading.py",
+   "lineRange": [
+    17,
+    30
+   ],
+   "summary": "Deterministically grades mcq/true_false/numerical answers against correct_answer (case-insensitive choices, numeric tolerance), returning correctness and a default confidence.",
+   "tags": [
+    "grading",
+    "validation",
+    "deterministic"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:src/adapted/services/grading.py:compute_attempt_score",
+   "type": "function",
+   "name": "compute_attempt_score",
+   "filePath": "src/adapted/services/grading.py",
+   "lineRange": [
+    40,
+    43
+   ],
+   "summary": "Sums awarded points over graded results to produce the attempt score.",
+   "tags": [
+    "grading",
+    "scoring",
+    "utility"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/adapted/services/grading.py:rubric_default",
+   "type": "function",
+   "name": "rubric_default",
+   "filePath": "src/adapted/services/grading.py",
+   "lineRange": [
+    46,
+    52
+   ],
+   "summary": "Builds the default LLM rubric instructions used when grading subjective answers.",
+   "tags": [
+    "grading",
+    "prompting",
+    "utility"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:src/adapted/services/scheduler.py",
+   "type": "file",
+   "name": "scheduler.py",
+   "filePath": "src/adapted/services/scheduler.py",
+   "summary": "Deterministic study-plan engine: orders topics topologically over prerequisites, builds day-packed plans weighted toward low mastery and nearing exams, adapts existing plans around weak topics, and validates prerequisite ordering, coverage, and daily minute budgets.",
+   "tags": [
+    "scheduler",
+    "study-plan",
+    "algorithm",
+    "validation"
+   ],
+   "complexity": "complex",
+   "languageNotes": "Pure functions and dataclasses (no I/O) so the planner agent stays fast and testable; millisecond plan creation."
+  },
+  {
+   "id": "class:src/adapted/services/scheduler.py:PlanTopic",
+   "type": "class",
+   "name": "PlanTopic",
+   "filePath": "src/adapted/services/scheduler.py",
+   "lineRange": [
+    8,
+    13
+   ],
+   "summary": "Scheduler input topic: id, title, mastery estimate, and prerequisite ids.",
+   "tags": [
+    "data-model",
+    "study-plan",
+    "type-definition"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "class:src/adapted/services/scheduler.py:PlanItem",
+   "type": "class",
+   "name": "PlanItem",
+   "filePath": "src/adapted/services/scheduler.py",
+   "lineRange": [
+    17,
+    37
+   ],
+   "summary": "Scheduled unit of study with day/sequence placement, estimated minutes, goal text, and to_dict serialization.",
+   "tags": [
+    "data-model",
+    "study-plan",
+    "type-definition"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "class:src/adapted/services/scheduler.py:PlanValidation",
+   "type": "class",
+   "name": "PlanValidation",
+   "filePath": "src/adapted/services/scheduler.py",
+   "lineRange": [
+    144,
+    148
+   ],
+   "summary": "Validation verdict container listing rule violations for a candidate plan.",
+   "tags": [
+    "data-model",
+    "validation",
+    "type-definition"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/adapted/services/scheduler.py:_topological_order",
+   "type": "function",
+   "name": "_topological_order",
+   "filePath": "src/adapted/services/scheduler.py",
+   "lineRange": [
+    44,
+    64
+   ],
+   "summary": "Kahn-style sort of topics so prerequisites precede dependents in scheduling order.",
+   "tags": [
+    "algorithm",
+    "graph",
+    "utility"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:src/adapted/services/scheduler.py:build_plan",
+   "type": "function",
+   "name": "build_plan",
+   "filePath": "src/adapted/services/scheduler.py",
+   "lineRange": [
+    67,
+    140
+   ],
+   "summary": "Constructs a fresh plan: priority-weights topics by weakness/exam proximity, lays them out in topological order across days within the daily-minute budget, and assigns goals.",
+   "tags": [
+    "algorithm",
+    "study-plan",
+    "scheduler"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:src/adapted/services/scheduler.py:validate_plan",
+   "type": "function",
+   "name": "validate_plan",
+   "filePath": "src/adapted/services/scheduler.py",
+   "lineRange": [
+    151,
+    200
+   ],
+   "summary": "Checks a plan against prerequisite ordering, topic coverage, and per-day duration limits, collecting violations into a PlanValidation result.",
+   "tags": [
+    "validation",
+    "study-plan",
+    "scheduler"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:src/adapted/services/scheduler.py:adapt_plan",
+   "type": "function",
+   "name": "adapt_plan",
+   "filePath": "src/adapted/services/scheduler.py",
+   "lineRange": [
+    203,
+    248
+   ],
+   "summary": "Produces a follow-up plan version that re-prioritizes weak topics and preserves progress on completed items from the previous plan.",
+   "tags": [
+    "algorithm",
+    "study-plan",
+    "adaptation"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:src/adapted/services/scheduler.py:_renormalise",
+   "type": "function",
+   "name": "_renormalise",
+   "filePath": "src/adapted/services/scheduler.py",
+   "lineRange": [
+    251,
+    260
+   ],
+   "summary": "Rescales remaining study minutes so packed items fit the daily budget after adjustments.",
+   "tags": [
+    "utility",
+    "study-plan",
+    "scheduling"
+   ],
+   "complexity": "simple"
+  }
+ ],
+ "edges": [
+  {
+   "source": "file:src/adapted/agents/recommendation_agent.py",
+   "target": "file:src/adapted/agents/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/recommendation_agent.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/recommendation_agent.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/recommendation_agent.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/supervisor.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/supervisor.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/supervisor.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/graph/runtime.py",
+   "target": "file:src/adapted/agents/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/graph/runtime.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/graph/runtime.py",
+   "target": "file:src/adapted/agents/supervisor.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/graph/runtime.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/graph/runtime.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/logging/logger.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/recommendation_agent.py",
+   "target": "class:src/adapted/agents/recommendation_agent.py:RecommendationOut",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:src/adapted/agents/recommendation_agent.py",
+   "target": "class:src/adapted/agents/recommendation_agent.py:RecommendationOutput",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:src/adapted/agents/recommendation_agent.py",
+   "target": "class:src/adapted/agents/recommendation_agent.py:RecommendationAgent",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:src/adapted/agents/supervisor.py",
+   "target": "class:src/adapted/agents/supervisor.py:Supervisor",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:src/adapted/graph/runtime.py",
+   "target": "class:src/adapted/graph/runtime.py:GraphState",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:src/adapted/graph/runtime.py",
+   "target": "class:src/adapted/graph/runtime.py:AgentRuntime",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:src/adapted/logging/logger.py",
+   "target": "function:src/adapted/logging/logger.py:_configure",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:src/adapted/logging/logger.py",
+   "target": "function:src/adapted/logging/logger.py:get_logger",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:src/adapted/logging/logger.py",
+   "target": "function:src/adapted/logging/logger.py:bind_task",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:src/adapted/services/grading.py",
+   "target": "function:src/adapted/services/grading.py:question_hash",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:src/adapted/services/grading.py",
+   "target": "function:src/adapted/services/grading.py:is_duplicate",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:src/adapted/services/grading.py",
+   "target": "function:src/adapted/services/grading.py:grade_objective",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:src/adapted/services/grading.py",
+   "target": "function:src/adapted/services/grading.py:compute_attempt_score",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:src/adapted/services/grading.py",
+   "target": "function:src/adapted/services/grading.py:rubric_default",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:src/adapted/services/scheduler.py",
+   "target": "class:src/adapted/services/scheduler.py:PlanTopic",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:src/adapted/services/scheduler.py",
+   "target": "class:src/adapted/services/scheduler.py:PlanItem",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:src/adapted/services/scheduler.py",
+   "target": "class:src/adapted/services/scheduler.py:PlanValidation",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:src/adapted/services/scheduler.py",
+   "target": "function:src/adapted/services/scheduler.py:_topological_order",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:src/adapted/services/scheduler.py",
+   "target": "function:src/adapted/services/scheduler.py:build_plan",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:src/adapted/services/scheduler.py",
+   "target": "function:src/adapted/services/scheduler.py:validate_plan",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:src/adapted/services/scheduler.py",
+   "target": "function:src/adapted/services/scheduler.py:adapt_plan",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:src/adapted/services/scheduler.py",
+   "target": "function:src/adapted/services/scheduler.py:_renormalise",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:src/adapted/agents/recommendation_agent.py",
+   "target": "class:src/adapted/agents/recommendation_agent.py:RecommendationOut",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/adapted/agents/recommendation_agent.py",
+   "target": "class:src/adapted/agents/recommendation_agent.py:RecommendationOutput",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/adapted/agents/recommendation_agent.py",
+   "target": "class:src/adapted/agents/recommendation_agent.py:RecommendationAgent",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/adapted/agents/supervisor.py",
+   "target": "class:src/adapted/agents/supervisor.py:Supervisor",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/adapted/graph/runtime.py",
+   "target": "class:src/adapted/graph/runtime.py:GraphState",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/adapted/graph/runtime.py",
+   "target": "class:src/adapted/graph/runtime.py:AgentRuntime",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/adapted/logging/logger.py",
+   "target": "function:src/adapted/logging/logger.py:get_logger",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/adapted/logging/logger.py",
+   "target": "function:src/adapted/logging/logger.py:bind_task",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/adapted/services/grading.py",
+   "target": "function:src/adapted/services/grading.py:question_hash",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/adapted/services/grading.py",
+   "target": "function:src/adapted/services/grading.py:is_duplicate",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/adapted/services/grading.py",
+   "target": "function:src/adapted/services/grading.py:grade_objective",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/adapted/services/grading.py",
+   "target": "function:src/adapted/services/grading.py:compute_attempt_score",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/adapted/services/grading.py",
+   "target": "function:src/adapted/services/grading.py:rubric_default",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/adapted/services/scheduler.py",
+   "target": "class:src/adapted/services/scheduler.py:PlanTopic",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/adapted/services/scheduler.py",
+   "target": "class:src/adapted/services/scheduler.py:PlanItem",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/adapted/services/scheduler.py",
+   "target": "class:src/adapted/services/scheduler.py:PlanValidation",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/adapted/services/scheduler.py",
+   "target": "function:src/adapted/services/scheduler.py:build_plan",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/adapted/services/scheduler.py",
+   "target": "function:src/adapted/services/scheduler.py:validate_plan",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/adapted/services/scheduler.py",
+   "target": "function:src/adapted/services/scheduler.py:adapt_plan",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "class:src/adapted/agents/recommendation_agent.py:RecommendationAgent",
+   "target": "class:src/adapted/agents/base.py:BaseAgent",
+   "type": "inherits",
+   "direction": "forward",
+   "weight": 0.9
+  },
+  {
+   "source": "class:src/adapted/graph/runtime.py:AgentRuntime",
+   "target": "class:src/adapted/agents/supervisor.py:Supervisor",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "class:src/adapted/graph/runtime.py:AgentRuntime",
+   "target": "class:src/adapted/agents/base.py:BaseAgent",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  }
+ ]
+}

@@ -1,0 +1,905 @@
+{
+  "scriptCompleted": true,
+  "entryPointCandidates": [
+    {
+      "id": "document:README.md",
+      "score": 5,
+      "name": "README.md",
+      "summary": "Intentionally empty placeholder readme; the project's real conventions and running history are kept in AGENTS.md and PROGRESS.md instead."
+    },
+    {
+      "id": "file:src/adapted/main.py",
+      "score": 4,
+      "name": "main.py",
+      "summary": "FastAPI application factory: initialises the PostgreSQL schema on startup, wires CORS, registers every API router (auth, courses, curriculum, lessons, quizzes, study plans, students, teacher, users, agent ops, logs) and exposes /health."
+    },
+    {
+      "id": "file:src/adapted/ui/app.py",
+      "score": 3,
+      "name": "app.py",
+      "summary": "Streamlit frontend entrypoint providing login/register, role-based sidebar navigation, and every teacher view (dashboard, curriculum, class analytics, review queue, operations) and student view (dashboard, study plan, learn, quizzes, progress, recommendations) on top of the APIClient."
+    },
+    {
+      "id": "config:.env.example",
+      "score": 2,
+      "name": ".env.example",
+      "summary": "Template documenting every runtime environment variable for AdaptED: app metadata, CORS and JWT token settings, the PostgreSQL DATABASE_URL, OpenRouter chat/embedding credentials and models, EMBEDDING_DIM=2048, and SearxNG search options. Copied to the git-ignored .env that pydantic-settings reads at startup."
+    },
+    {
+      "id": "config:.python-version",
+      "score": 2,
+      "name": ".python-version",
+      "summary": "Pyenv version pin selecting Python 3.12 as the interpreter for the project runtime and tooling."
+    }
+  ],
+  "fanInRanking": [
+    {
+      "id": "file:src/adapted/models/__init__.py",
+      "fanIn": 26,
+      "name": "__init__.py"
+    },
+    {
+      "id": "file:src/adapted/database/session.py",
+      "fanIn": 22,
+      "name": "session.py"
+    },
+    {
+      "id": "file:src/adapted/logging/logger.py",
+      "fanIn": 19,
+      "name": "logger.py"
+    },
+    {
+      "id": "file:src/adapted/config.py",
+      "fanIn": 16,
+      "name": "config.py"
+    },
+    {
+      "id": "file:src/adapted/api/deps.py",
+      "fanIn": 12,
+      "name": "deps.py"
+    },
+    {
+      "id": "file:src/adapted/agents/message.py",
+      "fanIn": 11,
+      "name": "message.py"
+    },
+    {
+      "id": "file:src/adapted/schemas/api.py",
+      "fanIn": 10,
+      "name": "api.py"
+    },
+    {
+      "id": "file:src/adapted/agents/base.py",
+      "fanIn": 8,
+      "name": "base.py"
+    },
+    {
+      "id": "file:src/adapted/database/base.py",
+      "fanIn": 7,
+      "name": "base.py"
+    },
+    {
+      "id": "file:src/adapted/models/user.py",
+      "fanIn": 6,
+      "name": "user.py"
+    },
+    {
+      "id": "file:src/adapted/llm/base.py",
+      "fanIn": 4,
+      "name": "base.py"
+    },
+    {
+      "id": "file:src/adapted/rag/parser.py",
+      "fanIn": 4,
+      "name": "parser.py"
+    },
+    {
+      "id": "file:src/adapted/memory/student_memory.py",
+      "fanIn": 3,
+      "name": "student_memory.py"
+    },
+    {
+      "id": "file:src/adapted/services/grading.py",
+      "fanIn": 3,
+      "name": "grading.py"
+    },
+    {
+      "id": "file:src/adapted/tasks/runner.py",
+      "fanIn": 3,
+      "name": "runner.py"
+    },
+    {
+      "id": "file:src/adapted/agents/supervisor.py",
+      "fanIn": 2,
+      "name": "supervisor.py"
+    },
+    {
+      "id": "file:src/adapted/llm/registry.py",
+      "fanIn": 2,
+      "name": "registry.py"
+    },
+    {
+      "id": "file:src/adapted/main.py",
+      "fanIn": 2,
+      "name": "main.py"
+    },
+    {
+      "id": "file:src/adapted/models/observability.py",
+      "fanIn": 2,
+      "name": "observability.py"
+    },
+    {
+      "id": "file:src/adapted/rag/embeddings.py",
+      "fanIn": 2,
+      "name": "embeddings.py"
+    }
+  ],
+  "fanOutRanking": [
+    {
+      "id": "file:src/adapted/main.py",
+      "fanOut": 15,
+      "name": "main.py"
+    },
+    {
+      "id": "file:src/adapted/agents/lesson_agent.py",
+      "fanOut": 8,
+      "name": "lesson_agent.py"
+    },
+    {
+      "id": "file:src/adapted/api/routers/courses.py",
+      "fanOut": 8,
+      "name": "courses.py"
+    },
+    {
+      "id": "file:src/adapted/tools/registry.py",
+      "fanOut": 7,
+      "name": "registry.py"
+    },
+    {
+      "id": "file:src/adapted/api/routers/auth.py",
+      "fanOut": 6,
+      "name": "auth.py"
+    },
+    {
+      "id": "file:src/adapted/api/routers/lessons.py",
+      "fanOut": 6,
+      "name": "lessons.py"
+    },
+    {
+      "id": "file:src/adapted/api/routers/quizzes.py",
+      "fanOut": 6,
+      "name": "quizzes.py"
+    },
+    {
+      "id": "file:src/adapted/memory/curriculum_memory.py",
+      "fanOut": 6,
+      "name": "curriculum_memory.py"
+    },
+    {
+      "id": "file:src/adapted/models/__init__.py",
+      "fanOut": 6,
+      "name": "__init__.py"
+    },
+    {
+      "id": "file:src/adapted/tasks/runner.py",
+      "fanOut": 6,
+      "name": "runner.py"
+    },
+    {
+      "id": "file:src/adapted/agents/curriculum_agent.py",
+      "fanOut": 5,
+      "name": "curriculum_agent.py"
+    },
+    {
+      "id": "file:src/adapted/agents/grading_agent.py",
+      "fanOut": 5,
+      "name": "grading_agent.py"
+    },
+    {
+      "id": "file:src/adapted/agents/planner_agent.py",
+      "fanOut": 5,
+      "name": "planner_agent.py"
+    },
+    {
+      "id": "file:src/adapted/agents/quiz_agent.py",
+      "fanOut": 5,
+      "name": "quiz_agent.py"
+    },
+    {
+      "id": "file:src/adapted/api/routers/agent_ops.py",
+      "fanOut": 5,
+      "name": "agent_ops.py"
+    },
+    {
+      "id": "file:src/adapted/api/routers/students.py",
+      "fanOut": 5,
+      "name": "students.py"
+    },
+    {
+      "id": "file:src/adapted/api/routers/teacher.py",
+      "fanOut": 5,
+      "name": "teacher.py"
+    },
+    {
+      "id": "file:src/adapted/graph/runtime.py",
+      "fanOut": 5,
+      "name": "runtime.py"
+    },
+    {
+      "id": "file:src/adapted/agents/performance_agent.py",
+      "fanOut": 4,
+      "name": "performance_agent.py"
+    },
+    {
+      "id": "file:src/adapted/agents/recommendation_agent.py",
+      "fanOut": 4,
+      "name": "recommendation_agent.py"
+    }
+  ],
+  "bfsTraversal": {
+    "startNode": "file:src/adapted/main.py",
+    "order": [
+      "file:src/adapted/main.py",
+      "file:src/adapted/api/routers/agent_ops.py",
+      "file:src/adapted/api/routers/agent.py",
+      "file:src/adapted/api/routers/auth.py",
+      "file:src/adapted/api/routers/courses.py",
+      "file:src/adapted/api/routers/curriculum.py",
+      "file:src/adapted/api/routers/lessons.py",
+      "file:src/adapted/api/routers/logs.py",
+      "file:src/adapted/api/routers/quizzes.py",
+      "file:src/adapted/api/routers/students.py",
+      "file:src/adapted/api/routers/study_plans.py",
+      "file:src/adapted/api/routers/teacher.py",
+      "file:src/adapted/api/routers/users.py",
+      "file:src/adapted/config.py",
+      "file:src/adapted/database/session.py",
+      "file:src/adapted/logging/logger.py",
+      "file:src/adapted/api/deps.py",
+      "file:src/adapted/database/base.py",
+      "file:src/adapted/memory/student_memory.py",
+      "file:src/adapted/models/__init__.py",
+      "file:src/adapted/models/observability.py",
+      "file:src/adapted/rag/parser.py",
+      "file:src/adapted/schemas/api.py",
+      "file:src/adapted/security/jwt.py",
+      "file:src/adapted/security/passwords.py",
+      "file:src/adapted/services/analytics.py",
+      "file:src/adapted/tasks/runner.py",
+      "file:src/adapted/agents/message.py",
+      "file:src/adapted/agents/supervisor.py",
+      "file:src/adapted/llm/registry.py",
+      "file:src/adapted/models/course.py",
+      "file:src/adapted/models/curriculum.py",
+      "file:src/adapted/models/learning.py",
+      "file:src/adapted/models/memory.py",
+      "file:src/adapted/models/user.py",
+      "file:src/adapted/services/mastery.py",
+      "file:src/adapted/llm/base.py",
+      "file:src/adapted/llm/mock.py",
+      "file:src/adapted/llm/openai_compatible.py"
+    ],
+    "depthMap": {
+      "file:src/adapted/main.py": 0,
+      "file:src/adapted/api/routers/agent_ops.py": 1,
+      "file:src/adapted/api/routers/agent.py": 1,
+      "file:src/adapted/api/routers/auth.py": 1,
+      "file:src/adapted/api/routers/courses.py": 1,
+      "file:src/adapted/api/routers/curriculum.py": 1,
+      "file:src/adapted/api/routers/lessons.py": 1,
+      "file:src/adapted/api/routers/logs.py": 1,
+      "file:src/adapted/api/routers/quizzes.py": 1,
+      "file:src/adapted/api/routers/students.py": 1,
+      "file:src/adapted/api/routers/study_plans.py": 1,
+      "file:src/adapted/api/routers/teacher.py": 1,
+      "file:src/adapted/api/routers/users.py": 1,
+      "file:src/adapted/config.py": 1,
+      "file:src/adapted/database/session.py": 1,
+      "file:src/adapted/logging/logger.py": 1,
+      "file:src/adapted/api/deps.py": 2,
+      "file:src/adapted/database/base.py": 2,
+      "file:src/adapted/memory/student_memory.py": 2,
+      "file:src/adapted/models/__init__.py": 2,
+      "file:src/adapted/models/observability.py": 2,
+      "file:src/adapted/rag/parser.py": 2,
+      "file:src/adapted/schemas/api.py": 2,
+      "file:src/adapted/security/jwt.py": 2,
+      "file:src/adapted/security/passwords.py": 2,
+      "file:src/adapted/services/analytics.py": 2,
+      "file:src/adapted/tasks/runner.py": 2,
+      "file:src/adapted/agents/message.py": 3,
+      "file:src/adapted/agents/supervisor.py": 3,
+      "file:src/adapted/llm/registry.py": 3,
+      "file:src/adapted/models/course.py": 3,
+      "file:src/adapted/models/curriculum.py": 3,
+      "file:src/adapted/models/learning.py": 3,
+      "file:src/adapted/models/memory.py": 3,
+      "file:src/adapted/models/user.py": 3,
+      "file:src/adapted/services/mastery.py": 3,
+      "file:src/adapted/llm/base.py": 4,
+      "file:src/adapted/llm/mock.py": 4,
+      "file:src/adapted/llm/openai_compatible.py": 4
+    },
+    "byDepth": {
+      "0": [
+        "file:src/adapted/main.py"
+      ],
+      "1": [
+        "file:src/adapted/api/routers/agent_ops.py",
+        "file:src/adapted/api/routers/agent.py",
+        "file:src/adapted/api/routers/auth.py",
+        "file:src/adapted/api/routers/courses.py",
+        "file:src/adapted/api/routers/curriculum.py",
+        "file:src/adapted/api/routers/lessons.py",
+        "file:src/adapted/api/routers/logs.py",
+        "file:src/adapted/api/routers/quizzes.py",
+        "file:src/adapted/api/routers/students.py",
+        "file:src/adapted/api/routers/study_plans.py",
+        "file:src/adapted/api/routers/teacher.py",
+        "file:src/adapted/api/routers/users.py",
+        "file:src/adapted/config.py",
+        "file:src/adapted/database/session.py",
+        "file:src/adapted/logging/logger.py"
+      ],
+      "2": [
+        "file:src/adapted/api/deps.py",
+        "file:src/adapted/database/base.py",
+        "file:src/adapted/memory/student_memory.py",
+        "file:src/adapted/models/__init__.py",
+        "file:src/adapted/models/observability.py",
+        "file:src/adapted/rag/parser.py",
+        "file:src/adapted/schemas/api.py",
+        "file:src/adapted/security/jwt.py",
+        "file:src/adapted/security/passwords.py",
+        "file:src/adapted/services/analytics.py",
+        "file:src/adapted/tasks/runner.py"
+      ],
+      "3": [
+        "file:src/adapted/agents/message.py",
+        "file:src/adapted/agents/supervisor.py",
+        "file:src/adapted/llm/registry.py",
+        "file:src/adapted/models/course.py",
+        "file:src/adapted/models/curriculum.py",
+        "file:src/adapted/models/learning.py",
+        "file:src/adapted/models/memory.py",
+        "file:src/adapted/models/user.py",
+        "file:src/adapted/services/mastery.py"
+      ],
+      "4": [
+        "file:src/adapted/llm/base.py",
+        "file:src/adapted/llm/mock.py",
+        "file:src/adapted/llm/openai_compatible.py"
+      ]
+    }
+  },
+  "nonCodeFiles": {
+    "documentation": [
+      {
+        "id": "document:README.md",
+        "name": "README.md",
+        "type": "document",
+        "summary": "Intentionally empty placeholder readme; the project's real conventions and running history are kept in AGENTS.md and PROGRESS.md instead."
+      }
+    ],
+    "infrastructure": [],
+    "data": [],
+    "config": [
+      {
+        "id": "config:.env.example",
+        "name": ".env.example",
+        "type": "config",
+        "summary": "Template documenting every runtime environment variable for AdaptED: app metadata, CORS and JWT token settings, the PostgreSQL DATABASE_URL, OpenRouter chat/embedding credentials and models, EMBEDDING_DIM=2048, and SearxNG search options. Copied to the git-ignored .env that pydantic-settings reads at startup."
+      },
+      {
+        "id": "config:opencode.json",
+        "name": "opencode.json",
+        "type": "config",
+        "summary": "Configuration for the opencode CLI coding agent in this repository, using the instructions array to auto-load AGENTS.md and PROGRESS.md as instruction context for every session."
+      },
+      {
+        "id": "config:pyproject.toml",
+        "name": "pyproject.toml",
+        "type": "config",
+        "summary": "uv/hatchling package manifest for adapted v0.1.0 declaring the FastAPI + SQLAlchemy + pgvector + Streamlit + OpenAI/LangGraph dependency stack, dev tooling (pytest with asyncio auto mode, ruff at line-length 100 / py312), and wheel packaging of the src/adapted layout."
+      },
+      {
+        "id": "config:.python-version",
+        "name": ".python-version",
+        "type": "config",
+        "summary": "Pyenv version pin selecting Python 3.12 as the interpreter for the project runtime and tooling."
+      },
+      {
+        "id": "config:.ua/.understandignore",
+        "name": ".understandignore",
+        "type": "config",
+        "summary": "Generated ignore-rule configuration for the Understand-Anything analysis pipeline, excluding bytecode, env files, storage artifacts, databases, and caches while explicitly keeping docs."
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "nodes": [
+        "file:src/adapted/api/routers/courses.py",
+        "file:src/adapted/config.py",
+        "file:src/adapted/database/session.py",
+        "file:src/adapted/logging/logger.py",
+        "file:src/adapted/main.py"
+      ],
+      "edgeCount": 10
+    },
+    {
+      "nodes": [
+        "file:src/adapted/agents/base.py",
+        "file:src/adapted/agents/curriculum_agent.py",
+        "file:src/adapted/agents/grading_agent.py",
+        "file:src/adapted/agents/message.py",
+        "file:src/adapted/logging/logger.py"
+      ],
+      "edgeCount": 9
+    },
+    {
+      "nodes": [
+        "file:src/adapted/agents/message.py",
+        "file:src/adapted/agents/supervisor.py",
+        "file:src/adapted/logging/logger.py",
+        "file:src/adapted/models/__init__.py",
+        "file:src/adapted/tasks/runner.py"
+      ],
+      "edgeCount": 9
+    },
+    {
+      "nodes": [
+        "file:src/adapted/database/base.py",
+        "file:src/adapted/database/session.py",
+        "file:src/adapted/models/course.py",
+        "file:src/adapted/models/curriculum.py",
+        "file:src/adapted/models/user.py"
+      ],
+      "edgeCount": 9
+    },
+    {
+      "nodes": [
+        "file:src/adapted/agents/base.py",
+        "file:src/adapted/agents/message.py",
+        "file:src/adapted/agents/supervisor.py",
+        "file:src/adapted/graph/runtime.py",
+        "file:src/adapted/logging/logger.py"
+      ],
+      "edgeCount": 9
+    },
+    {
+      "nodes": [
+        "file:src/adapted/api/deps.py",
+        "file:src/adapted/api/routers/agent_ops.py",
+        "file:src/adapted/api/routers/auth.py",
+        "file:src/adapted/database/session.py",
+        "file:src/adapted/models/__init__.py"
+      ],
+      "edgeCount": 8
+    },
+    {
+      "nodes": [
+        "file:src/adapted/agents/base.py",
+        "file:src/adapted/agents/lesson_agent.py",
+        "file:src/adapted/agents/message.py",
+        "file:src/adapted/config.py",
+        "file:src/adapted/logging/logger.py"
+      ],
+      "edgeCount": 8
+    },
+    {
+      "nodes": [
+        "file:src/adapted/api/deps.py",
+        "file:src/adapted/api/routers/lessons.py",
+        "file:src/adapted/database/session.py",
+        "file:src/adapted/logging/logger.py",
+        "file:src/adapted/tasks/runner.py"
+      ],
+      "edgeCount": 8
+    },
+    {
+      "nodes": [
+        "file:src/adapted/api/deps.py",
+        "file:src/adapted/api/routers/agent_ops.py",
+        "file:src/adapted/database/session.py",
+        "file:src/adapted/logging/logger.py",
+        "file:src/adapted/main.py"
+      ],
+      "edgeCount": 8
+    },
+    {
+      "nodes": [
+        "file:src/adapted/config.py",
+        "file:src/adapted/llm/base.py",
+        "file:src/adapted/llm/mock.py",
+        "file:src/adapted/llm/openai_compatible.py",
+        "file:src/adapted/llm/registry.py"
+      ],
+      "edgeCount": 8
+    }
+  ],
+  "layers": {
+    "count": 9,
+    "list": [
+      {
+        "id": "layer:ui",
+        "name": "UI Layer",
+        "description": "Streamlit web interface serving the teacher and student pages, together with the typed APIClient that fronts every backend endpoint."
+      },
+      {
+        "id": "layer:api",
+        "name": "API Layer",
+        "description": "FastAPI routers and dependency guards exposing auth, courses, documents, curriculum, lessons, quizzes, study plans, classes, and ops endpoints, plus the shared Pydantic request/response contracts in schemas."
+      },
+      {
+        "id": "layer:agents",
+        "name": "Agent Orchestration Layer",
+        "description": "The multi-agent adaptive-learning pipeline: seven specialized agents (curriculum, planner, lesson, quiz, grading, performance, recommendation) with their base class and message bus, orchestrated through the LangGraph-style graph runtime, tool registry, and background ThreadPoolExecutor task runner."
+      },
+      {
+        "id": "layer:service",
+        "name": "Service Layer",
+        "description": "Domain business logic for AI answer grading, deterministic study-plan scheduling, class analytics aggregation, and student topic-mastery computation."
+      },
+      {
+        "id": "layer:knowledge",
+        "name": "Knowledge Retrieval (RAG) Layer",
+        "description": "RAG stack that parses uploaded textbooks, chunks content, embeds it via query-aware Nemotron vectors, searches pgvector, and maintains the curriculum and student memory stores."
+      },
+      {
+        "id": "layer:llm",
+        "name": "LLM Integration Layer",
+        "description": "Provider-agnostic chat and embedding abstraction registering OpenRouter free-model access (with attribution headers, timeouts, and float encoding) alongside a deterministic offline mock provider."
+      },
+      {
+        "id": "layer:data",
+        "name": "Data Layer",
+        "description": "SQLAlchemy ORM models for users, courses, curriculum, learning records, conversation memory, and observability, plus the fail-fast PostgreSQL/pgvector engine, pgvector column type, and session management."
+      },
+      {
+        "id": "layer:core",
+        "name": "Application Core",
+        "description": "FastAPI application factory wiring routers and startup hooks, pydantic-settings configuration loaded from .env, JWT and password-hashing security primitives, and structured logging."
+      },
+      {
+        "id": "layer:project",
+        "name": "Project Configuration & Documentation",
+        "description": "Root-level project metadata: uv/packaging definition (pyproject.toml), Python version pin, environment-variable template, opencode assistant configuration, analysis ignore file, and the README."
+      }
+    ]
+  },
+  "nodeSummaryIndex": {
+    "file:src/adapted/api/deps.py": {
+      "name": "deps.py",
+      "type": "file",
+      "summary": "FastAPI dependency layer providing JWT bearer authentication, role-based access guards, and ownership/enrollment assertion helpers shared by every router."
+    },
+    "file:src/adapted/api/routers/agent.py": {
+      "name": "agent.py",
+      "type": "file",
+      "summary": "POST /agent/run endpoint that validates agent intents and dispatches pipeline execution to the background task runner, returning a started-task result immediately."
+    },
+    "file:src/adapted/api/routers/agent_ops.py": {
+      "name": "agent_ops.py",
+      "type": "file",
+      "summary": "Observability endpoints listing agent tasks, inter-agent messages and runs, fronted by a stale-task reaper that fails tasks stuck in 'started' beyond the time budget."
+    },
+    "file:src/adapted/api/routers/auth.py": {
+      "name": "auth.py",
+      "type": "file",
+      "summary": "Registration and login endpoints that hash passwords, create User rows plus Teacher/Student profiles, and issue JWT-backed TokenResponses."
+    },
+    "file:src/adapted/api/routers/courses.py": {
+      "name": "courses.py",
+      "type": "file",
+      "summary": "Course router covering creation, role-scoped listing, enrollment, document upload/listing/status, and cascading deletes (document, contents, whole course) with audit logging and on-disk file cleanup."
+    },
+    "file:src/adapted/api/routers/curriculum.py": {
+      "name": "curriculum.py",
+      "type": "file",
+      "summary": "Read-only curriculum endpoints serving generated chapters and topics (with objectives and prerequisites) to authorized teachers and enrolled students."
+    },
+    "file:src/adapted/api/routers/lessons.py": {
+      "name": "lessons.py",
+      "type": "file",
+      "summary": "Lesson endpoints that perform fast authorization checks, dispatch asynchronous lesson generation through the background task runner, and serve generated lessons to authorized viewers."
+    },
+    "file:src/adapted/api/routers/logs.py": {
+      "name": "logs.py",
+      "type": "file",
+      "summary": "Teacher-only audit-log listing endpoint returning the most recent audit entries for the operations view."
+    },
+    "file:src/adapted/api/routers/quizzes.py": {
+      "name": "quizzes.py",
+      "type": "file",
+      "summary": "Quiz lifecycle router: async quiz generation, answer-safe retrieval, and submission which persists attempt/answer rows before launching the grading chain in the background."
+    },
+    "file:src/adapted/api/routers/students.py": {
+      "name": "students.py",
+      "type": "file",
+      "summary": "Student analytics endpoints (profile, performance, mastery, recommendations, preferences) with self-or-owning-teacher authorization and a default-course fallback."
+    },
+    "file:src/adapted/api/routers/study_plans.py": {
+      "name": "study_plans.py",
+      "type": "file",
+      "summary": "Study-plan read endpoints returning the active plan (highest version) with its daily items, authorized for the owning student or their teacher."
+    },
+    "file:src/adapted/api/routers/users.py": {
+      "name": "users.py",
+      "type": "file",
+      "summary": "Teacher-only user directory search over name/email that joins Student rows to expose grade level and daily study minutes for enrollment pickers."
+    },
+    "file:src/adapted/database/session.py": {
+      "name": "session.py",
+      "type": "file",
+      "summary": "Database bootstrap: resolves and connect-probes the PostgreSQL URL (fail-fast, Postgres-only), exposes SessionLocal/get_db/session_scope helpers plus ID generators and init/reset routines including pgvector extension setup."
+    },
+    "file:src/adapted/schemas/api.py": {
+      "name": "api.py",
+      "type": "file",
+      "summary": "Complete Pydantic v2 API contract layer: request/response models for auth, courses, documents, curriculum, study plans, lessons, quizzes, grading results, performance/mastery, recommendations, and agent observability payloads."
+    },
+    "file:src/adapted/security/jwt.py": {
+      "name": "jwt.py",
+      "type": "file",
+      "summary": "Minimal JWT helper pair for issuing expiring HS-signed access tokens and decoding them during request authentication."
+    },
+    "file:src/adapted/security/passwords.py": {
+      "name": "passwords.py",
+      "type": "file",
+      "summary": "bcrypt password hashing and constant-time verification wrappers used by registration and login."
+    },
+    "file:src/adapted/tasks/runner.py": {
+      "name": "runner.py",
+      "type": "file",
+      "summary": "Background task runner: persists AgentTask rows, submits pipeline execution to a ThreadPoolExecutor whose workers build their own sessions/runtime, and guarantees failure marking on crashes."
+    },
+    "file:src/adapted/agents/lesson_agent.py": {
+      "name": "lesson_agent.py",
+      "type": "file",
+      "summary": "Generates levelled lesson content for a curriculum topic by combining RAG-retrieved textbook chunks, learning objectives and the student profile into a schema-validated LLM request, then persists the resulting Lesson row."
+    },
+    "file:src/adapted/config.py": {
+      "name": "config.py",
+      "type": "file",
+      "summary": "Central pydantic-settings configuration loaded from the repo-root .env: app metadata, PostgreSQL URL, OpenRouter LLM/embedding settings, JWT secrets, RAG limits and retry knobs."
+    },
+    "file:src/adapted/llm/base.py": {
+      "name": "base.py",
+      "type": "file",
+      "summary": "Defines the provider-agnostic LLM contract: a request envelope pairing a prompt with its JSON schema, and the abstract LLMProvider interface every chat/embedding backend implements."
+    },
+    "file:src/adapted/llm/mock.py": {
+      "name": "mock.py",
+      "type": "file",
+      "summary": "Deterministic offline LLM provider: seeded generators fabricate curricula, lessons, quizzes, grades and recommendations without network access, plus hash-based pseudo-embeddings for fully reproducible runs."
+    },
+    "file:src/adapted/llm/openai_compatible.py": {
+      "name": "openai_compatible.py",
+      "type": "file",
+      "summary": "Production provider speaking the OpenAI wire protocol against OpenRouter: JSON-schema-constrained chat generation plus dimension-validated embeddings, bounded by the configured request timeout."
+    },
+    "file:src/adapted/llm/registry.py": {
+      "name": "registry.py",
+      "type": "file",
+      "summary": "Maps the configured provider names to concrete LLM/embedding implementations behind lru-cached accessors, warning and degrading to MockProvider when OpenRouter credentials are absent."
+    },
+    "file:src/adapted/main.py": {
+      "name": "main.py",
+      "type": "file",
+      "summary": "FastAPI application factory: initialises the PostgreSQL schema on startup, wires CORS, registers every API router (auth, courses, curriculum, lessons, quizzes, study plans, students, teacher, users, agent ops, logs) and exposes /health."
+    },
+    "file:src/adapted/memory/curriculum_memory.py": {
+      "name": "curriculum_memory.py",
+      "type": "file",
+      "summary": "Indexes parsed documents into pgvector-backed ContentChunks (chunking, passage embeddings, vector upserts) and links chunks to generated curriculum topics for later retrieval."
+    },
+    "file:src/adapted/rag/chunker.py": {
+      "name": "chunker.py",
+      "type": "file",
+      "summary": "Splits parsed document pages into overlapping, heading-aware text chunks carrying page ranges so retrieved passages can be cited."
+    },
+    "file:src/adapted/rag/embeddings.py": {
+      "name": "embeddings.py",
+      "type": "file",
+      "summary": "Thin caching facade over the configured embedding provider: embeds single texts or batches in passage/query modes for indexing and retrieval."
+    },
+    "file:src/adapted/rag/parser.py": {
+      "name": "parser.py",
+      "type": "file",
+      "summary": "Extracts clean per-page text from uploaded PDF, TXT/MD and DOCX course materials into a ParsedDocument structure, raising UnsupportedDocumentError for anything else."
+    },
+    "file:src/adapted/rag/retriever.py": {
+      "name": "retriever.py",
+      "type": "file",
+      "summary": "Query-side retrieval: embeds the question, runs filtered cosine search over the vector store and formats top chunks (with optional citations) into LLM context blocks."
+    },
+    "file:src/adapted/rag/vector_store.py": {
+      "name": "vector_store.py",
+      "type": "file",
+      "summary": "pgvector persistence layer for course-scoped embeddings: collection DDL, idempotent ContentChunk upserts, deletion by document and cosine top-k search with dynamic metadata filters via raw SQL."
+    },
+    "file:src/adapted/tools/registry.py": {
+      "name": "registry.py",
+      "type": "file",
+      "summary": "Tool belt exposed to agents: RAG lookup, SearXNG web search, study-plan validation, mastery updates and duplicate-question checks packaged as named Tool descriptors."
+    },
+    "file:src/adapted/agents/base.py": {
+      "name": "base.py",
+      "type": "file",
+      "summary": "Defines the BaseAgent abstract class every pipeline agent extends: process() hook, Pydantic validate_output, an output_is_empty hook that drives retry-on-empty, and a handle() wrapper adding timing, MessageBus status marks, and error capture into AgentResult."
+    },
+    "file:src/adapted/agents/curriculum_agent.py": {
+      "name": "curriculum_agent.py",
+      "type": "file",
+      "summary": "CurriculumAnalyzerAgent turns an uploaded course document into a structured curriculum: parses and RAG-indexes the file, prompts the LLM with the CurriculumOutput JSON schema, persists chapters/topics/objectives/prerequisites idempotently by title, and assigns indexed chunks to matching topics."
+    },
+    "file:src/adapted/agents/grading_agent.py": {
+      "name": "grading_agent.py",
+      "type": "file",
+      "summary": "GradingAgent grades a submitted quiz attempt: deterministic objective grading via the grading service, LLM-based short-answer grading with confidence scores, flags low-confidence subjective answers needs_teacher_review, computes the attempt score, and upserts a Grade row."
+    },
+    "file:src/adapted/agents/message.py": {
+      "name": "message.py",
+      "type": "file",
+      "summary": "Inter-agent messaging primitives: the AgentMessage value object and a MessageBus that persists send/mark events to the agent_messages table with duration tracking, giving observability over the multi-agent pipeline."
+    },
+    "file:src/adapted/agents/performance_agent.py": {
+      "name": "performance_agent.py",
+      "type": "file",
+      "summary": "PerformanceAnalysisAgent consumes a graded attempt: updates per-topic StudentMastery records, records study history, detects recurring misconceptions across recent attempts, and emits weak/strong topic lists for downstream adaptation."
+    },
+    "file:src/adapted/agents/planner_agent.py": {
+      "name": "planner_agent.py",
+      "type": "file",
+      "summary": "StudyPlannerAgent builds or adapts study plans deterministically: loads topics with mastery weights, delegates packing/ordering to the scheduler service (build_plan/adapt_plan), validates prerequisite ordering, packs items into days, and persists a new versioned StudyPlan."
+    },
+    "file:src/adapted/agents/quiz_agent.py": {
+      "name": "quiz_agent.py",
+      "type": "file",
+      "summary": "QuizAgent generates assessment questions via a schema-constrained LLM prompt seeded with course context, dedupes against existing question hashes, persists Question rows, and tops up from the existing bank when generation falls short."
+    },
+    "file:src/adapted/agents/recommendation_agent.py": {
+      "name": "recommendation_agent.py",
+      "type": "file",
+      "summary": "RecommendationAgent picks the next best action (e.g. review_topic) from weak topics via _decide, then renders a learner-facing narrative using an LLM prompt with a deterministic mock fallback before persisting a Recommendation row."
+    },
+    "file:src/adapted/agents/supervisor.py": {
+      "name": "supervisor.py",
+      "type": "file",
+      "summary": "Supervisor coordinates pipeline execution: classifies intents into agent action chains, starts/persists AgentTask rows, emits the initial message, routes each action to its receiver agent, and finalizes tasks."
+    },
+    "file:src/adapted/graph/runtime.py": {
+      "name": "runtime.py",
+      "type": "file",
+      "summary": "LangGraph-style AgentRuntime: registers all agents, threads a GraphState payload through supervisor-defined chains, executes each node with savepoint-backed retries (_run_with_retry with backoff and empty-output detection), and manages overall task success/failure."
+    },
+    "file:src/adapted/logging/logger.py": {
+      "name": "logger.py",
+      "type": "file",
+      "summary": "Logging bootstrap: configures root logging once from Settings, exposes get_logger(name), and bind_task to attach task/correlation ids as contextual log fields."
+    },
+    "file:src/adapted/services/grading.py": {
+      "name": "grading.py",
+      "type": "file",
+      "summary": "Pure deterministic grading helpers: stable question_hash/is_duplicate dedup keys, rule-based grade_objective for MCQ/true-false/numerical answers (numeric tolerance via _numeric_equal), compute_attempt_score totals, and rubric_default prompts."
+    },
+    "file:src/adapted/services/scheduler.py": {
+      "name": "scheduler.py",
+      "type": "file",
+      "summary": "Deterministic study-plan engine: orders topics topologically over prerequisites, builds day-packed plans weighted toward low mastery and nearing exams, adapts existing plans around weak topics, and validates prerequisite ordering, coverage, and daily minute budgets."
+    },
+    "file:src/adapted/database/base.py": {
+      "name": "base.py",
+      "type": "file",
+      "summary": "SQLAlchemy foundation layer providing the shared declarative Base, a pgvector-aware VectorColumn TypeDecorator, and the engine/session factory used by the entire persistence layer."
+    },
+    "file:src/adapted/models/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Barrel module importing and re-exporting every ORM model so callers use a single adapted.models namespace for Course, Topic, QuizAttempt, and friends."
+    },
+    "file:src/adapted/models/course.py": {
+      "name": "course.py",
+      "type": "file",
+      "summary": "Defines the core teaching-domain tables: teacher-owned Courses, student Enrollments joining students to courses, and uploaded Documents tracked through their parsing status for the RAG pipeline."
+    },
+    "file:src/adapted/models/curriculum.py": {
+      "name": "curriculum.py",
+      "type": "file",
+      "summary": "Curriculum hierarchy produced by the analysis agent: Chapters group ordered Topics, Topics carry prerequisites and learning objectives, and ContentChunk rows store embedded textbook passages assigned to topics for retrieval."
+    },
+    "file:src/adapted/models/learning.py": {
+      "name": "learning.py",
+      "type": "file",
+      "summary": "Learning-flow tables spanning versioned StudyPlans with daily items, generated Lessons and Questions, Quizzes with question assignments, student attempts carrying per-answer AI-grading and teacher-review flags, and finalized Grades."
+    },
+    "file:src/adapted/models/memory.py": {
+      "name": "memory.py",
+      "type": "file",
+      "summary": "Student-memory tables persisting per-topic mastery with trend history, an append-only study activity log, detected misconceptions, aggregated conversation memory, key-value learning preferences, and agent-generated recommendations."
+    },
+    "file:src/adapted/models/observability.py": {
+      "name": "observability.py",
+      "type": "file",
+      "summary": "Observability tables behind the Operations UI: AgentTask rows track background pipeline runs, AgentMessage logs inter-agent traffic, and AuditLog records audited user actions."
+    },
+    "file:src/adapted/models/user.py": {
+      "name": "user.py",
+      "type": "file",
+      "summary": "Identity model: User accounts with hashed credentials and a role discriminator, extended by Teacher profiles (department) and Student profiles (grade level, daily study budget, timezone)."
+    },
+    "file:src/adapted/api/routers/teacher.py": {
+      "name": "teacher.py",
+      "type": "file",
+      "summary": "Teacher-facing API router providing class rosters, course-wide analytics, per-student grade histories, an AI-grade review queue scoped to the teacher's own courses, and manual grade overrides."
+    },
+    "file:src/adapted/memory/student_memory.py": {
+      "name": "student_memory.py",
+      "type": "file",
+      "summary": "Builds and maintains each student's learning state: aggregates mastery records, misconceptions, preferences, quiz attempts, conversation memory, and study history into a StudentProfile snapshot, and persists mastery updates, study events, conversations, and preference changes."
+    },
+    "file:src/adapted/services/analytics.py": {
+      "name": "analytics.py",
+      "type": "file",
+      "summary": "Pure analytics helpers that split mastery records into weak/strong topic sets, detect recurring misconceptions from graded answers (per MCQ distractor and per topic), and roll per-student mastery maps into a class-wide topic summary."
+    },
+    "file:src/adapted/services/mastery.py": {
+      "name": "mastery.py",
+      "type": "file",
+      "summary": "Mastery math core: exponential-moving-average mastery updates, trend computation over score history, status-label threshold bands, and MasteryRecord construction."
+    },
+    "config:.env.example": {
+      "name": ".env.example",
+      "type": "config",
+      "summary": "Template documenting every runtime environment variable for AdaptED: app metadata, CORS and JWT token settings, the PostgreSQL DATABASE_URL, OpenRouter chat/embedding credentials and models, EMBEDDING_DIM=2048, and SearxNG search options. Copied to the git-ignored .env that pydantic-settings reads at startup."
+    },
+    "document:README.md": {
+      "name": "README.md",
+      "type": "document",
+      "summary": "Intentionally empty placeholder readme; the project's real conventions and running history are kept in AGENTS.md and PROGRESS.md instead."
+    },
+    "config:opencode.json": {
+      "name": "opencode.json",
+      "type": "config",
+      "summary": "Configuration for the opencode CLI coding agent in this repository, using the instructions array to auto-load AGENTS.md and PROGRESS.md as instruction context for every session."
+    },
+    "config:pyproject.toml": {
+      "name": "pyproject.toml",
+      "type": "config",
+      "summary": "uv/hatchling package manifest for adapted v0.1.0 declaring the FastAPI + SQLAlchemy + pgvector + Streamlit + OpenAI/LangGraph dependency stack, dev tooling (pytest with asyncio auto mode, ruff at line-length 100 / py312), and wheel packaging of the src/adapted layout."
+    },
+    "config:.python-version": {
+      "name": ".python-version",
+      "type": "config",
+      "summary": "Pyenv version pin selecting Python 3.12 as the interpreter for the project runtime and tooling."
+    },
+    "config:.ua/.understandignore": {
+      "name": ".understandignore",
+      "type": "config",
+      "summary": "Generated ignore-rule configuration for the Understand-Anything analysis pipeline, excluding bytecode, env files, storage artifacts, databases, and caches while explicitly keeping docs."
+    },
+    "file:src/adapted/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Package marker for the AdaptED backend declaring the project name and __version__ 0.1.0."
+    },
+    "file:src/adapted/api/routers/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Empty package initializer marking the API routers package; individual routers are registered directly in the FastAPI app factory."
+    },
+    "file:src/adapted/ui/app.py": {
+      "name": "app.py",
+      "type": "file",
+      "summary": "Streamlit frontend entrypoint providing login/register, role-based sidebar navigation, and every teacher view (dashboard, curriculum, class analytics, review queue, operations) and student view (dashboard, study plan, learn, quizzes, progress, recommendations) on top of the APIClient."
+    },
+    "file:src/adapted/ui/client.py": {
+      "name": "client.py",
+      "type": "file",
+      "summary": "Thin httpx-based REST client wrapping every AdaptED backend endpoint (auth, users, courses, documents, curriculum, agents/tasks, lessons, quizzes, study plans, students, teacher classes, audit logs, health) with bearer-token headers and APIError translation."
+    }
+  },
+  "totalNodes": 66,
+  "totalEdges": 198
+}

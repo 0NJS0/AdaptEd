@@ -1,0 +1,80 @@
+{
+  "projectRoot": "/home/njs/Desktop/AdaptED/AdaptEd",
+  "batchFiles": [
+    {"path": "src/adapted/agents/lesson_agent.py", "language": "python", "sizeLines": 150, "fileCategory": "code"},
+    {"path": "src/adapted/config.py", "language": "python", "sizeLines": 89, "fileCategory": "code"},
+    {"path": "src/adapted/llm/base.py", "language": "python", "sizeLines": 47, "fileCategory": "code"},
+    {"path": "src/adapted/llm/mock.py", "language": "python", "sizeLines": 527, "fileCategory": "code"},
+    {"path": "src/adapted/llm/openai_compatible.py", "language": "python", "sizeLines": 83, "fileCategory": "code"},
+    {"path": "src/adapted/llm/registry.py", "language": "python", "sizeLines": 50, "fileCategory": "code"},
+    {"path": "src/adapted/main.py", "language": "python", "sizeLines": 87, "fileCategory": "code"},
+    {"path": "src/adapted/memory/curriculum_memory.py", "language": "python", "sizeLines": 111, "fileCategory": "code"},
+    {"path": "src/adapted/rag/chunker.py", "language": "python", "sizeLines": 68, "fileCategory": "code"},
+    {"path": "src/adapted/rag/embeddings.py", "language": "python", "sizeLines": 23, "fileCategory": "code"},
+    {"path": "src/adapted/rag/parser.py", "language": "python", "sizeLines": 93, "fileCategory": "code"},
+    {"path": "src/adapted/rag/retriever.py", "language": "python", "sizeLines": 85, "fileCategory": "code"},
+    {"path": "src/adapted/rag/vector_store.py", "language": "python", "sizeLines": 238, "fileCategory": "code"},
+    {"path": "src/adapted/tools/registry.py", "language": "python", "sizeLines": 160, "fileCategory": "code"}
+  ],
+  "batchImportData": {
+    "src/adapted/agents/lesson_agent.py": [
+      "src/adapted/agents/base.py",
+      "src/adapted/agents/message.py",
+      "src/adapted/config.py",
+      "src/adapted/logging/logger.py",
+      "src/adapted/memory/student_memory.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/rag/retriever.py"
+    ],
+    "src/adapted/config.py": [],
+    "src/adapted/llm/base.py": [],
+    "src/adapted/llm/mock.py": [
+      "src/adapted/config.py",
+      "src/adapted/llm/base.py"
+    ],
+    "src/adapted/llm/openai_compatible.py": [
+      "src/adapted/config.py",
+      "src/adapted/llm/base.py"
+    ],
+    "src/adapted/llm/registry.py": [
+      "src/adapted/config.py",
+      "src/adapted/llm/base.py",
+      "src/adapted/llm/mock.py",
+      "src/adapted/llm/openai_compatible.py"
+    ],
+    "src/adapted/main.py": [
+      "src/adapted/config.py",
+      "src/adapted/database/session.py",
+      "src/adapted/logging/logger.py"
+    ],
+    "src/adapted/memory/curriculum_memory.py": [
+      "src/adapted/config.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/rag/chunker.py",
+      "src/adapted/rag/embeddings.py",
+      "src/adapted/rag/parser.py",
+      "src/adapted/rag/vector_store.py"
+    ],
+    "src/adapted/rag/chunker.py": [
+      "src/adapted/rag/parser.py"
+    ],
+    "src/adapted/rag/embeddings.py": [
+      "src/adapted/llm/registry.py"
+    ],
+    "src/adapted/rag/parser.py": [],
+    "src/adapted/rag/retriever.py": [
+      "src/adapted/config.py",
+      "src/adapted/rag/embeddings.py",
+      "src/adapted/rag/vector_store.py"
+    ],
+    "src/adapted/rag/vector_store.py": [
+      "src/adapted/config.py",
+      "src/adapted/database/session.py",
+      "src/adapted/models/__init__.py"
+    ],
+    "src/adapted/tools/registry.py": [
+      "src/adapted/config.py",
+      "src/adapted/rag/retriever.py"
+    ]
+  }
+}

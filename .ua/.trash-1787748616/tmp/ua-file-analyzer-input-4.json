@@ -1,0 +1,23 @@
+{
+  "projectRoot": "/home/njs/Desktop/AdaptED/AdaptEd",
+  "batchFiles": [
+    {"path": "src/adapted/database/base.py", "language": "python", "sizeLines": 51, "fileCategory": "code"},
+    {"path": "src/adapted/models/__init__.py", "language": "python", "sizeLines": 55, "fileCategory": "code"},
+    {"path": "src/adapted/models/course.py", "language": "python", "sizeLines": 86, "fileCategory": "code"},
+    {"path": "src/adapted/models/curriculum.py", "language": "python", "sizeLines": 117, "fileCategory": "code"},
+    {"path": "src/adapted/models/learning.py", "language": "python", "sizeLines": 225, "fileCategory": "code"},
+    {"path": "src/adapted/models/memory.py", "language": "python", "sizeLines": 136, "fileCategory": "code"},
+    {"path": "src/adapted/models/observability.py", "language": "python", "sizeLines": 64, "fileCategory": "code"},
+    {"path": "src/adapted/models/user.py", "language": "python", "sizeLines": 57, "fileCategory": "code"}
+  ],
+  "batchImportData": {
+    "src/adapted/database/base.py": ["src/adapted/config.py"],
+    "src/adapted/models/__init__.py": ["src/adapted/models/course.py", "src/adapted/models/curriculum.py", "src/adapted/models/learning.py", "src/adapted/models/memory.py", "src/adapted/models/observability.py", "src/adapted/models/user.py"],
+    "src/adapted/models/course.py": ["src/adapted/database/base.py", "src/adapted/database/session.py", "src/adapted/models/user.py"],
+    "src/adapted/models/curriculum.py": ["src/adapted/database/base.py", "src/adapted/database/session.py", "src/adapted/models/user.py"],
+    "src/adapted/models/learning.py": ["src/adapted/database/base.py", "src/adapted/database/session.py", "src/adapted/models/user.py"],
+    "src/adapted/models/memory.py": ["src/adapted/database/base.py", "src/adapted/database/session.py", "src/adapted/models/user.py"],
+    "src/adapted/models/observability.py": ["src/adapted/database/base.py", "src/adapted/database/session.py", "src/adapted/models/user.py"],
+    "src/adapted/models/user.py": ["src/adapted/database/base.py", "src/adapted/database/session.py"]
+  }
+}

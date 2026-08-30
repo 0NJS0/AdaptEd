@@ -1,0 +1,3874 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 4,
+  "filesSkipped": [
+    ".python-version",
+    ".ua/.understandignore"
+  ],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 4,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 4,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "src/adapted/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 3,
+      "nonEmptyLines": 2,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/adapted/api/routers/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 0,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/adapted/ui/app.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 1010,
+      "nonEmptyLines": 889,
+      "functions": [
+        {
+          "name": "_client",
+          "startLine": 16,
+          "endLine": 21,
+          "params": []
+        },
+        {
+          "name": "_user",
+          "startLine": 24,
+          "endLine": 25,
+          "params": []
+        },
+        {
+          "name": "_attempt",
+          "startLine": 28,
+          "endLine": 34,
+          "params": [
+            "fn"
+          ]
+        },
+        {
+          "name": "_show_error",
+          "startLine": 37,
+          "endLine": 42,
+          "params": [
+            "res"
+          ]
+        },
+        {
+          "name": "_fmt",
+          "startLine": 45,
+          "endLine": 51,
+          "params": [
+            "ts"
+          ]
+        },
+        {
+          "name": "auth_screen",
+          "startLine": 57,
+          "endLine": 102,
+          "params": []
+        },
+        {
+          "name": "_on_auth",
+          "startLine": 105,
+          "endLine": 109,
+          "params": [
+            "data"
+          ]
+        },
+        {
+          "name": "logout",
+          "startLine": 112,
+          "endLine": 116,
+          "params": []
+        },
+        {
+          "name": "_ensure_client",
+          "startLine": 119,
+          "endLine": 123,
+          "params": []
+        },
+        {
+          "name": "sidebar",
+          "startLine": 129,
+          "endLine": 151,
+          "params": []
+        },
+        {
+          "name": "_course_options",
+          "startLine": 157,
+          "endLine": 159,
+          "params": [
+            "client"
+          ]
+        },
+        {
+          "name": "_course_selector",
+          "startLine": 162,
+          "endLine": 168,
+          "params": [
+            "label"
+          ]
+        },
+        {
+          "name": "_render_curriculum",
+          "startLine": 171,
+          "endLine": 189,
+          "params": [
+            "curriculum"
+          ]
+        },
+        {
+          "name": "_topic_options",
+          "startLine": 192,
+          "endLine": 197,
+          "params": [
+            "curriculum"
+          ]
+        },
+        {
+          "name": "teacher_dashboard",
+          "startLine": 203,
+          "endLine": 251,
+          "params": []
+        },
+        {
+          "name": "confirm_delete_document",
+          "startLine": 255,
+          "endLine": 271,
+          "params": [
+            "client",
+            "course_id",
+            "document_id",
+            "filename"
+          ]
+        },
+        {
+          "name": "confirm_clear_course",
+          "startLine": 275,
+          "endLine": 290,
+          "params": [
+            "client",
+            "course_id",
+            "title"
+          ]
+        },
+        {
+          "name": "confirm_delete_course",
+          "startLine": 294,
+          "endLine": 311,
+          "params": [
+            "client",
+            "course_id",
+            "title"
+          ]
+        },
+        {
+          "name": "_selected_course",
+          "startLine": 314,
+          "endLine": 316,
+          "params": []
+        },
+        {
+          "name": "teacher_curriculum",
+          "startLine": 319,
+          "endLine": 431,
+          "params": []
+        },
+        {
+          "name": "_run_analysis",
+          "startLine": 434,
+          "endLine": 449,
+          "params": [
+            "course_id",
+            "document_id"
+          ]
+        },
+        {
+          "name": "_render_pending_task",
+          "startLine": 452,
+          "endLine": 492,
+          "params": [
+            "client"
+          ]
+        },
+        {
+          "name": "_store_task_result",
+          "startLine": 495,
+          "endLine": 530,
+          "params": [
+            "client",
+            "pending",
+            "task"
+          ]
+        },
+        {
+          "name": "teacher_class",
+          "startLine": 533,
+          "endLine": 580,
+          "params": []
+        },
+        {
+          "name": "teacher_review_queue",
+          "startLine": 583,
+          "endLine": 622,
+          "params": []
+        },
+        {
+          "name": "student_dashboard",
+          "startLine": 628,
+          "endLine": 646,
+          "params": []
+        },
+        {
+          "name": "_student_id",
+          "startLine": 649,
+          "endLine": 650,
+          "params": []
+        },
+        {
+          "name": "_course_id",
+          "startLine": 653,
+          "endLine": 654,
+          "params": []
+        },
+        {
+          "name": "student_study_plan",
+          "startLine": 657,
+          "endLine": 706,
+          "params": []
+        },
+        {
+          "name": "student_learn",
+          "startLine": 709,
+          "endLine": 746,
+          "params": []
+        },
+        {
+          "name": "_render_lesson",
+          "startLine": 749,
+          "endLine": 756,
+          "params": [
+            "lesson"
+          ]
+        },
+        {
+          "name": "student_quizzes",
+          "startLine": 759,
+          "endLine": 837,
+          "params": []
+        },
+        {
+          "name": "_render_quiz_result",
+          "startLine": 840,
+          "endLine": 872,
+          "params": [
+            "result"
+          ]
+        },
+        {
+          "name": "student_progress",
+          "startLine": 875,
+          "endLine": 896,
+          "params": []
+        },
+        {
+          "name": "student_recommendations",
+          "startLine": 899,
+          "endLine": 923,
+          "params": []
+        },
+        {
+          "name": "operations_view",
+          "startLine": 929,
+          "endLine": 970,
+          "params": []
+        },
+        {
+          "name": "main",
+          "startLine": 976,
+          "endLine": 1007,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "_client",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "_user",
+          "line": 24,
+          "isDefault": false
+        },
+        {
+          "name": "_attempt",
+          "line": 28,
+          "isDefault": false
+        },
+        {
+          "name": "_show_error",
+          "line": 37,
+          "isDefault": false
+        },
+        {
+          "name": "_fmt",
+          "line": 45,
+          "isDefault": false
+        },
+        {
+          "name": "auth_screen",
+          "line": 57,
+          "isDefault": false
+        },
+        {
+          "name": "_on_auth",
+          "line": 105,
+          "isDefault": false
+        },
+        {
+          "name": "logout",
+          "line": 112,
+          "isDefault": false
+        },
+        {
+          "name": "_ensure_client",
+          "line": 119,
+          "isDefault": false
+        },
+        {
+          "name": "sidebar",
+          "line": 129,
+          "isDefault": false
+        },
+        {
+          "name": "_course_options",
+          "line": 157,
+          "isDefault": false
+        },
+        {
+          "name": "_course_selector",
+          "line": 162,
+          "isDefault": false
+        },
+        {
+          "name": "_render_curriculum",
+          "line": 171,
+          "isDefault": false
+        },
+        {
+          "name": "_topic_options",
+          "line": 192,
+          "isDefault": false
+        },
+        {
+          "name": "teacher_dashboard",
+          "line": 203,
+          "isDefault": false
+        },
+        {
+          "name": "confirm_delete_document",
+          "line": 254,
+          "isDefault": false
+        },
+        {
+          "name": "confirm_clear_course",
+          "line": 274,
+          "isDefault": false
+        },
+        {
+          "name": "confirm_delete_course",
+          "line": 293,
+          "isDefault": false
+        },
+        {
+          "name": "_selected_course",
+          "line": 314,
+          "isDefault": false
+        },
+        {
+          "name": "teacher_curriculum",
+          "line": 319,
+          "isDefault": false
+        },
+        {
+          "name": "_run_analysis",
+          "line": 434,
+          "isDefault": false
+        },
+        {
+          "name": "_render_pending_task",
+          "line": 452,
+          "isDefault": false
+        },
+        {
+          "name": "_store_task_result",
+          "line": 495,
+          "isDefault": false
+        },
+        {
+          "name": "teacher_class",
+          "line": 533,
+          "isDefault": false
+        },
+        {
+          "name": "teacher_review_queue",
+          "line": 583,
+          "isDefault": false
+        },
+        {
+          "name": "student_dashboard",
+          "line": 628,
+          "isDefault": false
+        },
+        {
+          "name": "_student_id",
+          "line": 649,
+          "isDefault": false
+        },
+        {
+          "name": "_course_id",
+          "line": 653,
+          "isDefault": false
+        },
+        {
+          "name": "student_study_plan",
+          "line": 657,
+          "isDefault": false
+        },
+        {
+          "name": "student_learn",
+          "line": 709,
+          "isDefault": false
+        },
+        {
+          "name": "_render_lesson",
+          "line": 749,
+          "isDefault": false
+        },
+        {
+          "name": "student_quizzes",
+          "line": 759,
+          "isDefault": false
+        },
+        {
+          "name": "_render_quiz_result",
+          "line": 840,
+          "isDefault": false
+        },
+        {
+          "name": "student_progress",
+          "line": 875,
+          "isDefault": false
+        },
+        {
+          "name": "student_recommendations",
+          "line": 899,
+          "isDefault": false
+        },
+        {
+          "name": "operations_view",
+          "line": 929,
+          "isDefault": false
+        },
+        {
+          "name": "main",
+          "line": 976,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_client",
+          "callee": "APIClient",
+          "lineNumber": 18
+        },
+        {
+          "caller": "_client",
+          "callee": "os.getenv",
+          "lineNumber": 19
+        },
+        {
+          "caller": "_user",
+          "callee": "st.session_state.get",
+          "lineNumber": 25
+        },
+        {
+          "caller": "_attempt",
+          "callee": "fn",
+          "lineNumber": 30
+        },
+        {
+          "caller": "_show_error",
+          "callee": "st.error",
+          "lineNumber": 40
+        },
+        {
+          "caller": "_fmt",
+          "callee": "datetime.fromisoformat(ts[:19]).strftime",
+          "lineNumber": 49
+        },
+        {
+          "caller": "_fmt",
+          "callee": "datetime.fromisoformat",
+          "lineNumber": 49
+        },
+        {
+          "caller": "_fmt",
+          "callee": "str",
+          "lineNumber": 51
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "st.title",
+          "lineNumber": 58
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "st.tabs",
+          "lineNumber": 59
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "st.text_input",
+          "lineNumber": 61
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "st.text_input",
+          "lineNumber": 62
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "st.button",
+          "lineNumber": 63
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "st.error",
+          "lineNumber": 65
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "_attempt",
+          "lineNumber": 67
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "_client().login",
+          "lineNumber": 67
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "_client",
+          "lineNumber": 67
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "st.error",
+          "lineNumber": 69
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "_on_auth",
+          "lineNumber": 71
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "st.text_input",
+          "lineNumber": 73
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "st.text_input",
+          "lineNumber": 74
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "st.text_input",
+          "lineNumber": 75
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "st.radio",
+          "lineNumber": 76
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "st.columns",
+          "lineNumber": 77
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "st.text_input",
+          "lineNumber": 79
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "st.number_input",
+          "lineNumber": 81
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "st.button",
+          "lineNumber": 89
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "len",
+          "lineNumber": 90
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "st.error",
+          "lineNumber": 91
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "int",
+          "lineNumber": 95
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "_attempt",
+          "lineNumber": 96
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "_client().register",
+          "lineNumber": 97
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "_client",
+          "lineNumber": 97
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "st.error",
+          "lineNumber": 100
+        },
+        {
+          "caller": "auth_screen",
+          "callee": "_on_auth",
+          "lineNumber": 102
+        },
+        {
+          "caller": "_on_auth",
+          "callee": "st.rerun",
+          "lineNumber": 109
+        },
+        {
+          "caller": "logout",
+          "callee": "APIClient",
+          "lineNumber": 115
+        },
+        {
+          "caller": "logout",
+          "callee": "st.rerun",
+          "lineNumber": 116
+        },
+        {
+          "caller": "_ensure_client",
+          "callee": "st.session_state.get",
+          "lineNumber": 120
+        },
+        {
+          "caller": "_ensure_client",
+          "callee": "auth_screen",
+          "lineNumber": 121
+        },
+        {
+          "caller": "sidebar",
+          "callee": "_user",
+          "lineNumber": 130
+        },
+        {
+          "caller": "sidebar",
+          "callee": "user.get",
+          "lineNumber": 131
+        },
+        {
+          "caller": "sidebar",
+          "callee": "st.sidebar.title",
+          "lineNumber": 132
+        },
+        {
+          "caller": "sidebar",
+          "callee": "st.sidebar.caption",
+          "lineNumber": 133
+        },
+        {
+          "caller": "sidebar",
+          "callee": "user.get",
+          "lineNumber": 133
+        },
+        {
+          "caller": "sidebar",
+          "callee": "st.session_state.pop",
+          "lineNumber": 144
+        },
+        {
+          "caller": "sidebar",
+          "callee": "st.sidebar.radio",
+          "lineNumber": 148
+        },
+        {
+          "caller": "sidebar",
+          "callee": "st.sidebar.button",
+          "lineNumber": 149
+        },
+        {
+          "caller": "sidebar",
+          "callee": "logout",
+          "lineNumber": 150
+        },
+        {
+          "caller": "_course_options",
+          "callee": "_attempt",
+          "lineNumber": 158
+        },
+        {
+          "caller": "_course_selector",
+          "callee": "_course_options",
+          "lineNumber": 163
+        },
+        {
+          "caller": "_course_selector",
+          "callee": "_client",
+          "lineNumber": 163
+        },
+        {
+          "caller": "_course_selector",
+          "callee": "st.info",
+          "lineNumber": 165
+        },
+        {
+          "caller": "_course_selector",
+          "callee": "st.selectbox",
+          "lineNumber": 167
+        },
+        {
+          "caller": "_course_selector",
+          "callee": "list",
+          "lineNumber": 167
+        },
+        {
+          "caller": "_course_selector",
+          "callee": "options.keys",
+          "lineNumber": 167
+        },
+        {
+          "caller": "_render_curriculum",
+          "callee": "_show_error",
+          "lineNumber": 172
+        },
+        {
+          "caller": "_render_curriculum",
+          "callee": "curriculum.get",
+          "lineNumber": 172
+        },
+        {
+          "caller": "_render_curriculum",
+          "callee": "curriculum.get",
+          "lineNumber": 174
+        },
+        {
+          "caller": "_render_curriculum",
+          "callee": "st.expander",
+          "lineNumber": 175
+        },
+        {
+          "caller": "_render_curriculum",
+          "callee": "ch.get",
+          "lineNumber": 176
+        },
+        {
+          "caller": "_render_curriculum",
+          "callee": "t.get",
+          "lineNumber": 177
+        },
+        {
+          "caller": "_render_curriculum",
+          "callee": "st.markdown",
+          "lineNumber": 178
+        },
+        {
+          "caller": "_render_curriculum",
+          "callee": "t.get",
+          "lineNumber": 184
+        },
+        {
+          "caller": "_render_curriculum",
+          "callee": "st.caption",
+          "lineNumber": 185
+        },
+        {
+          "caller": "_render_curriculum",
+          "callee": "t.get",
+          "lineNumber": 186
+        },
+        {
+          "caller": "_render_curriculum",
+          "callee": "st.markdown",
+          "lineNumber": 187
+        },
+        {
+          "caller": "_render_curriculum",
+          "callee": "\"; \".join",
+          "lineNumber": 187
+        },
+        {
+          "caller": "_render_curriculum",
+          "callee": "t.get",
+          "lineNumber": 188
+        },
+        {
+          "caller": "_render_curriculum",
+          "callee": "st.markdown",
+          "lineNumber": 189
+        },
+        {
+          "caller": "_render_curriculum",
+          "callee": "\"; \".join",
+          "lineNumber": 189
+        },
+        {
+          "caller": "_topic_options",
+          "callee": "curriculum.get",
+          "lineNumber": 194
+        },
+        {
+          "caller": "_topic_options",
+          "callee": "ch.get",
+          "lineNumber": 195
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "st.header",
+          "lineNumber": 204
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "_client",
+          "lineNumber": 205
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "_attempt",
+          "lineNumber": 206
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "st.error",
+          "lineNumber": 208
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "st.expander",
+          "lineNumber": 211
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "st.form",
+          "lineNumber": 211
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "st.text_input",
+          "lineNumber": 212
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "st.text_input",
+          "lineNumber": 213
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "st.text_area",
+          "lineNumber": 214
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "st.date_input",
+          "lineNumber": 215
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "st.form_submit_button",
+          "lineNumber": 216
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "_attempt",
+          "lineNumber": 217
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "client.create_course",
+          "lineNumber": 218
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "str",
+          "lineNumber": 222
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "st.error",
+          "lineNumber": 226
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "st.success",
+          "lineNumber": 228
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "st.rerun",
+          "lineNumber": 229
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "st.container",
+          "lineNumber": 232
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "st.markdown",
+          "lineNumber": 233
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "st.caption",
+          "lineNumber": 234
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "c.get",
+          "lineNumber": 235
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "c.get",
+          "lineNumber": 235
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "c.get",
+          "lineNumber": 236
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "_fmt",
+          "lineNumber": 236
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "c.get",
+          "lineNumber": 236
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "c.get",
+          "lineNumber": 238
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "st.write",
+          "lineNumber": 239
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "st.session_state.setdefault",
+          "lineNumber": 240
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "st.columns",
+          "lineNumber": 241
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "b_open.button",
+          "lineNumber": 242
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "st.rerun",
+          "lineNumber": 245
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "b_clear.button",
+          "lineNumber": 246
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "confirm_clear_course",
+          "lineNumber": 249
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "b_del.button",
+          "lineNumber": 250
+        },
+        {
+          "caller": "teacher_dashboard",
+          "callee": "confirm_delete_course",
+          "lineNumber": 251
+        },
+        {
+          "caller": "confirm_delete_document",
+          "callee": "st.warning",
+          "lineNumber": 258
+        },
+        {
+          "caller": "confirm_delete_document",
+          "callee": "st.columns",
+          "lineNumber": 262
+        },
+        {
+          "caller": "confirm_delete_document",
+          "callee": "c1.button",
+          "lineNumber": 263
+        },
+        {
+          "caller": "confirm_delete_document",
+          "callee": "st.rerun",
+          "lineNumber": 264
+        },
+        {
+          "caller": "confirm_delete_document",
+          "callee": "c2.button",
+          "lineNumber": 265
+        },
+        {
+          "caller": "confirm_delete_document",
+          "callee": "_attempt",
+          "lineNumber": 266
+        },
+        {
+          "caller": "confirm_delete_document",
+          "callee": "client.delete_document",
+          "lineNumber": 266
+        },
+        {
+          "caller": "confirm_delete_document",
+          "callee": "st.error",
+          "lineNumber": 268
+        },
+        {
+          "caller": "confirm_delete_document",
+          "callee": "st.toast",
+          "lineNumber": 270
+        },
+        {
+          "caller": "confirm_delete_document",
+          "callee": "st.rerun",
+          "lineNumber": 271
+        },
+        {
+          "caller": "confirm_clear_course",
+          "callee": "st.warning",
+          "lineNumber": 276
+        },
+        {
+          "caller": "confirm_clear_course",
+          "callee": "st.columns",
+          "lineNumber": 281
+        },
+        {
+          "caller": "confirm_clear_course",
+          "callee": "c1.button",
+          "lineNumber": 282
+        },
+        {
+          "caller": "confirm_clear_course",
+          "callee": "st.rerun",
+          "lineNumber": 283
+        },
+        {
+          "caller": "confirm_clear_course",
+          "callee": "c2.button",
+          "lineNumber": 284
+        },
+        {
+          "caller": "confirm_clear_course",
+          "callee": "_attempt",
+          "lineNumber": 285
+        },
+        {
+          "caller": "confirm_clear_course",
+          "callee": "client.clear_course_contents",
+          "lineNumber": 285
+        },
+        {
+          "caller": "confirm_clear_course",
+          "callee": "st.error",
+          "lineNumber": 287
+        },
+        {
+          "caller": "confirm_clear_course",
+          "callee": "st.toast",
+          "lineNumber": 289
+        },
+        {
+          "caller": "confirm_clear_course",
+          "callee": "st.rerun",
+          "lineNumber": 290
+        },
+        {
+          "caller": "confirm_delete_course",
+          "callee": "st.warning",
+          "lineNumber": 295
+        },
+        {
+          "caller": "confirm_delete_course",
+          "callee": "st.columns",
+          "lineNumber": 300
+        },
+        {
+          "caller": "confirm_delete_course",
+          "callee": "c1.button",
+          "lineNumber": 301
+        },
+        {
+          "caller": "confirm_delete_course",
+          "callee": "st.rerun",
+          "lineNumber": 302
+        },
+        {
+          "caller": "confirm_delete_course",
+          "callee": "c2.button",
+          "lineNumber": 303
+        },
+        {
+          "caller": "confirm_delete_course",
+          "callee": "_attempt",
+          "lineNumber": 304
+        },
+        {
+          "caller": "confirm_delete_course",
+          "callee": "client.delete_course",
+          "lineNumber": 304
+        },
+        {
+          "caller": "confirm_delete_course",
+          "callee": "st.error",
+          "lineNumber": 306
+        },
+        {
+          "caller": "confirm_delete_course",
+          "callee": "st.session_state.get",
+          "lineNumber": 308
+        },
+        {
+          "caller": "confirm_delete_course",
+          "callee": "st.toast",
+          "lineNumber": 310
+        },
+        {
+          "caller": "confirm_delete_course",
+          "callee": "st.rerun",
+          "lineNumber": 311
+        },
+        {
+          "caller": "_selected_course",
+          "callee": "st.session_state.get",
+          "lineNumber": 315
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "_client",
+          "lineNumber": 320
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "_selected_course",
+          "lineNumber": 321
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "_course_selector",
+          "lineNumber": 323
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "_attempt",
+          "lineNumber": 327
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "client.get_course",
+          "lineNumber": 327
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.error",
+          "lineNumber": 329
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.header",
+          "lineNumber": 331
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.tabs",
+          "lineNumber": 333
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.columns",
+          "lineNumber": 336
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.subheader",
+          "lineNumber": 338
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.file_uploader",
+          "lineNumber": 339
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.button",
+          "lineNumber": 340
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "_attempt",
+          "lineNumber": 341
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "client.upload_document",
+          "lineNumber": 342
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "f.getvalue",
+          "lineNumber": 343
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.error",
+          "lineNumber": 347
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.success",
+          "lineNumber": 349
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.button",
+          "lineNumber": 350
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "_run_analysis",
+          "lineNumber": 351
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.subheader",
+          "lineNumber": 353
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "_attempt",
+          "lineNumber": 354
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "client.list_documents",
+          "lineNumber": 354
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.error",
+          "lineNumber": 356
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.columns",
+          "lineNumber": 359
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "dname.markdown",
+          "lineNumber": 360
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "d.get",
+          "lineNumber": 361
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "d.get",
+          "lineNumber": 361
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "ddel.button",
+          "lineNumber": 363
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "confirm_delete_document",
+          "lineNumber": 364
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.button",
+          "lineNumber": 366
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "_attempt",
+          "lineNumber": 368
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "client.list_documents",
+          "lineNumber": 368
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.error",
+          "lineNumber": 372
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "_run_analysis",
+          "lineNumber": 374
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "_attempt",
+          "lineNumber": 377
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "client.curriculum",
+          "lineNumber": 377
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.error",
+          "lineNumber": 379
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "_render_curriculum",
+          "lineNumber": 381
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.subheader",
+          "lineNumber": 384
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "_attempt",
+          "lineNumber": 385
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "client.class_students",
+          "lineNumber": 385
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "str",
+          "lineNumber": 386
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.write",
+          "lineNumber": 388
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.markdown",
+          "lineNumber": 390
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "s.get",
+          "lineNumber": 390
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.markdown",
+          "lineNumber": 393
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.text_input",
+          "lineNumber": 394
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "q.strip",
+          "lineNumber": 398
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "_attempt",
+          "lineNumber": 399
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "client.search_users",
+          "lineNumber": 399
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.error",
+          "lineNumber": 401
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.selectbox",
+          "lineNumber": 404
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "list",
+          "lineNumber": 404
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "options.keys",
+          "lineNumber": 404
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.button",
+          "lineNumber": 405
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.warning",
+          "lineNumber": 408
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "_attempt",
+          "lineNumber": 410
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "client.enroll",
+          "lineNumber": 410
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.error",
+          "lineNumber": 412
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.success",
+          "lineNumber": 414
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.rerun",
+          "lineNumber": 415
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "q.strip",
+          "lineNumber": 416
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.caption",
+          "lineNumber": 417
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.expander",
+          "lineNumber": 419
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.text_input",
+          "lineNumber": 420
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.button",
+          "lineNumber": 423
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.error",
+          "lineNumber": 425
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "_attempt",
+          "lineNumber": 427
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "client.enroll",
+          "lineNumber": 427
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.error",
+          "lineNumber": 429
+        },
+        {
+          "caller": "teacher_curriculum",
+          "callee": "st.success",
+          "lineNumber": 431
+        },
+        {
+          "caller": "_run_analysis",
+          "callee": "_client",
+          "lineNumber": 435
+        },
+        {
+          "caller": "_run_analysis",
+          "callee": "_attempt",
+          "lineNumber": 436
+        },
+        {
+          "caller": "_run_analysis",
+          "callee": "client.run_agent",
+          "lineNumber": 437
+        },
+        {
+          "caller": "_run_analysis",
+          "callee": "st.error",
+          "lineNumber": 442
+        },
+        {
+          "caller": "_run_analysis",
+          "callee": "st.rerun",
+          "lineNumber": 449
+        },
+        {
+          "caller": "_render_pending_task",
+          "callee": "st.fragment",
+          "lineNumber": 461
+        },
+        {
+          "caller": "_notifier",
+          "callee": "st.session_state.get",
+          "lineNumber": 463
+        },
+        {
+          "caller": "_notifier",
+          "callee": "pending.get",
+          "lineNumber": 467
+        },
+        {
+          "caller": "_notifier",
+          "callee": "_attempt",
+          "lineNumber": 468
+        },
+        {
+          "caller": "_notifier",
+          "callee": "client.get_task",
+          "lineNumber": 468
+        },
+        {
+          "caller": "_notifier",
+          "callee": "st.error",
+          "lineNumber": 470
+        },
+        {
+          "caller": "_notifier",
+          "callee": "task.get",
+          "lineNumber": 472
+        },
+        {
+          "caller": "_notifier",
+          "callee": "st.info",
+          "lineNumber": 475
+        },
+        {
+          "caller": "_notifier",
+          "callee": "st.caption",
+          "lineNumber": 476
+        },
+        {
+          "caller": "_notifier",
+          "callee": "st.button",
+          "lineNumber": 477
+        },
+        {
+          "caller": "_notifier",
+          "callee": "st.rerun",
+          "lineNumber": 478
+        },
+        {
+          "caller": "_notifier",
+          "callee": "_store_task_result",
+          "lineNumber": 480
+        },
+        {
+          "caller": "_notifier",
+          "callee": "st.success",
+          "lineNumber": 482
+        },
+        {
+          "caller": "_notifier",
+          "callee": "pending.get",
+          "lineNumber": 482
+        },
+        {
+          "caller": "_notifier",
+          "callee": "st.session_state.pop",
+          "lineNumber": 483
+        },
+        {
+          "caller": "_notifier",
+          "callee": "st.rerun",
+          "lineNumber": 484
+        },
+        {
+          "caller": "_notifier",
+          "callee": "st.error",
+          "lineNumber": 486
+        },
+        {
+          "caller": "_notifier",
+          "callee": "task.get",
+          "lineNumber": 486
+        },
+        {
+          "caller": "_notifier",
+          "callee": "st.session_state.pop",
+          "lineNumber": 487
+        },
+        {
+          "caller": "_notifier",
+          "callee": "st.rerun",
+          "lineNumber": 488
+        },
+        {
+          "caller": "_notifier",
+          "callee": "st.warning",
+          "lineNumber": 490
+        },
+        {
+          "caller": "_render_pending_task",
+          "callee": "_notifier",
+          "lineNumber": 492
+        },
+        {
+          "caller": "_store_task_result",
+          "callee": "task.get",
+          "lineNumber": 497
+        },
+        {
+          "caller": "_store_task_result",
+          "callee": "pending.get",
+          "lineNumber": 498
+        },
+        {
+          "caller": "_store_task_result",
+          "callee": "(ctx.get(\"lesson_agent\") or {}).get",
+          "lineNumber": 501
+        },
+        {
+          "caller": "_store_task_result",
+          "callee": "ctx.get",
+          "lineNumber": 501
+        },
+        {
+          "caller": "_store_task_result",
+          "callee": "st.error",
+          "lineNumber": 503
+        },
+        {
+          "caller": "_store_task_result",
+          "callee": "_attempt",
+          "lineNumber": 505
+        },
+        {
+          "caller": "_store_task_result",
+          "callee": "client.get_lesson",
+          "lineNumber": 505
+        },
+        {
+          "caller": "_store_task_result",
+          "callee": "st.error",
+          "lineNumber": 507
+        },
+        {
+          "caller": "_store_task_result",
+          "callee": "pending.get",
+          "lineNumber": 509
+        },
+        {
+          "caller": "_store_task_result",
+          "callee": "(ctx.get(\"quiz_agent\") or {}).get",
+          "lineNumber": 511
+        },
+        {
+          "caller": "_store_task_result",
+          "callee": "ctx.get",
+          "lineNumber": 511
+        },
+        {
+          "caller": "_store_task_result",
+          "callee": "st.error",
+          "lineNumber": 513
+        },
+        {
+          "caller": "_store_task_result",
+          "callee": "_attempt",
+          "lineNumber": 515
+        },
+        {
+          "caller": "_store_task_result",
+          "callee": "client.get_quiz",
+          "lineNumber": 515
+        },
+        {
+          "caller": "_store_task_result",
+          "callee": "st.error",
+          "lineNumber": 517
+        },
+        {
+          "caller": "_store_task_result",
+          "callee": "ctx.get",
+          "lineNumber": 523
+        },
+        {
+          "caller": "_store_task_result",
+          "callee": "ctx.get",
+          "lineNumber": 524
+        },
+        {
+          "caller": "_store_task_result",
+          "callee": "ctx.get",
+          "lineNumber": 525
+        },
+        {
+          "caller": "_store_task_result",
+          "callee": "ctx.get",
+          "lineNumber": 526
+        },
+        {
+          "caller": "_store_task_result",
+          "callee": "ctx.get",
+          "lineNumber": 527
+        },
+        {
+          "caller": "_store_task_result",
+          "callee": "ctx.get",
+          "lineNumber": 528
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "_client",
+          "lineNumber": 534
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "_selected_course",
+          "lineNumber": 535
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "_course_selector",
+          "lineNumber": 537
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "st.header",
+          "lineNumber": 540
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "_attempt",
+          "lineNumber": 542
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "client.class_analytics",
+          "lineNumber": 542
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "st.error",
+          "lineNumber": 544
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "st.metric",
+          "lineNumber": 546
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "analytics.get",
+          "lineNumber": 546
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "st.metric",
+          "lineNumber": 547
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "analytics.get",
+          "lineNumber": 547
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "st.subheader",
+          "lineNumber": 549
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "analytics.get",
+          "lineNumber": 550
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "t.get",
+          "lineNumber": 551
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "st.progress",
+          "lineNumber": 553
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "min",
+          "lineNumber": 554
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "t.get",
+          "lineNumber": 555
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "t.get",
+          "lineNumber": 555
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "analytics.get",
+          "lineNumber": 558
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "st.warning",
+          "lineNumber": 559
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "\", \".join",
+          "lineNumber": 561
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "t.get",
+          "lineNumber": 562
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "t.get",
+          "lineNumber": 562
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "st.subheader",
+          "lineNumber": 567
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "_attempt",
+          "lineNumber": 568
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "client.class_students",
+          "lineNumber": 568
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "st.expander",
+          "lineNumber": 570
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "s.get",
+          "lineNumber": 570
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "_attempt",
+          "lineNumber": 572
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "client.student_grades",
+          "lineNumber": 572
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "st.error",
+          "lineNumber": 574
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "st.markdown",
+          "lineNumber": 577
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "g.get",
+          "lineNumber": 578
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "g.get",
+          "lineNumber": 579
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "g.get",
+          "lineNumber": 579
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "_fmt",
+          "lineNumber": 579
+        },
+        {
+          "caller": "teacher_class",
+          "callee": "g.get",
+          "lineNumber": 579
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "st.header",
+          "lineNumber": 584
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "_client",
+          "lineNumber": 585
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "_attempt",
+          "lineNumber": 586
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "st.error",
+          "lineNumber": 588
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "st.info",
+          "lineNumber": 591
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "st.expander",
+          "lineNumber": 594
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "a.get",
+          "lineNumber": 594
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "st.markdown",
+          "lineNumber": 595
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "a.get",
+          "lineNumber": 595
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "st.caption",
+          "lineNumber": 596
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "a.get",
+          "lineNumber": 597
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "a.get",
+          "lineNumber": 597
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "a.get",
+          "lineNumber": 598
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "a.get",
+          "lineNumber": 600
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "st.caption",
+          "lineNumber": 601
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "st.number_input",
+          "lineNumber": 602
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "float",
+          "lineNumber": 606
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "a.get",
+          "lineNumber": 606
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "st.checkbox",
+          "lineNumber": 610
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "st.button",
+          "lineNumber": 611
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "_attempt",
+          "lineNumber": 613
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "client.override_grade",
+          "lineNumber": 614
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "st.error",
+          "lineNumber": 619
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "st.success",
+          "lineNumber": 621
+        },
+        {
+          "caller": "teacher_review_queue",
+          "callee": "st.rerun",
+          "lineNumber": 622
+        },
+        {
+          "caller": "student_dashboard",
+          "callee": "st.header",
+          "lineNumber": 629
+        },
+        {
+          "caller": "student_dashboard",
+          "callee": "_client",
+          "lineNumber": 630
+        },
+        {
+          "caller": "student_dashboard",
+          "callee": "_attempt",
+          "lineNumber": 631
+        },
+        {
+          "caller": "student_dashboard",
+          "callee": "st.error",
+          "lineNumber": 633
+        },
+        {
+          "caller": "student_dashboard",
+          "callee": "st.info",
+          "lineNumber": 636
+        },
+        {
+          "caller": "student_dashboard",
+          "callee": "st.container",
+          "lineNumber": 639
+        },
+        {
+          "caller": "student_dashboard",
+          "callee": "st.markdown",
+          "lineNumber": 640
+        },
+        {
+          "caller": "student_dashboard",
+          "callee": "st.caption",
+          "lineNumber": 641
+        },
+        {
+          "caller": "student_dashboard",
+          "callee": "c.get",
+          "lineNumber": 642
+        },
+        {
+          "caller": "student_dashboard",
+          "callee": "c.get",
+          "lineNumber": 642
+        },
+        {
+          "caller": "student_dashboard",
+          "callee": "c.get",
+          "lineNumber": 642
+        },
+        {
+          "caller": "student_dashboard",
+          "callee": "st.button",
+          "lineNumber": 644
+        },
+        {
+          "caller": "student_dashboard",
+          "callee": "st.rerun",
+          "lineNumber": 646
+        },
+        {
+          "caller": "_student_id",
+          "callee": "_user().get",
+          "lineNumber": 650
+        },
+        {
+          "caller": "_student_id",
+          "callee": "_user",
+          "lineNumber": 650
+        },
+        {
+          "caller": "_course_id",
+          "callee": "st.session_state.get",
+          "lineNumber": 654
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "_client",
+          "lineNumber": 658
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "_student_id",
+          "lineNumber": 659
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "_course_id",
+          "lineNumber": 660
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "_course_selector",
+          "lineNumber": 662
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "_attempt",
+          "lineNumber": 665
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "client.study_plan",
+          "lineNumber": 665
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "st.warning",
+          "lineNumber": 668
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "st.button",
+          "lineNumber": 669
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "_attempt",
+          "lineNumber": 670
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "client.run_agent",
+          "lineNumber": 671
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "_user().get",
+          "lineNumber": 676
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "_user",
+          "lineNumber": 676
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "st.error",
+          "lineNumber": 681
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "st.rerun",
+          "lineNumber": 688
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "st.error",
+          "lineNumber": 690
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "st.header",
+          "lineNumber": 692
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "st.caption",
+          "lineNumber": 693
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "plan.get",
+          "lineNumber": 694
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "plan.get",
+          "lineNumber": 694
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "_fmt",
+          "lineNumber": 694
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "plan.get",
+          "lineNumber": 694
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "plan.get",
+          "lineNumber": 697
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "by_day.setdefault(item[\"day_index\"], []).append",
+          "lineNumber": 698
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "by_day.setdefault",
+          "lineNumber": 698
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "sorted",
+          "lineNumber": 699
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "st.expander",
+          "lineNumber": 700
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "it.get",
+          "lineNumber": 702
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "st.markdown",
+          "lineNumber": 703
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "st.caption",
+          "lineNumber": 704
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "it.get",
+          "lineNumber": 704
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "it.get",
+          "lineNumber": 705
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "st.caption",
+          "lineNumber": 706
+        },
+        {
+          "caller": "student_study_plan",
+          "callee": "it.get",
+          "lineNumber": 706
+        },
+        {
+          "caller": "student_learn",
+          "callee": "_client",
+          "lineNumber": 710
+        },
+        {
+          "caller": "student_learn",
+          "callee": "_student_id",
+          "lineNumber": 711
+        },
+        {
+          "caller": "student_learn",
+          "callee": "_course_id",
+          "lineNumber": 712
+        },
+        {
+          "caller": "student_learn",
+          "callee": "_course_selector",
+          "lineNumber": 714
+        },
+        {
+          "caller": "student_learn",
+          "callee": "_attempt",
+          "lineNumber": 717
+        },
+        {
+          "caller": "student_learn",
+          "callee": "client.curriculum",
+          "lineNumber": 717
+        },
+        {
+          "caller": "student_learn",
+          "callee": "st.error",
+          "lineNumber": 719
+        },
+        {
+          "caller": "student_learn",
+          "callee": "st.header",
+          "lineNumber": 721
+        },
+        {
+          "caller": "student_learn",
+          "callee": "_topic_options",
+          "lineNumber": 722
+        },
+        {
+          "caller": "student_learn",
+          "callee": "st.info",
+          "lineNumber": 724
+        },
+        {
+          "caller": "student_learn",
+          "callee": "st.selectbox",
+          "lineNumber": 726
+        },
+        {
+          "caller": "student_learn",
+          "callee": "list",
+          "lineNumber": 726
+        },
+        {
+          "caller": "student_learn",
+          "callee": "topics.keys",
+          "lineNumber": 726
+        },
+        {
+          "caller": "student_learn",
+          "callee": "st.selectbox",
+          "lineNumber": 728
+        },
+        {
+          "caller": "student_learn",
+          "callee": "st.button",
+          "lineNumber": 729
+        },
+        {
+          "caller": "student_learn",
+          "callee": "_attempt",
+          "lineNumber": 730
+        },
+        {
+          "caller": "student_learn",
+          "callee": "client.generate_lesson",
+          "lineNumber": 731
+        },
+        {
+          "caller": "student_learn",
+          "callee": "st.error",
+          "lineNumber": 734
+        },
+        {
+          "caller": "student_learn",
+          "callee": "st.rerun",
+          "lineNumber": 743
+        },
+        {
+          "caller": "student_learn",
+          "callee": "st.session_state.get",
+          "lineNumber": 744
+        },
+        {
+          "caller": "student_learn",
+          "callee": "_render_lesson",
+          "lineNumber": 746
+        },
+        {
+          "caller": "_render_lesson",
+          "callee": "st.subheader",
+          "lineNumber": 750
+        },
+        {
+          "caller": "_render_lesson",
+          "callee": "lesson.get",
+          "lineNumber": 750
+        },
+        {
+          "caller": "_render_lesson",
+          "callee": "lesson.get",
+          "lineNumber": 751
+        },
+        {
+          "caller": "_render_lesson",
+          "callee": "content.get",
+          "lineNumber": 752
+        },
+        {
+          "caller": "_render_lesson",
+          "callee": "st.markdown",
+          "lineNumber": 753
+        },
+        {
+          "caller": "_render_lesson",
+          "callee": "section.get",
+          "lineNumber": 753
+        },
+        {
+          "caller": "_render_lesson",
+          "callee": "st.markdown",
+          "lineNumber": 754
+        },
+        {
+          "caller": "_render_lesson",
+          "callee": "section.get",
+          "lineNumber": 754
+        },
+        {
+          "caller": "_render_lesson",
+          "callee": "content.get",
+          "lineNumber": 755
+        },
+        {
+          "caller": "_render_lesson",
+          "callee": "st.info",
+          "lineNumber": 756
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "_client",
+          "lineNumber": 760
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "_student_id",
+          "lineNumber": 761
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "_course_id",
+          "lineNumber": 762
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "_course_selector",
+          "lineNumber": 764
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "_attempt",
+          "lineNumber": 767
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "client.curriculum",
+          "lineNumber": 767
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "_topic_options",
+          "lineNumber": 768
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "st.header",
+          "lineNumber": 769
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "st.expander",
+          "lineNumber": 771
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "st.selectbox",
+          "lineNumber": 772
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "list",
+          "lineNumber": 773
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "topics.keys",
+          "lineNumber": 773
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "st.slider",
+          "lineNumber": 775
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "st.slider",
+          "lineNumber": 776
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "st.selectbox",
+          "lineNumber": 777
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "st.button",
+          "lineNumber": 778
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "topics.get",
+          "lineNumber": 779
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "_attempt",
+          "lineNumber": 780
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "client.generate_quiz",
+          "lineNumber": 781
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "int",
+          "lineNumber": 785
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "float",
+          "lineNumber": 786
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "st.error",
+          "lineNumber": 791
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "st.rerun",
+          "lineNumber": 799
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "st.session_state.get",
+          "lineNumber": 801
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "st.info",
+          "lineNumber": 803
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "st.subheader",
+          "lineNumber": 805
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "quiz.get",
+          "lineNumber": 805
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "st.caption",
+          "lineNumber": 806
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "quiz.get",
+          "lineNumber": 807
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "quiz.get",
+          "lineNumber": 807
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "len",
+          "lineNumber": 807
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "quiz.get",
+          "lineNumber": 807
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "st.session_state.setdefault",
+          "lineNumber": 809
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "quiz.get",
+          "lineNumber": 810
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "st.markdown",
+          "lineNumber": 811
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "q.get",
+          "lineNumber": 812
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "st.radio",
+          "lineNumber": 814
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "q.get",
+          "lineNumber": 815
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "st.radio",
+          "lineNumber": 816
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "st.text_input",
+          "lineNumber": 818
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "st.button",
+          "lineNumber": 821
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "_attempt",
+          "lineNumber": 822
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "client.submit_quiz",
+          "lineNumber": 822
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "st.error",
+          "lineNumber": 824
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "st.rerun",
+          "lineNumber": 833
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "st.session_state.get",
+          "lineNumber": 835
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "result.get",
+          "lineNumber": 836
+        },
+        {
+          "caller": "student_quizzes",
+          "callee": "_render_quiz_result",
+          "lineNumber": 837
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "result.get",
+          "lineNumber": 841
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "st.subheader",
+          "lineNumber": 842
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "st.metric",
+          "lineNumber": 843
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "grading.get",
+          "lineNumber": 843
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "st.progress",
+          "lineNumber": 844
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "min",
+          "lineNumber": 844
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "grading.get",
+          "lineNumber": 844
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "result.get",
+          "lineNumber": 845
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "perf.get",
+          "lineNumber": 846
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "st.warning",
+          "lineNumber": 848
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "\", \".join",
+          "lineNumber": 849
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "w.get",
+          "lineNumber": 849
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "w.get",
+          "lineNumber": 849
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "perf.get",
+          "lineNumber": 851
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "st.success",
+          "lineNumber": 853
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "\", \".join",
+          "lineNumber": 855
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "s.get",
+          "lineNumber": 855
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "s.get",
+          "lineNumber": 855
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "(result.get(\"recommendation\") or {}).get",
+          "lineNumber": 857
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "result.get",
+          "lineNumber": 857
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "st.info",
+          "lineNumber": 859
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "rec.get",
+          "lineNumber": 859
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "rec.get",
+          "lineNumber": 860
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "st.caption",
+          "lineNumber": 861
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "result.get",
+          "lineNumber": 862
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "plan.get",
+          "lineNumber": 863
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "st.success",
+          "lineNumber": 864
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "plan.get",
+          "lineNumber": 865
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "len",
+          "lineNumber": 865
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "plan.get",
+          "lineNumber": 865
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "result.get",
+          "lineNumber": 867
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "lesson.get",
+          "lineNumber": 868
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "st.info",
+          "lineNumber": 869
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "result.get",
+          "lineNumber": 870
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "reassess.get",
+          "lineNumber": 871
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "st.info",
+          "lineNumber": 872
+        },
+        {
+          "caller": "_render_quiz_result",
+          "callee": "reassess.get",
+          "lineNumber": 872
+        },
+        {
+          "caller": "student_progress",
+          "callee": "_client",
+          "lineNumber": 876
+        },
+        {
+          "caller": "student_progress",
+          "callee": "_student_id",
+          "lineNumber": 877
+        },
+        {
+          "caller": "student_progress",
+          "callee": "_attempt",
+          "lineNumber": 878
+        },
+        {
+          "caller": "student_progress",
+          "callee": "client.student_profile",
+          "lineNumber": 878
+        },
+        {
+          "caller": "student_progress",
+          "callee": "st.error",
+          "lineNumber": 880
+        },
+        {
+          "caller": "student_progress",
+          "callee": "st.header",
+          "lineNumber": 882
+        },
+        {
+          "caller": "student_progress",
+          "callee": "st.metric",
+          "lineNumber": 883
+        },
+        {
+          "caller": "student_progress",
+          "callee": "profile.get",
+          "lineNumber": 883
+        },
+        {
+          "caller": "student_progress",
+          "callee": "st.columns",
+          "lineNumber": 884
+        },
+        {
+          "caller": "student_progress",
+          "callee": "st.subheader",
+          "lineNumber": 886
+        },
+        {
+          "caller": "student_progress",
+          "callee": "profile.get",
+          "lineNumber": 887
+        },
+        {
+          "caller": "student_progress",
+          "callee": "st.progress",
+          "lineNumber": 888
+        },
+        {
+          "caller": "student_progress",
+          "callee": "min",
+          "lineNumber": 889
+        },
+        {
+          "caller": "student_progress",
+          "callee": "st.subheader",
+          "lineNumber": 892
+        },
+        {
+          "caller": "student_progress",
+          "callee": "profile.get",
+          "lineNumber": 893
+        },
+        {
+          "caller": "student_progress",
+          "callee": "prefs.items",
+          "lineNumber": 894
+        },
+        {
+          "caller": "student_progress",
+          "callee": "st.markdown",
+          "lineNumber": 895
+        },
+        {
+          "caller": "student_progress",
+          "callee": "st.caption",
+          "lineNumber": 896
+        },
+        {
+          "caller": "student_progress",
+          "callee": "_fmt",
+          "lineNumber": 896
+        },
+        {
+          "caller": "student_progress",
+          "callee": "(profile.get('recent_quiz') or {}).get",
+          "lineNumber": 896
+        },
+        {
+          "caller": "student_progress",
+          "callee": "profile.get",
+          "lineNumber": 896
+        },
+        {
+          "caller": "student_recommendations",
+          "callee": "_client",
+          "lineNumber": 900
+        },
+        {
+          "caller": "student_recommendations",
+          "callee": "_student_id",
+          "lineNumber": 901
+        },
+        {
+          "caller": "student_recommendations",
+          "callee": "_attempt",
+          "lineNumber": 902
+        },
+        {
+          "caller": "student_recommendations",
+          "callee": "client.recommendations",
+          "lineNumber": 902
+        },
+        {
+          "caller": "student_recommendations",
+          "callee": "st.error",
+          "lineNumber": 904
+        },
+        {
+          "caller": "student_recommendations",
+          "callee": "st.header",
+          "lineNumber": 906
+        },
+        {
+          "caller": "student_recommendations",
+          "callee": "st.info",
+          "lineNumber": 908
+        },
+        {
+          "caller": "student_recommendations",
+          "callee": "st.expander",
+          "lineNumber": 910
+        },
+        {
+          "caller": "student_recommendations",
+          "callee": "r.get",
+          "lineNumber": 910
+        },
+        {
+          "caller": "student_recommendations",
+          "callee": "r.get",
+          "lineNumber": 910
+        },
+        {
+          "caller": "student_recommendations",
+          "callee": "st.caption",
+          "lineNumber": 911
+        },
+        {
+          "caller": "student_recommendations",
+          "callee": "r.get",
+          "lineNumber": 911
+        },
+        {
+          "caller": "student_recommendations",
+          "callee": "r.get",
+          "lineNumber": 911
+        },
+        {
+          "caller": "student_recommendations",
+          "callee": "r.get",
+          "lineNumber": 912
+        },
+        {
+          "caller": "student_recommendations",
+          "callee": "st.markdown",
+          "lineNumber": 913
+        },
+        {
+          "caller": "student_recommendations",
+          "callee": "st.button",
+          "lineNumber": 914
+        },
+        {
+          "caller": "student_recommendations",
+          "callee": "_attempt",
+          "lineNumber": 916
+        },
+        {
+          "caller": "student_recommendations",
+          "callee": "client.update_recommendation",
+          "lineNumber": 917
+        },
+        {
+          "caller": "student_recommendations",
+          "callee": "st.error",
+          "lineNumber": 920
+        },
+        {
+          "caller": "student_recommendations",
+          "callee": "st.success",
+          "lineNumber": 922
+        },
+        {
+          "caller": "student_recommendations",
+          "callee": "st.rerun",
+          "lineNumber": 923
+        },
+        {
+          "caller": "operations_view",
+          "callee": "_client",
+          "lineNumber": 930
+        },
+        {
+          "caller": "operations_view",
+          "callee": "st.header",
+          "lineNumber": 931
+        },
+        {
+          "caller": "operations_view",
+          "callee": "st.tabs",
+          "lineNumber": 932
+        },
+        {
+          "caller": "operations_view",
+          "callee": "st.button",
+          "lineNumber": 936
+        },
+        {
+          "caller": "operations_view",
+          "callee": "st.rerun",
+          "lineNumber": 937
+        },
+        {
+          "caller": "operations_view",
+          "callee": "_attempt",
+          "lineNumber": 938
+        },
+        {
+          "caller": "operations_view",
+          "callee": "client.agent_tasks",
+          "lineNumber": 938
+        },
+        {
+          "caller": "operations_view",
+          "callee": "st.error",
+          "lineNumber": 940
+        },
+        {
+          "caller": "operations_view",
+          "callee": "st.markdown",
+          "lineNumber": 943
+        },
+        {
+          "caller": "operations_view",
+          "callee": "t.get",
+          "lineNumber": 944
+        },
+        {
+          "caller": "operations_view",
+          "callee": "_fmt",
+          "lineNumber": 944
+        },
+        {
+          "caller": "operations_view",
+          "callee": "t.get",
+          "lineNumber": 944
+        },
+        {
+          "caller": "operations_view",
+          "callee": "t.get",
+          "lineNumber": 945
+        },
+        {
+          "caller": "operations_view",
+          "callee": "t.get",
+          "lineNumber": 945
+        },
+        {
+          "caller": "operations_view",
+          "callee": "_attempt",
+          "lineNumber": 948
+        },
+        {
+          "caller": "operations_view",
+          "callee": "client.agent_messages",
+          "lineNumber": 948
+        },
+        {
+          "caller": "operations_view",
+          "callee": "st.error",
+          "lineNumber": 950
+        },
+        {
+          "caller": "operations_view",
+          "callee": "st.markdown",
+          "lineNumber": 953
+        },
+        {
+          "caller": "operations_view",
+          "callee": "m.get",
+          "lineNumber": 954
+        },
+        {
+          "caller": "operations_view",
+          "callee": "_attempt",
+          "lineNumber": 957
+        },
+        {
+          "caller": "operations_view",
+          "callee": "client.audit_logs",
+          "lineNumber": 957
+        },
+        {
+          "caller": "operations_view",
+          "callee": "st.error",
+          "lineNumber": 959
+        },
+        {
+          "caller": "operations_view",
+          "callee": "st.markdown",
+          "lineNumber": 962
+        },
+        {
+          "caller": "operations_view",
+          "callee": "l.get",
+          "lineNumber": 963
+        },
+        {
+          "caller": "operations_view",
+          "callee": "_fmt",
+          "lineNumber": 963
+        },
+        {
+          "caller": "operations_view",
+          "callee": "l.get",
+          "lineNumber": 963
+        },
+        {
+          "caller": "operations_view",
+          "callee": "_attempt",
+          "lineNumber": 966
+        },
+        {
+          "caller": "operations_view",
+          "callee": "st.error",
+          "lineNumber": 968
+        },
+        {
+          "caller": "operations_view",
+          "callee": "st.json",
+          "lineNumber": 970
+        },
+        {
+          "caller": "main",
+          "callee": "_ensure_client",
+          "lineNumber": 977
+        },
+        {
+          "caller": "main",
+          "callee": "sidebar",
+          "lineNumber": 979
+        },
+        {
+          "caller": "main",
+          "callee": "_user",
+          "lineNumber": 982
+        },
+        {
+          "caller": "main",
+          "callee": "user.get",
+          "lineNumber": 984
+        },
+        {
+          "caller": "main",
+          "callee": "teacher_dashboard",
+          "lineNumber": 985
+        },
+        {
+          "caller": "main",
+          "callee": "student_dashboard",
+          "lineNumber": 987
+        },
+        {
+          "caller": "main",
+          "callee": "teacher_curriculum",
+          "lineNumber": 989
+        },
+        {
+          "caller": "main",
+          "callee": "teacher_class",
+          "lineNumber": 991
+        },
+        {
+          "caller": "main",
+          "callee": "teacher_review_queue",
+          "lineNumber": 993
+        },
+        {
+          "caller": "main",
+          "callee": "operations_view",
+          "lineNumber": 995
+        },
+        {
+          "caller": "main",
+          "callee": "student_study_plan",
+          "lineNumber": 997
+        },
+        {
+          "caller": "main",
+          "callee": "student_learn",
+          "lineNumber": 999
+        },
+        {
+          "caller": "main",
+          "callee": "student_quizzes",
+          "lineNumber": 1001
+        },
+        {
+          "caller": "main",
+          "callee": "student_progress",
+          "lineNumber": 1003
+        },
+        {
+          "caller": "main",
+          "callee": "student_recommendations",
+          "lineNumber": 1005
+        },
+        {
+          "caller": "main",
+          "callee": "_render_pending_task",
+          "lineNumber": 1007
+        },
+        {
+          "caller": "main",
+          "callee": "_client",
+          "lineNumber": 1007
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 37,
+        "functionCount": 37,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/adapted/ui/client.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 293,
+      "nonEmptyLines": 240,
+      "classes": [
+        {
+          "name": "APIError",
+          "startLine": 8,
+          "endLine": 12,
+          "methods": [
+            "__init__"
+          ],
+          "properties": []
+        },
+        {
+          "name": "APIClient",
+          "startLine": 15,
+          "endLine": 293,
+          "methods": [
+            "__init__",
+            "close",
+            "_headers",
+            "_raise",
+            "register",
+            "login",
+            "me",
+            "health",
+            "search_users",
+            "create_course",
+            "list_courses",
+            "get_course",
+            "enroll",
+            "upload_document",
+            "list_documents",
+            "document_status",
+            "delete_document",
+            "clear_course_contents",
+            "delete_course",
+            "curriculum",
+            "topic",
+            "run_agent",
+            "get_task",
+            "agent_tasks",
+            "agent_messages",
+            "audit_logs",
+            "generate_lesson",
+            "get_lesson",
+            "generate_quiz",
+            "get_quiz",
+            "submit_quiz",
+            "study_plan",
+            "latest_study_plan",
+            "student_profile",
+            "student_performance",
+            "student_mastery",
+            "recommendations",
+            "update_recommendation",
+            "set_preference",
+            "class_students",
+            "class_analytics",
+            "student_grades",
+            "pending_review",
+            "override_grade",
+            "_get",
+            "_post",
+            "_patch",
+            "_delete"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "APIError",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "APIClient",
+          "line": 15,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "super().__init__",
+          "lineNumber": 10
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 10
+        },
+        {
+          "caller": "__init__",
+          "callee": "(base_url or os.getenv(\"ADAPTED_API_URL\", \"http://localhost:8001\")).rstrip",
+          "lineNumber": 17
+        },
+        {
+          "caller": "__init__",
+          "callee": "os.getenv",
+          "lineNumber": 17
+        },
+        {
+          "caller": "__init__",
+          "callee": "httpx.Client",
+          "lineNumber": 21
+        },
+        {
+          "caller": "close",
+          "callee": "self._client.close",
+          "lineNumber": 24
+        },
+        {
+          "caller": "_raise",
+          "callee": "resp.json",
+          "lineNumber": 35
+        },
+        {
+          "caller": "_raise",
+          "callee": "body.get",
+          "lineNumber": 36
+        },
+        {
+          "caller": "_raise",
+          "callee": "isinstance",
+          "lineNumber": 37
+        },
+        {
+          "caller": "_raise",
+          "callee": "\"; \".join",
+          "lineNumber": 38
+        },
+        {
+          "caller": "_raise",
+          "callee": "d.get",
+          "lineNumber": 38
+        },
+        {
+          "caller": "_raise",
+          "callee": "str",
+          "lineNumber": 38
+        },
+        {
+          "caller": "_raise",
+          "callee": "APIError",
+          "lineNumber": 41
+        },
+        {
+          "caller": "_raise",
+          "callee": "str",
+          "lineNumber": 41
+        },
+        {
+          "caller": "register",
+          "callee": "self._client.post",
+          "lineNumber": 61
+        },
+        {
+          "caller": "register",
+          "callee": "self._raise",
+          "lineNumber": 63
+        },
+        {
+          "caller": "register",
+          "callee": "resp.json",
+          "lineNumber": 64
+        },
+        {
+          "caller": "login",
+          "callee": "self._client.post",
+          "lineNumber": 69
+        },
+        {
+          "caller": "login",
+          "callee": "self._raise",
+          "lineNumber": 73
+        },
+        {
+          "caller": "login",
+          "callee": "resp.json",
+          "lineNumber": 74
+        },
+        {
+          "caller": "me",
+          "callee": "self._get",
+          "lineNumber": 79
+        },
+        {
+          "caller": "health",
+          "callee": "self._client.get",
+          "lineNumber": 82
+        },
+        {
+          "caller": "health",
+          "callee": "self._raise",
+          "lineNumber": 84
+        },
+        {
+          "caller": "health",
+          "callee": "resp.json",
+          "lineNumber": 85
+        },
+        {
+          "caller": "search_users",
+          "callee": "self._get",
+          "lineNumber": 91
+        },
+        {
+          "caller": "create_course",
+          "callee": "self._post",
+          "lineNumber": 103
+        },
+        {
+          "caller": "list_courses",
+          "callee": "self._get",
+          "lineNumber": 106
+        },
+        {
+          "caller": "get_course",
+          "callee": "self._get",
+          "lineNumber": 109
+        },
+        {
+          "caller": "enroll",
+          "callee": "self._post",
+          "lineNumber": 112
+        },
+        {
+          "caller": "upload_document",
+          "callee": "self._client.post",
+          "lineNumber": 117
+        },
+        {
+          "caller": "upload_document",
+          "callee": "self._headers",
+          "lineNumber": 119
+        },
+        {
+          "caller": "upload_document",
+          "callee": "self._raise",
+          "lineNumber": 123
+        },
+        {
+          "caller": "upload_document",
+          "callee": "resp.json",
+          "lineNumber": 124
+        },
+        {
+          "caller": "list_documents",
+          "callee": "self._get",
+          "lineNumber": 127
+        },
+        {
+          "caller": "document_status",
+          "callee": "self._get",
+          "lineNumber": 130
+        },
+        {
+          "caller": "delete_document",
+          "callee": "self._delete",
+          "lineNumber": 133
+        },
+        {
+          "caller": "clear_course_contents",
+          "callee": "self._delete",
+          "lineNumber": 136
+        },
+        {
+          "caller": "delete_course",
+          "callee": "self._delete",
+          "lineNumber": 139
+        },
+        {
+          "caller": "curriculum",
+          "callee": "self._get",
+          "lineNumber": 143
+        },
+        {
+          "caller": "topic",
+          "callee": "self._get",
+          "lineNumber": 146
+        },
+        {
+          "caller": "run_agent",
+          "callee": "self._post",
+          "lineNumber": 150
+        },
+        {
+          "caller": "get_task",
+          "callee": "self._get",
+          "lineNumber": 153
+        },
+        {
+          "caller": "agent_tasks",
+          "callee": "self._get",
+          "lineNumber": 159
+        },
+        {
+          "caller": "agent_messages",
+          "callee": "self._get",
+          "lineNumber": 165
+        },
+        {
+          "caller": "audit_logs",
+          "callee": "self._get",
+          "lineNumber": 168
+        },
+        {
+          "caller": "generate_lesson",
+          "callee": "self._post",
+          "lineNumber": 180
+        },
+        {
+          "caller": "get_lesson",
+          "callee": "self._get",
+          "lineNumber": 183
+        },
+        {
+          "caller": "generate_quiz",
+          "callee": "self._post",
+          "lineNumber": 205
+        },
+        {
+          "caller": "get_quiz",
+          "callee": "self._get",
+          "lineNumber": 208
+        },
+        {
+          "caller": "submit_quiz",
+          "callee": "self._post",
+          "lineNumber": 211
+        },
+        {
+          "caller": "study_plan",
+          "callee": "self._get",
+          "lineNumber": 215
+        },
+        {
+          "caller": "latest_study_plan",
+          "callee": "self._get",
+          "lineNumber": 218
+        },
+        {
+          "caller": "student_profile",
+          "callee": "self._get",
+          "lineNumber": 222
+        },
+        {
+          "caller": "student_performance",
+          "callee": "self._get",
+          "lineNumber": 225
+        },
+        {
+          "caller": "student_mastery",
+          "callee": "self._get",
+          "lineNumber": 228
+        },
+        {
+          "caller": "recommendations",
+          "callee": "self._get",
+          "lineNumber": 231
+        },
+        {
+          "caller": "update_recommendation",
+          "callee": "self._patch",
+          "lineNumber": 234
+        },
+        {
+          "caller": "set_preference",
+          "callee": "self._post",
+          "lineNumber": 239
+        },
+        {
+          "caller": "class_students",
+          "callee": "self._get",
+          "lineNumber": 243
+        },
+        {
+          "caller": "class_analytics",
+          "callee": "self._get",
+          "lineNumber": 246
+        },
+        {
+          "caller": "student_grades",
+          "callee": "self._get",
+          "lineNumber": 249
+        },
+        {
+          "caller": "pending_review",
+          "callee": "self._get",
+          "lineNumber": 252
+        },
+        {
+          "caller": "override_grade",
+          "callee": "self._patch",
+          "lineNumber": 268
+        },
+        {
+          "caller": "_get",
+          "callee": "self._client.get",
+          "lineNumber": 272
+        },
+        {
+          "caller": "_get",
+          "callee": "self._headers",
+          "lineNumber": 272
+        },
+        {
+          "caller": "_get",
+          "callee": "self._raise",
+          "lineNumber": 274
+        },
+        {
+          "caller": "_get",
+          "callee": "resp.json",
+          "lineNumber": 275
+        },
+        {
+          "caller": "_post",
+          "callee": "self._client.post",
+          "lineNumber": 278
+        },
+        {
+          "caller": "_post",
+          "callee": "self._headers",
+          "lineNumber": 278
+        },
+        {
+          "caller": "_post",
+          "callee": "self._raise",
+          "lineNumber": 280
+        },
+        {
+          "caller": "_post",
+          "callee": "resp.json",
+          "lineNumber": 281
+        },
+        {
+          "caller": "_patch",
+          "callee": "self._client.patch",
+          "lineNumber": 284
+        },
+        {
+          "caller": "_patch",
+          "callee": "self._headers",
+          "lineNumber": 284
+        },
+        {
+          "caller": "_patch",
+          "callee": "self._raise",
+          "lineNumber": 286
+        },
+        {
+          "caller": "_patch",
+          "callee": "resp.json",
+          "lineNumber": 287
+        },
+        {
+          "caller": "_delete",
+          "callee": "self._client.delete",
+          "lineNumber": 290
+        },
+        {
+          "caller": "_delete",
+          "callee": "self._headers",
+          "lineNumber": 290
+        },
+        {
+          "caller": "_delete",
+          "callee": "self._raise",
+          "lineNumber": 292
+        },
+        {
+          "caller": "_delete",
+          "callee": "resp.json",
+          "lineNumber": 293
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 2
+      }
+    }
+  ]
+}

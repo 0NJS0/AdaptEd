@@ -1,0 +1,332 @@
+{
+  "nodes": [
+    {
+      "id": "config:.python-version",
+      "type": "config",
+      "name": ".python-version",
+      "filePath": ".python-version",
+      "summary": "Pyenv version pin selecting Python 3.12 as the interpreter for the project runtime and tooling.",
+      "tags": ["configuration", "tooling", "version-pin", "python"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.ua/.understandignore",
+      "type": "config",
+      "name": ".understandignore",
+      "filePath": ".ua/.understandignore",
+      "summary": "Generated ignore-rule configuration for the Understand-Anything analysis pipeline, excluding bytecode, env files, storage artifacts, databases, and caches while explicitly keeping docs.",
+      "tags": ["configuration", "ignore-rules", "analysis-pipeline", "gitignore-syntax"],
+      "complexity": "simple",
+      "languageNotes": "Uses .gitignore syntax (globs, # comments, ! negation); most test-pattern entries are left commented as optional toggles."
+    },
+    {
+      "id": "file:src/adapted/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "src/adapted/__init__.py",
+      "summary": "Package marker for the AdaptED backend declaring the project name and __version__ 0.1.0.",
+      "tags": ["entry-point", "barrel", "package-metadata"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/adapted/api/routers/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "src/adapted/api/routers/__init__.py",
+      "summary": "Empty package initializer marking the API routers package; individual routers are registered directly in the FastAPI app factory.",
+      "tags": ["barrel", "package-marker", "empty"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/adapted/ui/app.py",
+      "type": "file",
+      "name": "app.py",
+      "filePath": "src/adapted/ui/app.py",
+      "summary": "Streamlit frontend entrypoint providing login/register, role-based sidebar navigation, and every teacher view (dashboard, curriculum, class analytics, review queue, operations) and student view (dashboard, study plan, learn, quizzes, progress, recommendations) on top of the APIClient.",
+      "tags": ["entry-point", "ui", "streamlit", "dashboards", "state-management"],
+      "complexity": "complex",
+      "languageNotes": "Uses session_state heavily for auth/course/task flow, @st.dialog for destructive confirms, and an @st.fragment(run_every=...) poller to deliver background LLM task results without blocking the page."
+    },
+    {
+      "id": "file:src/adapted/ui/client.py",
+      "type": "file",
+      "name": "client.py",
+      "filePath": "src/adapted/ui/client.py",
+      "summary": "Thin httpx-based REST client wrapping every AdaptED backend endpoint (auth, users, courses, documents, curriculum, agents/tasks, lessons, quizzes, study plans, students, teacher classes, audit logs, health) with bearer-token headers and APIError translation.",
+      "tags": ["api-client", "httpx", "rest", "service", "error-handling"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/adapted/ui/app.py:auth_screen",
+      "type": "function",
+      "name": "auth_screen",
+      "filePath": "src/adapted/ui/app.py",
+      "lineRange": [57, 102],
+      "summary": "Renders the login and register tabs with role selection and optional grade/daily-minutes fields; on success stores token and user in session_state and reruns.",
+      "tags": ["auth", "login", "registration", "form"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/adapted/ui/app.py:sidebar",
+      "type": "function",
+      "name": "sidebar",
+      "filePath": "src/adapted/ui/app.py",
+      "lineRange": [129, 151],
+      "summary": "Builds the role-based navigation radio (teacher vs student page sets) plus logout button, honoring a pending-nav marker set by 'Open course' clicks.",
+      "tags": ["navigation", "sidebar", "role-based"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/adapted/ui/app.py:_render_curriculum",
+      "type": "function",
+      "name": "_render_curriculum",
+      "filePath": "src/adapted/ui/app.py",
+      "lineRange": [171, 189],
+      "summary": "Renders generated chapters and topics as expanders with objectives and estimated minutes, showing an informational placeholder when the curriculum is empty.",
+      "tags": ["rendering", "curriculum"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/adapted/ui/app.py:teacher_dashboard",
+      "type": "function",
+      "name": "teacher_dashboard",
+      "filePath": "src/adapted/ui/app.py",
+      "lineRange": [203, 251],
+      "summary": "Teacher home page: course-creation form plus course cards with Open course, Clear contents, and Delete actions wired to confirmation dialogs.",
+      "tags": ["teacher", "dashboard", "crud", "form"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/adapted/ui/app.py:confirm_delete_document",
+      "type": "function",
+      "name": "confirm_delete_document",
+      "filePath": "src/adapted/ui/app.py",
+      "lineRange": [255, 271],
+      "summary": "@st.dialog modal warning that document deletion cannot be undone, with Cancel and destructive confirm buttons calling delete_document.",
+      "tags": ["dialog", "confirmation", "delete", "destructive-action"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/adapted/ui/app.py:confirm_clear_course",
+      "type": "function",
+      "name": "confirm_clear_course",
+      "filePath": "src/adapted/ui/app.py",
+      "lineRange": [275, 290],
+      "summary": "@st.dialog modal confirming removal of all items in a course while keeping the course shell.",
+      "tags": ["dialog", "confirmation", "delete", "destructive-action"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/adapted/ui/app.py:confirm_delete_course",
+      "type": "function",
+      "name": "confirm_delete_course",
+      "filePath": "src/adapted/ui/app.py",
+      "lineRange": [294, 311],
+      "summary": "@st.dialog modal confirming permanent course deletion, also clearing selected_course_id when the open course is removed.",
+      "tags": ["dialog", "confirmation", "delete", "destructive-action"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/adapted/ui/app.py:teacher_curriculum",
+      "type": "function",
+      "name": "teacher_curriculum",
+      "filePath": "src/adapted/ui/app.py",
+      "lineRange": [319, 431],
+      "summary": "Three-tab course workspace: Documents (upload, analyze-curriculum trigger, delete), Curriculum (generated chapters/topics), and Enroll (student search plus raw-ID fallback).",
+      "tags": ["teacher", "curriculum", "documents", "enrollment"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/adapted/ui/app.py:_run_analysis",
+      "type": "function",
+      "name": "_run_analysis",
+      "filePath": "src/adapted/ui/app.py",
+      "lineRange": [434, 449],
+      "summary": "Kicks off the async analyze_curriculum agent run and records the returned task_id in pending-task state instead of blocking on a spinner.",
+      "tags": ["async", "agent-trigger", "curriculum-analysis"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/adapted/ui/app.py:_render_pending_task",
+      "type": "function",
+      "name": "_render_pending_task",
+      "filePath": "src/adapted/ui/app.py",
+      "lineRange": [452, 492],
+      "summary": "Auto-refreshing fragment (run_every=4s) that polls the background task, shows a running badge, then routes success/failure results onward and clears pending state.",
+      "tags": ["fragment", "polling", "async", "task-status"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/adapted/ui/app.py:_store_task_result",
+      "type": "function",
+      "name": "_store_task_result",
+      "filePath": "src/adapted/ui/app.py",
+      "lineRange": [495, 530],
+      "summary": "Maps a completed pipeline task into session_state by kind: refetches generated lessons/quizzes or rebuilds the six-agent quiz-submit result for rendering.",
+      "tags": ["state-management", "task-result", "session-state"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/adapted/ui/app.py:teacher_class",
+      "type": "function",
+      "name": "teacher_class",
+      "filePath": "src/adapted/ui/app.py",
+      "lineRange": [533, 580],
+      "summary": "Class analytics page: student/quiz-count metrics, topic mastery progress bars, weak-topic warnings, and per-student grade histories in expanders.",
+      "tags": ["teacher", "analytics", "mastery", "grades"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/adapted/ui/app.py:teacher_review_queue",
+      "type": "function",
+      "name": "teacher_review_queue",
+      "filePath": "src/adapted/ui/app.py",
+      "lineRange": [583, 622],
+      "summary": "Lists low-confidence AI-graded answers flagged for human review, ordered by confidence, with a score/correctness override form per answer.",
+      "tags": ["teacher", "review", "grading", "override"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/adapted/ui/app.py:student_dashboard",
+      "type": "function",
+      "name": "student_dashboard",
+      "filePath": "src/adapted/ui/app.py",
+      "lineRange": [628, 646],
+      "summary": "Student home page listing enrolled courses with subject and description captions.",
+      "tags": ["student", "dashboard", "courses"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/adapted/ui/app.py:student_study_plan",
+      "type": "function",
+      "name": "student_study_plan",
+      "filePath": "src/adapted/ui/app.py",
+      "lineRange": [657, 706],
+      "summary": "Shows the day-by-day study plan for the selected course with Create plan and Adapt plan buttons that start async planner runs.",
+      "tags": ["student", "study-plan", "planning"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/adapted/ui/app.py:student_learn",
+      "type": "function",
+      "name": "student_learn",
+      "filePath": "src/adapted/ui/app.py",
+      "lineRange": [709, 746],
+      "summary": "Lesson workspace where students generate per-topic lessons at standard/beginner/advanced levels and read the rendered sections.",
+      "tags": ["student", "lessons", "generation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/adapted/ui/app.py:student_quizzes",
+      "type": "function",
+      "name": "student_quizzes",
+      "filePath": "src/adapted/ui/app.py",
+      "lineRange": [759, 837],
+      "summary": "Quiz workflow: generate assessment/reassessment/exit-ticket quizzes, answer MCQ/true-false/numerical questions in forms, and submit asynchronously.",
+      "tags": ["student", "quiz", "assessment", "forms"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/adapted/ui/app.py:_render_quiz_result",
+      "type": "function",
+      "name": "_render_quiz_result",
+      "filePath": "src/adapted/ui/app.py",
+      "lineRange": [840, 872],
+      "summary": "Renders grading percentage plus weak/strong topics, the recommendation, and flags for the adapted plan, targeted lesson, and reassessment quiz.",
+      "tags": ["rendering", "quiz-results", "feedback"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/adapted/ui/app.py:student_progress",
+      "type": "function",
+      "name": "student_progress",
+      "filePath": "src/adapted/ui/app.py",
+      "lineRange": [875, 896],
+      "summary": "Progress page with overall mastery metric, per-topic mastery bars, learning preferences, and recent quiz performance.",
+      "tags": ["student", "progress", "mastery"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/adapted/ui/app.py:student_recommendations",
+      "type": "function",
+      "name": "student_recommendations",
+      "filePath": "src/adapted/ui/app.py",
+      "lineRange": [899, 923],
+      "summary": "Lists the student's recommendations with status badges and a mark-as-applied action.",
+      "tags": ["student", "recommendations", "actions"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/adapted/ui/app.py:operations_view",
+      "type": "function",
+      "name": "operations_view",
+      "filePath": "src/adapted/ui/app.py",
+      "lineRange": [929, 970],
+      "summary": "Operations dashboard surfacing /health status, agent task list with refresh, inter-agent messages, and audit logs.",
+      "tags": ["operations", "monitoring", "observability"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/adapted/ui/app.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "src/adapted/ui/app.py",
+      "lineRange": [976, 1007],
+      "summary": "App entrypoint: gates on authentication, renders the sidebar, dispatches to the role-appropriate view based on the nav radio, and appends the pending-task notifier.",
+      "tags": ["entry-point", "routing", "dispatch"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/adapted/ui/client.py:APIError",
+      "type": "class",
+      "name": "APIError",
+      "filePath": "src/adapted/ui/client.py",
+      "lineRange": [8, 12],
+      "summary": "Exception raised for non-2xx backend responses, carrying the server's detail message so the UI can surface actionable errors.",
+      "tags": ["exception", "error-handling", "type-definition"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/adapted/ui/client.py:APIClient",
+      "type": "class",
+      "name": "APIClient",
+      "filePath": "src/adapted/ui/client.py",
+      "lineRange": [15, 293],
+      "summary": "Facade over httpx.Client exposing one typed method per backend endpoint; owns base URL/token state, injects bearer headers, and converts error payloads into APIError.",
+      "tags": ["service", "api-client", "facade", "httpx"],
+      "complexity": "complex",
+      "languageNotes": "Central _get/_post/_patch/_delete helpers keep each endpoint method down to a single line; multipart upload bypasses the JSON header helper."
+    }
+  ],
+  "edges": [
+    {"source": "file:src/adapted/ui/app.py", "target": "function:src/adapted/ui/app.py:auth_screen", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:src/adapted/ui/app.py", "target": "function:src/adapted/ui/app.py:sidebar", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:src/adapted/ui/app.py", "target": "function:src/adapted/ui/app.py:_render_curriculum", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:src/adapted/ui/app.py", "target": "function:src/adapted/ui/app.py:teacher_dashboard", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:src/adapted/ui/app.py", "target": "function:src/adapted/ui/app.py:confirm_delete_document", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:src/adapted/ui/app.py", "target": "function:src/adapted/ui/app.py:confirm_clear_course", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:src/adapted/ui/app.py", "target": "function:src/adapted/ui/app.py:confirm_delete_course", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:src/adapted/ui/app.py", "target": "function:src/adapted/ui/app.py:teacher_curriculum", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:src/adapted/ui/app.py", "target": "function:src/adapted/ui/app.py:_run_analysis", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:src/adapted/ui/app.py", "target": "function:src/adapted/ui/app.py:_render_pending_task", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:src/adapted/ui/app.py", "target": "function:src/adapted/ui/app.py:_store_task_result", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:src/adapted/ui/app.py", "target": "function:src/adapted/ui/app.py:teacher_class", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:src/adapted/ui/app.py", "target": "function:src/adapted/ui/app.py:teacher_review_queue", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:src/adapted/ui/app.py", "target": "function:src/adapted/ui/app.py:student_dashboard", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:src/adapted/ui/app.py", "target": "function:src/adapted/ui/app.py:student_study_plan", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:src/adapted/ui/app.py", "target": "function:src/adapted/ui/app.py:student_learn", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:src/adapted/ui/app.py", "target": "function:src/adapted/ui/app.py:student_quizzes", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:src/adapted/ui/app.py", "target": "function:src/adapted/ui/app.py:_render_quiz_result", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:src/adapted/ui/app.py", "target": "function:src/adapted/ui/app.py:student_progress", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:src/adapted/ui/app.py", "target": "function:src/adapted/ui/app.py:student_recommendations", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:src/adapted/ui/app.py", "target": "function:src/adapted/ui/app.py:operations_view", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:src/adapted/ui/app.py", "target": "function:src/adapted/ui/app.py:main", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:src/adapted/ui/app.py", "target": "function:src/adapted/ui/app.py:main", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:src/adapted/ui/app.py", "target": "file:src/adapted/ui/client.py", "type": "depends_on", "direction": "forward", "weight": 0.6},
+    {"source": "file:src/adapted/ui/client.py", "target": "class:src/adapted/ui/client.py:APIError", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:src/adapted/ui/client.py", "target": "class:src/adapted/ui/client.py:APIClient", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:src/adapted/ui/client.py", "target": "class:src/adapted/ui/client.py:APIError", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:src/adapted/ui/client.py", "target": "class:src/adapted/ui/client.py:APIClient", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "config:.python-version", "target": "file:src/adapted/__init__.py", "type": "configures", "direction": "forward", "weight": 0.6}
+  ]
+}

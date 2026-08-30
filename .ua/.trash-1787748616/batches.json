@@ -1,0 +1,2423 @@
+{
+  "schemaVersion": 1,
+  "algorithm": "louvain",
+  "totalFiles": 66,
+  "totalBatches": 7,
+  "exportsByPath": {
+    ".python-version": [],
+    ".ua/.understandignore": [],
+    "src/adapted/__init__.py": [],
+    "src/adapted/agents/base.py": [
+      "AgentResult",
+      "BaseAgent"
+    ],
+    "src/adapted/agents/curriculum_agent.py": [
+      "ObjectiveOut",
+      "TopicOut",
+      "ChapterOut",
+      "CurriculumOutput",
+      "CurriculumAnalyzerAgent"
+    ],
+    "src/adapted/agents/grading_agent.py": [
+      "GradedAnswer",
+      "GradingOutput",
+      "GradingAgent"
+    ],
+    "src/adapted/agents/lesson_agent.py": [
+      "SectionOut",
+      "LessonOutput",
+      "LessonAgent"
+    ],
+    "src/adapted/agents/message.py": [
+      "AgentMessage",
+      "MessageBus"
+    ],
+    "src/adapted/agents/performance_agent.py": [
+      "TopicMasteryOut",
+      "PerformanceOutput",
+      "PerformanceAnalysisAgent"
+    ],
+    "src/adapted/agents/planner_agent.py": [
+      "PlanItemOut",
+      "PlannerOutput",
+      "StudyPlannerAgent"
+    ],
+    "src/adapted/agents/quiz_agent.py": [
+      "GeneratedQuestion",
+      "QuizOutput",
+      "QuizAgent"
+    ],
+    "src/adapted/agents/recommendation_agent.py": [
+      "RecommendationOut",
+      "RecommendationOutput",
+      "RecommendationAgent"
+    ],
+    "src/adapted/agents/supervisor.py": [
+      "Supervisor"
+    ],
+    "src/adapted/api/deps.py": [
+      "get_current_user",
+      "require_role",
+      "get_teacher_row",
+      "get_student_row",
+      "assert_course_owner",
+      "assert_student_enrolled"
+    ],
+    "src/adapted/api/routers/__init__.py": [],
+    "src/adapted/api/routers/agent.py": [
+      "AgentRunRequest",
+      "run_agent_pipeline"
+    ],
+    "src/adapted/api/routers/agent_ops.py": [
+      "reap_stale_tasks",
+      "list_tasks",
+      "get_task",
+      "list_messages",
+      "agent_runs"
+    ],
+    "src/adapted/api/routers/auth.py": [
+      "register",
+      "login",
+      "me"
+    ],
+    "src/adapted/api/routers/courses.py": [
+      "create_course",
+      "list_courses",
+      "get_course",
+      "enroll_student",
+      "upload_document",
+      "list_documents",
+      "get_document_status",
+      "delete_document",
+      "clear_course_contents",
+      "delete_course",
+      "_get_owned_course",
+      "_unlink_file",
+      "_purge_course_data",
+      "_build_document_out",
+      "_course_out",
+      "_audit"
+    ],
+    "src/adapted/api/routers/curriculum.py": [
+      "_topic_out",
+      "get_curriculum",
+      "get_topic"
+    ],
+    "src/adapted/api/routers/lessons.py": [
+      "LessonGenerateRequest",
+      "generate_lesson",
+      "get_lesson"
+    ],
+    "src/adapted/api/routers/logs.py": [
+      "audit_logs"
+    ],
+    "src/adapted/api/routers/quizzes.py": [
+      "generate_quiz",
+      "get_quiz",
+      "submit_quiz",
+      "_quiz_out"
+    ],
+    "src/adapted/api/routers/students.py": [
+      "_authorize",
+      "get_student_profile",
+      "get_performance",
+      "get_mastery",
+      "get_recommendations",
+      "update_recommendation",
+      "set_student_preference",
+      "_default_course_id"
+    ],
+    "src/adapted/api/routers/study_plans.py": [
+      "_plan_out",
+      "get_study_plan",
+      "get_student_study_plan",
+      "_authorize"
+    ],
+    "src/adapted/api/routers/teacher.py": [
+      "class_students",
+      "class_analytics",
+      "student_grades",
+      "pending_review",
+      "override_grade"
+    ],
+    "src/adapted/api/routers/users.py": [
+      "search_users"
+    ],
+    "src/adapted/config.py": [
+      "Settings",
+      "get_settings"
+    ],
+    "src/adapted/database/base.py": [
+      "VectorColumn",
+      "Base",
+      "create_engine_and_session"
+    ],
+    "src/adapted/database/session.py": [
+      "_resolve_database_url",
+      "new_id",
+      "new_code",
+      "get_db",
+      "session_scope",
+      "init_db",
+      "reset_db",
+      "db_add"
+    ],
+    "src/adapted/graph/runtime.py": [
+      "GraphState",
+      "AgentRuntime"
+    ],
+    "src/adapted/llm/base.py": [
+      "LLMRequest",
+      "LLMProvider"
+    ],
+    "src/adapted/llm/mock.py": [
+      "_stable_seed",
+      "_detect_subject",
+      "_mock_curriculum",
+      "_mock_lesson",
+      "_mock_quiz",
+      "_mock_grade",
+      "_token_overlap",
+      "_mock_recommendation",
+      "MockProvider"
+    ],
+    "src/adapted/llm/openai_compatible.py": [
+      "OpenAICompatibleProvider"
+    ],
+    "src/adapted/llm/registry.py": [
+      "get_provider",
+      "get_embed_provider",
+      "get_provider_cached",
+      "get_embed_provider_cached"
+    ],
+    "src/adapted/logging/logger.py": [
+      "_configure",
+      "get_logger",
+      "bind_task"
+    ],
+    "src/adapted/main.py": [
+      "lifespan",
+      "create_app"
+    ],
+    "src/adapted/memory/curriculum_memory.py": [
+      "collection_for",
+      "ensure_collection",
+      "index_document",
+      "assign_chunk_topics",
+      "chunks_for_topic",
+      "chunks_by_course"
+    ],
+    "src/adapted/memory/student_memory.py": [
+      "StudentProfile",
+      "build_profile",
+      "update_topic_mastery",
+      "record_study",
+      "record_conversation",
+      "set_preference"
+    ],
+    "src/adapted/models/__init__.py": [],
+    "src/adapted/models/course.py": [
+      "Course",
+      "Enrollment",
+      "Document"
+    ],
+    "src/adapted/models/curriculum.py": [
+      "Chapter",
+      "Topic",
+      "TopicPrerequisite",
+      "LearningObjective",
+      "ContentChunk"
+    ],
+    "src/adapted/models/learning.py": [
+      "StudyPlan",
+      "StudyPlanItem",
+      "Lesson",
+      "Question",
+      "Quiz",
+      "QuizQuestion",
+      "QuizAttempt",
+      "Answer",
+      "Grade"
+    ],
+    "src/adapted/models/memory.py": [
+      "StudentMastery",
+      "StudyHistory",
+      "Misconception",
+      "ConversationMemory",
+      "LearningPreference",
+      "Recommendation"
+    ],
+    "src/adapted/models/observability.py": [
+      "AgentTask",
+      "AgentMessage",
+      "AuditLog"
+    ],
+    "src/adapted/models/user.py": [
+      "utcnow",
+      "User",
+      "Teacher",
+      "Student"
+    ],
+    "src/adapted/rag/chunker.py": [
+      "Chunk",
+      "chunk_document"
+    ],
+    "src/adapted/rag/embeddings.py": [
+      "_embed_single",
+      "embed_texts",
+      "embed_text"
+    ],
+    "src/adapted/rag/parser.py": [
+      "UnsupportedDocumentError",
+      "Page",
+      "ParsedDocument",
+      "parse_document",
+      "_parse_pdf",
+      "_parse_text",
+      "_parse_docx",
+      "_clean"
+    ],
+    "src/adapted/rag/retriever.py": [
+      "RetrievedChunk",
+      "retrieve",
+      "format_context"
+    ],
+    "src/adapted/rag/vector_store.py": [
+      "VectorStore",
+      "get_vector_store",
+      "reset_vector_store",
+      "_temp_vector_store"
+    ],
+    "src/adapted/schemas/api.py": [
+      "RegisterRequest",
+      "LoginRequest",
+      "TokenResponse",
+      "UserOut",
+      "CourseCreate",
+      "CourseOut",
+      "EnrollRequest",
+      "DocumentOut",
+      "TopicOut",
+      "ChapterOut",
+      "CurriculumOut",
+      "PlanItemOut",
+      "StudyPlanOut",
+      "LessonSection",
+      "LessonOut",
+      "QuestionOut",
+      "QuizOut",
+      "QuizGenerateRequest",
+      "QuizSubmitRequest",
+      "AnswerGradeOut",
+      "GradingResultOut",
+      "MasteryOut",
+      "MisconceptionOut",
+      "PerformanceOut",
+      "RecommendationOut",
+      "AgentMessageOut",
+      "AgentTaskOut",
+      "PipelineResult"
+    ],
+    "src/adapted/security/jwt.py": [
+      "create_access_token",
+      "decode_access_token"
+    ],
+    "src/adapted/security/passwords.py": [
+      "hash_password",
+      "verify_password"
+    ],
+    "src/adapted/services/analytics.py": [
+      "weak_and_strong",
+      "detect_misconceptions",
+      "class_topic_summary"
+    ],
+    "src/adapted/services/grading.py": [
+      "question_hash",
+      "is_duplicate",
+      "grade_objective",
+      "_numeric_equal",
+      "compute_attempt_score",
+      "rubric_default"
+    ],
+    "src/adapted/services/mastery.py": [
+      "MasteryRecord",
+      "status_for",
+      "update_mastery",
+      "compute_trend",
+      "classify",
+      "build_record"
+    ],
+    "src/adapted/services/scheduler.py": [
+      "PlanTopic",
+      "PlanItem",
+      "_topological_order",
+      "build_plan",
+      "PlanValidation",
+      "validate_plan",
+      "adapt_plan",
+      "_renormalise"
+    ],
+    "src/adapted/tasks/runner.py": [
+      "submit_pipeline",
+      "_run_in_thread",
+      "_mark_failed"
+    ],
+    "src/adapted/tools/registry.py": [
+      "Tool",
+      "_rag_retrieve",
+      "_web_search",
+      "_format_chunks",
+      "get_tools",
+      "_validate_plan",
+      "_calc_mastery",
+      "_check_duplicate"
+    ],
+    "src/adapted/ui/app.py": [
+      "_client",
+      "_user",
+      "_attempt",
+      "_show_error",
+      "_fmt",
+      "auth_screen",
+      "_on_auth",
+      "logout",
+      "_ensure_client",
+      "sidebar",
+      "_course_options",
+      "_course_selector",
+      "_render_curriculum",
+      "_topic_options",
+      "teacher_dashboard",
+      "confirm_delete_document",
+      "confirm_clear_course",
+      "confirm_delete_course",
+      "_selected_course",
+      "teacher_curriculum",
+      "_run_analysis",
+      "_render_pending_task",
+      "_store_task_result",
+      "teacher_class",
+      "teacher_review_queue",
+      "student_dashboard",
+      "_student_id",
+      "_course_id",
+      "student_study_plan",
+      "student_learn",
+      "_render_lesson",
+      "student_quizzes",
+      "_render_quiz_result",
+      "student_progress",
+      "student_recommendations",
+      "operations_view",
+      "main"
+    ],
+    "src/adapted/ui/client.py": [
+      "APIError",
+      "APIClient"
+    ]
+  },
+  "batches": [
+    {
+      "batchIndex": 1,
+      "files": [
+        {
+          "path": "src/adapted/api/deps.py",
+          "language": "python",
+          "sizeLines": 83,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/api/routers/agent.py",
+          "language": "python",
+          "sizeLines": 43,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/api/routers/agent_ops.py",
+          "language": "python",
+          "sizeLines": 95,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/api/routers/auth.py",
+          "language": "python",
+          "sizeLines": 91,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/api/routers/courses.py",
+          "language": "python",
+          "sizeLines": 367,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/api/routers/curriculum.py",
+          "language": "python",
+          "sizeLines": 93,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/api/routers/lessons.py",
+          "language": "python",
+          "sizeLines": 70,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/api/routers/logs.py",
+          "language": "python",
+          "sizeLines": 36,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/api/routers/quizzes.py",
+          "language": "python",
+          "sizeLines": 212,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/api/routers/students.py",
+          "language": "python",
+          "sizeLines": 177,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/api/routers/study_plans.py",
+          "language": "python",
+          "sizeLines": 104,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/api/routers/users.py",
+          "language": "python",
+          "sizeLines": 58,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/database/session.py",
+          "language": "python",
+          "sizeLines": 99,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/schemas/api.py",
+          "language": "python",
+          "sizeLines": 312,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/security/jwt.py",
+          "language": "python",
+          "sizeLines": 17,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/security/passwords.py",
+          "language": "python",
+          "sizeLines": 14,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/tasks/runner.py",
+          "language": "python",
+          "sizeLines": 80,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "src/adapted/api/deps.py": [
+          "src/adapted/database/session.py",
+          "src/adapted/models/__init__.py",
+          "src/adapted/security/jwt.py"
+        ],
+        "src/adapted/api/routers/agent.py": [
+          "src/adapted/api/deps.py",
+          "src/adapted/logging/logger.py",
+          "src/adapted/schemas/api.py",
+          "src/adapted/tasks/runner.py"
+        ],
+        "src/adapted/api/routers/agent_ops.py": [
+          "src/adapted/api/deps.py",
+          "src/adapted/database/session.py",
+          "src/adapted/logging/logger.py",
+          "src/adapted/models/__init__.py",
+          "src/adapted/schemas/api.py"
+        ],
+        "src/adapted/api/routers/auth.py": [
+          "src/adapted/api/deps.py",
+          "src/adapted/database/session.py",
+          "src/adapted/models/__init__.py",
+          "src/adapted/schemas/api.py",
+          "src/adapted/security/jwt.py",
+          "src/adapted/security/passwords.py"
+        ],
+        "src/adapted/api/routers/courses.py": [
+          "src/adapted/api/deps.py",
+          "src/adapted/config.py",
+          "src/adapted/database/session.py",
+          "src/adapted/logging/logger.py",
+          "src/adapted/models/__init__.py",
+          "src/adapted/models/observability.py",
+          "src/adapted/rag/parser.py",
+          "src/adapted/schemas/api.py"
+        ],
+        "src/adapted/api/routers/curriculum.py": [
+          "src/adapted/api/deps.py",
+          "src/adapted/database/session.py",
+          "src/adapted/models/__init__.py",
+          "src/adapted/schemas/api.py"
+        ],
+        "src/adapted/api/routers/lessons.py": [
+          "src/adapted/api/deps.py",
+          "src/adapted/database/session.py",
+          "src/adapted/logging/logger.py",
+          "src/adapted/models/__init__.py",
+          "src/adapted/schemas/api.py",
+          "src/adapted/tasks/runner.py"
+        ],
+        "src/adapted/api/routers/logs.py": [
+          "src/adapted/api/deps.py",
+          "src/adapted/database/session.py",
+          "src/adapted/models/__init__.py"
+        ],
+        "src/adapted/api/routers/quizzes.py": [
+          "src/adapted/api/deps.py",
+          "src/adapted/database/session.py",
+          "src/adapted/logging/logger.py",
+          "src/adapted/models/__init__.py",
+          "src/adapted/schemas/api.py",
+          "src/adapted/tasks/runner.py"
+        ],
+        "src/adapted/api/routers/students.py": [
+          "src/adapted/api/deps.py",
+          "src/adapted/database/session.py",
+          "src/adapted/memory/student_memory.py",
+          "src/adapted/models/__init__.py",
+          "src/adapted/schemas/api.py"
+        ],
+        "src/adapted/api/routers/study_plans.py": [
+          "src/adapted/api/deps.py",
+          "src/adapted/database/session.py",
+          "src/adapted/models/__init__.py",
+          "src/adapted/schemas/api.py"
+        ],
+        "src/adapted/api/routers/users.py": [
+          "src/adapted/api/deps.py",
+          "src/adapted/database/session.py",
+          "src/adapted/models/__init__.py",
+          "src/adapted/schemas/api.py"
+        ],
+        "src/adapted/database/session.py": [
+          "src/adapted/config.py",
+          "src/adapted/database/base.py",
+          "src/adapted/logging/logger.py"
+        ],
+        "src/adapted/schemas/api.py": [],
+        "src/adapted/security/jwt.py": [
+          "src/adapted/config.py",
+          "src/adapted/security/jwt.py"
+        ],
+        "src/adapted/security/passwords.py": [],
+        "src/adapted/tasks/runner.py": [
+          "src/adapted/agents/message.py",
+          "src/adapted/agents/supervisor.py",
+          "src/adapted/database/session.py",
+          "src/adapted/llm/registry.py",
+          "src/adapted/logging/logger.py",
+          "src/adapted/models/__init__.py"
+        ]
+      },
+      "neighborMap": {
+        "src/adapted/api/deps.py": [
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          },
+          {
+            "path": "src/adapted/api/routers/teacher.py",
+            "batchIndex": 5,
+            "symbols": [
+              "class_students",
+              "class_analytics",
+              "student_grades",
+              "pending_review",
+              "override_grade"
+            ]
+          }
+        ],
+        "src/adapted/api/routers/agent.py": [
+          {
+            "path": "src/adapted/logging/logger.py",
+            "batchIndex": 3,
+            "symbols": [
+              "_configure",
+              "get_logger",
+              "bind_task"
+            ]
+          }
+        ],
+        "src/adapted/api/routers/agent_ops.py": [
+          {
+            "path": "src/adapted/logging/logger.py",
+            "batchIndex": 3,
+            "symbols": [
+              "_configure",
+              "get_logger",
+              "bind_task"
+            ]
+          },
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "src/adapted/api/routers/auth.py": [
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "src/adapted/api/routers/courses.py": [
+          {
+            "path": "src/adapted/config.py",
+            "batchIndex": 2,
+            "symbols": [
+              "Settings",
+              "get_settings"
+            ]
+          },
+          {
+            "path": "src/adapted/logging/logger.py",
+            "batchIndex": 3,
+            "symbols": [
+              "_configure",
+              "get_logger",
+              "bind_task"
+            ]
+          },
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          },
+          {
+            "path": "src/adapted/models/observability.py",
+            "batchIndex": 4,
+            "symbols": [
+              "AgentTask",
+              "AgentMessage",
+              "AuditLog"
+            ]
+          },
+          {
+            "path": "src/adapted/rag/parser.py",
+            "batchIndex": 2,
+            "symbols": [
+              "UnsupportedDocumentError",
+              "Page",
+              "ParsedDocument",
+              "parse_document",
+              "_parse_pdf",
+              "_parse_text",
+              "_parse_docx",
+              "_clean"
+            ]
+          }
+        ],
+        "src/adapted/api/routers/curriculum.py": [
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "src/adapted/api/routers/lessons.py": [
+          {
+            "path": "src/adapted/logging/logger.py",
+            "batchIndex": 3,
+            "symbols": [
+              "_configure",
+              "get_logger",
+              "bind_task"
+            ]
+          },
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "src/adapted/api/routers/logs.py": [
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "src/adapted/api/routers/quizzes.py": [
+          {
+            "path": "src/adapted/logging/logger.py",
+            "batchIndex": 3,
+            "symbols": [
+              "_configure",
+              "get_logger",
+              "bind_task"
+            ]
+          },
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "src/adapted/api/routers/students.py": [
+          {
+            "path": "src/adapted/memory/student_memory.py",
+            "batchIndex": 5,
+            "symbols": [
+              "StudentProfile",
+              "build_profile",
+              "update_topic_mastery",
+              "record_study",
+              "record_conversation",
+              "set_preference"
+            ]
+          },
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "src/adapted/api/routers/study_plans.py": [
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "src/adapted/api/routers/users.py": [
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "src/adapted/database/session.py": [
+          {
+            "path": "src/adapted/config.py",
+            "batchIndex": 2,
+            "symbols": [
+              "Settings",
+              "get_settings"
+            ]
+          },
+          {
+            "path": "src/adapted/database/base.py",
+            "batchIndex": 4,
+            "symbols": [
+              "VectorColumn",
+              "Base",
+              "create_engine_and_session"
+            ]
+          },
+          {
+            "path": "src/adapted/logging/logger.py",
+            "batchIndex": 3,
+            "symbols": [
+              "_configure",
+              "get_logger",
+              "bind_task"
+            ]
+          },
+          {
+            "path": "src/adapted/api/routers/teacher.py",
+            "batchIndex": 5,
+            "symbols": [
+              "class_students",
+              "class_analytics",
+              "student_grades",
+              "pending_review",
+              "override_grade"
+            ]
+          },
+          {
+            "path": "src/adapted/main.py",
+            "batchIndex": 2,
+            "symbols": [
+              "lifespan",
+              "create_app"
+            ]
+          },
+          {
+            "path": "src/adapted/models/course.py",
+            "batchIndex": 4,
+            "symbols": [
+              "Course",
+              "Enrollment",
+              "Document"
+            ]
+          },
+          {
+            "path": "src/adapted/models/curriculum.py",
+            "batchIndex": 4,
+            "symbols": [
+              "Chapter",
+              "Topic",
+              "TopicPrerequisite",
+              "LearningObjective",
+              "ContentChunk"
+            ]
+          },
+          {
+            "path": "src/adapted/models/learning.py",
+            "batchIndex": 4,
+            "symbols": [
+              "StudyPlan",
+              "StudyPlanItem",
+              "Lesson",
+              "Question",
+              "Quiz",
+              "QuizQuestion",
+              "QuizAttempt",
+              "Answer",
+              "Grade"
+            ]
+          },
+          {
+            "path": "src/adapted/models/memory.py",
+            "batchIndex": 4,
+            "symbols": [
+              "StudentMastery",
+              "StudyHistory",
+              "Misconception",
+              "ConversationMemory",
+              "LearningPreference",
+              "Recommendation"
+            ]
+          },
+          {
+            "path": "src/adapted/models/observability.py",
+            "batchIndex": 4,
+            "symbols": [
+              "AgentTask",
+              "AgentMessage",
+              "AuditLog"
+            ]
+          },
+          {
+            "path": "src/adapted/models/user.py",
+            "batchIndex": 4,
+            "symbols": [
+              "utcnow",
+              "User",
+              "Teacher",
+              "Student"
+            ]
+          },
+          {
+            "path": "src/adapted/rag/vector_store.py",
+            "batchIndex": 2,
+            "symbols": [
+              "VectorStore",
+              "get_vector_store",
+              "reset_vector_store",
+              "_temp_vector_store"
+            ]
+          }
+        ],
+        "src/adapted/security/jwt.py": [
+          {
+            "path": "src/adapted/config.py",
+            "batchIndex": 2,
+            "symbols": [
+              "Settings",
+              "get_settings"
+            ]
+          }
+        ],
+        "src/adapted/tasks/runner.py": [
+          {
+            "path": "src/adapted/agents/message.py",
+            "batchIndex": 3,
+            "symbols": [
+              "AgentMessage",
+              "MessageBus"
+            ]
+          },
+          {
+            "path": "src/adapted/agents/supervisor.py",
+            "batchIndex": 3,
+            "symbols": [
+              "Supervisor"
+            ]
+          },
+          {
+            "path": "src/adapted/llm/registry.py",
+            "batchIndex": 2,
+            "symbols": [
+              "get_provider",
+              "get_embed_provider",
+              "get_provider_cached",
+              "get_embed_provider_cached"
+            ]
+          },
+          {
+            "path": "src/adapted/logging/logger.py",
+            "batchIndex": 3,
+            "symbols": [
+              "_configure",
+              "get_logger",
+              "bind_task"
+            ]
+          },
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 2,
+      "files": [
+        {
+          "path": "src/adapted/agents/lesson_agent.py",
+          "language": "python",
+          "sizeLines": 150,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/config.py",
+          "language": "python",
+          "sizeLines": 89,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/llm/base.py",
+          "language": "python",
+          "sizeLines": 47,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/llm/mock.py",
+          "language": "python",
+          "sizeLines": 527,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/llm/openai_compatible.py",
+          "language": "python",
+          "sizeLines": 83,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/llm/registry.py",
+          "language": "python",
+          "sizeLines": 50,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/main.py",
+          "language": "python",
+          "sizeLines": 87,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/memory/curriculum_memory.py",
+          "language": "python",
+          "sizeLines": 111,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/rag/chunker.py",
+          "language": "python",
+          "sizeLines": 68,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/rag/embeddings.py",
+          "language": "python",
+          "sizeLines": 23,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/rag/parser.py",
+          "language": "python",
+          "sizeLines": 93,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/rag/retriever.py",
+          "language": "python",
+          "sizeLines": 85,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/rag/vector_store.py",
+          "language": "python",
+          "sizeLines": 238,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/tools/registry.py",
+          "language": "python",
+          "sizeLines": 160,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "src/adapted/agents/lesson_agent.py": [
+          "src/adapted/agents/base.py",
+          "src/adapted/agents/message.py",
+          "src/adapted/config.py",
+          "src/adapted/logging/logger.py",
+          "src/adapted/memory/student_memory.py",
+          "src/adapted/models/__init__.py",
+          "src/adapted/rag/retriever.py"
+        ],
+        "src/adapted/config.py": [],
+        "src/adapted/llm/base.py": [],
+        "src/adapted/llm/mock.py": [
+          "src/adapted/config.py",
+          "src/adapted/llm/base.py"
+        ],
+        "src/adapted/llm/openai_compatible.py": [
+          "src/adapted/config.py",
+          "src/adapted/llm/base.py"
+        ],
+        "src/adapted/llm/registry.py": [
+          "src/adapted/config.py",
+          "src/adapted/llm/base.py",
+          "src/adapted/llm/mock.py",
+          "src/adapted/llm/openai_compatible.py"
+        ],
+        "src/adapted/main.py": [
+          "src/adapted/config.py",
+          "src/adapted/database/session.py",
+          "src/adapted/logging/logger.py"
+        ],
+        "src/adapted/memory/curriculum_memory.py": [
+          "src/adapted/config.py",
+          "src/adapted/models/__init__.py",
+          "src/adapted/rag/chunker.py",
+          "src/adapted/rag/embeddings.py",
+          "src/adapted/rag/parser.py",
+          "src/adapted/rag/vector_store.py"
+        ],
+        "src/adapted/rag/chunker.py": [
+          "src/adapted/rag/parser.py"
+        ],
+        "src/adapted/rag/embeddings.py": [
+          "src/adapted/llm/registry.py"
+        ],
+        "src/adapted/rag/parser.py": [],
+        "src/adapted/rag/retriever.py": [
+          "src/adapted/config.py",
+          "src/adapted/rag/embeddings.py",
+          "src/adapted/rag/vector_store.py"
+        ],
+        "src/adapted/rag/vector_store.py": [
+          "src/adapted/config.py",
+          "src/adapted/database/session.py",
+          "src/adapted/models/__init__.py"
+        ],
+        "src/adapted/tools/registry.py": [
+          "src/adapted/config.py",
+          "src/adapted/rag/retriever.py"
+        ]
+      },
+      "neighborMap": {
+        "src/adapted/agents/lesson_agent.py": [
+          {
+            "path": "src/adapted/agents/base.py",
+            "batchIndex": 3,
+            "symbols": [
+              "AgentResult",
+              "BaseAgent"
+            ]
+          },
+          {
+            "path": "src/adapted/agents/message.py",
+            "batchIndex": 3,
+            "symbols": [
+              "AgentMessage",
+              "MessageBus"
+            ]
+          },
+          {
+            "path": "src/adapted/logging/logger.py",
+            "batchIndex": 3,
+            "symbols": [
+              "_configure",
+              "get_logger",
+              "bind_task"
+            ]
+          },
+          {
+            "path": "src/adapted/memory/student_memory.py",
+            "batchIndex": 5,
+            "symbols": [
+              "StudentProfile",
+              "build_profile",
+              "update_topic_mastery",
+              "record_study",
+              "record_conversation",
+              "set_preference"
+            ]
+          },
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "src/adapted/config.py": [
+          {
+            "path": "src/adapted/api/routers/courses.py",
+            "batchIndex": 1,
+            "symbols": [
+              "create_course",
+              "list_courses",
+              "get_course",
+              "enroll_student",
+              "upload_document",
+              "list_documents",
+              "get_document_status",
+              "delete_document",
+              "clear_course_contents",
+              "delete_course",
+              "_get_owned_course",
+              "_unlink_file",
+              "_purge_course_data",
+              "_build_document_out",
+              "_course_out",
+              "_audit"
+            ]
+          },
+          {
+            "path": "src/adapted/database/base.py",
+            "batchIndex": 4,
+            "symbols": [
+              "VectorColumn",
+              "Base",
+              "create_engine_and_session"
+            ]
+          },
+          {
+            "path": "src/adapted/database/session.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_resolve_database_url",
+              "new_id",
+              "new_code",
+              "get_db",
+              "session_scope",
+              "init_db",
+              "reset_db",
+              "db_add"
+            ]
+          },
+          {
+            "path": "src/adapted/graph/runtime.py",
+            "batchIndex": 3,
+            "symbols": [
+              "GraphState",
+              "AgentRuntime"
+            ]
+          },
+          {
+            "path": "src/adapted/logging/logger.py",
+            "batchIndex": 3,
+            "symbols": [
+              "_configure",
+              "get_logger",
+              "bind_task"
+            ]
+          },
+          {
+            "path": "src/adapted/security/jwt.py",
+            "batchIndex": 1,
+            "symbols": [
+              "create_access_token",
+              "decode_access_token"
+            ]
+          }
+        ],
+        "src/adapted/llm/registry.py": [
+          {
+            "path": "src/adapted/tasks/runner.py",
+            "batchIndex": 1,
+            "symbols": [
+              "submit_pipeline",
+              "_run_in_thread",
+              "_mark_failed"
+            ]
+          }
+        ],
+        "src/adapted/main.py": [
+          {
+            "path": "src/adapted/database/session.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_resolve_database_url",
+              "new_id",
+              "new_code",
+              "get_db",
+              "session_scope",
+              "init_db",
+              "reset_db",
+              "db_add"
+            ]
+          },
+          {
+            "path": "src/adapted/logging/logger.py",
+            "batchIndex": 3,
+            "symbols": [
+              "_configure",
+              "get_logger",
+              "bind_task"
+            ]
+          }
+        ],
+        "src/adapted/memory/curriculum_memory.py": [
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "src/adapted/rag/parser.py": [
+          {
+            "path": "src/adapted/agents/curriculum_agent.py",
+            "batchIndex": 3,
+            "symbols": [
+              "ObjectiveOut",
+              "TopicOut",
+              "ChapterOut",
+              "CurriculumOutput",
+              "CurriculumAnalyzerAgent"
+            ]
+          },
+          {
+            "path": "src/adapted/api/routers/courses.py",
+            "batchIndex": 1,
+            "symbols": [
+              "create_course",
+              "list_courses",
+              "get_course",
+              "enroll_student",
+              "upload_document",
+              "list_documents",
+              "get_document_status",
+              "delete_document",
+              "clear_course_contents",
+              "delete_course",
+              "_get_owned_course",
+              "_unlink_file",
+              "_purge_course_data",
+              "_build_document_out",
+              "_course_out",
+              "_audit"
+            ]
+          }
+        ],
+        "src/adapted/rag/vector_store.py": [
+          {
+            "path": "src/adapted/database/session.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_resolve_database_url",
+              "new_id",
+              "new_code",
+              "get_db",
+              "session_scope",
+              "init_db",
+              "reset_db",
+              "db_add"
+            ]
+          },
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 3,
+      "files": [
+        {
+          "path": "src/adapted/agents/base.py",
+          "language": "python",
+          "sizeLines": 76,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/agents/curriculum_agent.py",
+          "language": "python",
+          "sizeLines": 231,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/agents/grading_agent.py",
+          "language": "python",
+          "sizeLines": 184,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/agents/message.py",
+          "language": "python",
+          "sizeLines": 115,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/agents/performance_agent.py",
+          "language": "python",
+          "sizeLines": 174,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/agents/planner_agent.py",
+          "language": "python",
+          "sizeLines": 250,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/agents/quiz_agent.py",
+          "language": "python",
+          "sizeLines": 190,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/agents/recommendation_agent.py",
+          "language": "python",
+          "sizeLines": 159,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/agents/supervisor.py",
+          "language": "python",
+          "sizeLines": 118,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/graph/runtime.py",
+          "language": "python",
+          "sizeLines": 327,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/logging/logger.py",
+          "language": "python",
+          "sizeLines": 41,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/services/grading.py",
+          "language": "python",
+          "sizeLines": 52,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/services/scheduler.py",
+          "language": "python",
+          "sizeLines": 260,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "src/adapted/agents/base.py": [
+          "src/adapted/agents/message.py",
+          "src/adapted/logging/logger.py"
+        ],
+        "src/adapted/agents/curriculum_agent.py": [
+          "src/adapted/agents/base.py",
+          "src/adapted/agents/message.py",
+          "src/adapted/logging/logger.py",
+          "src/adapted/models/__init__.py",
+          "src/adapted/rag/parser.py"
+        ],
+        "src/adapted/agents/grading_agent.py": [
+          "src/adapted/agents/base.py",
+          "src/adapted/agents/message.py",
+          "src/adapted/logging/logger.py",
+          "src/adapted/models/__init__.py",
+          "src/adapted/services/grading.py"
+        ],
+        "src/adapted/agents/message.py": [
+          "src/adapted/logging/logger.py",
+          "src/adapted/models/__init__.py"
+        ],
+        "src/adapted/agents/performance_agent.py": [
+          "src/adapted/agents/base.py",
+          "src/adapted/agents/message.py",
+          "src/adapted/logging/logger.py",
+          "src/adapted/models/__init__.py"
+        ],
+        "src/adapted/agents/planner_agent.py": [
+          "src/adapted/agents/base.py",
+          "src/adapted/agents/message.py",
+          "src/adapted/logging/logger.py",
+          "src/adapted/models/__init__.py",
+          "src/adapted/services/scheduler.py"
+        ],
+        "src/adapted/agents/quiz_agent.py": [
+          "src/adapted/agents/base.py",
+          "src/adapted/agents/message.py",
+          "src/adapted/logging/logger.py",
+          "src/adapted/models/__init__.py",
+          "src/adapted/services/grading.py"
+        ],
+        "src/adapted/agents/recommendation_agent.py": [
+          "src/adapted/agents/base.py",
+          "src/adapted/agents/message.py",
+          "src/adapted/logging/logger.py",
+          "src/adapted/models/__init__.py"
+        ],
+        "src/adapted/agents/supervisor.py": [
+          "src/adapted/agents/message.py",
+          "src/adapted/logging/logger.py",
+          "src/adapted/models/__init__.py"
+        ],
+        "src/adapted/graph/runtime.py": [
+          "src/adapted/agents/base.py",
+          "src/adapted/agents/message.py",
+          "src/adapted/agents/supervisor.py",
+          "src/adapted/config.py",
+          "src/adapted/logging/logger.py"
+        ],
+        "src/adapted/logging/logger.py": [
+          "src/adapted/config.py"
+        ],
+        "src/adapted/services/grading.py": [],
+        "src/adapted/services/scheduler.py": []
+      },
+      "neighborMap": {
+        "src/adapted/agents/base.py": [
+          {
+            "path": "src/adapted/agents/lesson_agent.py",
+            "batchIndex": 2,
+            "symbols": [
+              "SectionOut",
+              "LessonOutput",
+              "LessonAgent"
+            ]
+          }
+        ],
+        "src/adapted/agents/curriculum_agent.py": [
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          },
+          {
+            "path": "src/adapted/rag/parser.py",
+            "batchIndex": 2,
+            "symbols": [
+              "UnsupportedDocumentError",
+              "Page",
+              "ParsedDocument",
+              "parse_document",
+              "_parse_pdf",
+              "_parse_text",
+              "_parse_docx",
+              "_clean"
+            ]
+          }
+        ],
+        "src/adapted/agents/grading_agent.py": [
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "src/adapted/agents/message.py": [
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          },
+          {
+            "path": "src/adapted/agents/lesson_agent.py",
+            "batchIndex": 2,
+            "symbols": [
+              "SectionOut",
+              "LessonOutput",
+              "LessonAgent"
+            ]
+          },
+          {
+            "path": "src/adapted/tasks/runner.py",
+            "batchIndex": 1,
+            "symbols": [
+              "submit_pipeline",
+              "_run_in_thread",
+              "_mark_failed"
+            ]
+          }
+        ],
+        "src/adapted/agents/performance_agent.py": [
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "src/adapted/agents/planner_agent.py": [
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "src/adapted/agents/quiz_agent.py": [
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "src/adapted/agents/recommendation_agent.py": [
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "src/adapted/agents/supervisor.py": [
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          },
+          {
+            "path": "src/adapted/tasks/runner.py",
+            "batchIndex": 1,
+            "symbols": [
+              "submit_pipeline",
+              "_run_in_thread",
+              "_mark_failed"
+            ]
+          }
+        ],
+        "src/adapted/graph/runtime.py": [
+          {
+            "path": "src/adapted/config.py",
+            "batchIndex": 2,
+            "symbols": [
+              "Settings",
+              "get_settings"
+            ]
+          }
+        ],
+        "src/adapted/logging/logger.py": [
+          {
+            "path": "src/adapted/config.py",
+            "batchIndex": 2,
+            "symbols": [
+              "Settings",
+              "get_settings"
+            ]
+          },
+          {
+            "path": "src/adapted/agents/lesson_agent.py",
+            "batchIndex": 2,
+            "symbols": [
+              "SectionOut",
+              "LessonOutput",
+              "LessonAgent"
+            ]
+          },
+          {
+            "path": "src/adapted/api/routers/agent.py",
+            "batchIndex": 1,
+            "symbols": [
+              "AgentRunRequest",
+              "run_agent_pipeline"
+            ]
+          },
+          {
+            "path": "src/adapted/api/routers/agent_ops.py",
+            "batchIndex": 1,
+            "symbols": [
+              "reap_stale_tasks",
+              "list_tasks",
+              "get_task",
+              "list_messages",
+              "agent_runs"
+            ]
+          },
+          {
+            "path": "src/adapted/api/routers/courses.py",
+            "batchIndex": 1,
+            "symbols": [
+              "create_course",
+              "list_courses",
+              "get_course",
+              "enroll_student",
+              "upload_document",
+              "list_documents",
+              "get_document_status",
+              "delete_document",
+              "clear_course_contents",
+              "delete_course",
+              "_get_owned_course",
+              "_unlink_file",
+              "_purge_course_data",
+              "_build_document_out",
+              "_course_out",
+              "_audit"
+            ]
+          },
+          {
+            "path": "src/adapted/api/routers/lessons.py",
+            "batchIndex": 1,
+            "symbols": [
+              "LessonGenerateRequest",
+              "generate_lesson",
+              "get_lesson"
+            ]
+          },
+          {
+            "path": "src/adapted/api/routers/quizzes.py",
+            "batchIndex": 1,
+            "symbols": [
+              "generate_quiz",
+              "get_quiz",
+              "submit_quiz",
+              "_quiz_out"
+            ]
+          },
+          {
+            "path": "src/adapted/database/session.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_resolve_database_url",
+              "new_id",
+              "new_code",
+              "get_db",
+              "session_scope",
+              "init_db",
+              "reset_db",
+              "db_add"
+            ]
+          },
+          {
+            "path": "src/adapted/main.py",
+            "batchIndex": 2,
+            "symbols": [
+              "lifespan",
+              "create_app"
+            ]
+          },
+          {
+            "path": "src/adapted/tasks/runner.py",
+            "batchIndex": 1,
+            "symbols": [
+              "submit_pipeline",
+              "_run_in_thread",
+              "_mark_failed"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 4,
+      "files": [
+        {
+          "path": "src/adapted/database/base.py",
+          "language": "python",
+          "sizeLines": 51,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/models/__init__.py",
+          "language": "python",
+          "sizeLines": 55,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/models/course.py",
+          "language": "python",
+          "sizeLines": 86,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/models/curriculum.py",
+          "language": "python",
+          "sizeLines": 117,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/models/learning.py",
+          "language": "python",
+          "sizeLines": 225,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/models/memory.py",
+          "language": "python",
+          "sizeLines": 136,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/models/observability.py",
+          "language": "python",
+          "sizeLines": 64,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/models/user.py",
+          "language": "python",
+          "sizeLines": 57,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "src/adapted/database/base.py": [
+          "src/adapted/config.py"
+        ],
+        "src/adapted/models/__init__.py": [
+          "src/adapted/models/course.py",
+          "src/adapted/models/curriculum.py",
+          "src/adapted/models/learning.py",
+          "src/adapted/models/memory.py",
+          "src/adapted/models/observability.py",
+          "src/adapted/models/user.py"
+        ],
+        "src/adapted/models/course.py": [
+          "src/adapted/database/base.py",
+          "src/adapted/database/session.py",
+          "src/adapted/models/user.py"
+        ],
+        "src/adapted/models/curriculum.py": [
+          "src/adapted/database/base.py",
+          "src/adapted/database/session.py",
+          "src/adapted/models/user.py"
+        ],
+        "src/adapted/models/learning.py": [
+          "src/adapted/database/base.py",
+          "src/adapted/database/session.py",
+          "src/adapted/models/user.py"
+        ],
+        "src/adapted/models/memory.py": [
+          "src/adapted/database/base.py",
+          "src/adapted/database/session.py",
+          "src/adapted/models/user.py"
+        ],
+        "src/adapted/models/observability.py": [
+          "src/adapted/database/base.py",
+          "src/adapted/database/session.py",
+          "src/adapted/models/user.py"
+        ],
+        "src/adapted/models/user.py": [
+          "src/adapted/database/base.py",
+          "src/adapted/database/session.py"
+        ]
+      },
+      "neighborMap": {
+        "src/adapted/database/base.py": [
+          {
+            "path": "src/adapted/config.py",
+            "batchIndex": 2,
+            "symbols": [
+              "Settings",
+              "get_settings"
+            ]
+          },
+          {
+            "path": "src/adapted/database/session.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_resolve_database_url",
+              "new_id",
+              "new_code",
+              "get_db",
+              "session_scope",
+              "init_db",
+              "reset_db",
+              "db_add"
+            ]
+          }
+        ],
+        "src/adapted/models/__init__.py": [
+          {
+            "path": "src/adapted/agents/curriculum_agent.py",
+            "batchIndex": 3,
+            "symbols": [
+              "ObjectiveOut",
+              "TopicOut",
+              "ChapterOut",
+              "CurriculumOutput",
+              "CurriculumAnalyzerAgent"
+            ]
+          },
+          {
+            "path": "src/adapted/agents/grading_agent.py",
+            "batchIndex": 3,
+            "symbols": [
+              "GradedAnswer",
+              "GradingOutput",
+              "GradingAgent"
+            ]
+          },
+          {
+            "path": "src/adapted/agents/lesson_agent.py",
+            "batchIndex": 2,
+            "symbols": [
+              "SectionOut",
+              "LessonOutput",
+              "LessonAgent"
+            ]
+          },
+          {
+            "path": "src/adapted/agents/message.py",
+            "batchIndex": 3,
+            "symbols": [
+              "AgentMessage",
+              "MessageBus"
+            ]
+          },
+          {
+            "path": "src/adapted/agents/performance_agent.py",
+            "batchIndex": 3,
+            "symbols": [
+              "TopicMasteryOut",
+              "PerformanceOutput",
+              "PerformanceAnalysisAgent"
+            ]
+          },
+          {
+            "path": "src/adapted/agents/planner_agent.py",
+            "batchIndex": 3,
+            "symbols": [
+              "PlanItemOut",
+              "PlannerOutput",
+              "StudyPlannerAgent"
+            ]
+          },
+          {
+            "path": "src/adapted/agents/quiz_agent.py",
+            "batchIndex": 3,
+            "symbols": [
+              "GeneratedQuestion",
+              "QuizOutput",
+              "QuizAgent"
+            ]
+          },
+          {
+            "path": "src/adapted/agents/recommendation_agent.py",
+            "batchIndex": 3,
+            "symbols": [
+              "RecommendationOut",
+              "RecommendationOutput",
+              "RecommendationAgent"
+            ]
+          },
+          {
+            "path": "src/adapted/agents/supervisor.py",
+            "batchIndex": 3,
+            "symbols": [
+              "Supervisor"
+            ]
+          },
+          {
+            "path": "src/adapted/api/deps.py",
+            "batchIndex": 1,
+            "symbols": [
+              "get_current_user",
+              "require_role",
+              "get_teacher_row",
+              "get_student_row",
+              "assert_course_owner",
+              "assert_student_enrolled"
+            ]
+          },
+          {
+            "path": "src/adapted/api/routers/agent_ops.py",
+            "batchIndex": 1,
+            "symbols": [
+              "reap_stale_tasks",
+              "list_tasks",
+              "get_task",
+              "list_messages",
+              "agent_runs"
+            ]
+          },
+          {
+            "path": "src/adapted/api/routers/auth.py",
+            "batchIndex": 1,
+            "symbols": [
+              "register",
+              "login",
+              "me"
+            ]
+          },
+          {
+            "path": "src/adapted/api/routers/courses.py",
+            "batchIndex": 1,
+            "symbols": [
+              "create_course",
+              "list_courses",
+              "get_course",
+              "enroll_student",
+              "upload_document",
+              "list_documents",
+              "get_document_status",
+              "delete_document",
+              "clear_course_contents",
+              "delete_course",
+              "_get_owned_course",
+              "_unlink_file",
+              "_purge_course_data",
+              "_build_document_out",
+              "_course_out",
+              "_audit"
+            ]
+          },
+          {
+            "path": "src/adapted/api/routers/curriculum.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_topic_out",
+              "get_curriculum",
+              "get_topic"
+            ]
+          },
+          {
+            "path": "src/adapted/api/routers/lessons.py",
+            "batchIndex": 1,
+            "symbols": [
+              "LessonGenerateRequest",
+              "generate_lesson",
+              "get_lesson"
+            ]
+          },
+          {
+            "path": "src/adapted/api/routers/logs.py",
+            "batchIndex": 1,
+            "symbols": [
+              "audit_logs"
+            ]
+          },
+          {
+            "path": "src/adapted/api/routers/quizzes.py",
+            "batchIndex": 1,
+            "symbols": [
+              "generate_quiz",
+              "get_quiz",
+              "submit_quiz",
+              "_quiz_out"
+            ]
+          },
+          {
+            "path": "src/adapted/api/routers/students.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_authorize",
+              "get_student_profile",
+              "get_performance",
+              "get_mastery",
+              "get_recommendations",
+              "update_recommendation",
+              "set_student_preference",
+              "_default_course_id"
+            ]
+          },
+          {
+            "path": "src/adapted/api/routers/study_plans.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_plan_out",
+              "get_study_plan",
+              "get_student_study_plan",
+              "_authorize"
+            ]
+          },
+          {
+            "path": "src/adapted/api/routers/teacher.py",
+            "batchIndex": 5,
+            "symbols": [
+              "class_students",
+              "class_analytics",
+              "student_grades",
+              "pending_review",
+              "override_grade"
+            ]
+          },
+          {
+            "path": "src/adapted/api/routers/users.py",
+            "batchIndex": 1,
+            "symbols": [
+              "search_users"
+            ]
+          },
+          {
+            "path": "src/adapted/memory/curriculum_memory.py",
+            "batchIndex": 2,
+            "symbols": [
+              "collection_for",
+              "ensure_collection",
+              "index_document",
+              "assign_chunk_topics",
+              "chunks_for_topic",
+              "chunks_by_course"
+            ]
+          },
+          {
+            "path": "src/adapted/memory/student_memory.py",
+            "batchIndex": 5,
+            "symbols": [
+              "StudentProfile",
+              "build_profile",
+              "update_topic_mastery",
+              "record_study",
+              "record_conversation",
+              "set_preference"
+            ]
+          },
+          {
+            "path": "src/adapted/rag/vector_store.py",
+            "batchIndex": 2,
+            "symbols": [
+              "VectorStore",
+              "get_vector_store",
+              "reset_vector_store",
+              "_temp_vector_store"
+            ]
+          },
+          {
+            "path": "src/adapted/tasks/runner.py",
+            "batchIndex": 1,
+            "symbols": [
+              "submit_pipeline",
+              "_run_in_thread",
+              "_mark_failed"
+            ]
+          }
+        ],
+        "src/adapted/models/course.py": [
+          {
+            "path": "src/adapted/database/session.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_resolve_database_url",
+              "new_id",
+              "new_code",
+              "get_db",
+              "session_scope",
+              "init_db",
+              "reset_db",
+              "db_add"
+            ]
+          }
+        ],
+        "src/adapted/models/curriculum.py": [
+          {
+            "path": "src/adapted/database/session.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_resolve_database_url",
+              "new_id",
+              "new_code",
+              "get_db",
+              "session_scope",
+              "init_db",
+              "reset_db",
+              "db_add"
+            ]
+          }
+        ],
+        "src/adapted/models/learning.py": [
+          {
+            "path": "src/adapted/database/session.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_resolve_database_url",
+              "new_id",
+              "new_code",
+              "get_db",
+              "session_scope",
+              "init_db",
+              "reset_db",
+              "db_add"
+            ]
+          }
+        ],
+        "src/adapted/models/memory.py": [
+          {
+            "path": "src/adapted/database/session.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_resolve_database_url",
+              "new_id",
+              "new_code",
+              "get_db",
+              "session_scope",
+              "init_db",
+              "reset_db",
+              "db_add"
+            ]
+          }
+        ],
+        "src/adapted/models/observability.py": [
+          {
+            "path": "src/adapted/database/session.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_resolve_database_url",
+              "new_id",
+              "new_code",
+              "get_db",
+              "session_scope",
+              "init_db",
+              "reset_db",
+              "db_add"
+            ]
+          },
+          {
+            "path": "src/adapted/api/routers/courses.py",
+            "batchIndex": 1,
+            "symbols": [
+              "create_course",
+              "list_courses",
+              "get_course",
+              "enroll_student",
+              "upload_document",
+              "list_documents",
+              "get_document_status",
+              "delete_document",
+              "clear_course_contents",
+              "delete_course",
+              "_get_owned_course",
+              "_unlink_file",
+              "_purge_course_data",
+              "_build_document_out",
+              "_course_out",
+              "_audit"
+            ]
+          }
+        ],
+        "src/adapted/models/user.py": [
+          {
+            "path": "src/adapted/database/session.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_resolve_database_url",
+              "new_id",
+              "new_code",
+              "get_db",
+              "session_scope",
+              "init_db",
+              "reset_db",
+              "db_add"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 5,
+      "files": [
+        {
+          "path": "src/adapted/api/routers/teacher.py",
+          "language": "python",
+          "sizeLines": 205,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/memory/student_memory.py",
+          "language": "python",
+          "sizeLines": 224,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/services/analytics.py",
+          "language": "python",
+          "sizeLines": 109,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/services/mastery.py",
+          "language": "python",
+          "sizeLines": 70,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "src/adapted/api/routers/teacher.py": [
+          "src/adapted/api/deps.py",
+          "src/adapted/database/session.py",
+          "src/adapted/memory/student_memory.py",
+          "src/adapted/models/__init__.py",
+          "src/adapted/services/analytics.py"
+        ],
+        "src/adapted/memory/student_memory.py": [
+          "src/adapted/models/__init__.py"
+        ],
+        "src/adapted/services/analytics.py": [
+          "src/adapted/services/mastery.py"
+        ],
+        "src/adapted/services/mastery.py": []
+      },
+      "neighborMap": {
+        "src/adapted/api/routers/teacher.py": [
+          {
+            "path": "src/adapted/api/deps.py",
+            "batchIndex": 1,
+            "symbols": [
+              "get_current_user",
+              "require_role",
+              "get_teacher_row",
+              "get_student_row",
+              "assert_course_owner",
+              "assert_student_enrolled"
+            ]
+          },
+          {
+            "path": "src/adapted/database/session.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_resolve_database_url",
+              "new_id",
+              "new_code",
+              "get_db",
+              "session_scope",
+              "init_db",
+              "reset_db",
+              "db_add"
+            ]
+          },
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "src/adapted/memory/student_memory.py": [
+          {
+            "path": "src/adapted/models/__init__.py",
+            "batchIndex": 4,
+            "symbols": []
+          },
+          {
+            "path": "src/adapted/agents/lesson_agent.py",
+            "batchIndex": 2,
+            "symbols": [
+              "SectionOut",
+              "LessonOutput",
+              "LessonAgent"
+            ]
+          },
+          {
+            "path": "src/adapted/api/routers/students.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_authorize",
+              "get_student_profile",
+              "get_performance",
+              "get_mastery",
+              "get_recommendations",
+              "update_recommendation",
+              "set_student_preference",
+              "_default_course_id"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 6,
+      "files": [
+        {
+          "path": ".env.example",
+          "language": "config",
+          "sizeLines": 37,
+          "fileCategory": "config"
+        },
+        {
+          "path": "README.md",
+          "language": "markdown",
+          "sizeLines": 0,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "opencode.json",
+          "language": "json",
+          "sizeLines": 3,
+          "fileCategory": "config"
+        },
+        {
+          "path": "pyproject.toml",
+          "language": "toml",
+          "sizeLines": 50,
+          "fileCategory": "config"
+        }
+      ],
+      "batchImportData": {
+        ".env.example": [],
+        "README.md": [],
+        "opencode.json": [],
+        "pyproject.toml": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 7,
+      "files": [
+        {
+          "path": ".python-version",
+          "language": "unknown",
+          "sizeLines": 1,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".ua/.understandignore",
+          "language": "unknown",
+          "sizeLines": 75,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/__init__.py",
+          "language": "python",
+          "sizeLines": 3,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/api/routers/__init__.py",
+          "language": "python",
+          "sizeLines": 0,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/ui/app.py",
+          "language": "python",
+          "sizeLines": 1010,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/adapted/ui/client.py",
+          "language": "python",
+          "sizeLines": 293,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        ".python-version": [],
+        ".ua/.understandignore": [],
+        "src/adapted/__init__.py": [],
+        "src/adapted/api/routers/__init__.py": [],
+        "src/adapted/ui/app.py": [],
+        "src/adapted/ui/client.py": []
+      },
+      "neighborMap": {}
+    }
+  ]
+}

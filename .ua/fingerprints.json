@@ -1,0 +1,7169 @@
+{
+  "version": "1.0.0",
+  "gitCommitHash": "09fe9d48567bbf9497a8d0c6f1b7d649c6e8eafc",
+  "generatedAt": "2026-08-26T12:49:56.967Z",
+  "files": {
+    ".env.example": {
+      "filePath": ".env.example",
+      "contentHash": "107e07cd79cbc7a87ef117afa282805024f7497c9b7f0830460a1b00b37f6eb6",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 38,
+      "hasStructuralAnalysis": true
+    },
+    ".python-version": {
+      "filePath": ".python-version",
+      "contentHash": "7b55f8e67b5623c4bef3fa691288da9437d79d3aba156de48d481db32ac7d16d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 2,
+      "hasStructuralAnalysis": false
+    },
+    ".ua/.understandignore": {
+      "filePath": ".ua/.understandignore",
+      "contentHash": "d1f4d9fa74f3596dcc2d099905a84b8b16f0eb304fa0525eb421e446b1ab8a8f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 76,
+      "hasStructuralAnalysis": false
+    },
+    "README.md": {
+      "filePath": "README.md",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "opencode.json": {
+      "filePath": "opencode.json",
+      "contentHash": "5711f100c1686fd0467d621d96c3275df42f24eb4964a829bca8f75b76ab916a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 4,
+      "hasStructuralAnalysis": true
+    },
+    "pyproject.toml": {
+      "filePath": "pyproject.toml",
+      "contentHash": "caa41056e29f0a189dbd90822363329c327435f82ff0063b452dbe11c6b695e6",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 51,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/__init__.py": {
+      "filePath": "src/adapted/__init__.py",
+      "contentHash": "bf360107e6aecc5429907e0dccb170caaba9a7f726585f9763383797aed22a57",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 4,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/agents/base.py": {
+      "filePath": "src/adapted/agents/base.py",
+      "contentHash": "46bac43b8d5acd637651d4ab49ca0d30507153303ed2b2d0b9207644a6901090",
+      "functions": [],
+      "classes": [
+        {
+          "name": "AgentResult",
+          "methods": [],
+          "properties": [
+            "output",
+            "error"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "BaseAgent",
+          "methods": [
+            "__init__",
+            "process",
+            "validate_output",
+            "output_is_empty",
+            "handle"
+          ],
+          "properties": [
+            "name",
+            "actions",
+            "output_schema"
+          ],
+          "exported": true,
+          "lineCount": 57
+        }
+      ],
+      "imports": [
+        {
+          "source": "time",
+          "specifiers": [
+            "time"
+          ]
+        },
+        {
+          "source": "abc",
+          "specifiers": [
+            "ABC",
+            "abstractmethod"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "ClassVar"
+          ]
+        },
+        {
+          "source": "pydantic",
+          "specifiers": [
+            "BaseModel",
+            "ValidationError"
+          ]
+        },
+        {
+          "source": "..logging.logger",
+          "specifiers": [
+            "get_logger"
+          ]
+        },
+        {
+          "source": ".message",
+          "specifiers": [
+            "AgentMessage",
+            "MessageBus"
+          ]
+        }
+      ],
+      "exports": [
+        "AgentResult",
+        "BaseAgent"
+      ],
+      "totalLines": 77,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/agents/curriculum_agent.py": {
+      "filePath": "src/adapted/agents/curriculum_agent.py",
+      "contentHash": "73a2bc4c373e0e3cbaf06fa778c9bbcf4966b0fa851cec1c2032529fc8669dcc",
+      "functions": [],
+      "classes": [
+        {
+          "name": "ObjectiveOut",
+          "methods": [],
+          "properties": [
+            "description"
+          ],
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "TopicOut",
+          "methods": [],
+          "properties": [
+            "title",
+            "description",
+            "difficulty",
+            "objectives",
+            "prerequisites"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "ChapterOut",
+          "methods": [],
+          "properties": [
+            "title",
+            "description",
+            "order_index",
+            "topics"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "CurriculumOutput",
+          "methods": [],
+          "properties": [
+            "chapters"
+          ],
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "CurriculumAnalyzerAgent",
+          "methods": [
+            "__init__",
+            "process",
+            "output_is_empty",
+            "_build_request",
+            "_persist_curriculum",
+            "_assign_chunks_to_topics"
+          ],
+          "properties": [
+            "actions"
+          ],
+          "exported": true,
+          "lineCount": 183
+        }
+      ],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "ClassVar"
+          ]
+        },
+        {
+          "source": "pydantic",
+          "specifiers": [
+            "BaseModel",
+            "Field"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "select"
+          ]
+        },
+        {
+          "source": "..logging.logger",
+          "specifiers": [
+            "get_logger"
+          ]
+        },
+        {
+          "source": "..memory",
+          "specifiers": [
+            "curriculum_memory"
+          ]
+        },
+        {
+          "source": "..models",
+          "specifiers": [
+            "Chapter",
+            "ContentChunk",
+            "Course",
+            "Document",
+            "LearningObjective",
+            "Topic",
+            "TopicPrerequisite"
+          ]
+        },
+        {
+          "source": "..rag.parser",
+          "specifiers": [
+            "parse_document"
+          ]
+        },
+        {
+          "source": ".base",
+          "specifiers": [
+            "BaseAgent"
+          ]
+        },
+        {
+          "source": ".message",
+          "specifiers": [
+            "AgentMessage"
+          ]
+        }
+      ],
+      "exports": [
+        "ObjectiveOut",
+        "TopicOut",
+        "ChapterOut",
+        "CurriculumOutput",
+        "CurriculumAnalyzerAgent"
+      ],
+      "totalLines": 232,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/agents/grading_agent.py": {
+      "filePath": "src/adapted/agents/grading_agent.py",
+      "contentHash": "7ee588760a804503966aa5b25b6c7746b2a5ea5e2cf0d4a71175c3746b68a13b",
+      "functions": [],
+      "classes": [
+        {
+          "name": "GradedAnswer",
+          "methods": [],
+          "properties": [
+            "answer_id",
+            "question_id",
+            "is_correct",
+            "ai_score",
+            "confidence",
+            "explanation",
+            "needs_teacher_review"
+          ],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "GradingOutput",
+          "methods": [],
+          "properties": [
+            "attempt_id",
+            "score",
+            "max_score",
+            "percentage",
+            "answers"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "GradingAgent",
+          "methods": [
+            "__init__",
+            "process",
+            "_grade_one",
+            "_grade_subjective"
+          ],
+          "properties": [
+            "actions"
+          ],
+          "exported": true,
+          "lineCount": 150
+        }
+      ],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "ClassVar"
+          ]
+        },
+        {
+          "source": "pydantic",
+          "specifiers": [
+            "BaseModel",
+            "Field"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "select"
+          ]
+        },
+        {
+          "source": "..logging.logger",
+          "specifiers": [
+            "get_logger"
+          ]
+        },
+        {
+          "source": "..models",
+          "specifiers": [
+            "Answer",
+            "Grade",
+            "Question",
+            "QuizAttempt"
+          ]
+        },
+        {
+          "source": "..services.grading",
+          "specifiers": [
+            "compute_attempt_score",
+            "grade_objective"
+          ]
+        },
+        {
+          "source": ".base",
+          "specifiers": [
+            "BaseAgent"
+          ]
+        },
+        {
+          "source": ".message",
+          "specifiers": [
+            "AgentMessage"
+          ]
+        }
+      ],
+      "exports": [
+        "GradedAnswer",
+        "GradingOutput",
+        "GradingAgent"
+      ],
+      "totalLines": 185,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/agents/lesson_agent.py": {
+      "filePath": "src/adapted/agents/lesson_agent.py",
+      "contentHash": "8c056d7eae6a776edac03cb9d6d03bb937adf4d14cbaa1bd79bc87b7a1a4e361",
+      "functions": [],
+      "classes": [
+        {
+          "name": "SectionOut",
+          "methods": [],
+          "properties": [
+            "name",
+            "content"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "LessonOutput",
+          "methods": [],
+          "properties": [
+            "title",
+            "level",
+            "sections",
+            "references"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "LessonAgent",
+          "methods": [
+            "__init__",
+            "process",
+            "output_is_empty",
+            "_build_request"
+          ],
+          "properties": [
+            "actions"
+          ],
+          "exported": true,
+          "lineCount": 119
+        }
+      ],
+      "imports": [
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "ClassVar"
+          ]
+        },
+        {
+          "source": "pydantic",
+          "specifiers": [
+            "BaseModel",
+            "Field"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "select"
+          ]
+        },
+        {
+          "source": "..config",
+          "specifiers": [
+            "settings"
+          ]
+        },
+        {
+          "source": "..logging.logger",
+          "specifiers": [
+            "get_logger"
+          ]
+        },
+        {
+          "source": "..memory.student_memory",
+          "specifiers": [
+            "build_profile"
+          ]
+        },
+        {
+          "source": "..models",
+          "specifiers": [
+            "LearningObjective",
+            "Lesson",
+            "Topic"
+          ]
+        },
+        {
+          "source": "..rag.retriever",
+          "specifiers": [
+            "retrieve"
+          ]
+        },
+        {
+          "source": ".base",
+          "specifiers": [
+            "BaseAgent"
+          ]
+        },
+        {
+          "source": ".message",
+          "specifiers": [
+            "AgentMessage"
+          ]
+        }
+      ],
+      "exports": [
+        "SectionOut",
+        "LessonOutput",
+        "LessonAgent"
+      ],
+      "totalLines": 151,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/agents/message.py": {
+      "filePath": "src/adapted/agents/message.py",
+      "contentHash": "584c0a691a47e985c58896590bba67664f6990038ac9c6497b422900003f88c9",
+      "functions": [],
+      "classes": [
+        {
+          "name": "AgentMessage",
+          "methods": [
+            "as_dict"
+          ],
+          "properties": [
+            "task_id",
+            "correlation_id",
+            "sender",
+            "receiver",
+            "action",
+            "payload",
+            "status",
+            "error",
+            "duration_ms",
+            "message_id"
+          ],
+          "exported": true,
+          "lineCount": 26
+        },
+        {
+          "name": "MessageBus",
+          "methods": [
+            "__init__",
+            "send",
+            "mark"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 56
+        }
+      ],
+      "imports": [
+        {
+          "source": "time",
+          "specifiers": [
+            "time"
+          ]
+        },
+        {
+          "source": "uuid",
+          "specifiers": [
+            "uuid"
+          ]
+        },
+        {
+          "source": "dataclasses",
+          "specifiers": [
+            "dataclass",
+            "field"
+          ]
+        },
+        {
+          "source": "datetime",
+          "specifiers": [
+            "UTC",
+            "datetime"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any"
+          ]
+        },
+        {
+          "source": "sqlalchemy.orm",
+          "specifiers": [
+            "Session"
+          ]
+        },
+        {
+          "source": "..logging.logger",
+          "specifiers": [
+            "get_logger"
+          ]
+        },
+        {
+          "source": "..models",
+          "specifiers": [
+            "AgentMessageRow"
+          ]
+        }
+      ],
+      "exports": [
+        "AgentMessage",
+        "MessageBus"
+      ],
+      "totalLines": 116,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/agents/performance_agent.py": {
+      "filePath": "src/adapted/agents/performance_agent.py",
+      "contentHash": "e6b9a2912c98af0394075ab6f620a23d942c57750fd8860fd38cfbcc9ae84933",
+      "functions": [],
+      "classes": [
+        {
+          "name": "TopicMasteryOut",
+          "methods": [],
+          "properties": [
+            "topic_id",
+            "topic_title",
+            "mastery",
+            "attempts",
+            "status"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "PerformanceOutput",
+          "methods": [],
+          "properties": [
+            "student_id",
+            "course_id",
+            "weak_topics",
+            "strong_topics",
+            "topic_mastery",
+            "misconceptions"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "PerformanceAnalysisAgent",
+          "methods": [
+            "__init__",
+            "process",
+            "_update_mastery_from_attempt",
+            "_detect_misconceptions"
+          ],
+          "properties": [
+            "actions"
+          ],
+          "exported": true,
+          "lineCount": 140
+        }
+      ],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "ClassVar"
+          ]
+        },
+        {
+          "source": "pydantic",
+          "specifiers": [
+            "BaseModel",
+            "Field"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "select"
+          ]
+        },
+        {
+          "source": "..logging.logger",
+          "specifiers": [
+            "get_logger"
+          ]
+        },
+        {
+          "source": "..memory",
+          "specifiers": [
+            "student_memory"
+          ]
+        },
+        {
+          "source": "..models",
+          "specifiers": [
+            "Answer",
+            "Misconception",
+            "Question",
+            "QuizAttempt",
+            "StudentMastery",
+            "Topic"
+          ]
+        },
+        {
+          "source": "..services",
+          "specifiers": [
+            "analytics"
+          ]
+        },
+        {
+          "source": ".base",
+          "specifiers": [
+            "BaseAgent"
+          ]
+        },
+        {
+          "source": ".message",
+          "specifiers": [
+            "AgentMessage"
+          ]
+        }
+      ],
+      "exports": [
+        "TopicMasteryOut",
+        "PerformanceOutput",
+        "PerformanceAnalysisAgent"
+      ],
+      "totalLines": 175,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/agents/planner_agent.py": {
+      "filePath": "src/adapted/agents/planner_agent.py",
+      "contentHash": "74d186c6e073e330c41e38a2b9d4d4981372a7af2f524445808960d78b6e598d",
+      "functions": [],
+      "classes": [
+        {
+          "name": "PlanItemOut",
+          "methods": [],
+          "properties": [
+            "topic_id",
+            "title",
+            "day_index",
+            "sequence",
+            "estimated_minutes",
+            "goal",
+            "reason",
+            "status"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "PlannerOutput",
+          "methods": [],
+          "properties": [
+            "plan_id",
+            "version",
+            "valid",
+            "validation_errors",
+            "items"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "StudyPlannerAgent",
+          "methods": [
+            "__init__",
+            "process",
+            "_load_topics",
+            "_latest_plan",
+            "_pack_fast",
+            "_persist"
+          ],
+          "properties": [
+            "actions"
+          ],
+          "exported": true,
+          "lineCount": 207
+        }
+      ],
+      "imports": [
+        {
+          "source": "datetime",
+          "specifiers": [
+            "UTC",
+            "date",
+            "datetime"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "ClassVar"
+          ]
+        },
+        {
+          "source": "pydantic",
+          "specifiers": [
+            "BaseModel",
+            "Field"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "select"
+          ]
+        },
+        {
+          "source": "..logging.logger",
+          "specifiers": [
+            "get_logger"
+          ]
+        },
+        {
+          "source": "..models",
+          "specifiers": [
+            "StudentMastery",
+            "StudyPlan",
+            "StudyPlanItem",
+            "Topic"
+          ]
+        },
+        {
+          "source": "..services",
+          "specifiers": [
+            "mastery_svc"
+          ]
+        },
+        {
+          "source": "..services.scheduler",
+          "specifiers": [
+            "PlanItem",
+            "PlanTopic",
+            "adapt_plan",
+            "build_plan",
+            "validate_plan"
+          ]
+        },
+        {
+          "source": ".base",
+          "specifiers": [
+            "BaseAgent"
+          ]
+        },
+        {
+          "source": ".message",
+          "specifiers": [
+            "AgentMessage"
+          ]
+        }
+      ],
+      "exports": [
+        "PlanItemOut",
+        "PlannerOutput",
+        "StudyPlannerAgent"
+      ],
+      "totalLines": 251,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/agents/quiz_agent.py": {
+      "filePath": "src/adapted/agents/quiz_agent.py",
+      "contentHash": "d2cd93e0b490f992402cf719b76005424d675712f76d6e88637bb7f29900b9ec",
+      "functions": [],
+      "classes": [
+        {
+          "name": "GeneratedQuestion",
+          "methods": [],
+          "properties": [
+            "question_type",
+            "prompt",
+            "choices",
+            "correct_answer",
+            "explanation",
+            "difficulty",
+            "source_ref"
+          ],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "QuizOutput",
+          "methods": [],
+          "properties": [
+            "questions"
+          ],
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "QuizAgent",
+          "methods": [
+            "__init__",
+            "process",
+            "output_is_empty",
+            "_build_request"
+          ],
+          "properties": [
+            "actions"
+          ],
+          "exported": true,
+          "lineCount": 160
+        }
+      ],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "ClassVar"
+          ]
+        },
+        {
+          "source": "pydantic",
+          "specifiers": [
+            "BaseModel",
+            "Field"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "select"
+          ]
+        },
+        {
+          "source": "..logging.logger",
+          "specifiers": [
+            "get_logger"
+          ]
+        },
+        {
+          "source": "..models",
+          "specifiers": [
+            "Question",
+            "Quiz",
+            "QuizQuestion",
+            "Topic"
+          ]
+        },
+        {
+          "source": "..services.grading",
+          "specifiers": [
+            "question_hash"
+          ]
+        },
+        {
+          "source": ".base",
+          "specifiers": [
+            "BaseAgent"
+          ]
+        },
+        {
+          "source": ".message",
+          "specifiers": [
+            "AgentMessage"
+          ]
+        }
+      ],
+      "exports": [
+        "GeneratedQuestion",
+        "QuizOutput",
+        "QuizAgent"
+      ],
+      "totalLines": 191,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/agents/recommendation_agent.py": {
+      "filePath": "src/adapted/agents/recommendation_agent.py",
+      "contentHash": "d77107ecb6cde44f14b3234295fda0adf5f3b73a07631c7f1e8f3d1b93b2c98d",
+      "functions": [],
+      "classes": [
+        {
+          "name": "RecommendationOut",
+          "methods": [],
+          "properties": [
+            "action",
+            "title",
+            "reasons",
+            "payload",
+            "confidence",
+            "needs_teacher_review"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "RecommendationOutput",
+          "methods": [],
+          "properties": [
+            "student_id",
+            "course_id",
+            "recommendation",
+            "message"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "RecommendationAgent",
+          "methods": [
+            "__init__",
+            "process",
+            "_decide",
+            "_mock_narrative",
+            "_llm_narrative"
+          ],
+          "properties": [
+            "actions"
+          ],
+          "exported": true,
+          "lineCount": 129
+        }
+      ],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "ClassVar"
+          ]
+        },
+        {
+          "source": "pydantic",
+          "specifiers": [
+            "BaseModel",
+            "Field"
+          ]
+        },
+        {
+          "source": "..logging.logger",
+          "specifiers": [
+            "get_logger"
+          ]
+        },
+        {
+          "source": "..models",
+          "specifiers": [
+            "Recommendation"
+          ]
+        },
+        {
+          "source": ".base",
+          "specifiers": [
+            "BaseAgent"
+          ]
+        },
+        {
+          "source": ".message",
+          "specifiers": [
+            "AgentMessage"
+          ]
+        }
+      ],
+      "exports": [
+        "RecommendationOut",
+        "RecommendationOutput",
+        "RecommendationAgent"
+      ],
+      "totalLines": 160,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/agents/supervisor.py": {
+      "filePath": "src/adapted/agents/supervisor.py",
+      "contentHash": "887a7672683ae7f682b100d976c767124881a5b653fc824ae076f93cb17b61ac",
+      "functions": [],
+      "classes": [
+        {
+          "name": "Supervisor",
+          "methods": [
+            "__init__",
+            "classify",
+            "start_task",
+            "initial_message",
+            "_receiver_for_action",
+            "finish_task",
+            "log_message"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 89
+        }
+      ],
+      "imports": [
+        {
+          "source": "uuid",
+          "specifiers": [
+            "uuid"
+          ]
+        },
+        {
+          "source": "datetime",
+          "specifiers": [
+            "UTC"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "select"
+          ]
+        },
+        {
+          "source": "sqlalchemy.orm",
+          "specifiers": [
+            "Session"
+          ]
+        },
+        {
+          "source": "..logging.logger",
+          "specifiers": [
+            "get_logger"
+          ]
+        },
+        {
+          "source": "..models",
+          "specifiers": [
+            "AgentMessageRow"
+          ]
+        },
+        {
+          "source": "..models",
+          "specifiers": [
+            "AgentTask"
+          ]
+        },
+        {
+          "source": ".message",
+          "specifiers": [
+            "AgentMessage"
+          ]
+        }
+      ],
+      "exports": [
+        "Supervisor"
+      ],
+      "totalLines": 119,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/api/deps.py": {
+      "filePath": "src/adapted/api/deps.py",
+      "contentHash": "6b173f968db639a8ce9bd5becbe292a94d3e45d51ba9b24487a0060332e4d8b0",
+      "functions": [
+        {
+          "name": "get_current_user",
+          "params": [
+            "credentials",
+            "db"
+          ],
+          "returnType": "User",
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "require_role",
+          "params": [],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "get_teacher_row",
+          "params": [
+            "db",
+            "user"
+          ],
+          "returnType": "Teacher",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "get_student_row",
+          "params": [
+            "db",
+            "user"
+          ],
+          "returnType": "Student",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "assert_course_owner",
+          "params": [
+            "db",
+            "course_id",
+            "teacher_id"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "assert_student_enrolled",
+          "params": [
+            "db",
+            "course_id",
+            "student_id"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 10
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Annotated"
+          ]
+        },
+        {
+          "source": "jwt",
+          "specifiers": [
+            "pyjwt"
+          ]
+        },
+        {
+          "source": "fastapi",
+          "specifiers": [
+            "Depends",
+            "HTTPException",
+            "status"
+          ]
+        },
+        {
+          "source": "fastapi.security",
+          "specifiers": [
+            "HTTPAuthorizationCredentials",
+            "HTTPBearer"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "select"
+          ]
+        },
+        {
+          "source": "sqlalchemy.orm",
+          "specifiers": [
+            "Session"
+          ]
+        },
+        {
+          "source": "..database.session",
+          "specifiers": [
+            "get_db"
+          ]
+        },
+        {
+          "source": "..models",
+          "specifiers": [
+            "Student",
+            "Teacher",
+            "User"
+          ]
+        },
+        {
+          "source": "..security.jwt",
+          "specifiers": [
+            "decode_access_token"
+          ]
+        }
+      ],
+      "exports": [
+        "get_current_user",
+        "require_role",
+        "get_teacher_row",
+        "get_student_row",
+        "assert_course_owner",
+        "assert_student_enrolled"
+      ],
+      "totalLines": 84,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/api/routers/__init__.py": {
+      "filePath": "src/adapted/api/routers/__init__.py",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/api/routers/agent.py": {
+      "filePath": "src/adapted/api/routers/agent.py",
+      "contentHash": "4368ce43fef4af2ac4c5b23851665785c71b23c37e906992cbb4b9de06bc1049",
+      "functions": [
+        {
+          "name": "run_agent_pipeline",
+          "params": [
+            "body",
+            "user"
+          ],
+          "returnType": "PipelineResult",
+          "exported": true,
+          "lineCount": 23
+        }
+      ],
+      "classes": [
+        {
+          "name": "AgentRunRequest",
+          "methods": [],
+          "properties": [
+            "intent",
+            "payload"
+          ],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "imports": [
+        {
+          "source": "fastapi",
+          "specifiers": [
+            "APIRouter",
+            "HTTPException"
+          ]
+        },
+        {
+          "source": "pydantic",
+          "specifiers": [
+            "BaseModel",
+            "Field"
+          ]
+        },
+        {
+          "source": "...logging.logger",
+          "specifiers": [
+            "get_logger"
+          ]
+        },
+        {
+          "source": "...schemas.api",
+          "specifiers": [
+            "PipelineResult"
+          ]
+        },
+        {
+          "source": "...tasks.runner",
+          "specifiers": [
+            "submit_pipeline"
+          ]
+        },
+        {
+          "source": "..deps",
+          "specifiers": [
+            "AnyUserDep"
+          ]
+        }
+      ],
+      "exports": [
+        "AgentRunRequest",
+        "run_agent_pipeline"
+      ],
+      "totalLines": 44,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/api/routers/agent_ops.py": {
+      "filePath": "src/adapted/api/routers/agent_ops.py",
+      "contentHash": "fa1e597fb92a3c11cbd2e8980785ad8cb3a16a60268496c26d8a4f8493ed21ad",
+      "functions": [
+        {
+          "name": "reap_stale_tasks",
+          "params": [
+            "db"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 22
+        },
+        {
+          "name": "list_tasks",
+          "params": [
+            "user",
+            "db",
+            "limit",
+            "workflow"
+          ],
+          "returnType": "list[AgentTaskOut]",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "get_task",
+          "params": [
+            "task_id",
+            "user",
+            "db"
+          ],
+          "returnType": "AgentTaskOut",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "list_messages",
+          "params": [
+            "user",
+            "db",
+            "task_id",
+            "correlation_id",
+            "limit"
+          ],
+          "returnType": "list[AgentMessageOut]",
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "agent_runs",
+          "params": [
+            "user",
+            "db",
+            "limit"
+          ],
+          "returnType": "list[AgentTaskOut]",
+          "exported": true,
+          "lineCount": 7
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "datetime",
+          "specifiers": [
+            "UTC",
+            "datetime",
+            "timedelta"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Annotated"
+          ]
+        },
+        {
+          "source": "fastapi",
+          "specifiers": [
+            "APIRouter",
+            "Depends",
+            "Query"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "select"
+          ]
+        },
+        {
+          "source": "sqlalchemy.orm",
+          "specifiers": [
+            "Session"
+          ]
+        },
+        {
+          "source": "...database.session",
+          "specifiers": [
+            "get_db"
+          ]
+        },
+        {
+          "source": "...logging.logger",
+          "specifiers": [
+            "get_logger"
+          ]
+        },
+        {
+          "source": "...models",
+          "specifiers": [
+            "AgentMessage",
+            "AgentTask"
+          ]
+        },
+        {
+          "source": "...schemas.api",
+          "specifiers": [
+            "AgentMessageOut",
+            "AgentTaskOut"
+          ]
+        },
+        {
+          "source": "..deps",
+          "specifiers": [
+            "AnyUserDep"
+          ]
+        }
+      ],
+      "exports": [
+        "reap_stale_tasks",
+        "list_tasks",
+        "get_task",
+        "list_messages",
+        "agent_runs"
+      ],
+      "totalLines": 96,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/api/routers/auth.py": {
+      "filePath": "src/adapted/api/routers/auth.py",
+      "contentHash": "dba7cd90158cdbca27fbc32dc3b9d9f3e54f73e4ce41bc8b7e5892f85f0453b1",
+      "functions": [
+        {
+          "name": "register",
+          "params": [
+            "body",
+            "db"
+          ],
+          "returnType": "TokenResponse",
+          "exported": true,
+          "lineCount": 41
+        },
+        {
+          "name": "login",
+          "params": [
+            "body",
+            "db"
+          ],
+          "returnType": "TokenResponse",
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "me",
+          "params": [
+            "user"
+          ],
+          "returnType": "UserOut",
+          "exported": true,
+          "lineCount": 2
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Annotated"
+          ]
+        },
+        {
+          "source": "fastapi",
+          "specifiers": [
+            "APIRouter",
+            "Depends",
+            "HTTPException",
+            "status"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "select"
+          ]
+        },
+        {
+          "source": "sqlalchemy.orm",
+          "specifiers": [
+            "Session"
+          ]
+        },
+        {
+          "source": "...database.session",
+          "specifiers": [
+            "get_db"
+          ]
+        },
+        {
+          "source": "...models",
+          "specifiers": [
+            "Student",
+            "Teacher",
+            "User"
+          ]
+        },
+        {
+          "source": "...schemas.api",
+          "specifiers": [
+            "LoginRequest",
+            "RegisterRequest",
+            "TokenResponse",
+            "UserOut"
+          ]
+        },
+        {
+          "source": "...security.jwt",
+          "specifiers": [
+            "create_access_token"
+          ]
+        },
+        {
+          "source": "...security.passwords",
+          "specifiers": [
+            "hash_password",
+            "verify_password"
+          ]
+        },
+        {
+          "source": "..deps",
+          "specifiers": [
+            "AnyUserDep"
+          ]
+        }
+      ],
+      "exports": [
+        "register",
+        "login",
+        "me"
+      ],
+      "totalLines": 92,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/api/routers/courses.py": {
+      "filePath": "src/adapted/api/routers/courses.py",
+      "contentHash": "d3034218084c8a34d3434fdb58a8dc904b53f96e140aafd4f8415f449db59840",
+      "functions": [
+        {
+          "name": "create_course",
+          "params": [
+            "body",
+            "teacher",
+            "db"
+          ],
+          "returnType": "CourseOut",
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "list_courses",
+          "params": [
+            "user",
+            "db"
+          ],
+          "returnType": "list[CourseOut]",
+          "exported": true,
+          "lineCount": 22
+        },
+        {
+          "name": "get_course",
+          "params": [
+            "course_id",
+            "user",
+            "db"
+          ],
+          "returnType": "CourseOut",
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "enroll_student",
+          "params": [
+            "course_id",
+            "body",
+            "teacher",
+            "db"
+          ],
+          "returnType": "CourseOut",
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "upload_document",
+          "params": [
+            "course_id",
+            "file",
+            "teacher",
+            "db"
+          ],
+          "returnType": "DocumentOut",
+          "exported": true,
+          "lineCount": 40
+        },
+        {
+          "name": "list_documents",
+          "params": [
+            "course_id",
+            "user",
+            "db"
+          ],
+          "returnType": "list[DocumentOut]",
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "get_document_status",
+          "params": [
+            "course_id",
+            "document_id",
+            "user",
+            "db"
+          ],
+          "returnType": "DocumentOut",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "delete_document",
+          "params": [
+            "course_id",
+            "document_id",
+            "teacher",
+            "db"
+          ],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "clear_course_contents",
+          "params": [
+            "course_id",
+            "teacher",
+            "db"
+          ],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "delete_course",
+          "params": [
+            "course_id",
+            "teacher",
+            "db"
+          ],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "_get_owned_course",
+          "params": [
+            "db",
+            "course_id",
+            "teacher_id"
+          ],
+          "returnType": "Course",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "_unlink_file",
+          "params": [
+            "storage_path"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "_purge_course_data",
+          "params": [
+            "db",
+            "course_id"
+          ],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 27
+        },
+        {
+          "name": "_build_document_out",
+          "params": [
+            "db",
+            "doc"
+          ],
+          "returnType": "DocumentOut",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "_course_out",
+          "params": [
+            "db",
+            "course"
+          ],
+          "returnType": "CourseOut",
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "_audit",
+          "params": [
+            "db",
+            "user",
+            "action",
+            "resource_id",
+            "detail"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 12
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Annotated"
+          ]
+        },
+        {
+          "source": "uuid",
+          "specifiers": [
+            "uuid4"
+          ]
+        },
+        {
+          "source": "fastapi",
+          "specifiers": [
+            "APIRouter",
+            "Depends",
+            "File",
+            "HTTPException",
+            "UploadFile"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "delete",
+            "func",
+            "select",
+            "update"
+          ]
+        },
+        {
+          "source": "sqlalchemy.orm",
+          "specifiers": [
+            "Session"
+          ]
+        },
+        {
+          "source": "...config",
+          "specifiers": [
+            "settings"
+          ]
+        },
+        {
+          "source": "...database.session",
+          "specifiers": [
+            "get_db"
+          ]
+        },
+        {
+          "source": "...logging.logger",
+          "specifiers": [
+            "get_logger"
+          ]
+        },
+        {
+          "source": "...models",
+          "specifiers": [
+            "Chapter",
+            "ContentChunk",
+            "ConversationMemory",
+            "Course",
+            "Document",
+            "Enrollment",
+            "Lesson",
+            "Question",
+            "Quiz",
+            "Recommendation",
+            "Student",
+            "StudyHistory",
+            "StudyPlan",
+            "User"
+          ]
+        },
+        {
+          "source": "...models.observability",
+          "specifiers": [
+            "AuditLog"
+          ]
+        },
+        {
+          "source": "...rag.parser",
+          "specifiers": [
+            "SUPPORTED_EXTENSIONS"
+          ]
+        },
+        {
+          "source": "...schemas.api",
+          "specifiers": [
+            "CourseCreate",
+            "CourseOut",
+            "DocumentOut",
+            "EnrollRequest"
+          ]
+        },
+        {
+          "source": "..deps",
+          "specifiers": [
+            "AnyUserDep",
+            "TeacherDep",
+            "assert_course_owner",
+            "get_teacher_row"
+          ]
+        }
+      ],
+      "exports": [
+        "create_course",
+        "list_courses",
+        "get_course",
+        "enroll_student",
+        "upload_document",
+        "list_documents",
+        "get_document_status",
+        "delete_document",
+        "clear_course_contents",
+        "delete_course",
+        "_get_owned_course",
+        "_unlink_file",
+        "_purge_course_data",
+        "_build_document_out",
+        "_course_out",
+        "_audit"
+      ],
+      "totalLines": 368,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/api/routers/curriculum.py": {
+      "filePath": "src/adapted/api/routers/curriculum.py",
+      "contentHash": "caa6e457cc81eb3928c035323b1c536498be0542b1059f034b77a298aaf18f4c",
+      "functions": [
+        {
+          "name": "_topic_out",
+          "params": [
+            "db",
+            "t"
+          ],
+          "returnType": "TopicOut",
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "get_curriculum",
+          "params": [
+            "course_id",
+            "user",
+            "db"
+          ],
+          "returnType": "CurriculumOut",
+          "exported": true,
+          "lineCount": 36
+        },
+        {
+          "name": "get_topic",
+          "params": [
+            "course_id",
+            "topic_id",
+            "user",
+            "db"
+          ],
+          "returnType": "TopicOut",
+          "exported": true,
+          "lineCount": 10
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Annotated"
+          ]
+        },
+        {
+          "source": "fastapi",
+          "specifiers": [
+            "APIRouter",
+            "Depends",
+            "HTTPException"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "select"
+          ]
+        },
+        {
+          "source": "sqlalchemy.orm",
+          "specifiers": [
+            "Session"
+          ]
+        },
+        {
+          "source": "...database.session",
+          "specifiers": [
+            "get_db"
+          ]
+        },
+        {
+          "source": "...models",
+          "specifiers": [
+            "Chapter",
+            "Course",
+            "LearningObjective",
+            "Topic"
+          ]
+        },
+        {
+          "source": "...schemas.api",
+          "specifiers": [
+            "ChapterOut",
+            "CurriculumOut",
+            "TopicOut"
+          ]
+        },
+        {
+          "source": "..deps",
+          "specifiers": [
+            "AnyUserDep"
+          ]
+        }
+      ],
+      "exports": [
+        "_topic_out",
+        "get_curriculum",
+        "get_topic"
+      ],
+      "totalLines": 94,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/api/routers/lessons.py": {
+      "filePath": "src/adapted/api/routers/lessons.py",
+      "contentHash": "f30d304d3cbaca3b0a6f7cb744cacb72248a3464512c58826bd40679cf38bb56",
+      "functions": [
+        {
+          "name": "generate_lesson",
+          "params": [
+            "body",
+            "user",
+            "db"
+          ],
+          "returnType": "PipelineResult",
+          "exported": true,
+          "lineCount": 26
+        },
+        {
+          "name": "get_lesson",
+          "params": [
+            "lesson_id",
+            "user",
+            "db"
+          ],
+          "returnType": "LessonOut",
+          "exported": true,
+          "lineCount": 14
+        }
+      ],
+      "classes": [
+        {
+          "name": "LessonGenerateRequest",
+          "methods": [],
+          "properties": [
+            "course_id",
+            "topic_id",
+            "student_id",
+            "level"
+          ],
+          "exported": true,
+          "lineCount": 5
+        }
+      ],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Annotated"
+          ]
+        },
+        {
+          "source": "fastapi",
+          "specifiers": [
+            "APIRouter",
+            "Depends",
+            "HTTPException"
+          ]
+        },
+        {
+          "source": "pydantic",
+          "specifiers": [
+            "BaseModel"
+          ]
+        },
+        {
+          "source": "sqlalchemy.orm",
+          "specifiers": [
+            "Session"
+          ]
+        },
+        {
+          "source": "...database.session",
+          "specifiers": [
+            "get_db"
+          ]
+        },
+        {
+          "source": "...logging.logger",
+          "specifiers": [
+            "get_logger"
+          ]
+        },
+        {
+          "source": "...models",
+          "specifiers": [
+            "Course",
+            "Lesson"
+          ]
+        },
+        {
+          "source": "...schemas.api",
+          "specifiers": [
+            "LessonOut",
+            "PipelineResult"
+          ]
+        },
+        {
+          "source": "...tasks.runner",
+          "specifiers": [
+            "submit_pipeline"
+          ]
+        },
+        {
+          "source": "..deps",
+          "specifiers": [
+            "AnyUserDep"
+          ]
+        }
+      ],
+      "exports": [
+        "LessonGenerateRequest",
+        "generate_lesson",
+        "get_lesson"
+      ],
+      "totalLines": 71,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/api/routers/logs.py": {
+      "filePath": "src/adapted/api/routers/logs.py",
+      "contentHash": "d69fef60e8978cb2ce33111ae814ffee2d59d8d6850ca7099daeef3a05ecebcd",
+      "functions": [
+        {
+          "name": "audit_logs",
+          "params": [
+            "teacher",
+            "db",
+            "limit"
+          ],
+          "returnType": "list[dict]",
+          "exported": true,
+          "lineCount": 20
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Annotated"
+          ]
+        },
+        {
+          "source": "fastapi",
+          "specifiers": [
+            "APIRouter",
+            "Depends",
+            "Query"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "select"
+          ]
+        },
+        {
+          "source": "sqlalchemy.orm",
+          "specifiers": [
+            "Session"
+          ]
+        },
+        {
+          "source": "...database.session",
+          "specifiers": [
+            "get_db"
+          ]
+        },
+        {
+          "source": "...models",
+          "specifiers": [
+            "AuditLog"
+          ]
+        },
+        {
+          "source": "..deps",
+          "specifiers": [
+            "TeacherDep"
+          ]
+        }
+      ],
+      "exports": [
+        "audit_logs"
+      ],
+      "totalLines": 37,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/api/routers/quizzes.py": {
+      "filePath": "src/adapted/api/routers/quizzes.py",
+      "contentHash": "475a748476c06d2eba76034188f82662a36ece5c4cb0fa76a32e303b322e8239",
+      "functions": [
+        {
+          "name": "generate_quiz",
+          "params": [
+            "body",
+            "user",
+            "db"
+          ],
+          "returnType": "PipelineResult",
+          "exported": true,
+          "lineCount": 35
+        },
+        {
+          "name": "get_quiz",
+          "params": [
+            "quiz_id",
+            "user",
+            "db"
+          ],
+          "returnType": "QuizOut",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "submit_quiz",
+          "params": [
+            "quiz_id",
+            "body",
+            "user",
+            "db"
+          ],
+          "returnType": "dict[str, Any]",
+          "exported": true,
+          "lineCount": 90
+        },
+        {
+          "name": "_quiz_out",
+          "params": [
+            "db",
+            "quiz_id"
+          ],
+          "returnType": "QuizOut",
+          "exported": true,
+          "lineCount": 37
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Annotated",
+            "Any"
+          ]
+        },
+        {
+          "source": "fastapi",
+          "specifiers": [
+            "APIRouter",
+            "Depends",
+            "HTTPException"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "select"
+          ]
+        },
+        {
+          "source": "sqlalchemy.orm",
+          "specifiers": [
+            "Session"
+          ]
+        },
+        {
+          "source": "...database.session",
+          "specifiers": [
+            "get_db"
+          ]
+        },
+        {
+          "source": "...logging.logger",
+          "specifiers": [
+            "get_logger"
+          ]
+        },
+        {
+          "source": "...models",
+          "specifiers": [
+            "Answer",
+            "Course",
+            "Enrollment",
+            "Question",
+            "Quiz",
+            "QuizAttempt",
+            "QuizQuestion",
+            "Student"
+          ]
+        },
+        {
+          "source": "...schemas.api",
+          "specifiers": [
+            "PipelineResult",
+            "QuestionOut",
+            "QuizGenerateRequest",
+            "QuizOut",
+            "QuizSubmitRequest"
+          ]
+        },
+        {
+          "source": "...tasks.runner",
+          "specifiers": [
+            "submit_pipeline"
+          ]
+        },
+        {
+          "source": "..deps",
+          "specifiers": [
+            "AnyUserDep"
+          ]
+        }
+      ],
+      "exports": [
+        "generate_quiz",
+        "get_quiz",
+        "submit_quiz",
+        "_quiz_out"
+      ],
+      "totalLines": 213,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/api/routers/students.py": {
+      "filePath": "src/adapted/api/routers/students.py",
+      "contentHash": "ea31bb8e88a33ac434fbf062d64604f301d07cde8db1016fd0a26436e9860d4f",
+      "functions": [
+        {
+          "name": "_authorize",
+          "params": [
+            "db",
+            "user",
+            "student_id",
+            "course_id"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "get_student_profile",
+          "params": [
+            "student_id",
+            "user",
+            "db"
+          ],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "get_performance",
+          "params": [
+            "student_id",
+            "user",
+            "db"
+          ],
+          "returnType": "PerformanceOut",
+          "exported": true,
+          "lineCount": 25
+        },
+        {
+          "name": "get_mastery",
+          "params": [
+            "student_id",
+            "user",
+            "db"
+          ],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "get_recommendations",
+          "params": [
+            "student_id",
+            "user",
+            "db"
+          ],
+          "returnType": "list[RecommendationOut]",
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "update_recommendation",
+          "params": [
+            "student_id",
+            "recommendation_id",
+            "body",
+            "user",
+            "db"
+          ],
+          "returnType": "RecommendationOut",
+          "exported": true,
+          "lineCount": 15
+        },
+        {
+          "name": "set_student_preference",
+          "params": [
+            "student_id",
+            "body",
+            "user",
+            "db"
+          ],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "_default_course_id",
+          "params": [
+            "db",
+            "user",
+            "student_id"
+          ],
+          "returnType": "str | None",
+          "exported": true,
+          "lineCount": 14
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Annotated"
+          ]
+        },
+        {
+          "source": "fastapi",
+          "specifiers": [
+            "APIRouter",
+            "Depends",
+            "HTTPException"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "select"
+          ]
+        },
+        {
+          "source": "sqlalchemy.orm",
+          "specifiers": [
+            "Session"
+          ]
+        },
+        {
+          "source": "...database.session",
+          "specifiers": [
+            "get_db"
+          ]
+        },
+        {
+          "source": "...memory.student_memory",
+          "specifiers": [
+            "build_profile",
+            "set_preference"
+          ]
+        },
+        {
+          "source": "...models",
+          "specifiers": [
+            "Course",
+            "Recommendation",
+            "User"
+          ]
+        },
+        {
+          "source": "...models",
+          "specifiers": [
+            "_E"
+          ]
+        },
+        {
+          "source": "...schemas.api",
+          "specifiers": [
+            "MasteryOut",
+            "MisconceptionOut",
+            "PerformanceOut",
+            "RecommendationOut"
+          ]
+        },
+        {
+          "source": "..deps",
+          "specifiers": [
+            "AnyUserDep"
+          ]
+        }
+      ],
+      "exports": [
+        "_authorize",
+        "get_student_profile",
+        "get_performance",
+        "get_mastery",
+        "get_recommendations",
+        "update_recommendation",
+        "set_student_preference",
+        "_default_course_id"
+      ],
+      "totalLines": 178,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/api/routers/study_plans.py": {
+      "filePath": "src/adapted/api/routers/study_plans.py",
+      "contentHash": "a595c958ec3979343f9122d1936cd568557f20abe0689093061fad18ae829956",
+      "functions": [
+        {
+          "name": "_plan_out",
+          "params": [
+            "db",
+            "plan"
+          ],
+          "returnType": "StudyPlanOut",
+          "exported": true,
+          "lineCount": 32
+        },
+        {
+          "name": "get_study_plan",
+          "params": [
+            "student_id",
+            "course_id",
+            "user",
+            "db"
+          ],
+          "returnType": "StudyPlanOut",
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "get_student_study_plan",
+          "params": [
+            "student_id",
+            "user",
+            "db"
+          ],
+          "returnType": "StudyPlanOut",
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "_authorize",
+          "params": [
+            "db",
+            "user",
+            "course_id",
+            "student_id"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 11
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Annotated"
+          ]
+        },
+        {
+          "source": "fastapi",
+          "specifiers": [
+            "APIRouter",
+            "Depends",
+            "HTTPException"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "select"
+          ]
+        },
+        {
+          "source": "sqlalchemy.orm",
+          "specifiers": [
+            "Session"
+          ]
+        },
+        {
+          "source": "...database.session",
+          "specifiers": [
+            "get_db"
+          ]
+        },
+        {
+          "source": "...models",
+          "specifiers": [
+            "Course",
+            "StudyPlan",
+            "StudyPlanItem",
+            "User"
+          ]
+        },
+        {
+          "source": "...schemas.api",
+          "specifiers": [
+            "PlanItemOut",
+            "StudyPlanOut"
+          ]
+        },
+        {
+          "source": "..deps",
+          "specifiers": [
+            "AnyUserDep",
+            "assert_student_enrolled"
+          ]
+        }
+      ],
+      "exports": [
+        "_plan_out",
+        "get_study_plan",
+        "get_student_study_plan",
+        "_authorize"
+      ],
+      "totalLines": 105,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/api/routers/teacher.py": {
+      "filePath": "src/adapted/api/routers/teacher.py",
+      "contentHash": "73fd4f3aa9653898b711b5e116dfc9fd2f7b9492cae8b4a3f7e8f978f5045d21",
+      "functions": [
+        {
+          "name": "class_students",
+          "params": [
+            "course_id",
+            "teacher",
+            "db"
+          ],
+          "returnType": "list[dict]",
+          "exported": true,
+          "lineCount": 22
+        },
+        {
+          "name": "class_analytics",
+          "params": [
+            "course_id",
+            "teacher",
+            "db"
+          ],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 45
+        },
+        {
+          "name": "student_grades",
+          "params": [
+            "course_id",
+            "student_id",
+            "teacher",
+            "db"
+          ],
+          "returnType": "list[dict]",
+          "exported": true,
+          "lineCount": 35
+        },
+        {
+          "name": "pending_review",
+          "params": [
+            "teacher",
+            "db"
+          ],
+          "returnType": "list[dict]",
+          "exported": true,
+          "lineCount": 40
+        },
+        {
+          "name": "override_grade",
+          "params": [
+            "answer_id",
+            "body",
+            "teacher",
+            "db"
+          ],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 20
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Annotated"
+          ]
+        },
+        {
+          "source": "fastapi",
+          "specifiers": [
+            "APIRouter",
+            "Depends",
+            "HTTPException"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "select"
+          ]
+        },
+        {
+          "source": "sqlalchemy.orm",
+          "specifiers": [
+            "Session"
+          ]
+        },
+        {
+          "source": "...database.session",
+          "specifiers": [
+            "get_db"
+          ]
+        },
+        {
+          "source": "...memory.student_memory",
+          "specifiers": [
+            "build_profile"
+          ]
+        },
+        {
+          "source": "...models",
+          "specifiers": [
+            "Answer",
+            "Course",
+            "Enrollment",
+            "Grade",
+            "Question",
+            "Quiz",
+            "QuizAttempt",
+            "Student",
+            "StudentMastery",
+            "Topic",
+            "User"
+          ]
+        },
+        {
+          "source": "...services",
+          "specifiers": [
+            "mastery_svc"
+          ]
+        },
+        {
+          "source": "...services.analytics",
+          "specifiers": [
+            "class_topic_summary"
+          ]
+        },
+        {
+          "source": "..deps",
+          "specifiers": [
+            "TeacherDep",
+            "assert_course_owner"
+          ]
+        }
+      ],
+      "exports": [
+        "class_students",
+        "class_analytics",
+        "student_grades",
+        "pending_review",
+        "override_grade"
+      ],
+      "totalLines": 206,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/api/routers/users.py": {
+      "filePath": "src/adapted/api/routers/users.py",
+      "contentHash": "474bcb40febde02017ae48ffc1be2d907ef1b40639017132b6c6822976cd486a",
+      "functions": [
+        {
+          "name": "search_users",
+          "params": [
+            "teacher",
+            "db",
+            "q",
+            "role",
+            "limit"
+          ],
+          "returnType": "list[UserOut]",
+          "exported": true,
+          "lineCount": 41
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Annotated"
+          ]
+        },
+        {
+          "source": "fastapi",
+          "specifiers": [
+            "APIRouter",
+            "Depends",
+            "Query"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "or_",
+            "select"
+          ]
+        },
+        {
+          "source": "sqlalchemy.orm",
+          "specifiers": [
+            "Session"
+          ]
+        },
+        {
+          "source": "...database.session",
+          "specifiers": [
+            "get_db"
+          ]
+        },
+        {
+          "source": "...models",
+          "specifiers": [
+            "Student",
+            "User"
+          ]
+        },
+        {
+          "source": "...schemas.api",
+          "specifiers": [
+            "UserOut"
+          ]
+        },
+        {
+          "source": "..deps",
+          "specifiers": [
+            "TeacherDep"
+          ]
+        }
+      ],
+      "exports": [
+        "search_users"
+      ],
+      "totalLines": 59,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/config.py": {
+      "filePath": "src/adapted/config.py",
+      "contentHash": "3aa6be12b61e2a82638f3db113494db4bbf73835c8d7900a627d56500beabd4d",
+      "functions": [
+        {
+          "name": "get_settings",
+          "params": [],
+          "returnType": "Settings",
+          "exported": true,
+          "lineCount": 2
+        }
+      ],
+      "classes": [
+        {
+          "name": "Settings",
+          "methods": [
+            "redacted_database_url",
+            "cors_origin_list",
+            "storage_path"
+          ],
+          "properties": [
+            "app_name",
+            "app_env",
+            "debug",
+            "secret_key",
+            "cors_origins",
+            "storage_dir",
+            "database_url",
+            "llm_provider",
+            "openrouter_base_url",
+            "openrouter_api_key",
+            "llm_model",
+            "embed_model",
+            "embed_provider",
+            "embedding_dim",
+            "searxng_url",
+            "searxng_insecure",
+            "jwt_algorithm",
+            "access_token_expire_minutes",
+            "default_daily_study_minutes",
+            "max_upload_bytes",
+            "rag_top_k",
+            "agent_max_retries",
+            "agent_retry_backoff_seconds",
+            "llm_timeout_seconds"
+          ],
+          "exported": true,
+          "lineCount": 71
+        }
+      ],
+      "imports": [
+        {
+          "source": "functools",
+          "specifiers": [
+            "lru_cache"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "pydantic_settings",
+          "specifiers": [
+            "BaseSettings",
+            "SettingsConfigDict"
+          ]
+        }
+      ],
+      "exports": [
+        "Settings",
+        "get_settings"
+      ],
+      "totalLines": 90,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/database/base.py": {
+      "filePath": "src/adapted/database/base.py",
+      "contentHash": "40c5dd8045c8a6a04b9dea1bbe1a039d975e68dd968b3a6a6328178467b7ca72",
+      "functions": [
+        {
+          "name": "create_engine_and_session",
+          "params": [
+            "database_url",
+            "debug"
+          ],
+          "exported": true,
+          "lineCount": 4
+        }
+      ],
+      "classes": [
+        {
+          "name": "VectorColumn",
+          "methods": [
+            "__init__",
+            "load_dialect_impl",
+            "process_bind_param",
+            "process_result_value"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "Base",
+          "methods": [],
+          "properties": [
+            "type_annotation_map"
+          ],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "ClassVar"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "JSON",
+            "MetaData",
+            "create_engine"
+          ]
+        },
+        {
+          "source": "sqlalchemy.orm",
+          "specifiers": [
+            "DeclarativeBase",
+            "sessionmaker"
+          ]
+        },
+        {
+          "source": "sqlalchemy.types",
+          "specifiers": [
+            "TypeDecorator"
+          ]
+        },
+        {
+          "source": "..config",
+          "specifiers": [
+            "settings"
+          ]
+        }
+      ],
+      "exports": [
+        "VectorColumn",
+        "Base",
+        "create_engine_and_session"
+      ],
+      "totalLines": 52,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/database/session.py": {
+      "filePath": "src/adapted/database/session.py",
+      "contentHash": "2ae190a32bafab9cc083545e728e9845818f2e0f820b40da82f27dbd287428be",
+      "functions": [
+        {
+          "name": "_resolve_database_url",
+          "params": [],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 31
+        },
+        {
+          "name": "new_id",
+          "params": [],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "new_code",
+          "params": [
+            "prefix"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "get_db",
+          "params": [],
+          "returnType": "Iterator[Session]",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "session_scope",
+          "params": [],
+          "returnType": "Iterator[Session]",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "init_db",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "reset_db",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "db_add",
+          "params": [
+            "db",
+            "obj"
+          ],
+          "returnType": "Any",
+          "exported": true,
+          "lineCount": 5
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "uuid",
+          "specifiers": [
+            "uuid"
+          ]
+        },
+        {
+          "source": "collections.abc",
+          "specifiers": [
+            "Iterator"
+          ]
+        },
+        {
+          "source": "contextlib",
+          "specifiers": [
+            "contextmanager"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "text"
+          ]
+        },
+        {
+          "source": "sqlalchemy.orm",
+          "specifiers": [
+            "Session"
+          ]
+        },
+        {
+          "source": "..config",
+          "specifiers": [
+            "settings"
+          ]
+        },
+        {
+          "source": "..logging.logger",
+          "specifiers": [
+            "get_logger"
+          ]
+        },
+        {
+          "source": ".base",
+          "specifiers": [
+            "Base",
+            "create_engine_and_session"
+          ]
+        }
+      ],
+      "exports": [
+        "_resolve_database_url",
+        "new_id",
+        "new_code",
+        "get_db",
+        "session_scope",
+        "init_db",
+        "reset_db",
+        "db_add"
+      ],
+      "totalLines": 100,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/graph/runtime.py": {
+      "filePath": "src/adapted/graph/runtime.py",
+      "contentHash": "965857b67e9c4403b85443a6dbd36eaecfded544f4549f93921748920d407ec6",
+      "functions": [],
+      "classes": [
+        {
+          "name": "GraphState",
+          "methods": [],
+          "properties": [
+            "task_id",
+            "correlation_id",
+            "intent",
+            "user_id",
+            "payload",
+            "context",
+            "errors",
+            "status"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "AgentRuntime",
+          "methods": [
+            "__init__",
+            "build_agents",
+            "_dispatch_node",
+            "_chain_payload",
+            "_run_with_retry",
+            "compile",
+            "supervisor_node",
+            "_is_quiz_submit",
+            "_route",
+            "finalize_node",
+            "run"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 300
+        }
+      ],
+      "imports": [
+        {
+          "source": "time",
+          "specifiers": [
+            "time"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "TypedDict"
+          ]
+        },
+        {
+          "source": "langgraph.graph",
+          "specifiers": [
+            "START",
+            "StateGraph"
+          ]
+        },
+        {
+          "source": "..agents.base",
+          "specifiers": [
+            "AgentResult"
+          ]
+        },
+        {
+          "source": "..agents.message",
+          "specifiers": [
+            "AgentMessage"
+          ]
+        },
+        {
+          "source": "..agents.supervisor",
+          "specifiers": [
+            "Supervisor"
+          ]
+        },
+        {
+          "source": "..config",
+          "specifiers": [
+            "settings"
+          ]
+        },
+        {
+          "source": "..logging.logger",
+          "specifiers": [
+            "get_logger"
+          ]
+        }
+      ],
+      "exports": [
+        "GraphState",
+        "AgentRuntime"
+      ],
+      "totalLines": 328,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/llm/base.py": {
+      "filePath": "src/adapted/llm/base.py",
+      "contentHash": "d1e909c62ab8cda989036293e9a9d99047e27b31e9a91f5d985475bce695575c",
+      "functions": [],
+      "classes": [
+        {
+          "name": "LLMRequest",
+          "methods": [],
+          "properties": [
+            "task",
+            "prompt",
+            "schema",
+            "meta",
+            "temperature"
+          ],
+          "exported": true,
+          "lineCount": 15
+        },
+        {
+          "name": "LLMProvider",
+          "methods": [
+            "generate",
+            "embed",
+            "is_mock"
+          ],
+          "properties": [
+            "name"
+          ],
+          "exported": true,
+          "lineCount": 22
+        }
+      ],
+      "imports": [
+        {
+          "source": "abc",
+          "specifiers": [
+            "ABC",
+            "abstractmethod"
+          ]
+        },
+        {
+          "source": "dataclasses",
+          "specifiers": [
+            "dataclass",
+            "field"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "Literal"
+          ]
+        }
+      ],
+      "exports": [
+        "LLMRequest",
+        "LLMProvider"
+      ],
+      "totalLines": 48,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/llm/mock.py": {
+      "filePath": "src/adapted/llm/mock.py",
+      "contentHash": "d3438f24af2f61f8b254a4353d47deb0043876e6114dc7f195cdc0d23d4e1254",
+      "functions": [
+        {
+          "name": "_stable_seed",
+          "params": [],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "_detect_subject",
+          "params": [
+            "text"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "_mock_curriculum",
+          "params": [
+            "meta"
+          ],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 50
+        },
+        {
+          "name": "_mock_lesson",
+          "params": [
+            "meta"
+          ],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 69
+        },
+        {
+          "name": "_mock_quiz",
+          "params": [
+            "meta"
+          ],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 76
+        },
+        {
+          "name": "_mock_grade",
+          "params": [
+            "meta"
+          ],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 39
+        },
+        {
+          "name": "_token_overlap",
+          "params": [
+            "a",
+            "b"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "_mock_recommendation",
+          "params": [
+            "meta"
+          ],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 17
+        }
+      ],
+      "classes": [
+        {
+          "name": "MockProvider",
+          "methods": [
+            "generate",
+            "embed",
+            "_embed",
+            "is_mock"
+          ],
+          "properties": [
+            "HANDLERS"
+          ],
+          "exported": true,
+          "lineCount": 47
+        }
+      ],
+      "imports": [
+        {
+          "source": "hashlib",
+          "specifiers": [
+            "hashlib"
+          ]
+        },
+        {
+          "source": "random",
+          "specifiers": [
+            "random"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "collections.abc",
+          "specifiers": [
+            "Callable"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "ClassVar",
+            "Literal"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "..config",
+          "specifiers": [
+            "settings"
+          ]
+        },
+        {
+          "source": ".base",
+          "specifiers": [
+            "LLMProvider",
+            "LLMRequest"
+          ]
+        }
+      ],
+      "exports": [
+        "_stable_seed",
+        "_detect_subject",
+        "_mock_curriculum",
+        "_mock_lesson",
+        "_mock_quiz",
+        "_mock_grade",
+        "_token_overlap",
+        "_mock_recommendation",
+        "MockProvider"
+      ],
+      "totalLines": 528,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/llm/openai_compatible.py": {
+      "filePath": "src/adapted/llm/openai_compatible.py",
+      "contentHash": "10fa5a14b903f20977ff15c678ee95055ada6710be7aed68977ed45a46dfd1e9",
+      "functions": [],
+      "classes": [
+        {
+          "name": "OpenAICompatibleProvider",
+          "methods": [
+            "__init__",
+            "generate",
+            "embed",
+            "is_mock"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 69
+        }
+      ],
+      "imports": [
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "logging",
+          "specifiers": [
+            "logging"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "Literal"
+          ]
+        },
+        {
+          "source": "openai",
+          "specifiers": [
+            "OpenAI"
+          ]
+        },
+        {
+          "source": "..config",
+          "specifiers": [
+            "settings"
+          ]
+        },
+        {
+          "source": ".base",
+          "specifiers": [
+            "LLMProvider",
+            "LLMRequest"
+          ]
+        }
+      ],
+      "exports": [
+        "OpenAICompatibleProvider"
+      ],
+      "totalLines": 84,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/llm/registry.py": {
+      "filePath": "src/adapted/llm/registry.py",
+      "contentHash": "45d5a6b81e76a41feccf76df94afea9c0dc280df03ba05e48054f413a4bc3b6a",
+      "functions": [
+        {
+          "name": "get_provider",
+          "params": [],
+          "returnType": "LLMProvider",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "get_embed_provider",
+          "params": [],
+          "returnType": "LLMProvider",
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "get_provider_cached",
+          "params": [],
+          "returnType": "LLMProvider",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "get_embed_provider_cached",
+          "params": [],
+          "returnType": "LLMProvider",
+          "exported": true,
+          "lineCount": 2
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "logging",
+          "specifiers": [
+            "logging"
+          ]
+        },
+        {
+          "source": "functools",
+          "specifiers": [
+            "lru_cache"
+          ]
+        },
+        {
+          "source": "..config",
+          "specifiers": [
+            "settings"
+          ]
+        },
+        {
+          "source": ".base",
+          "specifiers": [
+            "LLMProvider"
+          ]
+        },
+        {
+          "source": ".mock",
+          "specifiers": [
+            "MockProvider"
+          ]
+        },
+        {
+          "source": ".openai_compatible",
+          "specifiers": [
+            "OpenAICompatibleProvider"
+          ]
+        }
+      ],
+      "exports": [
+        "get_provider",
+        "get_embed_provider",
+        "get_provider_cached",
+        "get_embed_provider_cached"
+      ],
+      "totalLines": 51,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/logging/logger.py": {
+      "filePath": "src/adapted/logging/logger.py",
+      "contentHash": "b42934d2ebed219ebbf84cd848a187d4e36544036edc6d267439834dfc950e5b",
+      "functions": [
+        {
+          "name": "_configure",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "get_logger",
+          "params": [
+            "name"
+          ],
+          "returnType": "structlog.stdlib.BoundLogger",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "bind_task",
+          "params": [
+            "logger",
+            "task_id",
+            "correlation_id"
+          ],
+          "returnType": "Any",
+          "exported": true,
+          "lineCount": 4
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "logging",
+          "specifiers": [
+            "logging"
+          ]
+        },
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any"
+          ]
+        },
+        {
+          "source": "structlog",
+          "specifiers": [
+            "structlog"
+          ]
+        },
+        {
+          "source": "..config",
+          "specifiers": [
+            "settings"
+          ]
+        }
+      ],
+      "exports": [
+        "_configure",
+        "get_logger",
+        "bind_task"
+      ],
+      "totalLines": 42,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/main.py": {
+      "filePath": "src/adapted/main.py",
+      "contentHash": "1e08d2aaa3a222d6dfc4a9ca5509272b2ea0eaaa6ed1120ca1b9f761c6711046",
+      "functions": [
+        {
+          "name": "lifespan",
+          "params": [
+            "app"
+          ],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "create_app",
+          "params": [],
+          "returnType": "FastAPI",
+          "exported": true,
+          "lineCount": 57
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "contextlib",
+          "specifiers": [
+            "asynccontextmanager"
+          ]
+        },
+        {
+          "source": "fastapi",
+          "specifiers": [
+            "FastAPI"
+          ]
+        },
+        {
+          "source": "fastapi.middleware.cors",
+          "specifiers": [
+            "CORSMiddleware"
+          ]
+        },
+        {
+          "source": ".config",
+          "specifiers": [
+            "settings"
+          ]
+        },
+        {
+          "source": ".database.session",
+          "specifiers": [
+            "init_db"
+          ]
+        },
+        {
+          "source": ".logging.logger",
+          "specifiers": [
+            "get_logger"
+          ]
+        }
+      ],
+      "exports": [
+        "lifespan",
+        "create_app"
+      ],
+      "totalLines": 88,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/memory/curriculum_memory.py": {
+      "filePath": "src/adapted/memory/curriculum_memory.py",
+      "contentHash": "208a5e79874032ca3607c80f96e9504230d486bc0263979662ee4a0554919eb3",
+      "functions": [
+        {
+          "name": "collection_for",
+          "params": [
+            "course_id"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "ensure_collection",
+          "params": [
+            "course_id",
+            "dim"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "index_document",
+          "params": [
+            "db",
+            "document",
+            "parsed",
+            "dim"
+          ],
+          "returnType": "list[ContentChunk]",
+          "exported": true,
+          "lineCount": 59
+        },
+        {
+          "name": "assign_chunk_topics",
+          "params": [
+            "db",
+            "course_id",
+            "chapter_id",
+            "topic_id",
+            "chunk_ids"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "chunks_for_topic",
+          "params": [
+            "db",
+            "topic_id"
+          ],
+          "returnType": "list[ContentChunk]",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "chunks_by_course",
+          "params": [
+            "db",
+            "course_id"
+          ],
+          "returnType": "list[ContentChunk]",
+          "exported": true,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "delete",
+            "select"
+          ]
+        },
+        {
+          "source": "sqlalchemy.orm",
+          "specifiers": [
+            "Session"
+          ]
+        },
+        {
+          "source": "..config",
+          "specifiers": [
+            "settings"
+          ]
+        },
+        {
+          "source": "..models",
+          "specifiers": [
+            "ContentChunk",
+            "Document"
+          ]
+        },
+        {
+          "source": "..rag.chunker",
+          "specifiers": [
+            "Chunk",
+            "chunk_document"
+          ]
+        },
+        {
+          "source": "..rag.embeddings",
+          "specifiers": [
+            "embed_texts"
+          ]
+        },
+        {
+          "source": "..rag.parser",
+          "specifiers": [
+            "ParsedDocument"
+          ]
+        },
+        {
+          "source": "..rag.vector_store",
+          "specifiers": [
+            "get_vector_store"
+          ]
+        }
+      ],
+      "exports": [
+        "collection_for",
+        "ensure_collection",
+        "index_document",
+        "assign_chunk_topics",
+        "chunks_for_topic",
+        "chunks_by_course"
+      ],
+      "totalLines": 112,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/memory/student_memory.py": {
+      "filePath": "src/adapted/memory/student_memory.py",
+      "contentHash": "0d8af5018eed40024bf59dd3e0b59d022c3f471a9a832c513f2306ef77297730",
+      "functions": [
+        {
+          "name": "build_profile",
+          "params": [
+            "db",
+            "student_id",
+            "course_id"
+          ],
+          "returnType": "StudentProfile",
+          "exported": true,
+          "lineCount": 101
+        },
+        {
+          "name": "update_topic_mastery",
+          "params": [
+            "db",
+            "student_id",
+            "topic_id",
+            "score_percent"
+          ],
+          "returnType": "StudentMastery",
+          "exported": true,
+          "lineCount": 27
+        },
+        {
+          "name": "record_study",
+          "params": [
+            "db",
+            "student_id",
+            "course_id",
+            "activity_type",
+            "topic_id",
+            "ref_id",
+            "details"
+          ],
+          "returnType": "StudyHistory",
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "record_conversation",
+          "params": [
+            "db",
+            "student_id",
+            "course_id",
+            "focus",
+            "summary"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "set_preference",
+          "params": [
+            "db",
+            "user_id",
+            "key",
+            "value"
+          ],
+          "returnType": "LearningPreference",
+          "exported": true,
+          "lineCount": 13
+        }
+      ],
+      "classes": [
+        {
+          "name": "StudentProfile",
+          "methods": [],
+          "properties": [
+            "student_id",
+            "course_id",
+            "mastery",
+            "overall_mastery",
+            "weak_topics",
+            "strong_topics",
+            "misconceptions",
+            "preferences",
+            "recent_quiz",
+            "conversation_foci",
+            "study_history_recent"
+          ],
+          "exported": true,
+          "lineCount": 12
+        }
+      ],
+      "imports": [
+        {
+          "source": "dataclasses",
+          "specifiers": [
+            "dataclass",
+            "field"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "func",
+            "select"
+          ]
+        },
+        {
+          "source": "sqlalchemy.orm",
+          "specifiers": [
+            "Session"
+          ]
+        },
+        {
+          "source": "..models",
+          "specifiers": [
+            "ConversationMemory",
+            "LearningPreference",
+            "Misconception",
+            "QuizAttempt",
+            "StudentMastery",
+            "StudyHistory",
+            "Topic"
+          ]
+        },
+        {
+          "source": "..services",
+          "specifiers": [
+            "analytics"
+          ]
+        },
+        {
+          "source": "..services",
+          "specifiers": [
+            "mastery_svc"
+          ]
+        }
+      ],
+      "exports": [
+        "StudentProfile",
+        "build_profile",
+        "update_topic_mastery",
+        "record_study",
+        "record_conversation",
+        "set_preference"
+      ],
+      "totalLines": 225,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/models/__init__.py": {
+      "filePath": "src/adapted/models/__init__.py",
+      "contentHash": "714ac41a660b4753d1275626f5d094354832615f40179477fb6d6cb6ce5fe96d",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": ".course",
+          "specifiers": [
+            "Course",
+            "Document",
+            "Enrollment"
+          ]
+        },
+        {
+          "source": ".curriculum",
+          "specifiers": [
+            "Chapter",
+            "ContentChunk",
+            "LearningObjective",
+            "Topic",
+            "TopicPrerequisite"
+          ]
+        },
+        {
+          "source": ".learning",
+          "specifiers": [
+            "Answer",
+            "Grade",
+            "Lesson",
+            "Question",
+            "Quiz",
+            "QuizAttempt",
+            "QuizQuestion",
+            "StudyPlan",
+            "StudyPlanItem"
+          ]
+        },
+        {
+          "source": ".memory",
+          "specifiers": [
+            "ConversationMemory",
+            "LearningPreference",
+            "Misconception",
+            "Recommendation",
+            "StudentMastery",
+            "StudyHistory"
+          ]
+        },
+        {
+          "source": ".observability",
+          "specifiers": [
+            "AgentMessage",
+            "AgentTask",
+            "AuditLog"
+          ]
+        },
+        {
+          "source": ".user",
+          "specifiers": [
+            "Student",
+            "Teacher",
+            "User"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 56,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/models/course.py": {
+      "filePath": "src/adapted/models/course.py",
+      "contentHash": "c3526548b7658e3ba50478fc61388acfe6165649db6e7f43cd241fe77e3448ab",
+      "functions": [],
+      "classes": [
+        {
+          "name": "Course",
+          "methods": [],
+          "properties": [
+            "id",
+            "teacher_id",
+            "title",
+            "subject",
+            "description",
+            "exam_date",
+            "status",
+            "created_at",
+            "teacher",
+            "enrollments",
+            "documents",
+            "chapters"
+          ],
+          "exported": true,
+          "lineCount": 24
+        },
+        {
+          "name": "Enrollment",
+          "methods": [],
+          "properties": [
+            "id",
+            "course_id",
+            "student_id",
+            "status",
+            "joined_at",
+            "course",
+            "student"
+          ],
+          "exported": true,
+          "lineCount": 15
+        },
+        {
+          "name": "Document",
+          "methods": [],
+          "properties": [
+            "id",
+            "course_id",
+            "filename",
+            "storage_path",
+            "file_type",
+            "size_bytes",
+            "page_count",
+            "status",
+            "error",
+            "uploaded_by",
+            "created_at",
+            "processed_at",
+            "course",
+            "chunks"
+          ],
+          "exported": true,
+          "lineCount": 26
+        }
+      ],
+      "imports": [
+        {
+          "source": "datetime",
+          "specifiers": [
+            "date",
+            "datetime"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "TYPE_CHECKING"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "Date",
+            "DateTime",
+            "ForeignKey",
+            "Integer",
+            "String",
+            "Text"
+          ]
+        },
+        {
+          "source": "sqlalchemy.orm",
+          "specifiers": [
+            "Mapped",
+            "mapped_column",
+            "relationship"
+          ]
+        },
+        {
+          "source": "..database.base",
+          "specifiers": [
+            "Base"
+          ]
+        },
+        {
+          "source": "..database.session",
+          "specifiers": [
+            "new_id"
+          ]
+        },
+        {
+          "source": ".user",
+          "specifiers": [
+            "utcnow"
+          ]
+        }
+      ],
+      "exports": [
+        "Course",
+        "Enrollment",
+        "Document"
+      ],
+      "totalLines": 87,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/models/curriculum.py": {
+      "filePath": "src/adapted/models/curriculum.py",
+      "contentHash": "ea323cad001da943a81ded57c8233109c89dab89cf0ae48091a80769f5573797",
+      "functions": [],
+      "classes": [
+        {
+          "name": "Chapter",
+          "methods": [],
+          "properties": [
+            "id",
+            "course_id",
+            "document_id",
+            "title",
+            "order_index",
+            "source_refs",
+            "course",
+            "topics"
+          ],
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "Topic",
+          "methods": [],
+          "properties": [
+            "id",
+            "course_id",
+            "chapter_id",
+            "title",
+            "order_index",
+            "difficulty",
+            "description",
+            "created_at",
+            "chapter",
+            "learning_objectives",
+            "prerequisites"
+          ],
+          "exported": true,
+          "lineCount": 25
+        },
+        {
+          "name": "TopicPrerequisite",
+          "methods": [],
+          "properties": [
+            "id",
+            "topic_id",
+            "prereq_topic_id",
+            "topic",
+            "prereq_topic"
+          ],
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "LearningObjective",
+          "methods": [],
+          "properties": [
+            "id",
+            "topic_id",
+            "code",
+            "description",
+            "topic"
+          ],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "ContentChunk",
+          "methods": [],
+          "properties": [
+            "id",
+            "document_id",
+            "course_id",
+            "chapter_id",
+            "topic_id",
+            "chunk_index",
+            "page_start",
+            "page_end",
+            "heading",
+            "content",
+            "source",
+            "vector",
+            "document"
+          ],
+          "exported": true,
+          "lineCount": 25
+        }
+      ],
+      "imports": [
+        {
+          "source": "datetime",
+          "specifiers": [
+            "datetime"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "TYPE_CHECKING"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "DateTime",
+            "Float",
+            "ForeignKey",
+            "Integer",
+            "String",
+            "Text",
+            "UniqueConstraint"
+          ]
+        },
+        {
+          "source": "sqlalchemy.orm",
+          "specifiers": [
+            "Mapped",
+            "mapped_column",
+            "relationship"
+          ]
+        },
+        {
+          "source": "..database.base",
+          "specifiers": [
+            "Base",
+            "VectorColumn"
+          ]
+        },
+        {
+          "source": "..database.session",
+          "specifiers": [
+            "new_id"
+          ]
+        },
+        {
+          "source": ".user",
+          "specifiers": [
+            "utcnow"
+          ]
+        }
+      ],
+      "exports": [
+        "Chapter",
+        "Topic",
+        "TopicPrerequisite",
+        "LearningObjective",
+        "ContentChunk"
+      ],
+      "totalLines": 118,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/models/learning.py": {
+      "filePath": "src/adapted/models/learning.py",
+      "contentHash": "4eae72735cbac7541443c44699c435b76a25e032cc4689775a47a3a80089fbaf",
+      "functions": [],
+      "classes": [
+        {
+          "name": "StudyPlan",
+          "methods": [],
+          "properties": [
+            "id",
+            "student_id",
+            "course_id",
+            "version",
+            "exam_date",
+            "daily_minutes",
+            "status",
+            "created_at",
+            "updated_at",
+            "items"
+          ],
+          "exported": true,
+          "lineCount": 24
+        },
+        {
+          "name": "StudyPlanItem",
+          "methods": [],
+          "properties": [
+            "id",
+            "study_plan_id",
+            "topic_id",
+            "day_index",
+            "sequence",
+            "estimated_minutes",
+            "goal",
+            "status",
+            "reason",
+            "created_at",
+            "study_plan",
+            "topic"
+          ],
+          "exported": true,
+          "lineCount": 24
+        },
+        {
+          "name": "Lesson",
+          "methods": [],
+          "properties": [
+            "id",
+            "course_id",
+            "topic_id",
+            "student_id",
+            "level",
+            "title",
+            "content",
+            "chunks_used",
+            "created_at"
+          ],
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "Question",
+          "methods": [],
+          "properties": [
+            "id",
+            "course_id",
+            "topic_id",
+            "learning_objective_id",
+            "question_type",
+            "prompt",
+            "choices",
+            "correct_answer",
+            "explanation",
+            "difficulty",
+            "source_ref",
+            "status",
+            "question_hash",
+            "created_at"
+          ],
+          "exported": true,
+          "lineCount": 27
+        },
+        {
+          "name": "Quiz",
+          "methods": [],
+          "properties": [
+            "id",
+            "course_id",
+            "student_id",
+            "title",
+            "quiz_type",
+            "config",
+            "status",
+            "created_by",
+            "created_at",
+            "questions",
+            "attempts"
+          ],
+          "exported": true,
+          "lineCount": 23
+        },
+        {
+          "name": "QuizQuestion",
+          "methods": [],
+          "properties": [
+            "id",
+            "quiz_id",
+            "question_id",
+            "position",
+            "assigned_difficulty",
+            "quiz",
+            "question"
+          ],
+          "exported": true,
+          "lineCount": 15
+        },
+        {
+          "name": "QuizAttempt",
+          "methods": [],
+          "properties": [
+            "id",
+            "quiz_id",
+            "student_id",
+            "started_at",
+            "submitted_at",
+            "score",
+            "max_score",
+            "status",
+            "correlation_id",
+            "quiz",
+            "answers"
+          ],
+          "exported": true,
+          "lineCount": 23
+        },
+        {
+          "name": "Answer",
+          "methods": [],
+          "properties": [
+            "id",
+            "attempt_id",
+            "question_id",
+            "response",
+            "is_correct",
+            "ai_score",
+            "ai_explanation",
+            "ai_confidence",
+            "teacher_score",
+            "teacher_feedback",
+            "graded_by",
+            "grading_status",
+            "needs_teacher_review",
+            "attempt",
+            "question"
+          ],
+          "exported": true,
+          "lineCount": 25
+        },
+        {
+          "name": "Grade",
+          "methods": [],
+          "properties": [
+            "id",
+            "attempt_id",
+            "student_id",
+            "score",
+            "max_score",
+            "percentage",
+            "graded_at"
+          ],
+          "exported": true,
+          "lineCount": 14
+        }
+      ],
+      "imports": [
+        {
+          "source": "datetime",
+          "specifiers": [
+            "date",
+            "datetime"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "TYPE_CHECKING"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "JSON",
+            "Boolean",
+            "Date",
+            "DateTime",
+            "Float",
+            "ForeignKey",
+            "Integer",
+            "String",
+            "Text"
+          ]
+        },
+        {
+          "source": "sqlalchemy.orm",
+          "specifiers": [
+            "Mapped",
+            "mapped_column",
+            "relationship"
+          ]
+        },
+        {
+          "source": "..database.base",
+          "specifiers": [
+            "Base"
+          ]
+        },
+        {
+          "source": "..database.session",
+          "specifiers": [
+            "new_id"
+          ]
+        },
+        {
+          "source": ".user",
+          "specifiers": [
+            "utcnow"
+          ]
+        }
+      ],
+      "exports": [
+        "StudyPlan",
+        "StudyPlanItem",
+        "Lesson",
+        "Question",
+        "Quiz",
+        "QuizQuestion",
+        "QuizAttempt",
+        "Answer",
+        "Grade"
+      ],
+      "totalLines": 226,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/models/memory.py": {
+      "filePath": "src/adapted/models/memory.py",
+      "contentHash": "180ee4669a05bdc44cbe661366693ad20200c0de437b72575e30cd897e586bd8",
+      "functions": [],
+      "classes": [
+        {
+          "name": "StudentMastery",
+          "methods": [],
+          "properties": [
+            "id",
+            "student_id",
+            "topic_id",
+            "mastery",
+            "attempts",
+            "trend",
+            "status",
+            "history",
+            "last_updated",
+            "topic"
+          ],
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "StudyHistory",
+          "methods": [],
+          "properties": [
+            "id",
+            "student_id",
+            "course_id",
+            "topic_id",
+            "activity_type",
+            "ref_id",
+            "details",
+            "occurred_at"
+          ],
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "Misconception",
+          "methods": [],
+          "properties": [
+            "id",
+            "student_id",
+            "topic_id",
+            "label",
+            "description",
+            "evidence",
+            "status",
+            "created_at",
+            "resolved_at",
+            "topic"
+          ],
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "ConversationMemory",
+          "methods": [],
+          "properties": [
+            "id",
+            "student_id",
+            "course_id",
+            "focus_topic",
+            "frequency",
+            "last_seen",
+            "summary",
+            "student"
+          ],
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "LearningPreference",
+          "methods": [],
+          "properties": [
+            "id",
+            "user_id",
+            "pref_key",
+            "pref_value",
+            "created_at"
+          ],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "Recommendation",
+          "methods": [],
+          "properties": [
+            "id",
+            "student_id",
+            "course_id",
+            "plan_item_id",
+            "action",
+            "topic_id",
+            "title",
+            "reasons",
+            "payload",
+            "source_agent",
+            "confidence",
+            "needs_teacher_review",
+            "status",
+            "created_at"
+          ],
+          "exported": true,
+          "lineCount": 25
+        }
+      ],
+      "imports": [
+        {
+          "source": "datetime",
+          "specifiers": [
+            "datetime"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "TYPE_CHECKING"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "JSON",
+            "DateTime",
+            "Float",
+            "ForeignKey",
+            "Integer",
+            "String",
+            "Text",
+            "UniqueConstraint"
+          ]
+        },
+        {
+          "source": "sqlalchemy.orm",
+          "specifiers": [
+            "Mapped",
+            "mapped_column",
+            "relationship"
+          ]
+        },
+        {
+          "source": "..database.base",
+          "specifiers": [
+            "Base"
+          ]
+        },
+        {
+          "source": "..database.session",
+          "specifiers": [
+            "new_id"
+          ]
+        },
+        {
+          "source": ".user",
+          "specifiers": [
+            "utcnow"
+          ]
+        }
+      ],
+      "exports": [
+        "StudentMastery",
+        "StudyHistory",
+        "Misconception",
+        "ConversationMemory",
+        "LearningPreference",
+        "Recommendation"
+      ],
+      "totalLines": 137,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/models/observability.py": {
+      "filePath": "src/adapted/models/observability.py",
+      "contentHash": "eec8cc7d0fe46a5e626b9cdf5159b4208c665b8eff0a8aba8d695cc9a9497bec",
+      "functions": [],
+      "classes": [
+        {
+          "name": "AgentTask",
+          "methods": [],
+          "properties": [
+            "id",
+            "task_id",
+            "correlation_id",
+            "workflow",
+            "intent",
+            "status",
+            "user_id",
+            "payload",
+            "result",
+            "error",
+            "retries",
+            "started_at",
+            "finished_at",
+            "duration_ms"
+          ],
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "AgentMessage",
+          "methods": [],
+          "properties": [
+            "id",
+            "message_id",
+            "task_id",
+            "correlation_id",
+            "sender",
+            "receiver",
+            "action",
+            "payload",
+            "status",
+            "error",
+            "duration_ms",
+            "created_at"
+          ],
+          "exported": true,
+          "lineCount": 15
+        },
+        {
+          "name": "AuditLog",
+          "methods": [],
+          "properties": [
+            "id",
+            "timestamp",
+            "user_id",
+            "role",
+            "action",
+            "resource_type",
+            "resource_id",
+            "detail",
+            "task_id",
+            "correlation_id",
+            "ip"
+          ],
+          "exported": true,
+          "lineCount": 14
+        }
+      ],
+      "imports": [
+        {
+          "source": "datetime",
+          "specifiers": [
+            "datetime"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "JSON",
+            "DateTime",
+            "Integer",
+            "String",
+            "Text"
+          ]
+        },
+        {
+          "source": "sqlalchemy.orm",
+          "specifiers": [
+            "Mapped",
+            "mapped_column"
+          ]
+        },
+        {
+          "source": "..database.base",
+          "specifiers": [
+            "Base"
+          ]
+        },
+        {
+          "source": "..database.session",
+          "specifiers": [
+            "new_id"
+          ]
+        },
+        {
+          "source": ".user",
+          "specifiers": [
+            "utcnow"
+          ]
+        }
+      ],
+      "exports": [
+        "AgentTask",
+        "AgentMessage",
+        "AuditLog"
+      ],
+      "totalLines": 65,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/models/user.py": {
+      "filePath": "src/adapted/models/user.py",
+      "contentHash": "ae3e97e85e1d6adb68d110321f1dad7c9cfba755c294139cc478f44dec14438c",
+      "functions": [
+        {
+          "name": "utcnow",
+          "params": [],
+          "returnType": "datetime",
+          "exported": true,
+          "lineCount": 2
+        }
+      ],
+      "classes": [
+        {
+          "name": "User",
+          "methods": [],
+          "properties": [
+            "id",
+            "email",
+            "password_hash",
+            "full_name",
+            "role",
+            "created_at",
+            "teacher",
+            "student"
+          ],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "Teacher",
+          "methods": [],
+          "properties": [
+            "user_id",
+            "department",
+            "user",
+            "courses"
+          ],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "Student",
+          "methods": [],
+          "properties": [
+            "user_id",
+            "grade_level",
+            "daily_study_minutes",
+            "timezone",
+            "user",
+            "enrollments"
+          ],
+          "exported": true,
+          "lineCount": 12
+        }
+      ],
+      "imports": [
+        {
+          "source": "datetime",
+          "specifiers": [
+            "UTC",
+            "datetime"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "TYPE_CHECKING"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "DateTime",
+            "ForeignKey",
+            "Integer",
+            "String"
+          ]
+        },
+        {
+          "source": "sqlalchemy.orm",
+          "specifiers": [
+            "Mapped",
+            "mapped_column",
+            "relationship"
+          ]
+        },
+        {
+          "source": "..database.base",
+          "specifiers": [
+            "Base"
+          ]
+        },
+        {
+          "source": "..database.session",
+          "specifiers": [
+            "new_id"
+          ]
+        }
+      ],
+      "exports": [
+        "utcnow",
+        "User",
+        "Teacher",
+        "Student"
+      ],
+      "totalLines": 58,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/rag/chunker.py": {
+      "filePath": "src/adapted/rag/chunker.py",
+      "contentHash": "0774d010659614aefde2dcab3e04ef68e3e449c8cb0cee61ed231af74a20fa13",
+      "functions": [
+        {
+          "name": "chunk_document",
+          "params": [
+            "parsed",
+            "max_chars",
+            "overlap"
+          ],
+          "returnType": "list[Chunk]",
+          "exported": true,
+          "lineCount": 49
+        }
+      ],
+      "classes": [
+        {
+          "name": "Chunk",
+          "methods": [],
+          "properties": [
+            "index",
+            "content",
+            "page_start",
+            "page_end",
+            "heading"
+          ],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "imports": [
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "dataclasses",
+          "specifiers": [
+            "dataclass"
+          ]
+        },
+        {
+          "source": ".parser",
+          "specifiers": [
+            "ParsedDocument"
+          ]
+        }
+      ],
+      "exports": [
+        "Chunk",
+        "chunk_document"
+      ],
+      "totalLines": 69,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/rag/embeddings.py": {
+      "filePath": "src/adapted/rag/embeddings.py",
+      "contentHash": "c3aed7147aa9646c48f51c674419da9a013beb961754e6f1788ae1b395af999e",
+      "functions": [
+        {
+          "name": "_embed_single",
+          "params": [
+            "text",
+            "mode"
+          ],
+          "returnType": "tuple[float, ...]",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "embed_texts",
+          "params": [
+            "texts",
+            "mode"
+          ],
+          "returnType": "list[list[float]]",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "embed_text",
+          "params": [
+            "text",
+            "mode"
+          ],
+          "returnType": "list[float]",
+          "exported": true,
+          "lineCount": 2
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "functools",
+          "specifiers": [
+            "lru_cache"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Literal"
+          ]
+        },
+        {
+          "source": "..llm.registry",
+          "specifiers": [
+            "get_embed_provider_cached"
+          ]
+        }
+      ],
+      "exports": [
+        "_embed_single",
+        "embed_texts",
+        "embed_text"
+      ],
+      "totalLines": 24,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/rag/parser.py": {
+      "filePath": "src/adapted/rag/parser.py",
+      "contentHash": "b4ac2e139b5df58aeb861a7c9fbcf245fe606e92ded12c6db9f17d80074b456d",
+      "functions": [
+        {
+          "name": "parse_document",
+          "params": [
+            "path",
+            "filename"
+          ],
+          "returnType": "ParsedDocument",
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "_parse_pdf",
+          "params": [
+            "path",
+            "filename"
+          ],
+          "returnType": "ParsedDocument",
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "_parse_text",
+          "params": [
+            "path",
+            "filename"
+          ],
+          "returnType": "ParsedDocument",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "_parse_docx",
+          "params": [
+            "path",
+            "filename"
+          ],
+          "returnType": "ParsedDocument",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "_clean",
+          "params": [
+            "text"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 5
+        }
+      ],
+      "classes": [
+        {
+          "name": "UnsupportedDocumentError",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "Page",
+          "methods": [],
+          "properties": [
+            "number",
+            "text"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "ParsedDocument",
+          "methods": [
+            "full_text",
+            "page_count"
+          ],
+          "properties": [
+            "filename",
+            "pages"
+          ],
+          "exported": true,
+          "lineCount": 11
+        }
+      ],
+      "imports": [
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "dataclasses",
+          "specifiers": [
+            "dataclass",
+            "field"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "pypdf",
+          "specifiers": [
+            "PdfReader"
+          ]
+        }
+      ],
+      "exports": [
+        "UnsupportedDocumentError",
+        "Page",
+        "ParsedDocument",
+        "parse_document",
+        "_parse_pdf",
+        "_parse_text",
+        "_parse_docx",
+        "_clean"
+      ],
+      "totalLines": 94,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/rag/retriever.py": {
+      "filePath": "src/adapted/rag/retriever.py",
+      "contentHash": "8cb6957b44789144149fe4dde4833315e77de3bae236fcade80692c73915578d",
+      "functions": [
+        {
+          "name": "retrieve",
+          "params": [
+            "collection",
+            "query",
+            "course_id",
+            "chapter_id",
+            "topic_id",
+            "limit"
+          ],
+          "returnType": "list[RetrievedChunk]",
+          "exported": true,
+          "lineCount": 33
+        },
+        {
+          "name": "format_context",
+          "params": [
+            "chunks",
+            "with_citations"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 16
+        }
+      ],
+      "classes": [
+        {
+          "name": "RetrievedChunk",
+          "methods": [
+            "to_dict"
+          ],
+          "properties": [
+            "content",
+            "score",
+            "source",
+            "page",
+            "heading",
+            "chapter_id",
+            "topic_id",
+            "course_id"
+          ],
+          "exported": true,
+          "lineCount": 21
+        }
+      ],
+      "imports": [
+        {
+          "source": "dataclasses",
+          "specifiers": [
+            "dataclass"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any"
+          ]
+        },
+        {
+          "source": "..config",
+          "specifiers": [
+            "settings"
+          ]
+        },
+        {
+          "source": ".embeddings",
+          "specifiers": [
+            "embed_text"
+          ]
+        },
+        {
+          "source": ".vector_store",
+          "specifiers": [
+            "get_vector_store"
+          ]
+        }
+      ],
+      "exports": [
+        "RetrievedChunk",
+        "retrieve",
+        "format_context"
+      ],
+      "totalLines": 86,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/rag/vector_store.py": {
+      "filePath": "src/adapted/rag/vector_store.py",
+      "contentHash": "7d914b7d4859384a82fe7550d5901d530116828f8b5aebb86ba469448d935aa9",
+      "functions": [
+        {
+          "name": "get_vector_store",
+          "params": [],
+          "returnType": "VectorStore",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "reset_vector_store",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "_temp_vector_store",
+          "params": [],
+          "returnType": "VectorStore",
+          "exported": true,
+          "lineCount": 2
+        }
+      ],
+      "classes": [
+        {
+          "name": "VectorStore",
+          "methods": [
+            "__init__",
+            "ensure_collection",
+            "delete_collection",
+            "upsert",
+            "delete_by_document",
+            "search",
+            "_filters_sql",
+            "_search_postgres"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 205
+        }
+      ],
+      "imports": [
+        {
+          "source": "logging",
+          "specifiers": [
+            "logging"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "text"
+          ]
+        },
+        {
+          "source": "..config",
+          "specifiers": [
+            "settings"
+          ]
+        },
+        {
+          "source": "..database.session",
+          "specifiers": [
+            "SessionLocal"
+          ]
+        },
+        {
+          "source": "..models",
+          "specifiers": [
+            "ContentChunk"
+          ]
+        }
+      ],
+      "exports": [
+        "VectorStore",
+        "get_vector_store",
+        "reset_vector_store",
+        "_temp_vector_store"
+      ],
+      "totalLines": 239,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/schemas/api.py": {
+      "filePath": "src/adapted/schemas/api.py",
+      "contentHash": "670a3d21e5025e8530ae48f99c187ecaae628c9c5f3f688bc563f53604bcb69b",
+      "functions": [],
+      "classes": [
+        {
+          "name": "RegisterRequest",
+          "methods": [],
+          "properties": [
+            "email",
+            "password",
+            "full_name",
+            "role",
+            "grade_level",
+            "daily_study_minutes"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "LoginRequest",
+          "methods": [],
+          "properties": [
+            "email",
+            "password"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "TokenResponse",
+          "methods": [],
+          "properties": [
+            "access_token",
+            "token_type",
+            "user"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "UserOut",
+          "methods": [],
+          "properties": [
+            "id",
+            "email",
+            "full_name",
+            "role",
+            "grade_level",
+            "daily_study_minutes"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "CourseCreate",
+          "methods": [],
+          "properties": [
+            "title",
+            "subject",
+            "description",
+            "exam_date"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "CourseOut",
+          "methods": [],
+          "properties": [
+            "id",
+            "teacher_id",
+            "title",
+            "subject",
+            "description",
+            "exam_date",
+            "status",
+            "created_at",
+            "student_count"
+          ],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "EnrollRequest",
+          "methods": [],
+          "properties": [
+            "student_id"
+          ],
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "DocumentOut",
+          "methods": [],
+          "properties": [
+            "id",
+            "course_id",
+            "filename",
+            "file_type",
+            "size_bytes",
+            "page_count",
+            "status",
+            "error",
+            "created_at"
+          ],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "TopicOut",
+          "methods": [],
+          "properties": [
+            "id",
+            "chapter_id",
+            "title",
+            "order_index",
+            "difficulty",
+            "description",
+            "objectives",
+            "prerequisites"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "ChapterOut",
+          "methods": [],
+          "properties": [
+            "id",
+            "course_id",
+            "title",
+            "order_index",
+            "source_refs",
+            "topics"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "CurriculumOut",
+          "methods": [],
+          "properties": [
+            "course_id",
+            "chapters"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "PlanItemOut",
+          "methods": [],
+          "properties": [
+            "id",
+            "topic_id",
+            "title",
+            "day_index",
+            "sequence",
+            "estimated_minutes",
+            "goal",
+            "reason",
+            "status"
+          ],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "StudyPlanOut",
+          "methods": [],
+          "properties": [
+            "id",
+            "student_id",
+            "course_id",
+            "version",
+            "exam_date",
+            "daily_minutes",
+            "status",
+            "created_at",
+            "items"
+          ],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "LessonSection",
+          "methods": [],
+          "properties": [
+            "name",
+            "content"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "LessonOut",
+          "methods": [],
+          "properties": [
+            "id",
+            "course_id",
+            "topic_id",
+            "student_id",
+            "level",
+            "title",
+            "content",
+            "chunks_used",
+            "created_at"
+          ],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "QuestionOut",
+          "methods": [],
+          "properties": [
+            "id",
+            "question_type",
+            "prompt",
+            "choices",
+            "difficulty",
+            "topic_id",
+            "explanation"
+          ],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "QuizOut",
+          "methods": [],
+          "properties": [
+            "id",
+            "course_id",
+            "student_id",
+            "title",
+            "quiz_type",
+            "status",
+            "created_at",
+            "questions"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "QuizGenerateRequest",
+          "methods": [],
+          "properties": [
+            "course_id",
+            "topic_id",
+            "student_id",
+            "count",
+            "difficulty",
+            "types",
+            "quiz_type",
+            "title"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "QuizSubmitRequest",
+          "methods": [],
+          "properties": [
+            "answers"
+          ],
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "AnswerGradeOut",
+          "methods": [],
+          "properties": [
+            "answer_id",
+            "question_id",
+            "is_correct",
+            "ai_score",
+            "confidence",
+            "explanation",
+            "needs_teacher_review"
+          ],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "GradingResultOut",
+          "methods": [],
+          "properties": [
+            "attempt_id",
+            "quiz_id",
+            "score",
+            "max_score",
+            "percentage",
+            "answers"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "MasteryOut",
+          "methods": [],
+          "properties": [
+            "topic_id",
+            "topic_title",
+            "mastery",
+            "attempts",
+            "status"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "MisconceptionOut",
+          "methods": [],
+          "properties": [
+            "id",
+            "topic_id",
+            "topic_title",
+            "label",
+            "description",
+            "status"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "PerformanceOut",
+          "methods": [],
+          "properties": [
+            "student_id",
+            "course_id",
+            "weak_topics",
+            "strong_topics",
+            "topic_mastery",
+            "misconceptions"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "RecommendationOut",
+          "methods": [],
+          "properties": [
+            "id",
+            "action",
+            "title",
+            "reasons",
+            "payload",
+            "confidence",
+            "needs_teacher_review",
+            "status",
+            "created_at"
+          ],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "AgentMessageOut",
+          "methods": [],
+          "properties": [
+            "message_id",
+            "task_id",
+            "correlation_id",
+            "sender",
+            "receiver",
+            "action",
+            "payload",
+            "status",
+            "error",
+            "duration_ms",
+            "created_at"
+          ],
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "AgentTaskOut",
+          "methods": [],
+          "properties": [
+            "id",
+            "task_id",
+            "correlation_id",
+            "workflow",
+            "intent",
+            "status",
+            "error",
+            "result",
+            "retries",
+            "started_at",
+            "finished_at",
+            "duration_ms"
+          ],
+          "exported": true,
+          "lineCount": 15
+        },
+        {
+          "name": "PipelineResult",
+          "methods": [],
+          "properties": [
+            "task_id",
+            "correlation_id",
+            "status",
+            "errors",
+            "context"
+          ],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "imports": [
+        {
+          "source": "datetime",
+          "specifiers": [
+            "date",
+            "datetime"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any"
+          ]
+        },
+        {
+          "source": "pydantic",
+          "specifiers": [
+            "BaseModel",
+            "EmailStr",
+            "Field"
+          ]
+        }
+      ],
+      "exports": [
+        "RegisterRequest",
+        "LoginRequest",
+        "TokenResponse",
+        "UserOut",
+        "CourseCreate",
+        "CourseOut",
+        "EnrollRequest",
+        "DocumentOut",
+        "TopicOut",
+        "ChapterOut",
+        "CurriculumOut",
+        "PlanItemOut",
+        "StudyPlanOut",
+        "LessonSection",
+        "LessonOut",
+        "QuestionOut",
+        "QuizOut",
+        "QuizGenerateRequest",
+        "QuizSubmitRequest",
+        "AnswerGradeOut",
+        "GradingResultOut",
+        "MasteryOut",
+        "MisconceptionOut",
+        "PerformanceOut",
+        "RecommendationOut",
+        "AgentMessageOut",
+        "AgentTaskOut",
+        "PipelineResult"
+      ],
+      "totalLines": 313,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/security/jwt.py": {
+      "filePath": "src/adapted/security/jwt.py",
+      "contentHash": "50b2c2ffd2bd26e4fd7d8462d9d4fcca010b90c53af4ea5edfe3e0c7126547c2",
+      "functions": [
+        {
+          "name": "create_access_token",
+          "params": [
+            "user_id",
+            "role",
+            "minutes"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "decode_access_token",
+          "params": [
+            "token"
+          ],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 2
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "datetime",
+          "specifiers": [
+            "UTC",
+            "datetime",
+            "timedelta"
+          ]
+        },
+        {
+          "source": "jwt",
+          "specifiers": [
+            "jwt"
+          ]
+        },
+        {
+          "source": "..config",
+          "specifiers": [
+            "settings"
+          ]
+        }
+      ],
+      "exports": [
+        "create_access_token",
+        "decode_access_token"
+      ],
+      "totalLines": 18,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/security/passwords.py": {
+      "filePath": "src/adapted/security/passwords.py",
+      "contentHash": "1c14b273ca54d51a098837613cb0f6815f57ddd6e69eb75758c6a9b0ac612ac8",
+      "functions": [
+        {
+          "name": "hash_password",
+          "params": [
+            "password"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "verify_password",
+          "params": [
+            "password",
+            "password_hash"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 5
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "bcrypt",
+          "specifiers": [
+            "bcrypt"
+          ]
+        }
+      ],
+      "exports": [
+        "hash_password",
+        "verify_password"
+      ],
+      "totalLines": 15,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/services/analytics.py": {
+      "filePath": "src/adapted/services/analytics.py",
+      "contentHash": "d42a374a763e4f47edc4f799ee3049dcf469566717f0fe59f031168491f08a01",
+      "functions": [
+        {
+          "name": "weak_and_strong",
+          "params": [
+            "records"
+          ],
+          "returnType": "tuple[list[dict], list[dict]]",
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "detect_misconceptions",
+          "params": [
+            "answers"
+          ],
+          "returnType": "list[dict[str, Any]]",
+          "exported": true,
+          "lineCount": 52
+        },
+        {
+          "name": "class_topic_summary",
+          "params": [
+            "mastery_by_student"
+          ],
+          "returnType": "list[dict[str, Any]]",
+          "exported": true,
+          "lineCount": 24
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "collections",
+          "specifiers": [
+            "Counter",
+            "defaultdict"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any"
+          ]
+        },
+        {
+          "source": ".mastery",
+          "specifiers": [
+            "MasteryRecord"
+          ]
+        }
+      ],
+      "exports": [
+        "weak_and_strong",
+        "detect_misconceptions",
+        "class_topic_summary"
+      ],
+      "totalLines": 110,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/services/grading.py": {
+      "filePath": "src/adapted/services/grading.py",
+      "contentHash": "a92cf6a89e5ff27cdae0f2cd22f619d01372b7b02891317f51894ef339db769f",
+      "functions": [
+        {
+          "name": "question_hash",
+          "params": [
+            "course_id",
+            "prompt"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "is_duplicate",
+          "params": [
+            "existing_hashes",
+            "course_id",
+            "prompt"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "grade_objective",
+          "params": [
+            "question",
+            "response"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "_numeric_equal",
+          "params": [
+            "a",
+            "b"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "compute_attempt_score",
+          "params": [
+            "graded"
+          ],
+          "returnType": "tuple[float, float]",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "rubric_default",
+          "params": [
+            "max_score"
+          ],
+          "returnType": "dict[str, Any]",
+          "exported": true,
+          "lineCount": 7
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "hashlib",
+          "specifiers": [
+            "hashlib"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any"
+          ]
+        }
+      ],
+      "exports": [
+        "question_hash",
+        "is_duplicate",
+        "grade_objective",
+        "_numeric_equal",
+        "compute_attempt_score",
+        "rubric_default"
+      ],
+      "totalLines": 53,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/services/mastery.py": {
+      "filePath": "src/adapted/services/mastery.py",
+      "contentHash": "e739a9fac3561d1e26772f48c177e5bbf70b217a8643325f3610998556efce5f",
+      "functions": [
+        {
+          "name": "status_for",
+          "params": [
+            "mastery"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "update_mastery",
+          "params": [
+            "current",
+            "attempts",
+            "latest_score_percent"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "compute_trend",
+          "params": [
+            "history",
+            "window"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "classify",
+          "params": [
+            "mastery"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "build_record",
+          "params": [
+            "topic_id",
+            "topic_title",
+            "mastery",
+            "attempts",
+            "history"
+          ],
+          "returnType": "MasteryRecord",
+          "exported": true,
+          "lineCount": 16
+        }
+      ],
+      "classes": [
+        {
+          "name": "MasteryRecord",
+          "methods": [],
+          "properties": [
+            "topic_id",
+            "topic_title",
+            "mastery",
+            "attempts",
+            "trend",
+            "status",
+            "history"
+          ],
+          "exported": true,
+          "lineCount": 8
+        }
+      ],
+      "imports": [
+        {
+          "source": "dataclasses",
+          "specifiers": [
+            "dataclass",
+            "field"
+          ]
+        }
+      ],
+      "exports": [
+        "MasteryRecord",
+        "status_for",
+        "update_mastery",
+        "compute_trend",
+        "classify",
+        "build_record"
+      ],
+      "totalLines": 71,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/services/scheduler.py": {
+      "filePath": "src/adapted/services/scheduler.py",
+      "contentHash": "6042fe0c0b3d3fa798221832fe6540aa25d9dde83ab80fce1c0b6369ae591a45",
+      "functions": [
+        {
+          "name": "_topological_order",
+          "params": [
+            "topics"
+          ],
+          "returnType": "list[PlanTopic]",
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "build_plan",
+          "params": [
+            "topics",
+            "exam_date",
+            "daily_minutes",
+            "today"
+          ],
+          "returnType": "list[PlanItem]",
+          "exported": true,
+          "lineCount": 74
+        },
+        {
+          "name": "validate_plan",
+          "params": [
+            "items",
+            "exam_date",
+            "daily_minutes",
+            "today",
+            "prerequisite_map"
+          ],
+          "returnType": "PlanValidation",
+          "exported": true,
+          "lineCount": 50
+        },
+        {
+          "name": "adapt_plan",
+          "params": [
+            "items",
+            "weak_topic_ids",
+            "daily_minutes",
+            "day_offset"
+          ],
+          "returnType": "list[PlanItem]",
+          "exported": true,
+          "lineCount": 46
+        },
+        {
+          "name": "_renormalise",
+          "params": [
+            "items"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 10
+        }
+      ],
+      "classes": [
+        {
+          "name": "PlanTopic",
+          "methods": [],
+          "properties": [
+            "topic_id",
+            "title",
+            "difficulty",
+            "prerequisite_ids",
+            "mastered"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "PlanItem",
+          "methods": [
+            "to_dict"
+          ],
+          "properties": [
+            "topic_id",
+            "title",
+            "day_index",
+            "sequence",
+            "estimated_minutes",
+            "goal",
+            "reason",
+            "status"
+          ],
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "PlanValidation",
+          "methods": [],
+          "properties": [
+            "valid",
+            "errors",
+            "total_minutes",
+            "days_used"
+          ],
+          "exported": true,
+          "lineCount": 5
+        }
+      ],
+      "imports": [
+        {
+          "source": "dataclasses",
+          "specifiers": [
+            "dataclass",
+            "field"
+          ]
+        },
+        {
+          "source": "datetime",
+          "specifiers": [
+            "UTC",
+            "date",
+            "datetime"
+          ]
+        }
+      ],
+      "exports": [
+        "PlanTopic",
+        "PlanItem",
+        "_topological_order",
+        "build_plan",
+        "PlanValidation",
+        "validate_plan",
+        "adapt_plan",
+        "_renormalise"
+      ],
+      "totalLines": 261,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/tasks/runner.py": {
+      "filePath": "src/adapted/tasks/runner.py",
+      "contentHash": "0678db67a03324c058168c85280c4b901c28ceeb06b3c67997f8669363231e74",
+      "functions": [
+        {
+          "name": "submit_pipeline",
+          "params": [
+            "intent",
+            "payload",
+            "user_id"
+          ],
+          "returnType": "tuple[str, str]",
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "_run_in_thread",
+          "params": [
+            "intent",
+            "payload",
+            "user_id",
+            "task_id",
+            "correlation_id"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 26
+        },
+        {
+          "name": "_mark_failed",
+          "params": [
+            "task_id",
+            "error"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 9
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "concurrent.futures",
+          "specifiers": [
+            "ThreadPoolExecutor"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any"
+          ]
+        },
+        {
+          "source": "sqlalchemy",
+          "specifiers": [
+            "select"
+          ]
+        },
+        {
+          "source": "..agents.message",
+          "specifiers": [
+            "MessageBus"
+          ]
+        },
+        {
+          "source": "..agents.supervisor",
+          "specifiers": [
+            "Supervisor"
+          ]
+        },
+        {
+          "source": "..database.session",
+          "specifiers": [
+            "SessionLocal"
+          ]
+        },
+        {
+          "source": "..llm.registry",
+          "specifiers": [
+            "get_provider"
+          ]
+        },
+        {
+          "source": "..logging.logger",
+          "specifiers": [
+            "get_logger"
+          ]
+        },
+        {
+          "source": "..models",
+          "specifiers": [
+            "AgentTask"
+          ]
+        }
+      ],
+      "exports": [
+        "submit_pipeline",
+        "_run_in_thread",
+        "_mark_failed"
+      ],
+      "totalLines": 81,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/tools/registry.py": {
+      "filePath": "src/adapted/tools/registry.py",
+      "contentHash": "d4562b0192b4bacab95c15586e7290d99bcf459ec413178d21769cd812c51aa1",
+      "functions": [
+        {
+          "name": "_rag_retrieve",
+          "params": [
+            "collection",
+            "query",
+            "course_id",
+            "topic_id",
+            "limit"
+          ],
+          "returnType": "list[dict[str, Any]]",
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "_web_search",
+          "params": [
+            "query",
+            "max_results"
+          ],
+          "returnType": "list[dict[str, Any]]",
+          "exported": true,
+          "lineCount": 32
+        },
+        {
+          "name": "_format_chunks",
+          "params": [
+            "chunks"
+          ],
+          "returnType": "list[dict[str, Any]]",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "get_tools",
+          "params": [],
+          "returnType": "dict[str, Tool]",
+          "exported": true,
+          "lineCount": 33
+        },
+        {
+          "name": "_validate_plan",
+          "params": [
+            "items",
+            "exam_date",
+            "daily_minutes"
+          ],
+          "returnType": "dict[str, Any]",
+          "exported": true,
+          "lineCount": 25
+        },
+        {
+          "name": "_calc_mastery",
+          "params": [
+            "current",
+            "attempts",
+            "score_percent"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "_check_duplicate",
+          "params": [
+            "course_id",
+            "prompt"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 15
+        }
+      ],
+      "classes": [
+        {
+          "name": "Tool",
+          "methods": [],
+          "properties": [
+            "name",
+            "description",
+            "fn",
+            "parameters"
+          ],
+          "exported": true,
+          "lineCount": 5
+        }
+      ],
+      "imports": [
+        {
+          "source": "logging",
+          "specifiers": [
+            "logging"
+          ]
+        },
+        {
+          "source": "collections.abc",
+          "specifiers": [
+            "Callable"
+          ]
+        },
+        {
+          "source": "dataclasses",
+          "specifiers": [
+            "dataclass",
+            "field"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any"
+          ]
+        },
+        {
+          "source": "httpx",
+          "specifiers": [
+            "httpx"
+          ]
+        },
+        {
+          "source": "..config",
+          "specifiers": [
+            "settings"
+          ]
+        },
+        {
+          "source": "..rag.retriever",
+          "specifiers": [
+            "RetrievedChunk",
+            "retrieve"
+          ]
+        }
+      ],
+      "exports": [
+        "Tool",
+        "_rag_retrieve",
+        "_web_search",
+        "_format_chunks",
+        "get_tools",
+        "_validate_plan",
+        "_calc_mastery",
+        "_check_duplicate"
+      ],
+      "totalLines": 161,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/ui/app.py": {
+      "filePath": "src/adapted/ui/app.py",
+      "contentHash": "62694cbbe9e590484c07f70a93f2a07c4121584b79f9cd079c1ad7783377b2a1",
+      "functions": [
+        {
+          "name": "_client",
+          "params": [],
+          "returnType": "APIClient",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "_user",
+          "params": [],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "_attempt",
+          "params": [
+            "fn"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "_show_error",
+          "params": [
+            "res"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "_fmt",
+          "params": [
+            "ts"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "auth_screen",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 46
+        },
+        {
+          "name": "_on_auth",
+          "params": [
+            "data"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "logout",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "_ensure_client",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "sidebar",
+          "params": [],
+          "returnType": "str | None",
+          "exported": true,
+          "lineCount": 23
+        },
+        {
+          "name": "_course_options",
+          "params": [
+            "client"
+          ],
+          "returnType": "dict[str, str]",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "_course_selector",
+          "params": [
+            "label"
+          ],
+          "returnType": "str | None",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "_render_curriculum",
+          "params": [
+            "curriculum"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "_topic_options",
+          "params": [
+            "curriculum"
+          ],
+          "returnType": "dict[str, str]",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "teacher_dashboard",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 49
+        },
+        {
+          "name": "confirm_delete_document",
+          "params": [
+            "client",
+            "course_id",
+            "document_id",
+            "filename"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "confirm_clear_course",
+          "params": [
+            "client",
+            "course_id",
+            "title"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "confirm_delete_course",
+          "params": [
+            "client",
+            "course_id",
+            "title"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "_selected_course",
+          "params": [],
+          "returnType": "str | None",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "teacher_curriculum",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 113
+        },
+        {
+          "name": "_run_analysis",
+          "params": [
+            "course_id",
+            "document_id"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "_render_pending_task",
+          "params": [
+            "client"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 41
+        },
+        {
+          "name": "_store_task_result",
+          "params": [
+            "client",
+            "pending",
+            "task"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 36
+        },
+        {
+          "name": "teacher_class",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 48
+        },
+        {
+          "name": "teacher_review_queue",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 40
+        },
+        {
+          "name": "student_dashboard",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "_student_id",
+          "params": [],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "_course_id",
+          "params": [],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "student_study_plan",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 50
+        },
+        {
+          "name": "student_learn",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 38
+        },
+        {
+          "name": "_render_lesson",
+          "params": [
+            "lesson"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "student_quizzes",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 79
+        },
+        {
+          "name": "_render_quiz_result",
+          "params": [
+            "result"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 33
+        },
+        {
+          "name": "student_progress",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 22
+        },
+        {
+          "name": "student_recommendations",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 25
+        },
+        {
+          "name": "operations_view",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 42
+        },
+        {
+          "name": "main",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 32
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "datetime",
+          "specifiers": [
+            "datetime"
+          ]
+        },
+        {
+          "source": "streamlit",
+          "specifiers": [
+            "st"
+          ]
+        }
+      ],
+      "exports": [
+        "_client",
+        "_user",
+        "_attempt",
+        "_show_error",
+        "_fmt",
+        "auth_screen",
+        "_on_auth",
+        "logout",
+        "_ensure_client",
+        "sidebar",
+        "_course_options",
+        "_course_selector",
+        "_render_curriculum",
+        "_topic_options",
+        "teacher_dashboard",
+        "confirm_delete_document",
+        "confirm_clear_course",
+        "confirm_delete_course",
+        "_selected_course",
+        "teacher_curriculum",
+        "_run_analysis",
+        "_render_pending_task",
+        "_store_task_result",
+        "teacher_class",
+        "teacher_review_queue",
+        "student_dashboard",
+        "_student_id",
+        "_course_id",
+        "student_study_plan",
+        "student_learn",
+        "_render_lesson",
+        "student_quizzes",
+        "_render_quiz_result",
+        "student_progress",
+        "student_recommendations",
+        "operations_view",
+        "main"
+      ],
+      "totalLines": 1011,
+      "hasStructuralAnalysis": true
+    },
+    "src/adapted/ui/client.py": {
+      "filePath": "src/adapted/ui/client.py",
+      "contentHash": "7f543c7dc92cb4f443787670e46e6704d5d6ec03413784df2e1f8adf92eae15e",
+      "functions": [],
+      "classes": [
+        {
+          "name": "APIError",
+          "methods": [
+            "__init__"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "APIClient",
+          "methods": [
+            "__init__",
+            "close",
+            "_headers",
+            "_raise",
+            "register",
+            "login",
+            "me",
+            "health",
+            "search_users",
+            "create_course",
+            "list_courses",
+            "get_course",
+            "enroll",
+            "upload_document",
+            "list_documents",
+            "document_status",
+            "delete_document",
+            "clear_course_contents",
+            "delete_course",
+            "curriculum",
+            "topic",
+            "run_agent",
+            "get_task",
+            "agent_tasks",
+            "agent_messages",
+            "audit_logs",
+            "generate_lesson",
+            "get_lesson",
+            "generate_quiz",
+            "get_quiz",
+            "submit_quiz",
+            "study_plan",
+            "latest_study_plan",
+            "student_profile",
+            "student_performance",
+            "student_mastery",
+            "recommendations",
+            "update_recommendation",
+            "set_preference",
+            "class_students",
+            "class_analytics",
+            "student_grades",
+            "pending_review",
+            "override_grade",
+            "_get",
+            "_post",
+            "_patch",
+            "_delete"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 279
+        }
+      ],
+      "imports": [
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "httpx",
+          "specifiers": [
+            "httpx"
+          ]
+        }
+      ],
+      "exports": [
+        "APIError",
+        "APIClient"
+      ],
+      "totalLines": 294,
+      "hasStructuralAnalysis": true
+    }
+  }
+}

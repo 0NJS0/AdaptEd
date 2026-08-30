@@ -1,0 +1,131 @@
+[
+  {
+    "id": "layer:ui",
+    "name": "UI Layer",
+    "description": "Streamlit web interface serving the teacher and student pages, together with the typed APIClient that fronts every backend endpoint.",
+    "nodeIds": [
+      "file:src/adapted/ui/app.py",
+      "file:src/adapted/ui/client.py"
+    ]
+  },
+  {
+    "id": "layer:api",
+    "name": "API Layer",
+    "description": "FastAPI routers and dependency guards exposing auth, courses, documents, curriculum, lessons, quizzes, study plans, classes, and ops endpoints, plus the shared Pydantic request/response contracts in schemas.",
+    "nodeIds": [
+      "file:src/adapted/api/deps.py",
+      "file:src/adapted/api/routers/__init__.py",
+      "file:src/adapted/api/routers/agent.py",
+      "file:src/adapted/api/routers/agent_ops.py",
+      "file:src/adapted/api/routers/auth.py",
+      "file:src/adapted/api/routers/courses.py",
+      "file:src/adapted/api/routers/curriculum.py",
+      "file:src/adapted/api/routers/lessons.py",
+      "file:src/adapted/api/routers/logs.py",
+      "file:src/adapted/api/routers/quizzes.py",
+      "file:src/adapted/api/routers/students.py",
+      "file:src/adapted/api/routers/study_plans.py",
+      "file:src/adapted/api/routers/teacher.py",
+      "file:src/adapted/api/routers/users.py",
+      "file:src/adapted/schemas/api.py"
+    ]
+  },
+  {
+    "id": "layer:agents",
+    "name": "Agent Orchestration Layer",
+    "description": "The multi-agent adaptive-learning pipeline: seven specialized agents (curriculum, planner, lesson, quiz, grading, performance, recommendation) with their base class and message bus, orchestrated through the LangGraph-style graph runtime, tool registry, and background ThreadPoolExecutor task runner.",
+    "nodeIds": [
+      "file:src/adapted/agents/base.py",
+      "file:src/adapted/agents/curriculum_agent.py",
+      "file:src/adapted/agents/grading_agent.py",
+      "file:src/adapted/agents/lesson_agent.py",
+      "file:src/adapted/agents/message.py",
+      "file:src/adapted/agents/performance_agent.py",
+      "file:src/adapted/agents/planner_agent.py",
+      "file:src/adapted/agents/quiz_agent.py",
+      "file:src/adapted/agents/recommendation_agent.py",
+      "file:src/adapted/agents/supervisor.py",
+      "file:src/adapted/graph/runtime.py",
+      "file:src/adapted/tasks/runner.py",
+      "file:src/adapted/tools/registry.py"
+    ]
+  },
+  {
+    "id": "layer:service",
+    "name": "Service Layer",
+    "description": "Domain business logic for AI answer grading, deterministic study-plan scheduling, class analytics aggregation, and student topic-mastery computation.",
+    "nodeIds": [
+      "file:src/adapted/services/analytics.py",
+      "file:src/adapted/services/grading.py",
+      "file:src/adapted/services/mastery.py",
+      "file:src/adapted/services/scheduler.py"
+    ]
+  },
+  {
+    "id": "layer:knowledge",
+    "name": "Knowledge Retrieval (RAG) Layer",
+    "description": "RAG stack that parses uploaded textbooks, chunks content, embeds it via query-aware Nemotron vectors, searches pgvector, and maintains the curriculum and student memory stores.",
+    "nodeIds": [
+      "file:src/adapted/rag/chunker.py",
+      "file:src/adapted/rag/embeddings.py",
+      "file:src/adapted/rag/parser.py",
+      "file:src/adapted/rag/retriever.py",
+      "file:src/adapted/rag/vector_store.py",
+      "file:src/adapted/memory/curriculum_memory.py",
+      "file:src/adapted/memory/student_memory.py"
+    ]
+  },
+  {
+    "id": "layer:llm",
+    "name": "LLM Integration Layer",
+    "description": "Provider-agnostic chat and embedding abstraction registering OpenRouter free-model access (with attribution headers, timeouts, and float encoding) alongside a deterministic offline mock provider.",
+    "nodeIds": [
+      "file:src/adapted/llm/base.py",
+      "file:src/adapted/llm/mock.py",
+      "file:src/adapted/llm/openai_compatible.py",
+      "file:src/adapted/llm/registry.py"
+    ]
+  },
+  {
+    "id": "layer:data",
+    "name": "Data Layer",
+    "description": "SQLAlchemy ORM models for users, courses, curriculum, learning records, conversation memory, and observability, plus the fail-fast PostgreSQL/pgvector engine, pgvector column type, and session management.",
+    "nodeIds": [
+      "file:src/adapted/database/base.py",
+      "file:src/adapted/database/session.py",
+      "file:src/adapted/models/__init__.py",
+      "file:src/adapted/models/course.py",
+      "file:src/adapted/models/curriculum.py",
+      "file:src/adapted/models/learning.py",
+      "file:src/adapted/models/memory.py",
+      "file:src/adapted/models/observability.py",
+      "file:src/adapted/models/user.py"
+    ]
+  },
+  {
+    "id": "layer:core",
+    "name": "Application Core",
+    "description": "FastAPI application factory wiring routers and startup hooks, pydantic-settings configuration loaded from .env, JWT and password-hashing security primitives, and structured logging.",
+    "nodeIds": [
+      "file:src/adapted/__init__.py",
+      "file:src/adapted/main.py",
+      "file:src/adapted/config.py",
+      "file:src/adapted/logging/logger.py",
+      "file:src/adapted/security/jwt.py",
+      "file:src/adapted/security/passwords.py"
+    ]
+  },
+  {
+    "id": "layer:project",
+    "name": "Project Configuration & Documentation",
+    "description": "Root-level project metadata: uv/packaging definition (pyproject.toml), Python version pin, environment-variable template, opencode assistant configuration, analysis ignore file, and the README.",
+    "nodeIds": [
+      "config:pyproject.toml",
+      "config:.python-version",
+      "config:.env.example",
+      "config:opencode.json",
+      "config:.ua/.understandignore",
+      "document:README.md"
+    ]
+  }
+]

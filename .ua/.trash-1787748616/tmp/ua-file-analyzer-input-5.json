@@ -1,0 +1,25 @@
+{
+  "projectRoot": "/home/njs/Desktop/AdaptED/AdaptEd",
+  "batchFiles": [
+    {"path": "src/adapted/api/routers/teacher.py", "language": "python", "sizeLines": 205, "fileCategory": "code"},
+    {"path": "src/adapted/memory/student_memory.py", "language": "python", "sizeLines": 224, "fileCategory": "code"},
+    {"path": "src/adapted/services/analytics.py", "language": "python", "sizeLines": 109, "fileCategory": "code"},
+    {"path": "src/adapted/services/mastery.py", "language": "python", "sizeLines": 70, "fileCategory": "code"}
+  ],
+  "batchImportData": {
+    "src/adapted/api/routers/teacher.py": [
+      "src/adapted/api/deps.py",
+      "src/adapted/database/session.py",
+      "src/adapted/memory/student_memory.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/services/analytics.py"
+    ],
+    "src/adapted/memory/student_memory.py": [
+      "src/adapted/models/__init__.py"
+    ],
+    "src/adapted/services/analytics.py": [
+      "src/adapted/services/mastery.py"
+    ],
+    "src/adapted/services/mastery.py": []
+  }
+}
