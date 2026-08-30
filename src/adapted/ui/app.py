@@ -476,7 +476,10 @@ def teacher_curriculum() -> None:
             students = []
         st.write("Students already in this course:")
         for s in students or []:
-            st.markdown(f"- **{s['name']}** `{s['student_id']}` — grade {s.get('grade_level')}")
+            grade = s.get("grade_level")
+            st.markdown(
+                f"- **{s['name']}** `{s['student_id']}`" + (f" — grade {grade}" if grade else "")
+            )
         enrolled_ids = {s["student_id"] for s in students or []}
 
         st.markdown("**Find a student to enroll**")
@@ -656,7 +659,8 @@ def teacher_class() -> None:
     st.subheader("Student grades")
     students, _ = _attempt(lambda: client.class_students(cid))
     for s in students or []:
-        with st.expander(f"{s['name']} — grade {s.get('grade_level')}"):
+        grade = s.get("grade_level")
+        with st.expander(s["name"] + (f" — grade {grade}" if grade else "")):
             sid = s["student_id"]
             grades, gerr = _attempt(lambda sid=sid: client.student_grades(cid, sid))
             if gerr:
