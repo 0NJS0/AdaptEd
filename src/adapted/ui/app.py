@@ -89,14 +89,16 @@ def auth_screen() -> None:
         remail = st.text_input("Email", key="reg_email")
         rpass = st.text_input("Password (min 6 chars)", type="password", key="reg_pass")
         role = st.radio("I am a", ["student", "teacher"], horizontal=True)
-        minutes = st.number_input(
-            "Daily study minutes (students)",
-            min_value=15,
-            max_value=480,
-            value=90,
-            step=15,
-            key="reg_minutes",
-        )
+        minutes = 90
+        if role == "student":
+            minutes = st.number_input(
+                "Daily study minutes",
+                min_value=15,
+                max_value=480,
+                value=90,
+                step=15,
+                key="reg_minutes",
+            )
         if st.button("Create account", type="primary"):
             if not name or not remail or len(rpass) < 6:
                 st.error("Name, valid email and password (>=6 chars) are required")
