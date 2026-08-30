@@ -8,6 +8,7 @@ from openai import OpenAI
 
 from ..config import settings
 from .base import LLMProvider, LLMRequest
+from .jsonparse import extract_json
 
 log = logging.getLogger("adapted.llm.openai_compatible")
 
@@ -35,25 +36,58 @@ class OpenAICompatibleProvider(LLMProvider):
     def generate(self, request: LLMRequest) -> dict[str, Any]:
         schema_block = json.dumps(request.schema)
         system = (
-            "You are a precise educational AI. Always respond with valid JSON matching the "
-            f"given JSON Schema exactly.\nJSON Schema:\n{schema_block}"
+            "You are a precise educational AI. Always respond with a single valid JSON "
+            "object matching the given JSON Schema exactly. Output ONLY the JSON — no "
+            f"prose, no markdown code fences.\nJSON Schema:\n{schema_block}"
         )
+        messages = [
+            {"role": "system", "content": system},
+            {"role": "user", "content": request.prompt},
+        ]
         try:
-            resp = self.client.chat.completions.create(
-                model=self.model,
-                temperature=request.temperature,
-                response_format={"type": "json_object"},
-                messages=[
-                    {"role": "system", "content": system},
-                    {"role": "user", "content": request.prompt},
-                ],
-            )
+            resp = self._create(messages, request.temperature)
             self._record_usage(resp)
-            content = resp.choices[0].message.content or "{}"
-            return json.loads(content)
+            content = resp.choices[0].message.content if resp.choices else None
+            data = extract_json(content)
+            if data is None:
+                snippet = (content or "").strip()[:200]
+                log.error(
+                    "llm_generate_no_json task=%s model=%s content=%r",
+                    request.task,
+                    self.model,
+                    snippet,
+                )
+                raise ValueError(
+                    f"Model '{self.model}' returned no valid JSON for task "
+                    f"'{request.task}' (got: {snippet!r}). Try a different free model "
+                    "that supports JSON output."
+                )
+            return data
         except Exception as exc:
             log.error("llm_generate_failed task=%s error=%s", request.task, exc)
             raise
+
+    def _create(self, messages: list[dict], temperature: float):
+        """Call chat.completions, retrying without response_format for models that
+        reject it (many free models don't support forced JSON mode)."""
+        try:
+            return self.client.chat.completions.create(
+                model=self.model,
+                temperature=temperature,
+                response_format={"type": "json_object"},
+                messages=messages,
+            )
+        except Exception as exc:  # noqa: BLE001
+            log.warning(
+                "llm response_format unsupported for model=%s (%s); retrying without it",
+                self.model,
+                exc,
+            )
+            return self.client.chat.completions.create(
+                model=self.model,
+                temperature=temperature,
+                messages=messages,
+            )
 
     def embed(
         self,

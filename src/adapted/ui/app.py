@@ -89,14 +89,15 @@ def auth_screen() -> None:
         remail = st.text_input("Email", key="reg_email")
         rpass = st.text_input("Password (min 6 chars)", type="password", key="reg_pass")
         role = st.radio("I am a", ["student", "teacher"], horizontal=True)
+        minutes = 90
         if role == "student":
             minutes = st.number_input(
-                "Daily study hours (students)",
-                min_value=1,
-                max_value=8,
-                value=2,
-                step=1,
-                key="reg_hours",
+                "Daily study minutes",
+                min_value=15,
+                max_value=480,
+                value=90,
+                step=15,
+                key="reg_minutes",
             )
         if st.button("Create account", type="primary"):
             if not name or not remail or len(rpass) < 6:
@@ -477,7 +478,10 @@ def teacher_curriculum() -> None:
             students = []
         st.write("Students already in this course:")
         for s in students or []:
-            st.markdown(f"- **{s['name']}** `{s['student_id']}` — grade {s.get('grade_level')}")
+            grade = s.get("grade_level")
+            st.markdown(
+                f"- **{s['name']}** `{s['student_id']}`" + (f" — grade {grade}" if grade else "")
+            )
         enrolled_ids = {s["student_id"] for s in students or []}
 
         st.markdown("**Find a student to enroll**")
@@ -634,7 +638,8 @@ def teacher_class() -> None:
         st.error(aerr)
         return
     st.metric("Students", analytics.get("student_count", 0))
-    st.metric("Curriculum progress", f"{analytics.get('curriculum_progress', 0):.0%}")
+    # curriculum_progress is an average mastery on a 0-100 scale, not a 0-1 fraction
+    st.metric("Curriculum progress", f"{analytics.get('curriculum_progress', 0):.0f}%")
 
     st.subheader("Topic mastery across the class")
     for t in analytics.get("topic_mastery", []):
@@ -657,7 +662,8 @@ def teacher_class() -> None:
     st.subheader("Student grades")
     students, _ = _attempt(lambda: client.class_students(cid))
     for s in students or []:
-        with st.expander(f"{s['name']} — grade {s.get('grade_level')}"):
+        grade = s.get("grade_level")
+        with st.expander(s["name"] + (f" — grade {grade}" if grade else "")):
             sid = s["student_id"]
             grades, gerr = _attempt(lambda sid=sid: client.student_grades(cid, sid))
             if gerr:
