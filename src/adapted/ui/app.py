@@ -137,11 +137,54 @@ def _ensure_client() -> bool:
 # ==================================================================== SIDEBAR
 
 
+_NAV_ICONS = {
+    "Dashboard": "🏠",
+    "Curriculum": "📋",
+    "Class": "📊",
+    "Review Queue": "🕵️",
+    "OBE Mapping": "🧭",
+    "Agent Console": "🛰️",
+    "Operations": "🛠️",
+    "Study Plan": "📅",
+    "Learn": "📖",
+    "Quizzes": "📝",
+    "My Progress": "📈",
+    "Recommendations": "💡",
+}
+
+_SIDEBAR_CSS = """
+<style>
+section[data-testid="stSidebar"] div[role="radiogroup"] { gap: 2px; }
+section[data-testid="stSidebar"] div[role="radiogroup"] label {
+    display: flex; align-items: center; width: 100%;
+    padding: 9px 12px; border-radius: 10px; margin: 1px 0; cursor: pointer;
+    transition: background .12s ease;
+}
+section[data-testid="stSidebar"] div[role="radiogroup"] label:hover {
+    background: rgba(120,140,170,.14);
+}
+section[data-testid="stSidebar"] div[role="radiogroup"] label p { font-size: 15px; margin: 0; }
+/* hide the default radio dot so items read as a nav menu */
+section[data-testid="stSidebar"] div[role="radiogroup"] label > div:first-of-type { display: none; }
+/* highlight the active item (modern browsers support :has) */
+section[data-testid="stSidebar"] div[role="radiogroup"] label:has(input:checked) {
+    background: rgba(42,78,124,.16);
+    box-shadow: inset 3px 0 0 #2A4E7C;
+}
+section[data-testid="stSidebar"] div[role="radiogroup"] label:has(input:checked) p {
+    font-weight: 700;
+}
+</style>
+"""
+
+
 def sidebar() -> str | None:
     user = _user()
     role = user.get("role", "student")
-    st.sidebar.title("🎓 AdaptED")
-    st.sidebar.caption(f"Signed in as **{user.get('full_name', '')}** ({role})")
+    st.sidebar.markdown(_SIDEBAR_CSS, unsafe_allow_html=True)
+    st.sidebar.markdown("## 🎓 AdaptED")
+    st.sidebar.caption(f"**{user.get('full_name', '')}** · {role.title()}")
+    st.sidebar.divider()
 
     nav = ["Dashboard"]
     if role == "teacher":
@@ -163,8 +206,15 @@ def sidebar() -> str | None:
     if pending in nav:
         st.session_state["nav_radio"] = pending
 
-    choice = st.sidebar.radio("Menu", nav, key="nav_radio")
-    if st.sidebar.button("Sign out"):
+    choice = st.sidebar.radio(
+        "Menu",
+        nav,
+        key="nav_radio",
+        label_visibility="collapsed",
+        format_func=lambda x: f"{_NAV_ICONS.get(x, '•')}  {x}",
+    )
+    st.sidebar.divider()
+    if st.sidebar.button("🚪 Sign out", use_container_width=True):
         logout()
     return choice
 
