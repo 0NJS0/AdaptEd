@@ -89,25 +89,21 @@ def auth_screen() -> None:
         remail = st.text_input("Email", key="reg_email")
         rpass = st.text_input("Password (min 6 chars)", type="password", key="reg_pass")
         role = st.radio("I am a", ["student", "teacher"], horizontal=True)
-        col1, col2 = st.columns(2)
-        with col1:
-            grade = st.text_input("Grade level (students)", key="reg_grade", placeholder="e.g. 10")
-        with col2:
-            minutes = st.number_input(
-                "Daily study minutes (students)",
-                min_value=15,
-                max_value=480,
-                value=90,
-                step=15,
-                key="reg_minutes",
-            )
+        minutes = st.number_input(
+            "Daily study minutes (students)",
+            min_value=15,
+            max_value=480,
+            value=90,
+            step=15,
+            key="reg_minutes",
+        )
         if st.button("Create account", type="primary"):
             if not name or not remail or len(rpass) < 6:
                 st.error("Name, valid email and password (>=6 chars) are required")
             else:
                 kwargs = {}
                 if role == "student":
-                    kwargs = {"grade_level": grade or None, "daily_study_minutes": int(minutes)}
+                    kwargs = {"daily_study_minutes": int(minutes)}
                 data, err = _attempt(
                     lambda: _client().register(remail, rpass, name, role, **kwargs)
                 )
@@ -359,7 +355,7 @@ def teacher_curriculum() -> None:
         with upload_col:
             st.subheader("Upload a textbook / notes")
             f = st.file_uploader("Choose a file (.md, .txt, .pdf, .docx)", key=f"up_{cid}")
-            if f is not None and st.button("Upload & analyze", type="primary"):
+            if f is not None and st.button("Upload document", type="primary"):
                 data, uerr = _attempt(
                     lambda: client.upload_document(
                         cid, f.name, f.getvalue(), f.type or "application/octet-stream"
@@ -368,22 +364,32 @@ def teacher_curriculum() -> None:
                 if uerr:
                     st.error(uerr)
                 else:
-                    st.success(f"Uploaded `{data['filename']}` (status: {data['status']})")
-                    if st.button("Run curriculum analysis now"):
-                        _run_analysis(cid, data["id"])
+                    st.success(
+                        f"Uploaded **{data['filename']}**. Click "
+                        "**Analyze curriculum (agent run)** below to process it."
+                    )
         with list_col:
             st.subheader("Uploaded documents")
             docs, derr = _attempt(lambda: client.list_documents(cid))
             if derr:
                 st.error(derr)
+            elif not docs:
+                st.caption("No documents uploaded yet.")
             else:
+                _status_dot = {"ready": "🟢", "processing": "🟡", "uploaded": "⚪", "error": "🔴"}
                 for d in docs or []:
-                    dname, ddel = st.columns([6, 1])
-                    dname.markdown(
-                        f"- `{d['filename']}` — {d.get('status')} · {d.get('size_bytes', 0)} bytes"
-                    )
-                    if ddel.button("🗑", key=f"del_doc_{d['id']}", help="Delete this document"):
-                        confirm_delete_document(client, cid, d["id"], d["filename"])
+                    with st.container(border=True):
+                        info, ddel = st.columns([0.85, 0.15])
+                        with info:
+                            st.markdown(f"📄 **{d['filename']}**")
+                            st.caption(
+                                f"{_status_dot.get(d.get('status'), '•')} {d.get('status', 'unknown')} "
+                                f"· {(d.get('size_bytes', 0) or 0) / 1024:.1f} KB"
+                            )
+                        if ddel.button(
+                            "🗑", key=f"del_doc_{d['id']}", help="Delete this document"
+                        ):
+                            confirm_delete_document(client, cid, d["id"], d["filename"])
 
         if st.button("⚙️ Analyze curriculum (agent run)", type="primary", key=f"analyze_{cid}"):
             doc_id = None
