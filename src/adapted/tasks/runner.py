@@ -11,6 +11,7 @@ from ..database.session import SessionLocal
 from ..llm.registry import get_provider
 from ..logging.logger import get_logger
 from ..models import AgentTask
+from ..obe import runner as obe_runner
 
 log = get_logger("adapted.tasks")
 
@@ -39,6 +40,66 @@ def submit_pipeline(intent: str, payload: dict[str, Any], user_id: str | None) -
         db.close()
     _executor.submit(_run_in_thread, intent, payload, user_id, task_id, correlation_id)
     return task_id, correlation_id
+
+
+def submit_obe(
+    *, text: str, polish: bool, filename: str, user_id: str | None
+) -> tuple[str, str]:
+    """Persist a 'started' OBE analysis task and run it in the background.
+
+    The OBE extract → validate → suggest → summarize chain is a single linear
+    pipeline, not a graph, so it doesn't go through ``AgentRuntime`` / the
+    supervisor graph. The task row is still persisted (intent
+    ``"analyze_outline"`` -> workflow ``"obe_summary"``) so it shows up in
+    ``GET /agent/tasks`` and the Operations page like every other agent run.
+    """
+    db = SessionLocal()
+    try:
+        task = Supervisor(db).start_task(
+            "analyze_outline",
+            {"filename": filename, "polish": bool(polish)},
+            user_id,
+        )
+        db.commit()
+        task_id, correlation_id = task.task_id, task.correlation_id
+    except Exception as exc:
+        db.rollback()
+        log.error("obe_task_submit_failed", filename=filename, error=str(exc))
+        raise
+    finally:
+        db.close()
+    _executor.submit(
+        _run_obe_in_thread, text, polish, filename, task_id, correlation_id
+    )
+    return task_id, correlation_id
+
+
+def _run_obe_in_thread(
+    text: str,
+    polish: bool,
+    filename: str,
+    task_id: str,
+    correlation_id: str,
+) -> None:
+    db = SessionLocal()
+    try:
+        result = obe_runner.analyze_text(text, polish=polish)
+        Supervisor(db).finish_task(task_id, "success", result=result)
+        db.commit()
+        log.info(
+            "obe_task_succeeded",
+            task_id=task_id,
+            filename=filename,
+            errors=result.get("report", {}).get("error_count"),
+        )
+    except Exception as exc:  # noqa: BLE001
+        log.error("obe_task_failed", task_id=task_id, error=str(exc))
+        try:
+            _mark_failed(task_id, f"OBE analysis failed: {exc}")
+        except Exception as mark_err:  # noqa: BLE001
+            log.error("obe_task_mark_failed", task_id=task_id, error=str(mark_err))
+    finally:
+        db.close()
 
 
 def _run_in_thread(

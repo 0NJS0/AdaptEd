@@ -3,6 +3,7 @@ from __future__ import annotations
 import os
 from datetime import datetime
 
+import httpx
 import streamlit as st
 
 try:
@@ -45,8 +46,12 @@ def _attempt(fn):
         return fn(), None
     except APIError as exc:
         return None, exc.detail
-    except Exception as exc:  # noqa: BLE001
+    except httpx.TimeoutException as exc:
+        return None, f"Request timed out: {exc}"
+    except httpx.HTTPError as exc:
         return None, f"Connection error: {exc}"
+    except Exception as exc:  # noqa: BLE001
+        return None, f"Unexpected error: {exc}"
 
 
 def _show_error(res):
@@ -539,6 +544,11 @@ def _store_task_result(client: APIClient, pending: dict, task: dict) -> bool:
             "targeted_lesson": ctx.get("lesson_agent") or {},
             "reassessment_quiz": ctx.get("quiz_agent") or {},
         }
+    elif kind == "obe":
+        st.session_state.obe_result = ctx
+        st.session_state.obe_filename = pending.get("filename") or st.session_state.get(
+            "obe_filename", "outline"
+        )
     return True
 
 
@@ -957,8 +967,9 @@ def teacher_obe() -> None:
         polish = st.checkbox(
             "Polish summary with LLM",
             value=False,
-            help="Optional. Uses the configured LLM provider (needs an API key). "
-            "Leave off for the deterministic, offline summary.",
+            help="Optional — uses the configured LLM provider (OpenRouter free "
+            "tier can take 30+ minutes). Leave off for the deterministic, "
+            "offline summary. The UI keeps working while it runs.",
         )
 
     if f is not None and st.button("🔍 Analyze outline", type="primary"):
@@ -970,8 +981,14 @@ def teacher_obe() -> None:
         if err:
             st.error(err)
         else:
-            st.session_state.obe_result = res
-            st.session_state.obe_filename = f.name
+            st.session_state.pending_task = {
+                "kind": "obe",
+                "task_id": res["task_id"],
+                "label": "OBE outline analysis",
+                "filename": f.name,
+                "on_success": "Outline analyzed — review CO ↔ PO mapping below.",
+            }
+            st.rerun()
 
     result = st.session_state.get("obe_result")
     if result:
