@@ -89,25 +89,21 @@ def auth_screen() -> None:
         remail = st.text_input("Email", key="reg_email")
         rpass = st.text_input("Password (min 6 chars)", type="password", key="reg_pass")
         role = st.radio("I am a", ["student", "teacher"], horizontal=True)
-        col1, col2 = st.columns(2)
-        with col1:
-            grade = st.text_input("Grade level (students)", key="reg_grade", placeholder="e.g. 10")
-        with col2:
-            minutes = st.number_input(
-                "Daily study minutes (students)",
-                min_value=15,
-                max_value=480,
-                value=90,
-                step=15,
-                key="reg_minutes",
-            )
+        minutes = st.number_input(
+            "Daily study minutes (students)",
+            min_value=15,
+            max_value=480,
+            value=90,
+            step=15,
+            key="reg_minutes",
+        )
         if st.button("Create account", type="primary"):
             if not name or not remail or len(rpass) < 6:
                 st.error("Name, valid email and password (>=6 chars) are required")
             else:
                 kwargs = {}
                 if role == "student":
-                    kwargs = {"grade_level": grade or None, "daily_study_minutes": int(minutes)}
+                    kwargs = {"daily_study_minutes": int(minutes)}
                 data, err = _attempt(
                     lambda: _client().register(remail, rpass, name, role, **kwargs)
                 )
@@ -141,22 +137,51 @@ def _ensure_client() -> bool:
 # ==================================================================== SIDEBAR
 
 
+_NAV_ICONS = {
+    "Dashboard": "🏠",
+    "Curriculum": "📋",
+    "Class": "📊",
+    "Review Queue": "🕵️",
+    "OBE Mapping": "🧭",
+    "Agent Console": "🛰️",
+    "Operations": "🛠️",
+    "Study Plan": "📅",
+    "Learn": "📖",
+    "Quizzes": "📝",
+    "My Progress": "📈",
+    "Recommendations": "💡",
+}
+
+# Light, version-safe polish only: gentle spacing + hover, no element hiding.
+_SIDEBAR_CSS = """
+<style>
+section[data-testid="stSidebar"] div[role="radiogroup"] label {
+    padding: 4px 8px; border-radius: 8px;
+}
+section[data-testid="stSidebar"] div[role="radiogroup"] label:hover {
+    background: rgba(120,140,170,.12);
+}
+section[data-testid="stSidebar"] div[role="radiogroup"] label p { font-size: 15px; }
+</style>
+"""
+
+
+def _clear_console_view() -> None:
+    """Leaving the console when the user picks a sidebar page."""
+    st.session_state.view = None
+
+
 def sidebar() -> str | None:
     user = _user()
     role = user.get("role", "student")
-    st.sidebar.title("🎓 AdaptED")
-    st.sidebar.caption(f"Signed in as **{user.get('full_name', '')}** ({role})")
+    st.sidebar.markdown(_SIDEBAR_CSS, unsafe_allow_html=True)
+    st.sidebar.markdown("## 🎓 AdaptED")
+    st.sidebar.caption(f"**{user.get('full_name', '')}** · {role.title()}")
+    st.sidebar.divider()
 
     nav = ["Dashboard"]
     if role == "teacher":
-        nav += [
-            "Curriculum",
-            "Class",
-            "Review Queue",
-            "OBE Mapping",
-            "Agent Console",
-            "Operations",
-        ]
+        nav += ["Curriculum", "Class", "Review Queue", "OBE Mapping", "Operations"]
     else:
         nav += ["Study Plan", "Learn", "Quizzes", "My Progress", "Recommendations"]
 
@@ -167,10 +192,42 @@ def sidebar() -> str | None:
     if pending in nav:
         st.session_state["nav_radio"] = pending
 
-    choice = st.sidebar.radio("Menu", nav, key="nav_radio")
-    if st.sidebar.button("Sign out"):
+    choice = st.sidebar.radio(
+        "Menu",
+        nav,
+        key="nav_radio",
+        label_visibility="collapsed",
+        format_func=lambda x: f"{_NAV_ICONS.get(x, '•')}  {x}",
+        on_change=_clear_console_view,
+    )
+    st.sidebar.divider()
+    if st.sidebar.button("🚪 Sign out", use_container_width=True):
         logout()
     return choice
+
+
+def top_nav() -> None:
+    """A slim upper navigation bar with a separate entry to the Agent Console.
+
+    Teacher-only. The console opens as its own view (independent of the sidebar
+    menu) so it reads as a distinct tool; picking any sidebar page returns here.
+    """
+    user = _user()
+    if user.get("role") != "teacher":
+        return
+    in_console = st.session_state.get("view") == "agent_console"
+    left, right = st.columns([0.72, 0.28])
+    with left:
+        st.markdown("### 🛰️ Agent Console" if in_console else "🎓 **AdaptED**")
+    with right:
+        if in_console:
+            if st.button("← Back to app", use_container_width=True):
+                st.session_state.view = None
+                st.rerun()
+        elif st.button("🛰️ Open Agent Console", use_container_width=True):
+            st.session_state.view = "agent_console"
+            st.rerun()
+    st.divider()
 
 
 # ============================================================ COMMON WIDGETS
@@ -359,7 +416,7 @@ def teacher_curriculum() -> None:
         with upload_col:
             st.subheader("Upload a textbook / notes")
             f = st.file_uploader("Choose a file (.md, .txt, .pdf, .docx)", key=f"up_{cid}")
-            if f is not None and st.button("Upload & analyze", type="primary"):
+            if f is not None and st.button("Upload document", type="primary"):
                 data, uerr = _attempt(
                     lambda: client.upload_document(
                         cid, f.name, f.getvalue(), f.type or "application/octet-stream"
@@ -368,22 +425,32 @@ def teacher_curriculum() -> None:
                 if uerr:
                     st.error(uerr)
                 else:
-                    st.success(f"Uploaded `{data['filename']}` (status: {data['status']})")
-                    if st.button("Run curriculum analysis now"):
-                        _run_analysis(cid, data["id"])
+                    st.success(
+                        f"Uploaded **{data['filename']}**. Click "
+                        "**Analyze curriculum (agent run)** below to process it."
+                    )
         with list_col:
             st.subheader("Uploaded documents")
             docs, derr = _attempt(lambda: client.list_documents(cid))
             if derr:
                 st.error(derr)
+            elif not docs:
+                st.caption("No documents uploaded yet.")
             else:
+                _status_dot = {"ready": "🟢", "processing": "🟡", "uploaded": "⚪", "error": "🔴"}
                 for d in docs or []:
-                    dname, ddel = st.columns([6, 1])
-                    dname.markdown(
-                        f"- `{d['filename']}` — {d.get('status')} · {d.get('size_bytes', 0)} bytes"
-                    )
-                    if ddel.button("🗑", key=f"del_doc_{d['id']}", help="Delete this document"):
-                        confirm_delete_document(client, cid, d["id"], d["filename"])
+                    with st.container(border=True):
+                        info, ddel = st.columns([0.85, 0.15])
+                        with info:
+                            st.markdown(f"📄 **{d['filename']}**")
+                            st.caption(
+                                f"{_status_dot.get(d.get('status'), '•')} {d.get('status', 'unknown')} "
+                                f"· {(d.get('size_bytes', 0) or 0) / 1024:.1f} KB"
+                            )
+                        if ddel.button(
+                            "🗑", key=f"del_doc_{d['id']}", help="Delete this document"
+                        ):
+                            confirm_delete_document(client, cid, d["id"], d["filename"])
 
         if st.button("⚙️ Analyze curriculum (agent run)", type="primary", key=f"analyze_{cid}"):
             doc_id = None
@@ -1701,9 +1768,17 @@ def main() -> None:
     if not _ensure_client():
         return
     choice = sidebar()
+    user = _user()
+    top_nav()
+
+    # The Agent Console is a separate top-nav view, not a sidebar page.
+    if user.get("role") == "teacher" and st.session_state.get("view") == "agent_console":
+        agent_console()
+        _render_pending_task(_client())
+        return
+
     if not choice:
         return
-    user = _user()
     if choice == "Dashboard":
         if user.get("role") == "teacher":
             teacher_dashboard()
@@ -1717,8 +1792,6 @@ def main() -> None:
         teacher_review_queue()
     elif choice == "OBE Mapping":
         teacher_obe()
-    elif choice == "Agent Console":
-        agent_console()
     elif choice == "Operations":
         operations_view()
     elif choice == "Study Plan":
