@@ -105,7 +105,7 @@ def auth_screen() -> None:
             else:
                 kwargs = {}
                 if role == "student":
-                    kwargs = {"daily_study_minutes": int(minutes)}
+                    kwargs = {"daily_study_minutes": int(minutes) * 60}
                 data, err = _attempt(
                     lambda: _client().register(remail, rpass, name, role, **kwargs)
                 )

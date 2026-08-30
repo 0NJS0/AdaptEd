@@ -1,0 +1,299 @@
+{
+  "scriptCompleted": true,
+  "stats": {
+    "filesScanned": 66,
+    "filesWithImports": 48,
+    "totalEdges": 175
+  },
+  "importMap": {
+    ".env.example": [],
+    ".python-version": [],
+    ".ua/.understandignore": [],
+    "README.md": [],
+    "opencode.json": [],
+    "pyproject.toml": [],
+    "src/adapted/__init__.py": [],
+    "src/adapted/agents/base.py": [
+      "src/adapted/agents/message.py",
+      "src/adapted/logging/logger.py"
+    ],
+    "src/adapted/agents/curriculum_agent.py": [
+      "src/adapted/agents/base.py",
+      "src/adapted/agents/message.py",
+      "src/adapted/logging/logger.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/rag/parser.py"
+    ],
+    "src/adapted/agents/grading_agent.py": [
+      "src/adapted/agents/base.py",
+      "src/adapted/agents/message.py",
+      "src/adapted/logging/logger.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/services/grading.py"
+    ],
+    "src/adapted/agents/lesson_agent.py": [
+      "src/adapted/agents/base.py",
+      "src/adapted/agents/message.py",
+      "src/adapted/config.py",
+      "src/adapted/logging/logger.py",
+      "src/adapted/memory/student_memory.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/rag/retriever.py"
+    ],
+    "src/adapted/agents/message.py": [
+      "src/adapted/logging/logger.py",
+      "src/adapted/models/__init__.py"
+    ],
+    "src/adapted/agents/performance_agent.py": [
+      "src/adapted/agents/base.py",
+      "src/adapted/agents/message.py",
+      "src/adapted/logging/logger.py",
+      "src/adapted/models/__init__.py"
+    ],
+    "src/adapted/agents/planner_agent.py": [
+      "src/adapted/agents/base.py",
+      "src/adapted/agents/message.py",
+      "src/adapted/logging/logger.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/services/scheduler.py"
+    ],
+    "src/adapted/agents/quiz_agent.py": [
+      "src/adapted/agents/base.py",
+      "src/adapted/agents/message.py",
+      "src/adapted/logging/logger.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/services/grading.py"
+    ],
+    "src/adapted/agents/recommendation_agent.py": [
+      "src/adapted/agents/base.py",
+      "src/adapted/agents/message.py",
+      "src/adapted/logging/logger.py",
+      "src/adapted/models/__init__.py"
+    ],
+    "src/adapted/agents/supervisor.py": [
+      "src/adapted/agents/message.py",
+      "src/adapted/logging/logger.py",
+      "src/adapted/models/__init__.py"
+    ],
+    "src/adapted/api/deps.py": [
+      "src/adapted/database/session.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/security/jwt.py"
+    ],
+    "src/adapted/api/routers/__init__.py": [],
+    "src/adapted/api/routers/agent.py": [
+      "src/adapted/api/deps.py",
+      "src/adapted/logging/logger.py",
+      "src/adapted/schemas/api.py",
+      "src/adapted/tasks/runner.py"
+    ],
+    "src/adapted/api/routers/agent_ops.py": [
+      "src/adapted/api/deps.py",
+      "src/adapted/database/session.py",
+      "src/adapted/logging/logger.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/schemas/api.py"
+    ],
+    "src/adapted/api/routers/auth.py": [
+      "src/adapted/api/deps.py",
+      "src/adapted/database/session.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/schemas/api.py",
+      "src/adapted/security/jwt.py",
+      "src/adapted/security/passwords.py"
+    ],
+    "src/adapted/api/routers/courses.py": [
+      "src/adapted/api/deps.py",
+      "src/adapted/config.py",
+      "src/adapted/database/session.py",
+      "src/adapted/logging/logger.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/models/observability.py",
+      "src/adapted/rag/parser.py",
+      "src/adapted/schemas/api.py"
+    ],
+    "src/adapted/api/routers/curriculum.py": [
+      "src/adapted/api/deps.py",
+      "src/adapted/database/session.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/schemas/api.py"
+    ],
+    "src/adapted/api/routers/lessons.py": [
+      "src/adapted/api/deps.py",
+      "src/adapted/database/session.py",
+      "src/adapted/logging/logger.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/schemas/api.py",
+      "src/adapted/tasks/runner.py"
+    ],
+    "src/adapted/api/routers/logs.py": [
+      "src/adapted/api/deps.py",
+      "src/adapted/database/session.py",
+      "src/adapted/models/__init__.py"
+    ],
+    "src/adapted/api/routers/quizzes.py": [
+      "src/adapted/api/deps.py",
+      "src/adapted/database/session.py",
+      "src/adapted/logging/logger.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/schemas/api.py",
+      "src/adapted/tasks/runner.py"
+    ],
+    "src/adapted/api/routers/students.py": [
+      "src/adapted/api/deps.py",
+      "src/adapted/database/session.py",
+      "src/adapted/memory/student_memory.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/schemas/api.py"
+    ],
+    "src/adapted/api/routers/study_plans.py": [
+      "src/adapted/api/deps.py",
+      "src/adapted/database/session.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/schemas/api.py"
+    ],
+    "src/adapted/api/routers/teacher.py": [
+      "src/adapted/api/deps.py",
+      "src/adapted/database/session.py",
+      "src/adapted/memory/student_memory.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/services/analytics.py"
+    ],
+    "src/adapted/api/routers/users.py": [
+      "src/adapted/api/deps.py",
+      "src/adapted/database/session.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/schemas/api.py"
+    ],
+    "src/adapted/config.py": [],
+    "src/adapted/database/base.py": [
+      "src/adapted/config.py"
+    ],
+    "src/adapted/database/session.py": [
+      "src/adapted/config.py",
+      "src/adapted/database/base.py",
+      "src/adapted/logging/logger.py"
+    ],
+    "src/adapted/graph/runtime.py": [
+      "src/adapted/agents/base.py",
+      "src/adapted/agents/message.py",
+      "src/adapted/agents/supervisor.py",
+      "src/adapted/config.py",
+      "src/adapted/logging/logger.py"
+    ],
+    "src/adapted/llm/base.py": [],
+    "src/adapted/llm/mock.py": [
+      "src/adapted/config.py",
+      "src/adapted/llm/base.py"
+    ],
+    "src/adapted/llm/openai_compatible.py": [
+      "src/adapted/config.py",
+      "src/adapted/llm/base.py"
+    ],
+    "src/adapted/llm/registry.py": [
+      "src/adapted/config.py",
+      "src/adapted/llm/base.py",
+      "src/adapted/llm/mock.py",
+      "src/adapted/llm/openai_compatible.py"
+    ],
+    "src/adapted/logging/logger.py": [
+      "src/adapted/config.py"
+    ],
+    "src/adapted/main.py": [
+      "src/adapted/config.py",
+      "src/adapted/database/session.py",
+      "src/adapted/logging/logger.py"
+    ],
+    "src/adapted/memory/curriculum_memory.py": [
+      "src/adapted/config.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/rag/chunker.py",
+      "src/adapted/rag/embeddings.py",
+      "src/adapted/rag/parser.py",
+      "src/adapted/rag/vector_store.py"
+    ],
+    "src/adapted/memory/student_memory.py": [
+      "src/adapted/models/__init__.py"
+    ],
+    "src/adapted/models/__init__.py": [
+      "src/adapted/models/course.py",
+      "src/adapted/models/curriculum.py",
+      "src/adapted/models/learning.py",
+      "src/adapted/models/memory.py",
+      "src/adapted/models/observability.py",
+      "src/adapted/models/user.py"
+    ],
+    "src/adapted/models/course.py": [
+      "src/adapted/database/base.py",
+      "src/adapted/database/session.py",
+      "src/adapted/models/user.py"
+    ],
+    "src/adapted/models/curriculum.py": [
+      "src/adapted/database/base.py",
+      "src/adapted/database/session.py",
+      "src/adapted/models/user.py"
+    ],
+    "src/adapted/models/learning.py": [
+      "src/adapted/database/base.py",
+      "src/adapted/database/session.py",
+      "src/adapted/models/user.py"
+    ],
+    "src/adapted/models/memory.py": [
+      "src/adapted/database/base.py",
+      "src/adapted/database/session.py",
+      "src/adapted/models/user.py"
+    ],
+    "src/adapted/models/observability.py": [
+      "src/adapted/database/base.py",
+      "src/adapted/database/session.py",
+      "src/adapted/models/user.py"
+    ],
+    "src/adapted/models/user.py": [
+      "src/adapted/database/base.py",
+      "src/adapted/database/session.py"
+    ],
+    "src/adapted/rag/chunker.py": [
+      "src/adapted/rag/parser.py"
+    ],
+    "src/adapted/rag/embeddings.py": [
+      "src/adapted/llm/registry.py"
+    ],
+    "src/adapted/rag/parser.py": [],
+    "src/adapted/rag/retriever.py": [
+      "src/adapted/config.py",
+      "src/adapted/rag/embeddings.py",
+      "src/adapted/rag/vector_store.py"
+    ],
+    "src/adapted/rag/vector_store.py": [
+      "src/adapted/config.py",
+      "src/adapted/database/session.py",
+      "src/adapted/models/__init__.py"
+    ],
+    "src/adapted/schemas/api.py": [],
+    "src/adapted/security/jwt.py": [
+      "src/adapted/config.py",
+      "src/adapted/security/jwt.py"
+    ],
+    "src/adapted/security/passwords.py": [],
+    "src/adapted/services/analytics.py": [
+      "src/adapted/services/mastery.py"
+    ],
+    "src/adapted/services/grading.py": [],
+    "src/adapted/services/mastery.py": [],
+    "src/adapted/services/scheduler.py": [],
+    "src/adapted/tasks/runner.py": [
+      "src/adapted/agents/message.py",
+      "src/adapted/agents/supervisor.py",
+      "src/adapted/database/session.py",
+      "src/adapted/llm/registry.py",
+      "src/adapted/logging/logger.py",
+      "src/adapted/models/__init__.py"
+    ],
+    "src/adapted/tools/registry.py": [
+      "src/adapted/config.py",
+      "src/adapted/rag/retriever.py"
+    ],
+    "src/adapted/ui/app.py": [],
+    "src/adapted/ui/client.py": []
+  }
+}

@@ -1,0 +1,907 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 8,
+  "filesSkipped": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 8,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 8,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "src/adapted/database/base.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 51,
+      "nonEmptyLines": 34,
+      "functions": [
+        {
+          "name": "create_engine_and_session",
+          "startLine": 48,
+          "endLine": 51,
+          "params": [
+            "database_url",
+            "debug"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "VectorColumn",
+          "startLine": 12,
+          "endLine": 31,
+          "methods": [
+            "__init__",
+            "load_dialect_impl",
+            "process_bind_param",
+            "process_result_value"
+          ],
+          "properties": []
+        },
+        {
+          "name": "Base",
+          "startLine": 43,
+          "endLine": 45,
+          "methods": [],
+          "properties": [
+            "type_annotation_map"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "VectorColumn",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "Base",
+          "line": 43,
+          "isDefault": false
+        },
+        {
+          "name": "create_engine_and_session",
+          "line": 48,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "super().__init__",
+          "lineNumber": 20
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 20
+        },
+        {
+          "caller": "load_dialect_impl",
+          "callee": "dialect.type_descriptor",
+          "lineNumber": 25
+        },
+        {
+          "caller": "load_dialect_impl",
+          "callee": "Vector",
+          "lineNumber": 25
+        },
+        {
+          "caller": "create_engine_and_session",
+          "callee": "create_engine",
+          "lineNumber": 49
+        },
+        {
+          "caller": "create_engine_and_session",
+          "callee": "sessionmaker",
+          "lineNumber": 50
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 3,
+        "functionCount": 1,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "src/adapted/models/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 55,
+      "nonEmptyLines": 54,
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/adapted/models/course.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 86,
+      "nonEmptyLines": 70,
+      "classes": [
+        {
+          "name": "Course",
+          "startLine": 18,
+          "endLine": 41,
+          "methods": [],
+          "properties": [
+            "id",
+            "teacher_id",
+            "title",
+            "subject",
+            "description",
+            "exam_date",
+            "status",
+            "created_at",
+            "teacher",
+            "enrollments",
+            "documents",
+            "chapters"
+          ]
+        },
+        {
+          "name": "Enrollment",
+          "startLine": 44,
+          "endLine": 58,
+          "methods": [],
+          "properties": [
+            "id",
+            "course_id",
+            "student_id",
+            "status",
+            "joined_at",
+            "course",
+            "student"
+          ]
+        },
+        {
+          "name": "Document",
+          "startLine": 61,
+          "endLine": 86,
+          "methods": [],
+          "properties": [
+            "id",
+            "course_id",
+            "filename",
+            "storage_path",
+            "file_type",
+            "size_bytes",
+            "page_count",
+            "status",
+            "error",
+            "uploaded_by",
+            "created_at",
+            "processed_at",
+            "course",
+            "chunks"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "Course",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "Enrollment",
+          "line": 44,
+          "isDefault": false
+        },
+        {
+          "name": "Document",
+          "line": 61,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 3,
+        "functionCount": 0,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "src/adapted/models/curriculum.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 117,
+      "nonEmptyLines": 93,
+      "classes": [
+        {
+          "name": "Chapter",
+          "startLine": 17,
+          "endLine": 34,
+          "methods": [],
+          "properties": [
+            "id",
+            "course_id",
+            "document_id",
+            "title",
+            "order_index",
+            "source_refs",
+            "course",
+            "topics"
+          ]
+        },
+        {
+          "name": "Topic",
+          "startLine": 37,
+          "endLine": 61,
+          "methods": [],
+          "properties": [
+            "id",
+            "course_id",
+            "chapter_id",
+            "title",
+            "order_index",
+            "difficulty",
+            "description",
+            "created_at",
+            "chapter",
+            "learning_objectives",
+            "prerequisites"
+          ]
+        },
+        {
+          "name": "TopicPrerequisite",
+          "startLine": 64,
+          "endLine": 77,
+          "methods": [],
+          "properties": [
+            "id",
+            "topic_id",
+            "prereq_topic_id",
+            "topic",
+            "prereq_topic"
+          ]
+        },
+        {
+          "name": "LearningObjective",
+          "startLine": 80,
+          "endLine": 90,
+          "methods": [],
+          "properties": [
+            "id",
+            "topic_id",
+            "code",
+            "description",
+            "topic"
+          ]
+        },
+        {
+          "name": "ContentChunk",
+          "startLine": 93,
+          "endLine": 117,
+          "methods": [],
+          "properties": [
+            "id",
+            "document_id",
+            "course_id",
+            "chapter_id",
+            "topic_id",
+            "chunk_index",
+            "page_start",
+            "page_end",
+            "heading",
+            "content",
+            "source",
+            "vector",
+            "document"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "Chapter",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "Topic",
+          "line": 37,
+          "isDefault": false
+        },
+        {
+          "name": "TopicPrerequisite",
+          "line": 64,
+          "isDefault": false
+        },
+        {
+          "name": "LearningObjective",
+          "line": 80,
+          "isDefault": false
+        },
+        {
+          "name": "ContentChunk",
+          "line": 93,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 5,
+        "functionCount": 0,
+        "classCount": 5
+      }
+    },
+    {
+      "path": "src/adapted/models/learning.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 225,
+      "nonEmptyLines": 188,
+      "classes": [
+        {
+          "name": "StudyPlan",
+          "startLine": 17,
+          "endLine": 40,
+          "methods": [],
+          "properties": [
+            "id",
+            "student_id",
+            "course_id",
+            "version",
+            "exam_date",
+            "daily_minutes",
+            "status",
+            "created_at",
+            "updated_at",
+            "items"
+          ]
+        },
+        {
+          "name": "StudyPlanItem",
+          "startLine": 43,
+          "endLine": 66,
+          "methods": [],
+          "properties": [
+            "id",
+            "study_plan_id",
+            "topic_id",
+            "day_index",
+            "sequence",
+            "estimated_minutes",
+            "goal",
+            "status",
+            "reason",
+            "created_at",
+            "study_plan",
+            "topic"
+          ]
+        },
+        {
+          "name": "Lesson",
+          "startLine": 69,
+          "endLine": 86,
+          "methods": [],
+          "properties": [
+            "id",
+            "course_id",
+            "topic_id",
+            "student_id",
+            "level",
+            "title",
+            "content",
+            "chunks_used",
+            "created_at"
+          ]
+        },
+        {
+          "name": "Question",
+          "startLine": 89,
+          "endLine": 115,
+          "methods": [],
+          "properties": [
+            "id",
+            "course_id",
+            "topic_id",
+            "learning_objective_id",
+            "question_type",
+            "prompt",
+            "choices",
+            "correct_answer",
+            "explanation",
+            "difficulty",
+            "source_ref",
+            "status",
+            "question_hash",
+            "created_at"
+          ]
+        },
+        {
+          "name": "Quiz",
+          "startLine": 118,
+          "endLine": 140,
+          "methods": [],
+          "properties": [
+            "id",
+            "course_id",
+            "student_id",
+            "title",
+            "quiz_type",
+            "config",
+            "status",
+            "created_by",
+            "created_at",
+            "questions",
+            "attempts"
+          ]
+        },
+        {
+          "name": "QuizQuestion",
+          "startLine": 143,
+          "endLine": 157,
+          "methods": [],
+          "properties": [
+            "id",
+            "quiz_id",
+            "question_id",
+            "position",
+            "assigned_difficulty",
+            "quiz",
+            "question"
+          ]
+        },
+        {
+          "name": "QuizAttempt",
+          "startLine": 160,
+          "endLine": 182,
+          "methods": [],
+          "properties": [
+            "id",
+            "quiz_id",
+            "student_id",
+            "started_at",
+            "submitted_at",
+            "score",
+            "max_score",
+            "status",
+            "correlation_id",
+            "quiz",
+            "answers"
+          ]
+        },
+        {
+          "name": "Answer",
+          "startLine": 185,
+          "endLine": 209,
+          "methods": [],
+          "properties": [
+            "id",
+            "attempt_id",
+            "question_id",
+            "response",
+            "is_correct",
+            "ai_score",
+            "ai_explanation",
+            "ai_confidence",
+            "teacher_score",
+            "teacher_feedback",
+            "graded_by",
+            "grading_status",
+            "needs_teacher_review",
+            "attempt",
+            "question"
+          ]
+        },
+        {
+          "name": "Grade",
+          "startLine": 212,
+          "endLine": 225,
+          "methods": [],
+          "properties": [
+            "id",
+            "attempt_id",
+            "student_id",
+            "score",
+            "max_score",
+            "percentage",
+            "graded_at"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "StudyPlan",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "StudyPlanItem",
+          "line": 43,
+          "isDefault": false
+        },
+        {
+          "name": "Lesson",
+          "line": 69,
+          "isDefault": false
+        },
+        {
+          "name": "Question",
+          "line": 89,
+          "isDefault": false
+        },
+        {
+          "name": "Quiz",
+          "line": 118,
+          "isDefault": false
+        },
+        {
+          "name": "QuizQuestion",
+          "line": 143,
+          "isDefault": false
+        },
+        {
+          "name": "QuizAttempt",
+          "line": 160,
+          "isDefault": false
+        },
+        {
+          "name": "Answer",
+          "line": 185,
+          "isDefault": false
+        },
+        {
+          "name": "Grade",
+          "line": 212,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 9,
+        "functionCount": 0,
+        "classCount": 9
+      }
+    },
+    {
+      "path": "src/adapted/models/memory.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 136,
+      "nonEmptyLines": 111,
+      "classes": [
+        {
+          "name": "StudentMastery",
+          "startLine": 18,
+          "endLine": 38,
+          "methods": [],
+          "properties": [
+            "id",
+            "student_id",
+            "topic_id",
+            "mastery",
+            "attempts",
+            "trend",
+            "status",
+            "history",
+            "last_updated",
+            "topic"
+          ]
+        },
+        {
+          "name": "StudyHistory",
+          "startLine": 41,
+          "endLine": 57,
+          "methods": [],
+          "properties": [
+            "id",
+            "student_id",
+            "course_id",
+            "topic_id",
+            "activity_type",
+            "ref_id",
+            "details",
+            "occurred_at"
+          ]
+        },
+        {
+          "name": "Misconception",
+          "startLine": 60,
+          "endLine": 78,
+          "methods": [],
+          "properties": [
+            "id",
+            "student_id",
+            "topic_id",
+            "label",
+            "description",
+            "evidence",
+            "status",
+            "created_at",
+            "resolved_at",
+            "topic"
+          ]
+        },
+        {
+          "name": "ConversationMemory",
+          "startLine": 81,
+          "endLine": 96,
+          "methods": [],
+          "properties": [
+            "id",
+            "student_id",
+            "course_id",
+            "focus_topic",
+            "frequency",
+            "last_seen",
+            "summary",
+            "student"
+          ]
+        },
+        {
+          "name": "LearningPreference",
+          "startLine": 99,
+          "endLine": 109,
+          "methods": [],
+          "properties": [
+            "id",
+            "user_id",
+            "pref_key",
+            "pref_value",
+            "created_at"
+          ]
+        },
+        {
+          "name": "Recommendation",
+          "startLine": 112,
+          "endLine": 136,
+          "methods": [],
+          "properties": [
+            "id",
+            "student_id",
+            "course_id",
+            "plan_item_id",
+            "action",
+            "topic_id",
+            "title",
+            "reasons",
+            "payload",
+            "source_agent",
+            "confidence",
+            "needs_teacher_review",
+            "status",
+            "created_at"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "StudentMastery",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "StudyHistory",
+          "line": 41,
+          "isDefault": false
+        },
+        {
+          "name": "Misconception",
+          "line": 60,
+          "isDefault": false
+        },
+        {
+          "name": "ConversationMemory",
+          "line": 81,
+          "isDefault": false
+        },
+        {
+          "name": "LearningPreference",
+          "line": 99,
+          "isDefault": false
+        },
+        {
+          "name": "Recommendation",
+          "line": 112,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 6,
+        "functionCount": 0,
+        "classCount": 6
+      }
+    },
+    {
+      "path": "src/adapted/models/observability.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 64,
+      "nonEmptyLines": 52,
+      "classes": [
+        {
+          "name": "AgentTask",
+          "startLine": 13,
+          "endLine": 31,
+          "methods": [],
+          "properties": [
+            "id",
+            "task_id",
+            "correlation_id",
+            "workflow",
+            "intent",
+            "status",
+            "user_id",
+            "payload",
+            "result",
+            "error",
+            "retries",
+            "started_at",
+            "finished_at",
+            "duration_ms"
+          ]
+        },
+        {
+          "name": "AgentMessage",
+          "startLine": 34,
+          "endLine": 48,
+          "methods": [],
+          "properties": [
+            "id",
+            "message_id",
+            "task_id",
+            "correlation_id",
+            "sender",
+            "receiver",
+            "action",
+            "payload",
+            "status",
+            "error",
+            "duration_ms",
+            "created_at"
+          ]
+        },
+        {
+          "name": "AuditLog",
+          "startLine": 51,
+          "endLine": 64,
+          "methods": [],
+          "properties": [
+            "id",
+            "timestamp",
+            "user_id",
+            "role",
+            "action",
+            "resource_type",
+            "resource_id",
+            "detail",
+            "task_id",
+            "correlation_id",
+            "ip"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "AgentTask",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "AgentMessage",
+          "line": 34,
+          "isDefault": false
+        },
+        {
+          "name": "AuditLog",
+          "line": 51,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 3,
+        "functionCount": 0,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "src/adapted/models/user.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 57,
+      "nonEmptyLines": 39,
+      "functions": [
+        {
+          "name": "utcnow",
+          "startLine": 16,
+          "endLine": 17,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "User",
+          "startLine": 20,
+          "endLine": 31,
+          "methods": [],
+          "properties": [
+            "id",
+            "email",
+            "password_hash",
+            "full_name",
+            "role",
+            "created_at",
+            "teacher",
+            "student"
+          ]
+        },
+        {
+          "name": "Teacher",
+          "startLine": 34,
+          "endLine": 43,
+          "methods": [],
+          "properties": [
+            "user_id",
+            "department",
+            "user",
+            "courses"
+          ]
+        },
+        {
+          "name": "Student",
+          "startLine": 46,
+          "endLine": 57,
+          "methods": [],
+          "properties": [
+            "user_id",
+            "grade_level",
+            "daily_study_minutes",
+            "timezone",
+            "user",
+            "enrollments"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "utcnow",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "User",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "Teacher",
+          "line": 34,
+          "isDefault": false
+        },
+        {
+          "name": "Student",
+          "line": 46,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "utcnow",
+          "callee": "datetime.now",
+          "lineNumber": 17
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 4,
+        "functionCount": 1,
+        "classCount": 3
+      }
+    }
+  ]
+}

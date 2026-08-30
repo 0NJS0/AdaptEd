@@ -1,0 +1,125 @@
+{
+  "projectRoot": "/home/njs/Desktop/AdaptED/AdaptEd",
+  "batchFiles": [
+    {"path": "src/adapted/api/deps.py", "language": "python", "sizeLines": 83, "fileCategory": "code"},
+    {"path": "src/adapted/api/routers/agent.py", "language": "python", "sizeLines": 43, "fileCategory": "code"},
+    {"path": "src/adapted/api/routers/agent_ops.py", "language": "python", "sizeLines": 95, "fileCategory": "code"},
+    {"path": "src/adapted/api/routers/auth.py", "language": "python", "sizeLines": 91, "fileCategory": "code"},
+    {"path": "src/adapted/api/routers/courses.py", "language": "python", "sizeLines": 367, "fileCategory": "code"},
+    {"path": "src/adapted/api/routers/curriculum.py", "language": "python", "sizeLines": 93, "fileCategory": "code"},
+    {"path": "src/adapted/api/routers/lessons.py", "language": "python", "sizeLines": 70, "fileCategory": "code"},
+    {"path": "src/adapted/api/routers/logs.py", "language": "python", "sizeLines": 36, "fileCategory": "code"},
+    {"path": "src/adapted/api/routers/quizzes.py", "language": "python", "sizeLines": 212, "fileCategory": "code"},
+    {"path": "src/adapted/api/routers/students.py", "language": "python", "sizeLines": 177, "fileCategory": "code"},
+    {"path": "src/adapted/api/routers/study_plans.py", "language": "python", "sizeLines": 104, "fileCategory": "code"},
+    {"path": "src/adapted/api/routers/users.py", "language": "python", "sizeLines": 58, "fileCategory": "code"},
+    {"path": "src/adapted/database/session.py", "language": "python", "sizeLines": 99, "fileCategory": "code"},
+    {"path": "src/adapted/schemas/api.py", "language": "python", "sizeLines": 312, "fileCategory": "code"},
+    {"path": "src/adapted/security/jwt.py", "language": "python", "sizeLines": 17, "fileCategory": "code"},
+    {"path": "src/adapted/security/passwords.py", "language": "python", "sizeLines": 14, "fileCategory": "code"},
+    {"path": "src/adapted/tasks/runner.py", "language": "python", "sizeLines": 80, "fileCategory": "code"}
+  ],
+  "batchImportData": {
+    "src/adapted/api/deps.py": [
+      "src/adapted/database/session.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/security/jwt.py"
+    ],
+    "src/adapted/api/routers/agent.py": [
+      "src/adapted/api/deps.py",
+      "src/adapted/logging/logger.py",
+      "src/adapted/schemas/api.py",
+      "src/adapted/tasks/runner.py"
+    ],
+    "src/adapted/api/routers/agent_ops.py": [
+      "src/adapted/api/deps.py",
+      "src/adapted/database/session.py",
+      "src/adapted/logging/logger.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/schemas/api.py"
+    ],
+    "src/adapted/api/routers/auth.py": [
+      "src/adapted/api/deps.py",
+      "src/adapted/database/session.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/schemas/api.py",
+      "src/adapted/security/jwt.py",
+      "src/adapted/security/passwords.py"
+    ],
+    "src/adapted/api/routers/courses.py": [
+      "src/adapted/api/deps.py",
+      "src/adapted/config.py",
+      "src/adapted/database/session.py",
+      "src/adapted/logging/logger.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/models/observability.py",
+      "src/adapted/rag/parser.py",
+      "src/adapted/schemas/api.py"
+    ],
+    "src/adapted/api/routers/curriculum.py": [
+      "src/adapted/api/deps.py",
+      "src/adapted/database/session.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/schemas/api.py"
+    ],
+    "src/adapted/api/routers/lessons.py": [
+      "src/adapted/api/deps.py",
+      "src/adapted/database/session.py",
+      "src/adapted/logging/logger.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/schemas/api.py",
+      "src/adapted/tasks/runner.py"
+    ],
+    "src/adapted/api/routers/logs.py": [
+      "src/adapted/api/deps.py",
+      "src/adapted/database/session.py",
+      "src/adapted/models/__init__.py"
+    ],
+    "src/adapted/api/routers/quizzes.py": [
+      "src/adapted/api/deps.py",
+      "src/adapted/database/session.py",
+      "src/adapted/logging/logger.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/schemas/api.py",
+      "src/adapted/tasks/runner.py"
+    ],
+    "src/adapted/api/routers/students.py": [
+      "src/adapted/api/deps.py",
+      "src/adapted/database/session.py",
+      "src/adapted/memory/student_memory.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/schemas/api.py"
+    ],
+    "src/adapted/api/routers/study_plans.py": [
+      "src/adapted/api/deps.py",
+      "src/adapted/database/session.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/schemas/api.py"
+    ],
+    "src/adapted/api/routers/users.py": [
+      "src/adapted/api/deps.py",
+      "src/adapted/database/session.py",
+      "src/adapted/models/__init__.py",
+      "src/adapted/schemas/api.py"
+    ],
+    "src/adapted/database/session.py": [
+      "src/adapted/config.py",
+      "src/adapted/database/base.py",
+      "src/adapted/logging/logger.py"
+    ],
+    "src/adapted/schemas/api.py": [],
+    "src/adapted/security/jwt.py": [
+      "src/adapted/config.py",
+      "src/adapted/security/jwt.py"
+    ],
+    "src/adapted/security/passwords.py": [],
+    "src/adapted/tasks/runner.py": [
+      "src/adapted/agents/message.py",
+      "src/adapted/agents/supervisor.py",
+      "src/adapted/database/session.py",
+      "src/adapted/llm/registry.py",
+      "src/adapted/logging/logger.py",
+      "src/adapted/models/__init__.py"
+    ]
+  }
+}

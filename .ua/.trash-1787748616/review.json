@@ -1,0 +1,31 @@
+{
+  "issues": [],
+  "warnings": [
+    "Node 'document:README.md' has no edges (orphan)",
+    "Node 'config:opencode.json' has no edges (orphan)",
+    "Node 'config:.ua/.understandignore' has no edges (orphan)",
+    "Node 'file:src/adapted/api/routers/__init__.py' has no edges (orphan)"
+  ],
+  "stats": {
+    "totalNodes": 325,
+    "totalEdges": 766,
+    "totalLayers": 9,
+    "tourSteps": 14,
+    "nodeTypes": {
+      "file": 60,
+      "function": 149,
+      "class": 110,
+      "config": 5,
+      "document": 1
+    },
+    "edgeTypes": {
+      "imports": 174,
+      "contains": 259,
+      "exports": 222,
+      "calls": 49,
+      "inherits": 38,
+      "depends_on": 19,
+      "configures": 5
+    }
+  }
+}

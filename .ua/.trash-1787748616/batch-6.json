@@ -1,0 +1,93 @@
+{
+  "nodes": [
+    {
+      "id": "config:.env.example",
+      "type": "config",
+      "name": ".env.example",
+      "filePath": ".env.example",
+      "summary": "Template documenting every runtime environment variable for AdaptED: app metadata, CORS and JWT token settings, the PostgreSQL DATABASE_URL, OpenRouter chat/embedding credentials and models, EMBEDDING_DIM=2048, and SearxNG search options. Copied to the git-ignored .env that pydantic-settings reads at startup.",
+      "tags": ["configuration", "environment", "secrets-management", "deployment"],
+      "complexity": "simple",
+      "languageNotes": "Env-file convention: the real .env holds live credentials (OpenRouter API key, DB password) and is never committed; this example mirrors its keys with safe placeholders."
+    },
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "Intentionally empty placeholder readme; the project's real conventions and running history are kept in AGENTS.md and PROGRESS.md instead.",
+      "tags": ["documentation", "placeholder", "overview"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:opencode.json",
+      "type": "config",
+      "name": "opencode.json",
+      "filePath": "opencode.json",
+      "summary": "Configuration for the opencode CLI coding agent in this repository, using the instructions array to auto-load AGENTS.md and PROGRESS.md as instruction context for every session.",
+      "tags": ["configuration", "ai-tooling", "developer-workflow"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:pyproject.toml",
+      "type": "config",
+      "name": "pyproject.toml",
+      "filePath": "pyproject.toml",
+      "summary": "uv/hatchling package manifest for adapted v0.1.0 declaring the FastAPI + SQLAlchemy + pgvector + Streamlit + OpenAI/LangGraph dependency stack, dev tooling (pytest with asyncio auto mode, ruff at line-length 100 / py312), and wheel packaging of the src/adapted layout.",
+      "tags": ["configuration", "build-system", "dependency-management", "python-packaging"],
+      "complexity": "moderate",
+      "languageNotes": "Uses PEP 735 [dependency-groups] for dev deps and hatchling as the build backend targeting the src layout (packages = [\"src/adapted\"])."
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:.env.example",
+      "target": "file:src/adapted/config.py",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:.env.example",
+      "target": "file:src/adapted/main.py",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:opencode.json",
+      "target": "document:AGENTS.md",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:opencode.json",
+      "target": "document:PROGRESS.md",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:pyproject.toml",
+      "target": "file:src/adapted/main.py",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:pyproject.toml",
+      "target": "file:src/adapted/ui/app.py",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:README.md",
+      "target": "document:PROGRESS.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

@@ -1,0 +1,3465 @@
+{
+ "fileNodes": [
+  {
+   "id": "file:src/adapted/api/deps.py",
+   "type": "file",
+   "name": "deps.py",
+   "filePath": "src/adapted/api/deps.py",
+   "summary": "FastAPI dependency layer providing JWT bearer authentication, role-based access guards, and ownership/enrollment assertion helpers shared by every router.",
+   "tags": [
+    "api-handler",
+    "authentication",
+    "middleware",
+    "validation",
+    "fastapi"
+   ]
+  },
+  {
+   "id": "file:src/adapted/api/routers/agent.py",
+   "type": "file",
+   "name": "agent.py",
+   "filePath": "src/adapted/api/routers/agent.py",
+   "summary": "POST /agent/run endpoint that validates agent intents and dispatches pipeline execution to the background task runner, returning a started-task result immediately.",
+   "tags": [
+    "api-handler",
+    "entry-point",
+    "async-tasks",
+    "agent-runtime"
+   ]
+  },
+  {
+   "id": "file:src/adapted/api/routers/agent_ops.py",
+   "type": "file",
+   "name": "agent_ops.py",
+   "filePath": "src/adapted/api/routers/agent_ops.py",
+   "summary": "Observability endpoints listing agent tasks, inter-agent messages and runs, fronted by a stale-task reaper that fails tasks stuck in 'started' beyond the time budget.",
+   "tags": [
+    "api-handler",
+    "observability",
+    "monitoring",
+    "maintenance"
+   ]
+  },
+  {
+   "id": "file:src/adapted/api/routers/auth.py",
+   "type": "file",
+   "name": "auth.py",
+   "filePath": "src/adapted/api/routers/auth.py",
+   "summary": "Registration and login endpoints that hash passwords, create User rows plus Teacher/Student profiles, and issue JWT-backed TokenResponses.",
+   "tags": [
+    "api-handler",
+    "authentication",
+    "jwt",
+    "security"
+   ]
+  },
+  {
+   "id": "file:src/adapted/api/routers/courses.py",
+   "type": "file",
+   "name": "courses.py",
+   "filePath": "src/adapted/api/routers/courses.py",
+   "summary": "Course router covering creation, role-scoped listing, enrollment, document upload/listing/status, and cascading deletes (document, contents, whole course) with audit logging and on-disk file cleanup.",
+   "tags": [
+    "api-handler",
+    "crud",
+    "file-upload",
+    "cascade-delete",
+    "audit"
+   ]
+  },
+  {
+   "id": "file:src/adapted/api/routers/curriculum.py",
+   "type": "file",
+   "name": "curriculum.py",
+   "filePath": "src/adapted/api/routers/curriculum.py",
+   "summary": "Read-only curriculum endpoints serving generated chapters and topics (with objectives and prerequisites) to authorized teachers and enrolled students.",
+   "tags": [
+    "api-handler",
+    "curriculum",
+    "read-only"
+   ]
+  },
+  {
+   "id": "file:src/adapted/api/routers/lessons.py",
+   "type": "file",
+   "name": "lessons.py",
+   "filePath": "src/adapted/api/routers/lessons.py",
+   "summary": "Lesson endpoints that perform fast authorization checks, dispatch asynchronous lesson generation through the background task runner, and serve generated lessons to authorized viewers.",
+   "tags": [
+    "api-handler",
+    "async-tasks",
+    "lessons"
+   ]
+  },
+  {
+   "id": "file:src/adapted/api/routers/logs.py",
+   "type": "file",
+   "name": "logs.py",
+   "filePath": "src/adapted/api/routers/logs.py",
+   "summary": "Teacher-only audit-log listing endpoint returning the most recent audit entries for the operations view.",
+   "tags": [
+    "api-handler",
+    "audit-logging",
+    "observability"
+   ]
+  },
+  {
+   "id": "file:src/adapted/api/routers/quizzes.py",
+   "type": "file",
+   "name": "quizzes.py",
+   "filePath": "src/adapted/api/routers/quizzes.py",
+   "summary": "Quiz lifecycle router: async quiz generation, answer-safe retrieval, and submission which persists attempt/answer rows before launching the grading chain in the background.",
+   "tags": [
+    "api-handler",
+    "async-tasks",
+    "quizzes",
+    "grading"
+   ]
+  },
+  {
+   "id": "file:src/adapted/api/routers/students.py",
+   "type": "file",
+   "name": "students.py",
+   "filePath": "src/adapted/api/routers/students.py",
+   "summary": "Student analytics endpoints (profile, performance, mastery, recommendations, preferences) with self-or-owning-teacher authorization and a default-course fallback.",
+   "tags": [
+    "api-handler",
+    "analytics",
+    "student-memory",
+    "authorization"
+   ]
+  },
+  {
+   "id": "file:src/adapted/api/routers/study_plans.py",
+   "type": "file",
+   "name": "study_plans.py",
+   "filePath": "src/adapted/api/routers/study_plans.py",
+   "summary": "Study-plan read endpoints returning the active plan (highest version) with its daily items, authorized for the owning student or their teacher.",
+   "tags": [
+    "api-handler",
+    "study-plans",
+    "read-only"
+   ]
+  },
+  {
+   "id": "file:src/adapted/api/routers/users.py",
+   "type": "file",
+   "name": "users.py",
+   "filePath": "src/adapted/api/routers/users.py",
+   "summary": "Teacher-only user directory search over name/email that joins Student rows to expose grade level and daily study minutes for enrollment pickers.",
+   "tags": [
+    "api-handler",
+    "search",
+    "user-directory"
+   ]
+  },
+  {
+   "id": "file:src/adapted/database/session.py",
+   "type": "file",
+   "name": "session.py",
+   "filePath": "src/adapted/database/session.py",
+   "summary": "Database bootstrap: resolves and connect-probes the PostgreSQL URL (fail-fast, Postgres-only), exposes SessionLocal/get_db/session_scope helpers plus ID generators and init/reset routines including pgvector extension setup.",
+   "tags": [
+    "database",
+    "session-management",
+    "fail-fast",
+    "infrastructure"
+   ]
+  },
+  {
+   "id": "file:src/adapted/schemas/api.py",
+   "type": "file",
+   "name": "api.py",
+   "filePath": "src/adapted/schemas/api.py",
+   "summary": "Complete Pydantic v2 API contract layer: request/response models for auth, courses, documents, curriculum, study plans, lessons, quizzes, grading results, performance/mastery, recommendations, and agent observability payloads.",
+   "tags": [
+    "type-definition",
+    "serialization",
+    "api-schema",
+    "pydantic"
+   ]
+  },
+  {
+   "id": "file:src/adapted/security/jwt.py",
+   "type": "file",
+   "name": "jwt.py",
+   "filePath": "src/adapted/security/jwt.py",
+   "summary": "Minimal JWT helper pair for issuing expiring HS-signed access tokens and decoding them during request authentication.",
+   "tags": [
+    "security",
+    "jwt",
+    "utility"
+   ]
+  },
+  {
+   "id": "file:src/adapted/security/passwords.py",
+   "type": "file",
+   "name": "passwords.py",
+   "filePath": "src/adapted/security/passwords.py",
+   "summary": "bcrypt password hashing and constant-time verification wrappers used by registration and login.",
+   "tags": [
+    "security",
+    "password-hashing",
+    "utility"
+   ]
+  },
+  {
+   "id": "file:src/adapted/tasks/runner.py",
+   "type": "file",
+   "name": "runner.py",
+   "filePath": "src/adapted/tasks/runner.py",
+   "summary": "Background task runner: persists AgentTask rows, submits pipeline execution to a ThreadPoolExecutor whose workers build their own sessions/runtime, and guarantees failure marking on crashes.",
+   "tags": [
+    "async-tasks",
+    "concurrency",
+    "background-jobs",
+    "task-runner"
+   ]
+  },
+  {
+   "id": "file:src/adapted/agents/lesson_agent.py",
+   "type": "file",
+   "name": "lesson_agent.py",
+   "filePath": "src/adapted/agents/lesson_agent.py",
+   "summary": "Generates levelled lesson content for a curriculum topic by combining RAG-retrieved textbook chunks, learning objectives and the student profile into a schema-validated LLM request, then persists the resulting Lesson row.",
+   "tags": [
+    "agent",
+    "rag",
+    "llm",
+    "lesson-generation"
+   ]
+  },
+  {
+   "id": "file:src/adapted/config.py",
+   "type": "file",
+   "name": "config.py",
+   "filePath": "src/adapted/config.py",
+   "summary": "Central pydantic-settings configuration loaded from the repo-root .env: app metadata, PostgreSQL URL, OpenRouter LLM/embedding settings, JWT secrets, RAG limits and retry knobs.",
+   "tags": [
+    "configuration",
+    "settings",
+    "env"
+   ]
+  },
+  {
+   "id": "file:src/adapted/llm/base.py",
+   "type": "file",
+   "name": "base.py",
+   "filePath": "src/adapted/llm/base.py",
+   "summary": "Defines the provider-agnostic LLM contract: a request envelope pairing a prompt with its JSON schema, and the abstract LLMProvider interface every chat/embedding backend implements.",
+   "tags": [
+    "interface",
+    "abstraction",
+    "llm",
+    "type-definition"
+   ]
+  },
+  {
+   "id": "file:src/adapted/llm/mock.py",
+   "type": "file",
+   "name": "mock.py",
+   "filePath": "src/adapted/llm/mock.py",
+   "summary": "Deterministic offline LLM provider: seeded generators fabricate curricula, lessons, quizzes, grades and recommendations without network access, plus hash-based pseudo-embeddings for fully reproducible runs.",
+   "tags": [
+    "mock",
+    "offline",
+    "testing",
+    "deterministic"
+   ]
+  },
+  {
+   "id": "file:src/adapted/llm/openai_compatible.py",
+   "type": "file",
+   "name": "openai_compatible.py",
+   "filePath": "src/adapted/llm/openai_compatible.py",
+   "summary": "Production provider speaking the OpenAI wire protocol against OpenRouter: JSON-schema-constrained chat generation plus dimension-validated embeddings, bounded by the configured request timeout.",
+   "tags": [
+    "llm-provider",
+    "openrouter",
+    "api-client",
+    "embeddings"
+   ]
+  },
+  {
+   "id": "file:src/adapted/llm/registry.py",
+   "type": "file",
+   "name": "registry.py",
+   "filePath": "src/adapted/llm/registry.py",
+   "summary": "Maps the configured provider names to concrete LLM/embedding implementations behind lru-cached accessors, warning and degrading to MockProvider when OpenRouter credentials are absent.",
+   "tags": [
+    "factory",
+    "registry",
+    "dependency-injection",
+    "configuration"
+   ]
+  },
+  {
+   "id": "file:src/adapted/main.py",
+   "type": "file",
+   "name": "main.py",
+   "filePath": "src/adapted/main.py",
+   "summary": "FastAPI application factory: initialises the PostgreSQL schema on startup, wires CORS, registers every API router (auth, courses, curriculum, lessons, quizzes, study plans, students, teacher, users, agent ops, logs) and exposes /health.",
+   "tags": [
+    "entry-point",
+    "app-factory",
+    "fastapi",
+    "bootstrap"
+   ]
+  },
+  {
+   "id": "file:src/adapted/memory/curriculum_memory.py",
+   "type": "file",
+   "name": "curriculum_memory.py",
+   "filePath": "src/adapted/memory/curriculum_memory.py",
+   "summary": "Indexes parsed documents into pgvector-backed ContentChunks (chunking, passage embeddings, vector upserts) and links chunks to generated curriculum topics for later retrieval.",
+   "tags": [
+    "rag",
+    "indexing",
+    "embeddings",
+    "memory"
+   ]
+  },
+  {
+   "id": "file:src/adapted/rag/chunker.py",
+   "type": "file",
+   "name": "chunker.py",
+   "filePath": "src/adapted/rag/chunker.py",
+   "summary": "Splits parsed document pages into overlapping, heading-aware text chunks carrying page ranges so retrieved passages can be cited.",
+   "tags": [
+    "rag",
+    "chunking",
+    "text-processing"
+   ]
+  },
+  {
+   "id": "file:src/adapted/rag/embeddings.py",
+   "type": "file",
+   "name": "embeddings.py",
+   "filePath": "src/adapted/rag/embeddings.py",
+   "summary": "Thin caching facade over the configured embedding provider: embeds single texts or batches in passage/query modes for indexing and retrieval.",
+   "tags": [
+    "embeddings",
+    "facade",
+    "caching"
+   ]
+  },
+  {
+   "id": "file:src/adapted/rag/parser.py",
+   "type": "file",
+   "name": "parser.py",
+   "filePath": "src/adapted/rag/parser.py",
+   "summary": "Extracts clean per-page text from uploaded PDF, TXT/MD and DOCX course materials into a ParsedDocument structure, raising UnsupportedDocumentError for anything else.",
+   "tags": [
+    "parser",
+    "document-processing",
+    "pdf",
+    "docx"
+   ]
+  },
+  {
+   "id": "file:src/adapted/rag/retriever.py",
+   "type": "file",
+   "name": "retriever.py",
+   "filePath": "src/adapted/rag/retriever.py",
+   "summary": "Query-side retrieval: embeds the question, runs filtered cosine search over the vector store and formats top chunks (with optional citations) into LLM context blocks.",
+   "tags": [
+    "rag",
+    "retrieval",
+    "search",
+    "context-formatting"
+   ]
+  },
+  {
+   "id": "file:src/adapted/rag/vector_store.py",
+   "type": "file",
+   "name": "vector_store.py",
+   "filePath": "src/adapted/rag/vector_store.py",
+   "summary": "pgvector persistence layer for course-scoped embeddings: collection DDL, idempotent ContentChunk upserts, deletion by document and cosine top-k search with dynamic metadata filters via raw SQL.",
+   "tags": [
+    "vector-store",
+    "pgvector",
+    "postgres",
+    "rag"
+   ]
+  },
+  {
+   "id": "file:src/adapted/tools/registry.py",
+   "type": "file",
+   "name": "registry.py",
+   "filePath": "src/adapted/tools/registry.py",
+   "summary": "Tool belt exposed to agents: RAG lookup, SearXNG web search, study-plan validation, mastery updates and duplicate-question checks packaged as named Tool descriptors.",
+   "tags": [
+    "tools",
+    "agents",
+    "rag",
+    "web-search"
+   ]
+  },
+  {
+   "id": "file:src/adapted/agents/base.py",
+   "type": "file",
+   "name": "base.py",
+   "filePath": "src/adapted/agents/base.py",
+   "summary": "Defines the BaseAgent abstract class every pipeline agent extends: process() hook, Pydantic validate_output, an output_is_empty hook that drives retry-on-empty, and a handle() wrapper adding timing, MessageBus status marks, and error capture into AgentResult.",
+   "tags": [
+    "base-class",
+    "pipeline",
+    "validation",
+    "observability"
+   ]
+  },
+  {
+   "id": "file:src/adapted/agents/curriculum_agent.py",
+   "type": "file",
+   "name": "curriculum_agent.py",
+   "filePath": "src/adapted/agents/curriculum_agent.py",
+   "summary": "CurriculumAnalyzerAgent turns an uploaded course document into a structured curriculum: parses and RAG-indexes the file, prompts the LLM with the CurriculumOutput JSON schema, persists chapters/topics/objectives/prerequisites idempotently by title, and assigns indexed chunks to matching topics.",
+   "tags": [
+    "agent",
+    "llm",
+    "rag",
+    "persistence",
+    "curriculum"
+   ]
+  },
+  {
+   "id": "file:src/adapted/agents/grading_agent.py",
+   "type": "file",
+   "name": "grading_agent.py",
+   "filePath": "src/adapted/agents/grading_agent.py",
+   "summary": "GradingAgent grades a submitted quiz attempt: deterministic objective grading via the grading service, LLM-based short-answer grading with confidence scores, flags low-confidence subjective answers needs_teacher_review, computes the attempt score, and upserts a Grade row.",
+   "tags": [
+    "agent",
+    "grading",
+    "llm",
+    "scoring"
+   ]
+  },
+  {
+   "id": "file:src/adapted/agents/message.py",
+   "type": "file",
+   "name": "message.py",
+   "filePath": "src/adapted/agents/message.py",
+   "summary": "Inter-agent messaging primitives: the AgentMessage value object and a MessageBus that persists send/mark events to the agent_messages table with duration tracking, giving observability over the multi-agent pipeline.",
+   "tags": [
+    "message-bus",
+    "observability",
+    "persistence"
+   ]
+  },
+  {
+   "id": "file:src/adapted/agents/performance_agent.py",
+   "type": "file",
+   "name": "performance_agent.py",
+   "filePath": "src/adapted/agents/performance_agent.py",
+   "summary": "PerformanceAnalysisAgent consumes a graded attempt: updates per-topic StudentMastery records, records study history, detects recurring misconceptions across recent attempts, and emits weak/strong topic lists for downstream adaptation.",
+   "tags": [
+    "agent",
+    "analytics",
+    "mastery",
+    "misconceptions"
+   ]
+  },
+  {
+   "id": "file:src/adapted/agents/planner_agent.py",
+   "type": "file",
+   "name": "planner_agent.py",
+   "filePath": "src/adapted/agents/planner_agent.py",
+   "summary": "StudyPlannerAgent builds or adapts study plans deterministically: loads topics with mastery weights, delegates packing/ordering to the scheduler service (build_plan/adapt_plan), validates prerequisite ordering, packs items into days, and persists a new versioned StudyPlan.",
+   "tags": [
+    "agent",
+    "scheduler",
+    "study-plan",
+    "persistence"
+   ]
+  },
+  {
+   "id": "file:src/adapted/agents/quiz_agent.py",
+   "type": "file",
+   "name": "quiz_agent.py",
+   "filePath": "src/adapted/agents/quiz_agent.py",
+   "summary": "QuizAgent generates assessment questions via a schema-constrained LLM prompt seeded with course context, dedupes against existing question hashes, persists Question rows, and tops up from the existing bank when generation falls short.",
+   "tags": [
+    "agent",
+    "llm",
+    "quiz-generation",
+    "deduplication"
+   ]
+  },
+  {
+   "id": "file:src/adapted/agents/recommendation_agent.py",
+   "type": "file",
+   "name": "recommendation_agent.py",
+   "filePath": "src/adapted/agents/recommendation_agent.py",
+   "summary": "RecommendationAgent picks the next best action (e.g. review_topic) from weak topics via _decide, then renders a learner-facing narrative using an LLM prompt with a deterministic mock fallback before persisting a Recommendation row.",
+   "tags": [
+    "agent",
+    "recommendations",
+    "llm",
+    "fallback"
+   ]
+  },
+  {
+   "id": "file:src/adapted/agents/supervisor.py",
+   "type": "file",
+   "name": "supervisor.py",
+   "filePath": "src/adapted/agents/supervisor.py",
+   "summary": "Supervisor coordinates pipeline execution: classifies intents into agent action chains, starts/persists AgentTask rows, emits the initial message, routes each action to its receiver agent, and finalizes tasks.",
+   "tags": [
+    "orchestration",
+    "supervisor",
+    "task-management"
+   ]
+  },
+  {
+   "id": "file:src/adapted/graph/runtime.py",
+   "type": "file",
+   "name": "runtime.py",
+   "filePath": "src/adapted/graph/runtime.py",
+   "summary": "LangGraph-style AgentRuntime: registers all agents, threads a GraphState payload through supervisor-defined chains, executes each node with savepoint-backed retries (_run_with_retry with backoff and empty-output detection), and manages overall task success/failure.",
+   "tags": [
+    "graph-runtime",
+    "orchestration",
+    "retry",
+    "pipeline"
+   ]
+  },
+  {
+   "id": "file:src/adapted/logging/logger.py",
+   "type": "file",
+   "name": "logger.py",
+   "filePath": "src/adapted/logging/logger.py",
+   "summary": "Logging bootstrap: configures root logging once from Settings, exposes get_logger(name), and bind_task to attach task/correlation ids as contextual log fields.",
+   "tags": [
+    "logging",
+    "observability",
+    "utility"
+   ]
+  },
+  {
+   "id": "file:src/adapted/services/grading.py",
+   "type": "file",
+   "name": "grading.py",
+   "filePath": "src/adapted/services/grading.py",
+   "summary": "Pure deterministic grading helpers: stable question_hash/is_duplicate dedup keys, rule-based grade_objective for MCQ/true-false/numerical answers (numeric tolerance via _numeric_equal), compute_attempt_score totals, and rubric_default prompts.",
+   "tags": [
+    "grading",
+    "utility",
+    "scoring",
+    "deterministic"
+   ]
+  },
+  {
+   "id": "file:src/adapted/services/scheduler.py",
+   "type": "file",
+   "name": "scheduler.py",
+   "filePath": "src/adapted/services/scheduler.py",
+   "summary": "Deterministic study-plan engine: orders topics topologically over prerequisites, builds day-packed plans weighted toward low mastery and nearing exams, adapts existing plans around weak topics, and validates prerequisite ordering, coverage, and daily minute budgets.",
+   "tags": [
+    "scheduler",
+    "study-plan",
+    "algorithm",
+    "validation"
+   ]
+  },
+  {
+   "id": "file:src/adapted/database/base.py",
+   "type": "file",
+   "name": "base.py",
+   "filePath": "src/adapted/database/base.py",
+   "summary": "SQLAlchemy foundation layer providing the shared declarative Base, a pgvector-aware VectorColumn TypeDecorator, and the engine/session factory used by the entire persistence layer.",
+   "tags": [
+    "database",
+    "orm",
+    "data-model",
+    "factory",
+    "pgvector"
+   ]
+  },
+  {
+   "id": "file:src/adapted/models/__init__.py",
+   "type": "file",
+   "name": "__init__.py",
+   "filePath": "src/adapted/models/__init__.py",
+   "summary": "Barrel module importing and re-exporting every ORM model so callers use a single adapted.models namespace for Course, Topic, QuizAttempt, and friends.",
+   "tags": [
+    "barrel",
+    "entry-point",
+    "data-model",
+    "orm"
+   ]
+  },
+  {
+   "id": "file:src/adapted/models/course.py",
+   "type": "file",
+   "name": "course.py",
+   "filePath": "src/adapted/models/course.py",
+   "summary": "Defines the core teaching-domain tables: teacher-owned Courses, student Enrollments joining students to courses, and uploaded Documents tracked through their parsing status for the RAG pipeline.",
+   "tags": [
+    "data-model",
+    "orm",
+    "database",
+    "course-management"
+   ]
+  },
+  {
+   "id": "file:src/adapted/models/curriculum.py",
+   "type": "file",
+   "name": "curriculum.py",
+   "filePath": "src/adapted/models/curriculum.py",
+   "summary": "Curriculum hierarchy produced by the analysis agent: Chapters group ordered Topics, Topics carry prerequisites and learning objectives, and ContentChunk rows store embedded textbook passages assigned to topics for retrieval.",
+   "tags": [
+    "data-model",
+    "orm",
+    "curriculum",
+    "rag",
+    "pgvector"
+   ]
+  },
+  {
+   "id": "file:src/adapted/models/learning.py",
+   "type": "file",
+   "name": "learning.py",
+   "filePath": "src/adapted/models/learning.py",
+   "summary": "Learning-flow tables spanning versioned StudyPlans with daily items, generated Lessons and Questions, Quizzes with question assignments, student attempts carrying per-answer AI-grading and teacher-review flags, and finalized Grades.",
+   "tags": [
+    "data-model",
+    "orm",
+    "learning",
+    "assessment",
+    "study-plan"
+   ]
+  },
+  {
+   "id": "file:src/adapted/models/memory.py",
+   "type": "file",
+   "name": "memory.py",
+   "filePath": "src/adapted/models/memory.py",
+   "summary": "Student-memory tables persisting per-topic mastery with trend history, an append-only study activity log, detected misconceptions, aggregated conversation memory, key-value learning preferences, and agent-generated recommendations.",
+   "tags": [
+    "data-model",
+    "orm",
+    "student-memory",
+    "mastery",
+    "personalization"
+   ]
+  },
+  {
+   "id": "file:src/adapted/models/observability.py",
+   "type": "file",
+   "name": "observability.py",
+   "filePath": "src/adapted/models/observability.py",
+   "summary": "Observability tables behind the Operations UI: AgentTask rows track background pipeline runs, AgentMessage logs inter-agent traffic, and AuditLog records audited user actions.",
+   "tags": [
+    "data-model",
+    "orm",
+    "observability",
+    "audit",
+    "agent-tasks"
+   ]
+  },
+  {
+   "id": "file:src/adapted/models/user.py",
+   "type": "file",
+   "name": "user.py",
+   "filePath": "src/adapted/models/user.py",
+   "summary": "Identity model: User accounts with hashed credentials and a role discriminator, extended by Teacher profiles (department) and Student profiles (grade level, daily study budget, timezone).",
+   "tags": [
+    "data-model",
+    "orm",
+    "authentication",
+    "users",
+    "rbac"
+   ]
+  },
+  {
+   "id": "file:src/adapted/api/routers/teacher.py",
+   "type": "file",
+   "name": "teacher.py",
+   "filePath": "src/adapted/api/routers/teacher.py",
+   "summary": "Teacher-facing API router providing class rosters, course-wide analytics, per-student grade histories, an AI-grade review queue scoped to the teacher's own courses, and manual grade overrides.",
+   "tags": [
+    "api-handler",
+    "fastapi",
+    "teacher-analytics",
+    "rbac",
+    "review-queue"
+   ]
+  },
+  {
+   "id": "file:src/adapted/memory/student_memory.py",
+   "type": "file",
+   "name": "student_memory.py",
+   "filePath": "src/adapted/memory/student_memory.py",
+   "summary": "Builds and maintains each student's learning state: aggregates mastery records, misconceptions, preferences, quiz attempts, conversation memory, and study history into a StudentProfile snapshot, and persists mastery updates, study events, conversations, and preference changes.",
+   "tags": [
+    "service",
+    "student-memory",
+    "aggregation",
+    "persistence"
+   ]
+  },
+  {
+   "id": "file:src/adapted/services/analytics.py",
+   "type": "file",
+   "name": "analytics.py",
+   "filePath": "src/adapted/services/analytics.py",
+   "summary": "Pure analytics helpers that split mastery records into weak/strong topic sets, detect recurring misconceptions from graded answers (per MCQ distractor and per topic), and roll per-student mastery maps into a class-wide topic summary.",
+   "tags": [
+    "utility",
+    "analytics",
+    "misconceptions",
+    "aggregation"
+   ]
+  },
+  {
+   "id": "file:src/adapted/services/mastery.py",
+   "type": "file",
+   "name": "mastery.py",
+   "filePath": "src/adapted/services/mastery.py",
+   "summary": "Mastery math core: exponential-moving-average mastery updates, trend computation over score history, status-label threshold bands, and MasteryRecord construction.",
+   "tags": [
+    "utility",
+    "mastery",
+    "scoring",
+    "data-model"
+   ]
+  },
+  {
+   "id": "config:.env.example",
+   "type": "config",
+   "name": ".env.example",
+   "filePath": ".env.example",
+   "summary": "Template documenting every runtime environment variable for AdaptED: app metadata, CORS and JWT token settings, the PostgreSQL DATABASE_URL, OpenRouter chat/embedding credentials and models, EMBEDDING_DIM=2048, and SearxNG search options. Copied to the git-ignored .env that pydantic-settings reads at startup.",
+   "tags": [
+    "configuration",
+    "environment",
+    "secrets-management",
+    "deployment"
+   ]
+  },
+  {
+   "id": "document:README.md",
+   "type": "document",
+   "name": "README.md",
+   "filePath": "README.md",
+   "summary": "Intentionally empty placeholder readme; the project's real conventions and running history are kept in AGENTS.md and PROGRESS.md instead.",
+   "tags": [
+    "documentation",
+    "placeholder",
+    "overview"
+   ]
+  },
+  {
+   "id": "config:opencode.json",
+   "type": "config",
+   "name": "opencode.json",
+   "filePath": "opencode.json",
+   "summary": "Configuration for the opencode CLI coding agent in this repository, using the instructions array to auto-load AGENTS.md and PROGRESS.md as instruction context for every session.",
+   "tags": [
+    "configuration",
+    "ai-tooling",
+    "developer-workflow"
+   ]
+  },
+  {
+   "id": "config:pyproject.toml",
+   "type": "config",
+   "name": "pyproject.toml",
+   "filePath": "pyproject.toml",
+   "summary": "uv/hatchling package manifest for adapted v0.1.0 declaring the FastAPI + SQLAlchemy + pgvector + Streamlit + OpenAI/LangGraph dependency stack, dev tooling (pytest with asyncio auto mode, ruff at line-length 100 / py312), and wheel packaging of the src/adapted layout.",
+   "tags": [
+    "configuration",
+    "build-system",
+    "dependency-management",
+    "python-packaging"
+   ]
+  },
+  {
+   "id": "config:.python-version",
+   "type": "config",
+   "name": ".python-version",
+   "filePath": ".python-version",
+   "summary": "Pyenv version pin selecting Python 3.12 as the interpreter for the project runtime and tooling.",
+   "tags": [
+    "configuration",
+    "tooling",
+    "version-pin",
+    "python"
+   ]
+  },
+  {
+   "id": "config:.ua/.understandignore",
+   "type": "config",
+   "name": ".understandignore",
+   "filePath": ".ua/.understandignore",
+   "summary": "Generated ignore-rule configuration for the Understand-Anything analysis pipeline, excluding bytecode, env files, storage artifacts, databases, and caches while explicitly keeping docs.",
+   "tags": [
+    "configuration",
+    "ignore-rules",
+    "analysis-pipeline",
+    "gitignore-syntax"
+   ]
+  },
+  {
+   "id": "file:src/adapted/__init__.py",
+   "type": "file",
+   "name": "__init__.py",
+   "filePath": "src/adapted/__init__.py",
+   "summary": "Package marker for the AdaptED backend declaring the project name and __version__ 0.1.0.",
+   "tags": [
+    "entry-point",
+    "barrel",
+    "package-metadata"
+   ]
+  },
+  {
+   "id": "file:src/adapted/api/routers/__init__.py",
+   "type": "file",
+   "name": "__init__.py",
+   "filePath": "src/adapted/api/routers/__init__.py",
+   "summary": "Empty package initializer marking the API routers package; individual routers are registered directly in the FastAPI app factory.",
+   "tags": [
+    "barrel",
+    "package-marker",
+    "empty"
+   ]
+  },
+  {
+   "id": "file:src/adapted/ui/app.py",
+   "type": "file",
+   "name": "app.py",
+   "filePath": "src/adapted/ui/app.py",
+   "summary": "Streamlit frontend entrypoint providing login/register, role-based sidebar navigation, and every teacher view (dashboard, curriculum, class analytics, review queue, operations) and student view (dashboard, study plan, learn, quizzes, progress, recommendations) on top of the APIClient.",
+   "tags": [
+    "entry-point",
+    "ui",
+    "streamlit",
+    "dashboards",
+    "state-management"
+   ]
+  },
+  {
+   "id": "file:src/adapted/ui/client.py",
+   "type": "file",
+   "name": "client.py",
+   "filePath": "src/adapted/ui/client.py",
+   "summary": "Thin httpx-based REST client wrapping every AdaptED backend endpoint (auth, users, courses, documents, curriculum, agents/tasks, lessons, quizzes, study plans, students, teacher classes, audit logs, health) with bearer-token headers and APIError translation.",
+   "tags": [
+    "api-client",
+    "httpx",
+    "rest",
+    "service",
+    "error-handling"
+   ]
+  }
+ ],
+ "importEdges": [
+  {
+   "source": "file:src/adapted/api/deps.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/deps.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/deps.py",
+   "target": "file:src/adapted/security/jwt.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/agent.py",
+   "target": "file:src/adapted/api/deps.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/agent.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/agent.py",
+   "target": "file:src/adapted/schemas/api.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/agent.py",
+   "target": "file:src/adapted/tasks/runner.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/agent_ops.py",
+   "target": "file:src/adapted/api/deps.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/agent_ops.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/agent_ops.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/agent_ops.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/agent_ops.py",
+   "target": "file:src/adapted/schemas/api.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/auth.py",
+   "target": "file:src/adapted/api/deps.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/auth.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/auth.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/auth.py",
+   "target": "file:src/adapted/schemas/api.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/auth.py",
+   "target": "file:src/adapted/security/jwt.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/auth.py",
+   "target": "file:src/adapted/security/passwords.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/courses.py",
+   "target": "file:src/adapted/api/deps.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/courses.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/courses.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/courses.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/courses.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/courses.py",
+   "target": "file:src/adapted/models/observability.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/courses.py",
+   "target": "file:src/adapted/rag/parser.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/courses.py",
+   "target": "file:src/adapted/schemas/api.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/curriculum.py",
+   "target": "file:src/adapted/api/deps.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/curriculum.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/curriculum.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/curriculum.py",
+   "target": "file:src/adapted/schemas/api.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/lessons.py",
+   "target": "file:src/adapted/api/deps.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/lessons.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/lessons.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/lessons.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/lessons.py",
+   "target": "file:src/adapted/schemas/api.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/lessons.py",
+   "target": "file:src/adapted/tasks/runner.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/logs.py",
+   "target": "file:src/adapted/api/deps.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/logs.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/logs.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/quizzes.py",
+   "target": "file:src/adapted/api/deps.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/quizzes.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/quizzes.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/quizzes.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/quizzes.py",
+   "target": "file:src/adapted/schemas/api.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/quizzes.py",
+   "target": "file:src/adapted/tasks/runner.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/students.py",
+   "target": "file:src/adapted/api/deps.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/students.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/students.py",
+   "target": "file:src/adapted/memory/student_memory.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/students.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/students.py",
+   "target": "file:src/adapted/schemas/api.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/study_plans.py",
+   "target": "file:src/adapted/api/deps.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/study_plans.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/study_plans.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/study_plans.py",
+   "target": "file:src/adapted/schemas/api.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/users.py",
+   "target": "file:src/adapted/api/deps.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/users.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/users.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/users.py",
+   "target": "file:src/adapted/schemas/api.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/database/session.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/database/session.py",
+   "target": "file:src/adapted/database/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/database/session.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/security/jwt.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/tasks/runner.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/tasks/runner.py",
+   "target": "file:src/adapted/agents/supervisor.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/tasks/runner.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/tasks/runner.py",
+   "target": "file:src/adapted/llm/registry.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/tasks/runner.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/tasks/runner.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/lesson_agent.py",
+   "target": "file:src/adapted/agents/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/lesson_agent.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/lesson_agent.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/lesson_agent.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/lesson_agent.py",
+   "target": "file:src/adapted/memory/student_memory.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/lesson_agent.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/lesson_agent.py",
+   "target": "file:src/adapted/rag/retriever.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/llm/mock.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/llm/mock.py",
+   "target": "file:src/adapted/llm/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/llm/openai_compatible.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/llm/openai_compatible.py",
+   "target": "file:src/adapted/llm/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/llm/registry.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/llm/registry.py",
+   "target": "file:src/adapted/llm/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/llm/registry.py",
+   "target": "file:src/adapted/llm/mock.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/llm/registry.py",
+   "target": "file:src/adapted/llm/openai_compatible.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/main.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/main.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/main.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/memory/curriculum_memory.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/memory/curriculum_memory.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/memory/curriculum_memory.py",
+   "target": "file:src/adapted/rag/chunker.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/memory/curriculum_memory.py",
+   "target": "file:src/adapted/rag/embeddings.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/memory/curriculum_memory.py",
+   "target": "file:src/adapted/rag/parser.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/memory/curriculum_memory.py",
+   "target": "file:src/adapted/rag/vector_store.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/rag/chunker.py",
+   "target": "file:src/adapted/rag/parser.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/rag/embeddings.py",
+   "target": "file:src/adapted/llm/registry.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/rag/retriever.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/rag/retriever.py",
+   "target": "file:src/adapted/rag/embeddings.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/rag/retriever.py",
+   "target": "file:src/adapted/rag/vector_store.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/rag/vector_store.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/rag/vector_store.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/rag/vector_store.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/tools/registry.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/tools/registry.py",
+   "target": "file:src/adapted/rag/retriever.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/base.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/base.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/curriculum_agent.py",
+   "target": "file:src/adapted/agents/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/curriculum_agent.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/curriculum_agent.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/curriculum_agent.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/curriculum_agent.py",
+   "target": "file:src/adapted/rag/parser.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/grading_agent.py",
+   "target": "file:src/adapted/agents/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/grading_agent.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/grading_agent.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/grading_agent.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/grading_agent.py",
+   "target": "file:src/adapted/services/grading.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/message.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/message.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/performance_agent.py",
+   "target": "file:src/adapted/agents/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/performance_agent.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/performance_agent.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/performance_agent.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/planner_agent.py",
+   "target": "file:src/adapted/agents/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/planner_agent.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/planner_agent.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/planner_agent.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/planner_agent.py",
+   "target": "file:src/adapted/services/scheduler.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/quiz_agent.py",
+   "target": "file:src/adapted/agents/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/quiz_agent.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/quiz_agent.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/quiz_agent.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/quiz_agent.py",
+   "target": "file:src/adapted/services/grading.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/recommendation_agent.py",
+   "target": "file:src/adapted/agents/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/recommendation_agent.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/recommendation_agent.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/recommendation_agent.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/supervisor.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/supervisor.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/supervisor.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/graph/runtime.py",
+   "target": "file:src/adapted/agents/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/graph/runtime.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/graph/runtime.py",
+   "target": "file:src/adapted/agents/supervisor.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/graph/runtime.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/graph/runtime.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/logging/logger.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/database/base.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/__init__.py",
+   "target": "file:src/adapted/models/course.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/__init__.py",
+   "target": "file:src/adapted/models/curriculum.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/__init__.py",
+   "target": "file:src/adapted/models/learning.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/__init__.py",
+   "target": "file:src/adapted/models/memory.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/__init__.py",
+   "target": "file:src/adapted/models/observability.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/__init__.py",
+   "target": "file:src/adapted/models/user.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/course.py",
+   "target": "file:src/adapted/database/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/course.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/course.py",
+   "target": "file:src/adapted/models/user.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/curriculum.py",
+   "target": "file:src/adapted/database/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/curriculum.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/curriculum.py",
+   "target": "file:src/adapted/models/user.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/learning.py",
+   "target": "file:src/adapted/database/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/learning.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/learning.py",
+   "target": "file:src/adapted/models/user.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/memory.py",
+   "target": "file:src/adapted/database/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/memory.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/memory.py",
+   "target": "file:src/adapted/models/user.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/observability.py",
+   "target": "file:src/adapted/database/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/observability.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/observability.py",
+   "target": "file:src/adapted/models/user.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/user.py",
+   "target": "file:src/adapted/database/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/user.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/teacher.py",
+   "target": "file:src/adapted/api/deps.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/teacher.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/teacher.py",
+   "target": "file:src/adapted/memory/student_memory.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/teacher.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/teacher.py",
+   "target": "file:src/adapted/services/analytics.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/memory/student_memory.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/services/analytics.py",
+   "target": "file:src/adapted/services/mastery.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  }
+ ],
+ "allEdges": [
+  {
+   "source": "file:src/adapted/api/deps.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/deps.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/deps.py",
+   "target": "file:src/adapted/security/jwt.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/agent.py",
+   "target": "file:src/adapted/api/deps.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/agent.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/agent.py",
+   "target": "file:src/adapted/schemas/api.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/agent.py",
+   "target": "file:src/adapted/tasks/runner.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/agent_ops.py",
+   "target": "file:src/adapted/api/deps.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/agent_ops.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/agent_ops.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/agent_ops.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/agent_ops.py",
+   "target": "file:src/adapted/schemas/api.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/auth.py",
+   "target": "file:src/adapted/api/deps.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/auth.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/auth.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/auth.py",
+   "target": "file:src/adapted/schemas/api.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/auth.py",
+   "target": "file:src/adapted/security/jwt.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/auth.py",
+   "target": "file:src/adapted/security/passwords.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/courses.py",
+   "target": "file:src/adapted/api/deps.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/courses.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/courses.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/courses.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/courses.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/courses.py",
+   "target": "file:src/adapted/models/observability.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/courses.py",
+   "target": "file:src/adapted/rag/parser.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/courses.py",
+   "target": "file:src/adapted/schemas/api.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/curriculum.py",
+   "target": "file:src/adapted/api/deps.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/curriculum.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/curriculum.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/curriculum.py",
+   "target": "file:src/adapted/schemas/api.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/lessons.py",
+   "target": "file:src/adapted/api/deps.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/lessons.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/lessons.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/lessons.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/lessons.py",
+   "target": "file:src/adapted/schemas/api.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/lessons.py",
+   "target": "file:src/adapted/tasks/runner.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/logs.py",
+   "target": "file:src/adapted/api/deps.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/logs.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/logs.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/quizzes.py",
+   "target": "file:src/adapted/api/deps.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/quizzes.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/quizzes.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/quizzes.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/quizzes.py",
+   "target": "file:src/adapted/schemas/api.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/quizzes.py",
+   "target": "file:src/adapted/tasks/runner.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/students.py",
+   "target": "file:src/adapted/api/deps.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/students.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/students.py",
+   "target": "file:src/adapted/memory/student_memory.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/students.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/students.py",
+   "target": "file:src/adapted/schemas/api.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/study_plans.py",
+   "target": "file:src/adapted/api/deps.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/study_plans.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/study_plans.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/study_plans.py",
+   "target": "file:src/adapted/schemas/api.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/users.py",
+   "target": "file:src/adapted/api/deps.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/users.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/users.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/users.py",
+   "target": "file:src/adapted/schemas/api.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/database/session.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/database/session.py",
+   "target": "file:src/adapted/database/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/database/session.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/security/jwt.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/tasks/runner.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/tasks/runner.py",
+   "target": "file:src/adapted/agents/supervisor.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/tasks/runner.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/tasks/runner.py",
+   "target": "file:src/adapted/llm/registry.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/tasks/runner.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/tasks/runner.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/lesson_agent.py",
+   "target": "file:src/adapted/agents/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/lesson_agent.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/lesson_agent.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/lesson_agent.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/lesson_agent.py",
+   "target": "file:src/adapted/memory/student_memory.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/lesson_agent.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/lesson_agent.py",
+   "target": "file:src/adapted/rag/retriever.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/llm/mock.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/llm/mock.py",
+   "target": "file:src/adapted/llm/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/llm/openai_compatible.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/llm/openai_compatible.py",
+   "target": "file:src/adapted/llm/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/llm/registry.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/llm/registry.py",
+   "target": "file:src/adapted/llm/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/llm/registry.py",
+   "target": "file:src/adapted/llm/mock.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/llm/registry.py",
+   "target": "file:src/adapted/llm/openai_compatible.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/main.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/main.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/main.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/lesson_agent.py",
+   "target": "file:src/adapted/llm/base.py",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "file:src/adapted/main.py",
+   "target": "file:src/adapted/api/routers/agent.py",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "file:src/adapted/main.py",
+   "target": "file:src/adapted/api/routers/agent_ops.py",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "file:src/adapted/main.py",
+   "target": "file:src/adapted/api/routers/auth.py",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "file:src/adapted/main.py",
+   "target": "file:src/adapted/api/routers/courses.py",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "file:src/adapted/main.py",
+   "target": "file:src/adapted/api/routers/curriculum.py",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "file:src/adapted/main.py",
+   "target": "file:src/adapted/api/routers/lessons.py",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "file:src/adapted/main.py",
+   "target": "file:src/adapted/api/routers/logs.py",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "file:src/adapted/main.py",
+   "target": "file:src/adapted/api/routers/quizzes.py",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "file:src/adapted/main.py",
+   "target": "file:src/adapted/api/routers/students.py",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "file:src/adapted/main.py",
+   "target": "file:src/adapted/api/routers/study_plans.py",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "file:src/adapted/main.py",
+   "target": "file:src/adapted/api/routers/teacher.py",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "file:src/adapted/main.py",
+   "target": "file:src/adapted/api/routers/users.py",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "file:src/adapted/memory/curriculum_memory.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/memory/curriculum_memory.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/memory/curriculum_memory.py",
+   "target": "file:src/adapted/rag/chunker.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/memory/curriculum_memory.py",
+   "target": "file:src/adapted/rag/embeddings.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/memory/curriculum_memory.py",
+   "target": "file:src/adapted/rag/parser.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/memory/curriculum_memory.py",
+   "target": "file:src/adapted/rag/vector_store.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/rag/chunker.py",
+   "target": "file:src/adapted/rag/parser.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/rag/embeddings.py",
+   "target": "file:src/adapted/llm/registry.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/rag/retriever.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/rag/retriever.py",
+   "target": "file:src/adapted/rag/embeddings.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/rag/retriever.py",
+   "target": "file:src/adapted/rag/vector_store.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/rag/vector_store.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/rag/vector_store.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/rag/vector_store.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/tools/registry.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/tools/registry.py",
+   "target": "file:src/adapted/rag/retriever.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/tools/registry.py",
+   "target": "file:src/adapted/services/scheduler.py",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "file:src/adapted/tools/registry.py",
+   "target": "file:src/adapted/services/mastery.py",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "file:src/adapted/tools/registry.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "file:src/adapted/tools/registry.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "file:src/adapted/tools/registry.py",
+   "target": "file:src/adapted/services/grading.py",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "file:src/adapted/agents/base.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/base.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/curriculum_agent.py",
+   "target": "file:src/adapted/agents/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/curriculum_agent.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/curriculum_agent.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/curriculum_agent.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/curriculum_agent.py",
+   "target": "file:src/adapted/rag/parser.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/grading_agent.py",
+   "target": "file:src/adapted/agents/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/grading_agent.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/grading_agent.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/grading_agent.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/grading_agent.py",
+   "target": "file:src/adapted/services/grading.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/message.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/message.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/performance_agent.py",
+   "target": "file:src/adapted/agents/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/performance_agent.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/performance_agent.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/performance_agent.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/planner_agent.py",
+   "target": "file:src/adapted/agents/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/planner_agent.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/planner_agent.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/planner_agent.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/planner_agent.py",
+   "target": "file:src/adapted/services/scheduler.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/quiz_agent.py",
+   "target": "file:src/adapted/agents/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/quiz_agent.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/quiz_agent.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/quiz_agent.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/quiz_agent.py",
+   "target": "file:src/adapted/services/grading.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/recommendation_agent.py",
+   "target": "file:src/adapted/agents/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/recommendation_agent.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/recommendation_agent.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/recommendation_agent.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/supervisor.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/supervisor.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/agents/supervisor.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/graph/runtime.py",
+   "target": "file:src/adapted/agents/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/graph/runtime.py",
+   "target": "file:src/adapted/agents/message.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/graph/runtime.py",
+   "target": "file:src/adapted/agents/supervisor.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/graph/runtime.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/graph/runtime.py",
+   "target": "file:src/adapted/logging/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/logging/logger.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/database/base.py",
+   "target": "file:src/adapted/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/__init__.py",
+   "target": "file:src/adapted/models/course.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/__init__.py",
+   "target": "file:src/adapted/models/curriculum.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/__init__.py",
+   "target": "file:src/adapted/models/learning.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/__init__.py",
+   "target": "file:src/adapted/models/memory.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/__init__.py",
+   "target": "file:src/adapted/models/observability.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/__init__.py",
+   "target": "file:src/adapted/models/user.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/course.py",
+   "target": "file:src/adapted/database/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/course.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/course.py",
+   "target": "file:src/adapted/models/user.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/curriculum.py",
+   "target": "file:src/adapted/database/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/curriculum.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/curriculum.py",
+   "target": "file:src/adapted/models/user.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/learning.py",
+   "target": "file:src/adapted/database/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/learning.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/learning.py",
+   "target": "file:src/adapted/models/user.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/memory.py",
+   "target": "file:src/adapted/database/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/memory.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/memory.py",
+   "target": "file:src/adapted/models/user.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/observability.py",
+   "target": "file:src/adapted/database/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/observability.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/observability.py",
+   "target": "file:src/adapted/models/user.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/user.py",
+   "target": "file:src/adapted/database/base.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/models/user.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/teacher.py",
+   "target": "file:src/adapted/api/deps.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/teacher.py",
+   "target": "file:src/adapted/database/session.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/teacher.py",
+   "target": "file:src/adapted/memory/student_memory.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/teacher.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/api/routers/teacher.py",
+   "target": "file:src/adapted/services/analytics.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/memory/student_memory.py",
+   "target": "file:src/adapted/models/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/adapted/services/analytics.py",
+   "target": "file:src/adapted/services/mastery.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "config:.env.example",
+   "target": "file:src/adapted/config.py",
+   "type": "configures",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "config:.env.example",
+   "target": "file:src/adapted/main.py",
+   "type": "configures",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "config:pyproject.toml",
+   "target": "file:src/adapted/main.py",
+   "type": "configures",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "config:pyproject.toml",
+   "target": "file:src/adapted/ui/app.py",
+   "type": "configures",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "file:src/adapted/ui/app.py",
+   "target": "file:src/adapted/ui/client.py",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "config:.python-version",
+   "target": "file:src/adapted/__init__.py",
+   "type": "configures",
+   "direction": "forward",
+   "weight": 0.6
+  }
+ ]
+}

@@ -1,0 +1,3811 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 13,
+  "filesSkipped": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 13,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 13,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "src/adapted/agents/base.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 76,
+      "nonEmptyLines": 62,
+      "classes": [
+        {
+          "name": "AgentResult",
+          "startLine": 15,
+          "endLine": 17,
+          "methods": [],
+          "properties": [
+            "output",
+            "error"
+          ]
+        },
+        {
+          "name": "BaseAgent",
+          "startLine": 20,
+          "endLine": 76,
+          "methods": [
+            "__init__",
+            "process",
+            "validate_output",
+            "output_is_empty",
+            "handle"
+          ],
+          "properties": [
+            "name",
+            "actions",
+            "output_schema"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "AgentResult",
+          "line": 15,
+          "isDefault": false
+        },
+        {
+          "name": "BaseAgent",
+          "line": 20,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "validate_output",
+          "callee": "self.output_schema.model_validate",
+          "lineNumber": 40
+        },
+        {
+          "caller": "validate_output",
+          "callee": "validated.model_dump",
+          "lineNumber": 41
+        },
+        {
+          "caller": "validate_output",
+          "callee": "output.items",
+          "lineNumber": 43
+        },
+        {
+          "caller": "validate_output",
+          "callee": "log.error",
+          "lineNumber": 48
+        },
+        {
+          "caller": "validate_output",
+          "callee": "exc.errors",
+          "lineNumber": 48
+        },
+        {
+          "caller": "handle",
+          "callee": "time.perf_counter",
+          "lineNumber": 58
+        },
+        {
+          "caller": "handle",
+          "callee": "self.process",
+          "lineNumber": 60
+        },
+        {
+          "caller": "handle",
+          "callee": "self.validate_output",
+          "lineNumber": 61
+        },
+        {
+          "caller": "handle",
+          "callee": "self.bus.mark",
+          "lineNumber": 63
+        },
+        {
+          "caller": "handle",
+          "callee": "log.info",
+          "lineNumber": 64
+        },
+        {
+          "caller": "handle",
+          "callee": "int",
+          "lineNumber": 69
+        },
+        {
+          "caller": "handle",
+          "callee": "time.perf_counter",
+          "lineNumber": 69
+        },
+        {
+          "caller": "handle",
+          "callee": "AgentResult",
+          "lineNumber": 71
+        },
+        {
+          "caller": "handle",
+          "callee": "log.error",
+          "lineNumber": 73
+        },
+        {
+          "caller": "handle",
+          "callee": "str",
+          "lineNumber": 73
+        },
+        {
+          "caller": "handle",
+          "callee": "self.bus.mark",
+          "lineNumber": 75
+        },
+        {
+          "caller": "handle",
+          "callee": "str",
+          "lineNumber": 75
+        },
+        {
+          "caller": "handle",
+          "callee": "AgentResult",
+          "lineNumber": 76
+        },
+        {
+          "caller": "handle",
+          "callee": "str",
+          "lineNumber": 76
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "src/adapted/agents/curriculum_agent.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 231,
+      "nonEmptyLines": 194,
+      "classes": [
+        {
+          "name": "ObjectiveOut",
+          "startLine": 26,
+          "endLine": 27,
+          "methods": [],
+          "properties": [
+            "description"
+          ]
+        },
+        {
+          "name": "TopicOut",
+          "startLine": 30,
+          "endLine": 35,
+          "methods": [],
+          "properties": [
+            "title",
+            "description",
+            "difficulty",
+            "objectives",
+            "prerequisites"
+          ]
+        },
+        {
+          "name": "ChapterOut",
+          "startLine": 38,
+          "endLine": 42,
+          "methods": [],
+          "properties": [
+            "title",
+            "description",
+            "order_index",
+            "topics"
+          ]
+        },
+        {
+          "name": "CurriculumOutput",
+          "startLine": 45,
+          "endLine": 46,
+          "methods": [],
+          "properties": [
+            "chapters"
+          ]
+        },
+        {
+          "name": "CurriculumAnalyzerAgent",
+          "startLine": 49,
+          "endLine": 231,
+          "methods": [
+            "__init__",
+            "process",
+            "output_is_empty",
+            "_build_request",
+            "_persist_curriculum",
+            "_assign_chunks_to_topics"
+          ],
+          "properties": [
+            "actions"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "ObjectiveOut",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "TopicOut",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "ChapterOut",
+          "line": 38,
+          "isDefault": false
+        },
+        {
+          "name": "CurriculumOutput",
+          "line": 45,
+          "isDefault": false
+        },
+        {
+          "name": "CurriculumAnalyzerAgent",
+          "line": 49,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "super().__init__",
+          "lineNumber": 55
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 55
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.get",
+          "lineNumber": 64
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.get",
+          "lineNumber": 65
+        },
+        {
+          "caller": "process",
+          "callee": "ValueError",
+          "lineNumber": 67
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.flush",
+          "lineNumber": 70
+        },
+        {
+          "caller": "process",
+          "callee": "parse_document",
+          "lineNumber": 74
+        },
+        {
+          "caller": "process",
+          "callee": "Path",
+          "lineNumber": 74
+        },
+        {
+          "caller": "process",
+          "callee": "curriculum_memory.index_document",
+          "lineNumber": 77
+        },
+        {
+          "caller": "process",
+          "callee": "CurriculumOutput.model_json_schema",
+          "lineNumber": 80
+        },
+        {
+          "caller": "process",
+          "callee": "self.provider.generate",
+          "lineNumber": 81
+        },
+        {
+          "caller": "process",
+          "callee": "self._build_request",
+          "lineNumber": 81
+        },
+        {
+          "caller": "process",
+          "callee": "self._persist_curriculum",
+          "lineNumber": 84
+        },
+        {
+          "caller": "process",
+          "callee": "self._assign_chunks_to_topics",
+          "lineNumber": 86
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.flush",
+          "lineNumber": 90
+        },
+        {
+          "caller": "process",
+          "callee": "list",
+          "lineNumber": 92
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.scalars",
+          "lineNumber": 93
+        },
+        {
+          "caller": "process",
+          "callee": "select(Topic).where(Topic.course_id == course_id).order_by",
+          "lineNumber": 94
+        },
+        {
+          "caller": "process",
+          "callee": "select(Topic).where",
+          "lineNumber": 94
+        },
+        {
+          "caller": "process",
+          "callee": "select",
+          "lineNumber": 94
+        },
+        {
+          "caller": "process",
+          "callee": "c.model_dump",
+          "lineNumber": 99
+        },
+        {
+          "caller": "process",
+          "callee": "CurriculumOutput.model_validate",
+          "lineNumber": 99
+        },
+        {
+          "caller": "process",
+          "callee": "len",
+          "lineNumber": 104
+        },
+        {
+          "caller": "process",
+          "callee": "len",
+          "lineNumber": 105
+        },
+        {
+          "caller": "output_is_empty",
+          "callee": "output.get",
+          "lineNumber": 109
+        },
+        {
+          "caller": "_build_request",
+          "callee": "LLMRequest",
+          "lineNumber": 123
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "CurriculumOutput.model_validate",
+          "lineNumber": 137
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "list",
+          "lineNumber": 139
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "self.db.scalars",
+          "lineNumber": 140
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "select(Chapter).where",
+          "lineNumber": 140
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "select",
+          "lineNumber": 140
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "list",
+          "lineNumber": 142
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "self.db.scalars",
+          "lineNumber": 142
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "select(Topic).where",
+          "lineNumber": 142
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "select",
+          "lineNumber": 142
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "t.title.lower",
+          "lineNumber": 143
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "self.db.delete",
+          "lineNumber": 148
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "self.db.flush",
+          "lineNumber": 149
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "list",
+          "lineNumber": 150
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "self.db.scalars",
+          "lineNumber": 150
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "select(Topic).where",
+          "lineNumber": 150
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "select",
+          "lineNumber": 150
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "t.title.lower",
+          "lineNumber": 151
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "Chapter",
+          "lineNumber": 156
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "self.db.add",
+          "lineNumber": 163
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "self.db.flush",
+          "lineNumber": 164
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "existing_by_title.get",
+          "lineNumber": 168
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "t_out.title.lower",
+          "lineNumber": 168
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "Topic",
+          "lineNumber": 170
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "len",
+          "lineNumber": 174
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "self.db.add",
+          "lineNumber": 178
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "self.db.flush",
+          "lineNumber": 179
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "t_out.title.lower",
+          "lineNumber": 180
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "self.db.add",
+          "lineNumber": 187
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "LearningObjective",
+          "lineNumber": 188
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "existing_by_title.get",
+          "lineNumber": 197
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "prereq_title.lower",
+          "lineNumber": 197
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "Topic",
+          "lineNumber": 199
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "self.db.add",
+          "lineNumber": 206
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "self.db.flush",
+          "lineNumber": 207
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "prereq_title.lower",
+          "lineNumber": 208
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "self.db.scalars(\n                        select(TopicPrerequisite).where(\n                            TopicPrerequisite.topic_id == topic.id,\n                            TopicPrerequisite.prereq_topic_id == prereq.id,\n                        )\n                    ).first",
+          "lineNumber": 209
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "self.db.scalars",
+          "lineNumber": 209
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "select(TopicPrerequisite).where",
+          "lineNumber": 210
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "select",
+          "lineNumber": 210
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "self.db.add",
+          "lineNumber": 216
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "TopicPrerequisite",
+          "lineNumber": 216
+        },
+        {
+          "caller": "_persist_curriculum",
+          "callee": "self.db.flush",
+          "lineNumber": 219
+        },
+        {
+          "caller": "_assign_chunks_to_topics",
+          "callee": "list",
+          "lineNumber": 223
+        },
+        {
+          "caller": "_assign_chunks_to_topics",
+          "callee": "self.db.scalars",
+          "lineNumber": 223
+        },
+        {
+          "caller": "_assign_chunks_to_topics",
+          "callee": "select(Topic).where",
+          "lineNumber": 223
+        },
+        {
+          "caller": "_assign_chunks_to_topics",
+          "callee": "select",
+          "lineNumber": 223
+        },
+        {
+          "caller": "_assign_chunks_to_topics",
+          "callee": "(chunk.heading or \"\").lower",
+          "lineNumber": 225
+        },
+        {
+          "caller": "_assign_chunks_to_topics",
+          "callee": "topic.title.lower",
+          "lineNumber": 227
+        },
+        {
+          "caller": "_assign_chunks_to_topics",
+          "callee": "self.db.flush",
+          "lineNumber": 231
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 5,
+        "functionCount": 0,
+        "classCount": 5
+      }
+    },
+    {
+      "path": "src/adapted/agents/grading_agent.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 184,
+      "nonEmptyLines": 161,
+      "classes": [
+        {
+          "name": "GradedAnswer",
+          "startLine": 17,
+          "endLine": 24,
+          "methods": [],
+          "properties": [
+            "answer_id",
+            "question_id",
+            "is_correct",
+            "ai_score",
+            "confidence",
+            "explanation",
+            "needs_teacher_review"
+          ]
+        },
+        {
+          "name": "GradingOutput",
+          "startLine": 27,
+          "endLine": 32,
+          "methods": [],
+          "properties": [
+            "attempt_id",
+            "score",
+            "max_score",
+            "percentage",
+            "answers"
+          ]
+        },
+        {
+          "name": "GradingAgent",
+          "startLine": 35,
+          "endLine": 184,
+          "methods": [
+            "__init__",
+            "process",
+            "_grade_one",
+            "_grade_subjective"
+          ],
+          "properties": [
+            "actions"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "GradedAnswer",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "GradingOutput",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "GradingAgent",
+          "line": 35,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "super().__init__",
+          "lineNumber": 41
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 41
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.get",
+          "lineNumber": 49
+        },
+        {
+          "caller": "process",
+          "callee": "ValueError",
+          "lineNumber": 51
+        },
+        {
+          "caller": "process",
+          "callee": "list",
+          "lineNumber": 56
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.get",
+          "lineNumber": 57
+        },
+        {
+          "caller": "process",
+          "callee": "self._grade_one",
+          "lineNumber": 60
+        },
+        {
+          "caller": "process",
+          "callee": "graded.append",
+          "lineNumber": 67
+        },
+        {
+          "caller": "process",
+          "callee": "results.append",
+          "lineNumber": 72
+        },
+        {
+          "caller": "process",
+          "callee": "GradedAnswer",
+          "lineNumber": 73
+        },
+        {
+          "caller": "process",
+          "callee": "compute_attempt_score",
+          "lineNumber": 84
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.scalars(\n            select(Grade).where(Grade.attempt_id == attempt_id)\n        ).first",
+          "lineNumber": 89
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.scalars",
+          "lineNumber": 89
+        },
+        {
+          "caller": "process",
+          "callee": "select(Grade).where",
+          "lineNumber": 90
+        },
+        {
+          "caller": "process",
+          "callee": "select",
+          "lineNumber": 90
+        },
+        {
+          "caller": "process",
+          "callee": "round",
+          "lineNumber": 92
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.add",
+          "lineNumber": 94
+        },
+        {
+          "caller": "process",
+          "callee": "Grade",
+          "lineNumber": 95
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.flush",
+          "lineNumber": 107
+        },
+        {
+          "caller": "process",
+          "callee": "r.model_dump",
+          "lineNumber": 114
+        },
+        {
+          "caller": "_grade_one",
+          "callee": "grade_objective",
+          "lineNumber": 122
+        },
+        {
+          "caller": "_grade_one",
+          "callee": "question.correct_answer.get",
+          "lineNumber": 130
+        },
+        {
+          "caller": "_grade_one",
+          "callee": "self._grade_subjective",
+          "lineNumber": 135
+        },
+        {
+          "caller": "_grade_subjective",
+          "callee": "str",
+          "lineNumber": 142
+        },
+        {
+          "caller": "_grade_subjective",
+          "callee": "response.get",
+          "lineNumber": 142
+        },
+        {
+          "caller": "_grade_subjective",
+          "callee": "str",
+          "lineNumber": 143
+        },
+        {
+          "caller": "_grade_subjective",
+          "callee": "question.correct_answer.get",
+          "lineNumber": 143
+        },
+        {
+          "caller": "_grade_subjective",
+          "callee": "LLMRequest",
+          "lineNumber": 163
+        },
+        {
+          "caller": "_grade_subjective",
+          "callee": "self.provider.generate",
+          "lineNumber": 175
+        },
+        {
+          "caller": "_grade_subjective",
+          "callee": "float",
+          "lineNumber": 178
+        },
+        {
+          "caller": "_grade_subjective",
+          "callee": "result.get",
+          "lineNumber": 178
+        },
+        {
+          "caller": "_grade_subjective",
+          "callee": "float",
+          "lineNumber": 179
+        },
+        {
+          "caller": "_grade_subjective",
+          "callee": "result.get",
+          "lineNumber": 179
+        },
+        {
+          "caller": "_grade_subjective",
+          "callee": "float",
+          "lineNumber": 180
+        },
+        {
+          "caller": "_grade_subjective",
+          "callee": "result.get",
+          "lineNumber": 180
+        },
+        {
+          "caller": "_grade_subjective",
+          "callee": "str",
+          "lineNumber": 181
+        },
+        {
+          "caller": "_grade_subjective",
+          "callee": "result.get",
+          "lineNumber": 181
+        },
+        {
+          "caller": "_grade_subjective",
+          "callee": "bool",
+          "lineNumber": 182
+        },
+        {
+          "caller": "_grade_subjective",
+          "callee": "result.get",
+          "lineNumber": 182
+        },
+        {
+          "caller": "_grade_subjective",
+          "callee": "max",
+          "lineNumber": 183
+        },
+        {
+          "caller": "_grade_subjective",
+          "callee": "min",
+          "lineNumber": 183
+        },
+        {
+          "caller": "_grade_subjective",
+          "callee": "round",
+          "lineNumber": 184
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 3,
+        "functionCount": 0,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "src/adapted/agents/message.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 115,
+      "nonEmptyLines": 102,
+      "classes": [
+        {
+          "name": "AgentMessage",
+          "startLine": 32,
+          "endLine": 57,
+          "methods": [
+            "as_dict"
+          ],
+          "properties": [
+            "task_id",
+            "correlation_id",
+            "sender",
+            "receiver",
+            "action",
+            "payload",
+            "status",
+            "error",
+            "duration_ms",
+            "message_id"
+          ]
+        },
+        {
+          "name": "MessageBus",
+          "startLine": 60,
+          "endLine": 115,
+          "methods": [
+            "__init__",
+            "send",
+            "mark"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "AgentMessage",
+          "line": 31,
+          "isDefault": false
+        },
+        {
+          "name": "MessageBus",
+          "line": 60,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "as_dict",
+          "callee": "datetime.now(UTC).isoformat",
+          "lineNumber": 56
+        },
+        {
+          "caller": "as_dict",
+          "callee": "datetime.now",
+          "lineNumber": 56
+        },
+        {
+          "caller": "send",
+          "callee": "time.perf_counter",
+          "lineNumber": 68
+        },
+        {
+          "caller": "send",
+          "callee": "AgentMessageRow",
+          "lineNumber": 70
+        },
+        {
+          "caller": "send",
+          "callee": "self.db.add",
+          "lineNumber": 82
+        },
+        {
+          "caller": "send",
+          "callee": "self.db.flush",
+          "lineNumber": 83
+        },
+        {
+          "caller": "send",
+          "callee": "log.info",
+          "lineNumber": 84
+        },
+        {
+          "caller": "send",
+          "callee": "int",
+          "lineNumber": 96
+        },
+        {
+          "caller": "send",
+          "callee": "time.perf_counter",
+          "lineNumber": 96
+        },
+        {
+          "caller": "mark",
+          "callee": "self.db.query(AgentMessageRow)\n            .filter(AgentMessageRow.message_id == message.message_id)\n            .first",
+          "lineNumber": 107
+        },
+        {
+          "caller": "mark",
+          "callee": "self.db.query(AgentMessageRow)\n            .filter",
+          "lineNumber": 107
+        },
+        {
+          "caller": "mark",
+          "callee": "self.db.query",
+          "lineNumber": 107
+        },
+        {
+          "caller": "mark",
+          "callee": "self.db.flush",
+          "lineNumber": 115
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "src/adapted/agents/performance_agent.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 174,
+      "nonEmptyLines": 152,
+      "classes": [
+        {
+          "name": "TopicMasteryOut",
+          "startLine": 18,
+          "endLine": 23,
+          "methods": [],
+          "properties": [
+            "topic_id",
+            "topic_title",
+            "mastery",
+            "attempts",
+            "status"
+          ]
+        },
+        {
+          "name": "PerformanceOutput",
+          "startLine": 26,
+          "endLine": 32,
+          "methods": [],
+          "properties": [
+            "student_id",
+            "course_id",
+            "weak_topics",
+            "strong_topics",
+            "topic_mastery",
+            "misconceptions"
+          ]
+        },
+        {
+          "name": "PerformanceAnalysisAgent",
+          "startLine": 35,
+          "endLine": 174,
+          "methods": [
+            "__init__",
+            "process",
+            "_update_mastery_from_attempt",
+            "_detect_misconceptions"
+          ],
+          "properties": [
+            "actions"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "TopicMasteryOut",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "PerformanceOutput",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "PerformanceAnalysisAgent",
+          "line": 35,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "super().__init__",
+          "lineNumber": 41
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 41
+        },
+        {
+          "caller": "process",
+          "callee": "payload.get",
+          "lineNumber": 49
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.get",
+          "lineNumber": 51
+        },
+        {
+          "caller": "process",
+          "callee": "self._update_mastery_from_attempt",
+          "lineNumber": 55
+        },
+        {
+          "caller": "process",
+          "callee": "self._detect_misconceptions",
+          "lineNumber": 58
+        },
+        {
+          "caller": "process",
+          "callee": "list",
+          "lineNumber": 61
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.scalars",
+          "lineNumber": 62
+        },
+        {
+          "caller": "process",
+          "callee": "select(StudentMastery).where",
+          "lineNumber": 62
+        },
+        {
+          "caller": "process",
+          "callee": "select",
+          "lineNumber": 62
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.get",
+          "lineNumber": 66
+        },
+        {
+          "caller": "process",
+          "callee": "records.append",
+          "lineNumber": 69
+        },
+        {
+          "caller": "process",
+          "callee": "mastery_svc.build_record",
+          "lineNumber": 81
+        },
+        {
+          "caller": "process",
+          "callee": "analytics.weak_and_strong",
+          "lineNumber": 86
+        },
+        {
+          "caller": "process",
+          "callee": "TopicMasteryOut(**r).model_dump",
+          "lineNumber": 93
+        },
+        {
+          "caller": "process",
+          "callee": "TopicMasteryOut",
+          "lineNumber": 93
+        },
+        {
+          "caller": "_update_mastery_from_attempt",
+          "callee": "self.db.get",
+          "lineNumber": 100
+        },
+        {
+          "caller": "_update_mastery_from_attempt",
+          "callee": "by_topic.setdefault(topic_id, []).append",
+          "lineNumber": 105
+        },
+        {
+          "caller": "_update_mastery_from_attempt",
+          "callee": "by_topic.setdefault",
+          "lineNumber": 105
+        },
+        {
+          "caller": "_update_mastery_from_attempt",
+          "callee": "by_topic.items",
+          "lineNumber": 107
+        },
+        {
+          "caller": "_update_mastery_from_attempt",
+          "callee": "sum",
+          "lineNumber": 110
+        },
+        {
+          "caller": "_update_mastery_from_attempt",
+          "callee": "len",
+          "lineNumber": 111
+        },
+        {
+          "caller": "_update_mastery_from_attempt",
+          "callee": "student_memory.update_topic_mastery",
+          "lineNumber": 112
+        },
+        {
+          "caller": "_update_mastery_from_attempt",
+          "callee": "student_memory.record_study",
+          "lineNumber": 113
+        },
+        {
+          "caller": "_update_mastery_from_attempt",
+          "callee": "len",
+          "lineNumber": 120
+        },
+        {
+          "caller": "_detect_misconceptions",
+          "callee": "self.db.scalars",
+          "lineNumber": 125
+        },
+        {
+          "caller": "_detect_misconceptions",
+          "callee": "select(QuizAttempt)\n            .where(QuizAttempt.student_id == student_id)\n            .order_by(QuizAttempt.submitted_at.desc().nulls_last())\n            .limit",
+          "lineNumber": 126
+        },
+        {
+          "caller": "_detect_misconceptions",
+          "callee": "select(QuizAttempt)\n            .where(QuizAttempt.student_id == student_id)\n            .order_by",
+          "lineNumber": 126
+        },
+        {
+          "caller": "_detect_misconceptions",
+          "callee": "select(QuizAttempt)\n            .where",
+          "lineNumber": 126
+        },
+        {
+          "caller": "_detect_misconceptions",
+          "callee": "select",
+          "lineNumber": 126
+        },
+        {
+          "caller": "_detect_misconceptions",
+          "callee": "QuizAttempt.submitted_at.desc().nulls_last",
+          "lineNumber": 128
+        },
+        {
+          "caller": "_detect_misconceptions",
+          "callee": "QuizAttempt.submitted_at.desc",
+          "lineNumber": 128
+        },
+        {
+          "caller": "_detect_misconceptions",
+          "callee": "self.db.get",
+          "lineNumber": 133
+        },
+        {
+          "caller": "_detect_misconceptions",
+          "callee": "answers.append",
+          "lineNumber": 136
+        },
+        {
+          "caller": "_detect_misconceptions",
+          "callee": "self.db.get",
+          "lineNumber": 144
+        },
+        {
+          "caller": "_detect_misconceptions",
+          "callee": "self.db.get",
+          "lineNumber": 145
+        },
+        {
+          "caller": "_detect_misconceptions",
+          "callee": "analytics.detect_misconceptions",
+          "lineNumber": 152
+        },
+        {
+          "caller": "_detect_misconceptions",
+          "callee": "self.db.scalars(\n                select(Misconception).where(\n                    Misconception.student_id == student_id,\n                    Misconception.topic_id == f[\"topic_id\"],\n                    Misconception.label == f[\"label\"],\n                    Misconception.status == \"open\",\n                )\n            ).first",
+          "lineNumber": 155
+        },
+        {
+          "caller": "_detect_misconceptions",
+          "callee": "self.db.scalars",
+          "lineNumber": 155
+        },
+        {
+          "caller": "_detect_misconceptions",
+          "callee": "select(Misconception).where",
+          "lineNumber": 156
+        },
+        {
+          "caller": "_detect_misconceptions",
+          "callee": "select",
+          "lineNumber": 156
+        },
+        {
+          "caller": "_detect_misconceptions",
+          "callee": "Misconception",
+          "lineNumber": 164
+        },
+        {
+          "caller": "_detect_misconceptions",
+          "callee": "self.db.add",
+          "lineNumber": 171
+        },
+        {
+          "caller": "_detect_misconceptions",
+          "callee": "persisted.append",
+          "lineNumber": 172
+        },
+        {
+          "caller": "_detect_misconceptions",
+          "callee": "self.db.flush",
+          "lineNumber": 173
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 3,
+        "functionCount": 0,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "src/adapted/agents/planner_agent.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 250,
+      "nonEmptyLines": 226,
+      "classes": [
+        {
+          "name": "PlanItemOut",
+          "startLine": 25,
+          "endLine": 33,
+          "methods": [],
+          "properties": [
+            "topic_id",
+            "title",
+            "day_index",
+            "sequence",
+            "estimated_minutes",
+            "goal",
+            "reason",
+            "status"
+          ]
+        },
+        {
+          "name": "PlannerOutput",
+          "startLine": 36,
+          "endLine": 41,
+          "methods": [],
+          "properties": [
+            "plan_id",
+            "version",
+            "valid",
+            "validation_errors",
+            "items"
+          ]
+        },
+        {
+          "name": "StudyPlannerAgent",
+          "startLine": 44,
+          "endLine": 250,
+          "methods": [
+            "__init__",
+            "process",
+            "_load_topics",
+            "_latest_plan",
+            "_pack_fast",
+            "_persist"
+          ],
+          "properties": [
+            "actions"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "PlanItemOut",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "PlannerOutput",
+          "line": 36,
+          "isDefault": false
+        },
+        {
+          "name": "StudyPlannerAgent",
+          "line": 44,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "super().__init__",
+          "lineNumber": 50
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 50
+        },
+        {
+          "caller": "process",
+          "callee": "payload.get",
+          "lineNumber": 58
+        },
+        {
+          "caller": "process",
+          "callee": "isinstance",
+          "lineNumber": 59
+        },
+        {
+          "caller": "process",
+          "callee": "date.fromisoformat",
+          "lineNumber": 60
+        },
+        {
+          "caller": "process",
+          "callee": "str",
+          "lineNumber": 60
+        },
+        {
+          "caller": "process",
+          "callee": "int",
+          "lineNumber": 61
+        },
+        {
+          "caller": "process",
+          "callee": "payload.get",
+          "lineNumber": 61
+        },
+        {
+          "caller": "process",
+          "callee": "payload.get",
+          "lineNumber": 62
+        },
+        {
+          "caller": "process",
+          "callee": "self._load_topics",
+          "lineNumber": 64
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.scalars",
+          "lineNumber": 72
+        },
+        {
+          "caller": "process",
+          "callee": "select(Topic).where",
+          "lineNumber": 72
+        },
+        {
+          "caller": "process",
+          "callee": "select",
+          "lineNumber": 72
+        },
+        {
+          "caller": "process",
+          "callee": "self._latest_plan",
+          "lineNumber": 76
+        },
+        {
+          "caller": "process",
+          "callee": "build_plan",
+          "lineNumber": 79
+        },
+        {
+          "caller": "process",
+          "callee": "PlanItem",
+          "lineNumber": 82
+        },
+        {
+          "caller": "process",
+          "callee": "payload.get",
+          "lineNumber": 94
+        },
+        {
+          "caller": "process",
+          "callee": "adapt_plan",
+          "lineNumber": 95
+        },
+        {
+          "caller": "process",
+          "callee": "build_plan",
+          "lineNumber": 97
+        },
+        {
+          "caller": "process",
+          "callee": "prereq_titles_by_id.items",
+          "lineNumber": 105
+        },
+        {
+          "caller": "process",
+          "callee": "validate_plan",
+          "lineNumber": 107
+        },
+        {
+          "caller": "process",
+          "callee": "log.info",
+          "lineNumber": 116
+        },
+        {
+          "caller": "process",
+          "callee": "self._pack_fast",
+          "lineNumber": 117
+        },
+        {
+          "caller": "process",
+          "callee": "validate_plan",
+          "lineNumber": 118
+        },
+        {
+          "caller": "process",
+          "callee": "ValueError",
+          "lineNumber": 122
+        },
+        {
+          "caller": "process",
+          "callee": "\"; \".join",
+          "lineNumber": 122
+        },
+        {
+          "caller": "process",
+          "callee": "self._persist",
+          "lineNumber": 124
+        },
+        {
+          "caller": "process",
+          "callee": "i.to_dict",
+          "lineNumber": 131
+        },
+        {
+          "caller": "_load_topics",
+          "callee": "list",
+          "lineNumber": 135
+        },
+        {
+          "caller": "_load_topics",
+          "callee": "self.db.scalars",
+          "lineNumber": 136
+        },
+        {
+          "caller": "_load_topics",
+          "callee": "select(Topic).where(Topic.course_id == course_id).order_by",
+          "lineNumber": 137
+        },
+        {
+          "caller": "_load_topics",
+          "callee": "select(Topic).where",
+          "lineNumber": 137
+        },
+        {
+          "caller": "_load_topics",
+          "callee": "select",
+          "lineNumber": 137
+        },
+        {
+          "caller": "_load_topics",
+          "callee": "self.db.scalars",
+          "lineNumber": 142
+        },
+        {
+          "caller": "_load_topics",
+          "callee": "select(StudentMastery).where",
+          "lineNumber": 143
+        },
+        {
+          "caller": "_load_topics",
+          "callee": "select",
+          "lineNumber": 143
+        },
+        {
+          "caller": "_load_topics",
+          "callee": "mastery_rows.get",
+          "lineNumber": 148
+        },
+        {
+          "caller": "_load_topics",
+          "callee": "out.append",
+          "lineNumber": 150
+        },
+        {
+          "caller": "_load_topics",
+          "callee": "PlanTopic",
+          "lineNumber": 151
+        },
+        {
+          "caller": "_latest_plan",
+          "callee": "self.db.scalars(\n            select(StudyPlan)\n            .where(\n                StudyPlan.student_id == student_id,\n                StudyPlan.course_id == course_id,\n                StudyPlan.status == \"active\",\n            )\n            .order_by(StudyPlan.version.desc())\n            .limit(1)\n        ).first",
+          "lineNumber": 162
+        },
+        {
+          "caller": "_latest_plan",
+          "callee": "self.db.scalars",
+          "lineNumber": 162
+        },
+        {
+          "caller": "_latest_plan",
+          "callee": "select(StudyPlan)\n            .where(\n                StudyPlan.student_id == student_id,\n                StudyPlan.course_id == course_id,\n                StudyPlan.status == \"active\",\n            )\n            .order_by(StudyPlan.version.desc())\n            .limit",
+          "lineNumber": 163
+        },
+        {
+          "caller": "_latest_plan",
+          "callee": "select(StudyPlan)\n            .where(\n                StudyPlan.student_id == student_id,\n                StudyPlan.course_id == course_id,\n                StudyPlan.status == \"active\",\n            )\n            .order_by",
+          "lineNumber": 163
+        },
+        {
+          "caller": "_latest_plan",
+          "callee": "select(StudyPlan)\n            .where",
+          "lineNumber": 163
+        },
+        {
+          "caller": "_latest_plan",
+          "callee": "select",
+          "lineNumber": 163
+        },
+        {
+          "caller": "_latest_plan",
+          "callee": "StudyPlan.version.desc",
+          "lineNumber": 169
+        },
+        {
+          "caller": "_pack_fast",
+          "callee": "max",
+          "lineNumber": 178
+        },
+        {
+          "caller": "_pack_fast",
+          "callee": "datetime.now(UTC).date",
+          "lineNumber": 178
+        },
+        {
+          "caller": "_pack_fast",
+          "callee": "datetime.now",
+          "lineNumber": 178
+        },
+        {
+          "caller": "_pack_fast",
+          "callee": "len",
+          "lineNumber": 178
+        },
+        {
+          "caller": "_pack_fast",
+          "callee": "sorted",
+          "lineNumber": 180
+        },
+        {
+          "caller": "_pack_fast",
+          "callee": "packed.append",
+          "lineNumber": 191
+        },
+        {
+          "caller": "_pack_fast",
+          "callee": "PlanItem",
+          "lineNumber": 192
+        },
+        {
+          "caller": "_pack_fast",
+          "callee": "min",
+          "lineNumber": 197
+        },
+        {
+          "caller": "_persist",
+          "callee": "self._latest_plan",
+          "lineNumber": 215
+        },
+        {
+          "caller": "_persist",
+          "callee": "StudyPlan",
+          "lineNumber": 217
+        },
+        {
+          "caller": "_persist",
+          "callee": "self.db.add",
+          "lineNumber": 224
+        },
+        {
+          "caller": "_persist",
+          "callee": "self.db.flush",
+          "lineNumber": 225
+        },
+        {
+          "caller": "_persist",
+          "callee": "list",
+          "lineNumber": 231
+        },
+        {
+          "caller": "_persist",
+          "callee": "self.db.delete",
+          "lineNumber": 232
+        },
+        {
+          "caller": "_persist",
+          "callee": "self.db.flush",
+          "lineNumber": 233
+        },
+        {
+          "caller": "_persist",
+          "callee": "self.db.add",
+          "lineNumber": 237
+        },
+        {
+          "caller": "_persist",
+          "callee": "StudyPlanItem",
+          "lineNumber": 238
+        },
+        {
+          "caller": "_persist",
+          "callee": "self.db.flush",
+          "lineNumber": 249
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 3,
+        "functionCount": 0,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "src/adapted/agents/quiz_agent.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 190,
+      "nonEmptyLines": 168,
+      "classes": [
+        {
+          "name": "GeneratedQuestion",
+          "startLine": 17,
+          "endLine": 24,
+          "methods": [],
+          "properties": [
+            "question_type",
+            "prompt",
+            "choices",
+            "correct_answer",
+            "explanation",
+            "difficulty",
+            "source_ref"
+          ]
+        },
+        {
+          "name": "QuizOutput",
+          "startLine": 27,
+          "endLine": 28,
+          "methods": [],
+          "properties": [
+            "questions"
+          ]
+        },
+        {
+          "name": "QuizAgent",
+          "startLine": 31,
+          "endLine": 190,
+          "methods": [
+            "__init__",
+            "process",
+            "output_is_empty",
+            "_build_request"
+          ],
+          "properties": [
+            "actions"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "GeneratedQuestion",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "QuizOutput",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "QuizAgent",
+          "line": 31,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "super().__init__",
+          "lineNumber": 37
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 37
+        },
+        {
+          "caller": "process",
+          "callee": "payload.get",
+          "lineNumber": 44
+        },
+        {
+          "caller": "process",
+          "callee": "payload.get",
+          "lineNumber": 45
+        },
+        {
+          "caller": "process",
+          "callee": "int",
+          "lineNumber": 46
+        },
+        {
+          "caller": "process",
+          "callee": "payload.get",
+          "lineNumber": 46
+        },
+        {
+          "caller": "process",
+          "callee": "float",
+          "lineNumber": 47
+        },
+        {
+          "caller": "process",
+          "callee": "payload.get",
+          "lineNumber": 47
+        },
+        {
+          "caller": "process",
+          "callee": "payload.get",
+          "lineNumber": 48
+        },
+        {
+          "caller": "process",
+          "callee": "payload.get",
+          "lineNumber": 49
+        },
+        {
+          "caller": "process",
+          "callee": "payload.get",
+          "lineNumber": 50
+        },
+        {
+          "caller": "process",
+          "callee": "quiz_type.replace('_', ' ').title",
+          "lineNumber": 50
+        },
+        {
+          "caller": "process",
+          "callee": "quiz_type.replace",
+          "lineNumber": 50
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.get",
+          "lineNumber": 52
+        },
+        {
+          "caller": "process",
+          "callee": "payload.get",
+          "lineNumber": 53
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.scalars",
+          "lineNumber": 56
+        },
+        {
+          "caller": "process",
+          "callee": "select(Question.question_hash).where",
+          "lineNumber": 57
+        },
+        {
+          "caller": "process",
+          "callee": "select",
+          "lineNumber": 57
+        },
+        {
+          "caller": "process",
+          "callee": "QuizOutput.model_json_schema",
+          "lineNumber": 62
+        },
+        {
+          "caller": "process",
+          "callee": "self._build_request",
+          "lineNumber": 63
+        },
+        {
+          "caller": "process",
+          "callee": "self.provider.generate",
+          "lineNumber": 66
+        },
+        {
+          "caller": "process",
+          "callee": "QuizOutput.model_validate",
+          "lineNumber": 67
+        },
+        {
+          "caller": "process",
+          "callee": "ValueError",
+          "lineNumber": 70
+        },
+        {
+          "caller": "process",
+          "callee": "question_hash",
+          "lineNumber": 74
+        },
+        {
+          "caller": "process",
+          "callee": "existing_hashes.add",
+          "lineNumber": 77
+        },
+        {
+          "caller": "process",
+          "callee": "Question",
+          "lineNumber": 78
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.add",
+          "lineNumber": 90
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.flush",
+          "lineNumber": 91
+        },
+        {
+          "caller": "process",
+          "callee": "question_rows.append",
+          "lineNumber": 92
+        },
+        {
+          "caller": "process",
+          "callee": "list",
+          "lineNumber": 97
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.scalars",
+          "lineNumber": 98
+        },
+        {
+          "caller": "process",
+          "callee": "select(Question)\n                    .where(\n                        Question.course_id == course_id,\n                        Question.topic_id == (topic_id or None)\n                        if topic_id\n                        else Question.course_id == course_id,\n                    )\n                    .limit",
+          "lineNumber": 99
+        },
+        {
+          "caller": "process",
+          "callee": "select(Question)\n                    .where",
+          "lineNumber": 99
+        },
+        {
+          "caller": "process",
+          "callee": "select",
+          "lineNumber": 99
+        },
+        {
+          "caller": "process",
+          "callee": "question_rows.extend",
+          "lineNumber": 110
+        },
+        {
+          "caller": "process",
+          "callee": "ValueError",
+          "lineNumber": 112
+        },
+        {
+          "caller": "process",
+          "callee": "Quiz",
+          "lineNumber": 114
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.add",
+          "lineNumber": 122
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.flush",
+          "lineNumber": 123
+        },
+        {
+          "caller": "process",
+          "callee": "enumerate",
+          "lineNumber": 124
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.add",
+          "lineNumber": 125
+        },
+        {
+          "caller": "process",
+          "callee": "QuizQuestion",
+          "lineNumber": 126
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.flush",
+          "lineNumber": 133
+        },
+        {
+          "caller": "process",
+          "callee": "len",
+          "lineNumber": 139
+        },
+        {
+          "caller": "output_is_empty",
+          "callee": "output.get",
+          "lineNumber": 154
+        },
+        {
+          "caller": "_build_request",
+          "callee": "sorted",
+          "lineNumber": 175
+        },
+        {
+          "caller": "_build_request",
+          "callee": "LLMRequest",
+          "lineNumber": 178
+        },
+        {
+          "caller": "_build_request",
+          "callee": "sorted",
+          "lineNumber": 187
+        },
+        {
+          "caller": "_build_request",
+          "callee": "int",
+          "lineNumber": 188
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 3,
+        "functionCount": 0,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "src/adapted/agents/recommendation_agent.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 159,
+      "nonEmptyLines": 135,
+      "classes": [
+        {
+          "name": "RecommendationOut",
+          "startLine": 15,
+          "endLine": 21,
+          "methods": [],
+          "properties": [
+            "action",
+            "title",
+            "reasons",
+            "payload",
+            "confidence",
+            "needs_teacher_review"
+          ]
+        },
+        {
+          "name": "RecommendationOutput",
+          "startLine": 24,
+          "endLine": 28,
+          "methods": [],
+          "properties": [
+            "student_id",
+            "course_id",
+            "recommendation",
+            "message"
+          ]
+        },
+        {
+          "name": "RecommendationAgent",
+          "startLine": 31,
+          "endLine": 159,
+          "methods": [
+            "__init__",
+            "process",
+            "_decide",
+            "_mock_narrative",
+            "_llm_narrative"
+          ],
+          "properties": [
+            "actions"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "RecommendationOut",
+          "line": 15,
+          "isDefault": false
+        },
+        {
+          "name": "RecommendationOutput",
+          "line": 24,
+          "isDefault": false
+        },
+        {
+          "name": "RecommendationAgent",
+          "line": 31,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "super().__init__",
+          "lineNumber": 37
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 37
+        },
+        {
+          "caller": "process",
+          "callee": "payload.get",
+          "lineNumber": 45
+        },
+        {
+          "caller": "process",
+          "callee": "payload.get",
+          "lineNumber": 46
+        },
+        {
+          "caller": "process",
+          "callee": "payload.get",
+          "lineNumber": 47
+        },
+        {
+          "caller": "process",
+          "callee": "self._decide",
+          "lineNumber": 49
+        },
+        {
+          "caller": "process",
+          "callee": "self._mock_narrative",
+          "lineNumber": 52
+        },
+        {
+          "caller": "process",
+          "callee": "self._llm_narrative",
+          "lineNumber": 54
+        },
+        {
+          "caller": "process",
+          "callee": "Recommendation",
+          "lineNumber": 56
+        },
+        {
+          "caller": "process",
+          "callee": "rec.payload.get",
+          "lineNumber": 60
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.add",
+          "lineNumber": 67
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.flush",
+          "lineNumber": 68
+        },
+        {
+          "caller": "process",
+          "callee": "rec.model_dump",
+          "lineNumber": 73
+        },
+        {
+          "caller": "_decide",
+          "callee": "w.get",
+          "lineNumber": 80
+        },
+        {
+          "caller": "_decide",
+          "callee": "weak[0].get",
+          "lineNumber": 81
+        },
+        {
+          "caller": "_decide",
+          "callee": "RecommendationOut",
+          "lineNumber": 84
+        },
+        {
+          "caller": "_decide",
+          "callee": "RecommendationOut",
+          "lineNumber": 93
+        },
+        {
+          "caller": "_decide",
+          "callee": "RecommendationOut",
+          "lineNumber": 109
+        },
+        {
+          "caller": "_mock_narrative",
+          "callee": "_mock_recommendation",
+          "lineNumber": 123
+        },
+        {
+          "caller": "_mock_narrative",
+          "callee": "w.get",
+          "lineNumber": 125
+        },
+        {
+          "caller": "_mock_narrative",
+          "callee": "s.get",
+          "lineNumber": 126
+        },
+        {
+          "caller": "_llm_narrative",
+          "callee": "w.get",
+          "lineNumber": 141
+        },
+        {
+          "caller": "_llm_narrative",
+          "callee": "s.get",
+          "lineNumber": 142
+        },
+        {
+          "caller": "_llm_narrative",
+          "callee": "LLMRequest",
+          "lineNumber": 145
+        },
+        {
+          "caller": "_llm_narrative",
+          "callee": "w.get",
+          "lineNumber": 150
+        },
+        {
+          "caller": "_llm_narrative",
+          "callee": "s.get",
+          "lineNumber": 151
+        },
+        {
+          "caller": "_llm_narrative",
+          "callee": "self.provider.generate",
+          "lineNumber": 156
+        },
+        {
+          "caller": "_llm_narrative",
+          "callee": "str",
+          "lineNumber": 157
+        },
+        {
+          "caller": "_llm_narrative",
+          "callee": "result.get",
+          "lineNumber": 157
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 3,
+        "functionCount": 0,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "src/adapted/agents/supervisor.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 118,
+      "nonEmptyLines": 103,
+      "classes": [
+        {
+          "name": "Supervisor",
+          "startLine": 30,
+          "endLine": 118,
+          "methods": [
+            "__init__",
+            "classify",
+            "start_task",
+            "initial_message",
+            "_receiver_for_action",
+            "finish_task",
+            "log_message"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Supervisor",
+          "line": 30,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "classify",
+          "callee": "payload.get",
+          "lineNumber": 38
+        },
+        {
+          "caller": "classify",
+          "callee": "ValueError",
+          "lineNumber": 41
+        },
+        {
+          "caller": "classify",
+          "callee": "', '.join",
+          "lineNumber": 41
+        },
+        {
+          "caller": "start_task",
+          "callee": "AgentTask",
+          "lineNumber": 45
+        },
+        {
+          "caller": "start_task",
+          "callee": "uuid.uuid4().hex[:10].upper",
+          "lineNumber": 46
+        },
+        {
+          "caller": "start_task",
+          "callee": "uuid.uuid4",
+          "lineNumber": 46
+        },
+        {
+          "caller": "start_task",
+          "callee": "uuid.uuid4().hex[:10].upper",
+          "lineNumber": 47
+        },
+        {
+          "caller": "start_task",
+          "callee": "uuid.uuid4",
+          "lineNumber": 47
+        },
+        {
+          "caller": "start_task",
+          "callee": "self.db.add",
+          "lineNumber": 54
+        },
+        {
+          "caller": "start_task",
+          "callee": "self.db.flush",
+          "lineNumber": 55
+        },
+        {
+          "caller": "start_task",
+          "callee": "log.info",
+          "lineNumber": 56
+        },
+        {
+          "caller": "initial_message",
+          "callee": "self._receiver_for_action",
+          "lineNumber": 67
+        },
+        {
+          "caller": "initial_message",
+          "callee": "AgentMessage",
+          "lineNumber": 68
+        },
+        {
+          "caller": "_receiver_for_action",
+          "callee": "mapping.get",
+          "lineNumber": 89
+        },
+        {
+          "caller": "finish_task",
+          "callee": "self.db.scalars(select(AgentTask).where(AgentTask.task_id == task_id)).first",
+          "lineNumber": 99
+        },
+        {
+          "caller": "finish_task",
+          "callee": "self.db.scalars",
+          "lineNumber": 99
+        },
+        {
+          "caller": "finish_task",
+          "callee": "select(AgentTask).where",
+          "lineNumber": 99
+        },
+        {
+          "caller": "finish_task",
+          "callee": "select",
+          "lineNumber": 99
+        },
+        {
+          "caller": "finish_task",
+          "callee": "datetime.now",
+          "lineNumber": 108
+        },
+        {
+          "caller": "finish_task",
+          "callee": "self.db.flush",
+          "lineNumber": 109
+        },
+        {
+          "caller": "log_message",
+          "callee": "self.db.scalars(\n            select(AgentMessageRow).where(AgentMessageRow.message_id == message.message_id)\n        ).first",
+          "lineNumber": 112
+        },
+        {
+          "caller": "log_message",
+          "callee": "self.db.scalars",
+          "lineNumber": 112
+        },
+        {
+          "caller": "log_message",
+          "callee": "select(AgentMessageRow).where",
+          "lineNumber": 113
+        },
+        {
+          "caller": "log_message",
+          "callee": "select",
+          "lineNumber": 113
+        },
+        {
+          "caller": "log_message",
+          "callee": "self.db.flush",
+          "lineNumber": 118
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/adapted/graph/runtime.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 327,
+      "nonEmptyLines": 298,
+      "classes": [
+        {
+          "name": "GraphState",
+          "startLine": 17,
+          "endLine": 25,
+          "methods": [],
+          "properties": [
+            "task_id",
+            "correlation_id",
+            "intent",
+            "user_id",
+            "payload",
+            "context",
+            "errors",
+            "status"
+          ]
+        },
+        {
+          "name": "AgentRuntime",
+          "startLine": 28,
+          "endLine": 327,
+          "methods": [
+            "__init__",
+            "build_agents",
+            "_dispatch_node",
+            "_chain_payload",
+            "_run_with_retry",
+            "compile",
+            "supervisor_node",
+            "_is_quiz_submit",
+            "_route",
+            "finalize_node",
+            "run"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "GraphState",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "AgentRuntime",
+          "line": 28,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "build_agents",
+          "callee": "CurriculumAnalyzerAgent",
+          "lineNumber": 47
+        },
+        {
+          "caller": "build_agents",
+          "callee": "StudyPlannerAgent",
+          "lineNumber": 48
+        },
+        {
+          "caller": "build_agents",
+          "callee": "LessonAgent",
+          "lineNumber": 49
+        },
+        {
+          "caller": "build_agents",
+          "callee": "QuizAgent",
+          "lineNumber": 50
+        },
+        {
+          "caller": "build_agents",
+          "callee": "GradingAgent",
+          "lineNumber": 51
+        },
+        {
+          "caller": "build_agents",
+          "callee": "PerformanceAnalysisAgent",
+          "lineNumber": 52
+        },
+        {
+          "caller": "build_agents",
+          "callee": "RecommendationAgent",
+          "lineNumber": 53
+        },
+        {
+          "caller": "_node",
+          "callee": "self._chain_payload",
+          "lineNumber": 60
+        },
+        {
+          "caller": "_node",
+          "callee": "AgentMessage",
+          "lineNumber": 61
+        },
+        {
+          "caller": "_node",
+          "callee": "self._run_with_retry",
+          "lineNumber": 69
+        },
+        {
+          "caller": "_node",
+          "callee": "state.get",
+          "lineNumber": 72
+        },
+        {
+          "caller": "_chain_payload",
+          "callee": "state.get",
+          "lineNumber": 86
+        },
+        {
+          "caller": "_chain_payload",
+          "callee": "ctx.get",
+          "lineNumber": 87
+        },
+        {
+          "caller": "_chain_payload",
+          "callee": "(ctx.get(\"recommendation_agent\") or {}).get",
+          "lineNumber": 88
+        },
+        {
+          "caller": "_chain_payload",
+          "callee": "ctx.get",
+          "lineNumber": 88
+        },
+        {
+          "caller": "_chain_payload",
+          "callee": "payload.update",
+          "lineNumber": 91
+        },
+        {
+          "caller": "_chain_payload",
+          "callee": "perf.get",
+          "lineNumber": 93
+        },
+        {
+          "caller": "_chain_payload",
+          "callee": "perf.get",
+          "lineNumber": 94
+        },
+        {
+          "caller": "_chain_payload",
+          "callee": "perf.get",
+          "lineNumber": 95
+        },
+        {
+          "caller": "_chain_payload",
+          "callee": "perf.get",
+          "lineNumber": 96
+        },
+        {
+          "caller": "_chain_payload",
+          "callee": "perf.get",
+          "lineNumber": 101
+        },
+        {
+          "caller": "_chain_payload",
+          "callee": "rec.get(\"payload\", {}).get",
+          "lineNumber": 103
+        },
+        {
+          "caller": "_chain_payload",
+          "callee": "rec.get",
+          "lineNumber": 103
+        },
+        {
+          "caller": "_chain_payload",
+          "callee": "payload.get",
+          "lineNumber": 106
+        },
+        {
+          "caller": "_chain_payload",
+          "callee": "rec.get(\"payload\", {}).get",
+          "lineNumber": 108
+        },
+        {
+          "caller": "_chain_payload",
+          "callee": "rec.get",
+          "lineNumber": 108
+        },
+        {
+          "caller": "_chain_payload",
+          "callee": "payload.get",
+          "lineNumber": 113
+        },
+        {
+          "caller": "_run_with_retry",
+          "callee": "time.sleep",
+          "lineNumber": 121
+        },
+        {
+          "caller": "_run_with_retry",
+          "callee": "self.db.begin_nested",
+          "lineNumber": 125
+        },
+        {
+          "caller": "_run_with_retry",
+          "callee": "agent.handle",
+          "lineNumber": 127
+        },
+        {
+          "caller": "_run_with_retry",
+          "callee": "savepoint.rollback",
+          "lineNumber": 129
+        },
+        {
+          "caller": "_run_with_retry",
+          "callee": "agent.output_is_empty",
+          "lineNumber": 131
+        },
+        {
+          "caller": "_run_with_retry",
+          "callee": "savepoint.rollback",
+          "lineNumber": 135
+        },
+        {
+          "caller": "_run_with_retry",
+          "callee": "AgentResult",
+          "lineNumber": 136
+        },
+        {
+          "caller": "_run_with_retry",
+          "callee": "savepoint.commit",
+          "lineNumber": 143
+        },
+        {
+          "caller": "_run_with_retry",
+          "callee": "savepoint.rollback",
+          "lineNumber": 146
+        },
+        {
+          "caller": "_run_with_retry",
+          "callee": "AgentResult",
+          "lineNumber": 147
+        },
+        {
+          "caller": "_run_with_retry",
+          "callee": "str",
+          "lineNumber": 147
+        },
+        {
+          "caller": "compile",
+          "callee": "self.build_agents",
+          "lineNumber": 152
+        },
+        {
+          "caller": "compile",
+          "callee": "StateGraph",
+          "lineNumber": 153
+        },
+        {
+          "caller": "compile",
+          "callee": "g.add_node",
+          "lineNumber": 154
+        },
+        {
+          "caller": "compile",
+          "callee": "g.add_node",
+          "lineNumber": 155
+        },
+        {
+          "caller": "compile",
+          "callee": "self._dispatch_node",
+          "lineNumber": 156
+        },
+        {
+          "caller": "compile",
+          "callee": "g.add_node",
+          "lineNumber": 158
+        },
+        {
+          "caller": "compile",
+          "callee": "self._dispatch_node",
+          "lineNumber": 158
+        },
+        {
+          "caller": "compile",
+          "callee": "g.add_node",
+          "lineNumber": 159
+        },
+        {
+          "caller": "compile",
+          "callee": "self._dispatch_node",
+          "lineNumber": 159
+        },
+        {
+          "caller": "compile",
+          "callee": "g.add_node",
+          "lineNumber": 160
+        },
+        {
+          "caller": "compile",
+          "callee": "self._dispatch_node",
+          "lineNumber": 160
+        },
+        {
+          "caller": "compile",
+          "callee": "g.add_node",
+          "lineNumber": 161
+        },
+        {
+          "caller": "compile",
+          "callee": "self._dispatch_node",
+          "lineNumber": 161
+        },
+        {
+          "caller": "compile",
+          "callee": "g.add_node",
+          "lineNumber": 162
+        },
+        {
+          "caller": "compile",
+          "callee": "self._dispatch_node",
+          "lineNumber": 162
+        },
+        {
+          "caller": "compile",
+          "callee": "g.add_node",
+          "lineNumber": 163
+        },
+        {
+          "caller": "compile",
+          "callee": "self._dispatch_node",
+          "lineNumber": 164
+        },
+        {
+          "caller": "compile",
+          "callee": "g.add_node",
+          "lineNumber": 166
+        },
+        {
+          "caller": "compile",
+          "callee": "self._dispatch_node",
+          "lineNumber": 168
+        },
+        {
+          "caller": "compile",
+          "callee": "g.add_node",
+          "lineNumber": 170
+        },
+        {
+          "caller": "compile",
+          "callee": "g.add_edge",
+          "lineNumber": 172
+        },
+        {
+          "caller": "compile",
+          "callee": "g.add_conditional_edges",
+          "lineNumber": 173
+        },
+        {
+          "caller": "compile",
+          "callee": "g.add_edge",
+          "lineNumber": 188
+        },
+        {
+          "caller": "compile",
+          "callee": "g.add_edge",
+          "lineNumber": 189
+        },
+        {
+          "caller": "compile",
+          "callee": "g.add_conditional_edges",
+          "lineNumber": 190
+        },
+        {
+          "caller": "compile",
+          "callee": "g.add_conditional_edges",
+          "lineNumber": 195
+        },
+        {
+          "caller": "compile",
+          "callee": "g.add_conditional_edges",
+          "lineNumber": 200
+        },
+        {
+          "caller": "compile",
+          "callee": "g.add_edge",
+          "lineNumber": 205
+        },
+        {
+          "caller": "compile",
+          "callee": "g.add_edge",
+          "lineNumber": 206
+        },
+        {
+          "caller": "compile",
+          "callee": "g.add_edge",
+          "lineNumber": 207
+        },
+        {
+          "caller": "compile",
+          "callee": "g.compile",
+          "lineNumber": 208
+        },
+        {
+          "caller": "supervisor_node",
+          "callee": "required.get",
+          "lineNumber": 223
+        },
+        {
+          "caller": "supervisor_node",
+          "callee": "payload.get",
+          "lineNumber": 223
+        },
+        {
+          "caller": "supervisor_node",
+          "callee": "state.get",
+          "lineNumber": 226
+        },
+        {
+          "caller": "supervisor_node",
+          "callee": "dict",
+          "lineNumber": 228
+        },
+        {
+          "caller": "supervisor_node",
+          "callee": "state.get",
+          "lineNumber": 228
+        },
+        {
+          "caller": "supervisor_node",
+          "callee": "log.info",
+          "lineNumber": 234
+        },
+        {
+          "caller": "_is_quiz_submit",
+          "callee": "state.get",
+          "lineNumber": 238
+        },
+        {
+          "caller": "_is_quiz_submit",
+          "callee": "((state.get(\"context\") or {}).get(\"recommendation_agent\") or {}).get",
+          "lineNumber": 241
+        },
+        {
+          "caller": "_is_quiz_submit",
+          "callee": "(state.get(\"context\") or {}).get",
+          "lineNumber": 241
+        },
+        {
+          "caller": "_is_quiz_submit",
+          "callee": "state.get",
+          "lineNumber": 241
+        },
+        {
+          "caller": "_is_quiz_submit",
+          "callee": "rec.get",
+          "lineNumber": 244
+        },
+        {
+          "caller": "_route",
+          "callee": "state.get",
+          "lineNumber": 249
+        },
+        {
+          "caller": "_route",
+          "callee": "{\n            \"analyze_curriculum\": \"curriculum_agent\",\n            \"create_plan\": \"plan_create\",\n            \"adapt_plan\": \"plan_modify\",\n            \"generate_lesson\": \"lesson_agent\",\n            \"generate_quiz\": \"quiz_agent\",\n            \"quiz_submit\": \"grading_agent\",\n            \"generate_recommendation\": \"recommendation_agent\",\n        }.get",
+          "lineNumber": 251
+        },
+        {
+          "caller": "finalize_node",
+          "callee": "state.get",
+          "lineNumber": 262
+        },
+        {
+          "caller": "finalize_node",
+          "callee": "state.get",
+          "lineNumber": 263
+        },
+        {
+          "caller": "finalize_node",
+          "callee": "state.get",
+          "lineNumber": 264
+        },
+        {
+          "caller": "run",
+          "callee": "Supervisor",
+          "lineNumber": 274
+        },
+        {
+          "caller": "run",
+          "callee": "supervisor.start_task",
+          "lineNumber": 276
+        },
+        {
+          "caller": "run",
+          "callee": "self.db.commit",
+          "lineNumber": 277
+        },
+        {
+          "caller": "run",
+          "callee": "time.perf_counter",
+          "lineNumber": 279
+        },
+        {
+          "caller": "run",
+          "callee": "self.compile",
+          "lineNumber": 281
+        },
+        {
+          "caller": "run",
+          "callee": "graph.invoke",
+          "lineNumber": 293
+        },
+        {
+          "caller": "run",
+          "callee": "self.db.commit",
+          "lineNumber": 294
+        },
+        {
+          "caller": "run",
+          "callee": "self.db.rollback",
+          "lineNumber": 296
+        },
+        {
+          "caller": "run",
+          "callee": "log.error",
+          "lineNumber": 297
+        },
+        {
+          "caller": "run",
+          "callee": "str",
+          "lineNumber": 297
+        },
+        {
+          "caller": "run",
+          "callee": "int",
+          "lineNumber": 298
+        },
+        {
+          "caller": "run",
+          "callee": "time.perf_counter",
+          "lineNumber": 298
+        },
+        {
+          "caller": "run",
+          "callee": "supervisor.finish_task",
+          "lineNumber": 299
+        },
+        {
+          "caller": "run",
+          "callee": "str",
+          "lineNumber": 299
+        },
+        {
+          "caller": "run",
+          "callee": "self.db.commit",
+          "lineNumber": 300
+        },
+        {
+          "caller": "run",
+          "callee": "RuntimeError",
+          "lineNumber": 301
+        },
+        {
+          "caller": "run",
+          "callee": "final.get",
+          "lineNumber": 303
+        },
+        {
+          "caller": "run",
+          "callee": "int",
+          "lineNumber": 305
+        },
+        {
+          "caller": "run",
+          "callee": "time.perf_counter",
+          "lineNumber": 305
+        },
+        {
+          "caller": "run",
+          "callee": "supervisor.finish_task",
+          "lineNumber": 306
+        },
+        {
+          "caller": "run",
+          "callee": "\"; \".join",
+          "lineNumber": 309
+        },
+        {
+          "caller": "run",
+          "callee": "final.get",
+          "lineNumber": 310
+        },
+        {
+          "caller": "run",
+          "callee": "self.db.commit",
+          "lineNumber": 313
+        },
+        {
+          "caller": "run",
+          "callee": "log.info",
+          "lineNumber": 314
+        },
+        {
+          "caller": "run",
+          "callee": "final.get",
+          "lineNumber": 326
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "src/adapted/logging/logger.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 41,
+      "nonEmptyLines": 31,
+      "functions": [
+        {
+          "name": "_configure",
+          "startLine": 14,
+          "endLine": 30,
+          "params": []
+        },
+        {
+          "name": "get_logger",
+          "startLine": 33,
+          "endLine": 35,
+          "params": [
+            "name"
+          ]
+        },
+        {
+          "name": "bind_task",
+          "startLine": 38,
+          "endLine": 41,
+          "params": [
+            "logger",
+            "task_id",
+            "correlation_id"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_configure",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "get_logger",
+          "line": 33,
+          "isDefault": false
+        },
+        {
+          "name": "bind_task",
+          "line": 38,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_configure",
+          "callee": "logging.basicConfig",
+          "lineNumber": 15
+        },
+        {
+          "caller": "_configure",
+          "callee": "structlog.configure",
+          "lineNumber": 16
+        },
+        {
+          "caller": "_configure",
+          "callee": "structlog.processors.TimeStamper",
+          "lineNumber": 20
+        },
+        {
+          "caller": "_configure",
+          "callee": "structlog.processors.StackInfoRenderer",
+          "lineNumber": 21
+        },
+        {
+          "caller": "_configure",
+          "callee": "structlog.processors.JSONRenderer",
+          "lineNumber": 23
+        },
+        {
+          "caller": "_configure",
+          "callee": "structlog.make_filtering_bound_logger",
+          "lineNumber": 25
+        },
+        {
+          "caller": "_configure",
+          "callee": "structlog.PrintLoggerFactory",
+          "lineNumber": 26
+        },
+        {
+          "caller": "_configure",
+          "callee": "logging.getLogger(\"uvicorn\").handlers.clear",
+          "lineNumber": 29
+        },
+        {
+          "caller": "_configure",
+          "callee": "logging.getLogger",
+          "lineNumber": 29
+        },
+        {
+          "caller": "_configure",
+          "callee": "logging.getLogger(\"httpx\").setLevel",
+          "lineNumber": 30
+        },
+        {
+          "caller": "_configure",
+          "callee": "logging.getLogger",
+          "lineNumber": 30
+        },
+        {
+          "caller": "get_logger",
+          "callee": "_configure",
+          "lineNumber": 34
+        },
+        {
+          "caller": "get_logger",
+          "callee": "structlog.get_logger",
+          "lineNumber": 35
+        },
+        {
+          "caller": "bind_task",
+          "callee": "structlog.contextvars.clear_contextvars",
+          "lineNumber": 39
+        },
+        {
+          "caller": "bind_task",
+          "callee": "structlog.contextvars.bind_contextvars",
+          "lineNumber": 40
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/adapted/services/grading.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 52,
+      "nonEmptyLines": 36,
+      "functions": [
+        {
+          "name": "question_hash",
+          "startLine": 8,
+          "endLine": 10,
+          "params": [
+            "course_id",
+            "prompt"
+          ]
+        },
+        {
+          "name": "is_duplicate",
+          "startLine": 13,
+          "endLine": 14,
+          "params": [
+            "existing_hashes",
+            "course_id",
+            "prompt"
+          ]
+        },
+        {
+          "name": "grade_objective",
+          "startLine": 17,
+          "endLine": 30,
+          "params": [
+            "question",
+            "response"
+          ]
+        },
+        {
+          "name": "_numeric_equal",
+          "startLine": 33,
+          "endLine": 37,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "compute_attempt_score",
+          "startLine": 40,
+          "endLine": 43,
+          "params": [
+            "graded"
+          ]
+        },
+        {
+          "name": "rubric_default",
+          "startLine": 46,
+          "endLine": 52,
+          "params": [
+            "max_score"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "question_hash",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "is_duplicate",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "grade_objective",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "_numeric_equal",
+          "line": 33,
+          "isDefault": false
+        },
+        {
+          "name": "compute_attempt_score",
+          "line": 40,
+          "isDefault": false
+        },
+        {
+          "name": "rubric_default",
+          "line": 46,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "question_hash",
+          "callee": "re.sub(r\"\\s+\", \" \", prompt.strip()).lower",
+          "lineNumber": 9
+        },
+        {
+          "caller": "question_hash",
+          "callee": "re.sub",
+          "lineNumber": 9
+        },
+        {
+          "caller": "question_hash",
+          "callee": "prompt.strip",
+          "lineNumber": 9
+        },
+        {
+          "caller": "question_hash",
+          "callee": "hashlib.sha256(f\"{course_id}:{norm}\".encode()).hexdigest",
+          "lineNumber": 10
+        },
+        {
+          "caller": "question_hash",
+          "callee": "hashlib.sha256",
+          "lineNumber": 10
+        },
+        {
+          "caller": "question_hash",
+          "callee": "f\"{course_id}:{norm}\".encode",
+          "lineNumber": 10
+        },
+        {
+          "caller": "is_duplicate",
+          "callee": "question_hash",
+          "lineNumber": 14
+        },
+        {
+          "caller": "grade_objective",
+          "callee": "question.get",
+          "lineNumber": 19
+        },
+        {
+          "caller": "grade_objective",
+          "callee": "question.get",
+          "lineNumber": 20
+        },
+        {
+          "caller": "grade_objective",
+          "callee": "str(correct.get(\"value\", \"\")).strip().lower",
+          "lineNumber": 21
+        },
+        {
+          "caller": "grade_objective",
+          "callee": "str(correct.get(\"value\", \"\")).strip",
+          "lineNumber": 21
+        },
+        {
+          "caller": "grade_objective",
+          "callee": "str",
+          "lineNumber": 21
+        },
+        {
+          "caller": "grade_objective",
+          "callee": "correct.get",
+          "lineNumber": 21
+        },
+        {
+          "caller": "grade_objective",
+          "callee": "str(response.get(\"value\", \"\")).strip().lower",
+          "lineNumber": 22
+        },
+        {
+          "caller": "grade_objective",
+          "callee": "str(response.get(\"value\", \"\")).strip",
+          "lineNumber": 22
+        },
+        {
+          "caller": "grade_objective",
+          "callee": "str",
+          "lineNumber": 22
+        },
+        {
+          "caller": "grade_objective",
+          "callee": "response.get",
+          "lineNumber": 22
+        },
+        {
+          "caller": "grade_objective",
+          "callee": "_numeric_equal",
+          "lineNumber": 28
+        },
+        {
+          "caller": "_numeric_equal",
+          "callee": "abs",
+          "lineNumber": 35
+        },
+        {
+          "caller": "_numeric_equal",
+          "callee": "float",
+          "lineNumber": 35
+        },
+        {
+          "caller": "_numeric_equal",
+          "callee": "float",
+          "lineNumber": 35
+        },
+        {
+          "caller": "compute_attempt_score",
+          "callee": "sum",
+          "lineNumber": 41
+        },
+        {
+          "caller": "compute_attempt_score",
+          "callee": "sum",
+          "lineNumber": 42
+        },
+        {
+          "caller": "compute_attempt_score",
+          "callee": "round",
+          "lineNumber": 43
+        },
+        {
+          "caller": "compute_attempt_score",
+          "callee": "round",
+          "lineNumber": 43
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 6,
+        "functionCount": 6,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/adapted/services/scheduler.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 260,
+      "nonEmptyLines": 224,
+      "functions": [
+        {
+          "name": "_topological_order",
+          "startLine": 44,
+          "endLine": 64,
+          "params": [
+            "topics"
+          ]
+        },
+        {
+          "name": "build_plan",
+          "startLine": 67,
+          "endLine": 140,
+          "params": [
+            "topics",
+            "exam_date",
+            "daily_minutes",
+            "today"
+          ]
+        },
+        {
+          "name": "validate_plan",
+          "startLine": 151,
+          "endLine": 200,
+          "params": [
+            "items",
+            "exam_date",
+            "daily_minutes",
+            "today",
+            "prerequisite_map"
+          ]
+        },
+        {
+          "name": "adapt_plan",
+          "startLine": 203,
+          "endLine": 248,
+          "params": [
+            "items",
+            "weak_topic_ids",
+            "daily_minutes",
+            "day_offset"
+          ]
+        },
+        {
+          "name": "_renormalise",
+          "startLine": 251,
+          "endLine": 260,
+          "params": [
+            "items"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "PlanTopic",
+          "startLine": 8,
+          "endLine": 13,
+          "methods": [],
+          "properties": [
+            "topic_id",
+            "title",
+            "difficulty",
+            "prerequisite_ids",
+            "mastered"
+          ]
+        },
+        {
+          "name": "PlanItem",
+          "startLine": 17,
+          "endLine": 37,
+          "methods": [
+            "to_dict"
+          ],
+          "properties": [
+            "topic_id",
+            "title",
+            "day_index",
+            "sequence",
+            "estimated_minutes",
+            "goal",
+            "reason",
+            "status"
+          ]
+        },
+        {
+          "name": "PlanValidation",
+          "startLine": 144,
+          "endLine": 148,
+          "methods": [],
+          "properties": [
+            "valid",
+            "errors",
+            "total_minutes",
+            "days_used"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "PlanTopic",
+          "line": 7,
+          "isDefault": false
+        },
+        {
+          "name": "PlanItem",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "_topological_order",
+          "line": 44,
+          "isDefault": false
+        },
+        {
+          "name": "build_plan",
+          "line": 67,
+          "isDefault": false
+        },
+        {
+          "name": "PlanValidation",
+          "line": 143,
+          "isDefault": false
+        },
+        {
+          "name": "validate_plan",
+          "line": 151,
+          "isDefault": false
+        },
+        {
+          "name": "adapt_plan",
+          "line": 203,
+          "isDefault": false
+        },
+        {
+          "name": "_renormalise",
+          "line": 251,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_topological_order",
+          "callee": "set",
+          "lineNumber": 48
+        },
+        {
+          "caller": "_topological_order",
+          "callee": "list",
+          "lineNumber": 49
+        },
+        {
+          "caller": "can_place",
+          "callee": "all",
+          "lineNumber": 52
+        },
+        {
+          "caller": "_topological_order",
+          "callee": "can_place",
+          "lineNumber": 55
+        },
+        {
+          "caller": "_topological_order",
+          "callee": "min",
+          "lineNumber": 58
+        },
+        {
+          "caller": "_topological_order",
+          "callee": "ready.sort",
+          "lineNumber": 59
+        },
+        {
+          "caller": "_topological_order",
+          "callee": "ordered.append",
+          "lineNumber": 61
+        },
+        {
+          "caller": "_topological_order",
+          "callee": "placed.add",
+          "lineNumber": 62
+        },
+        {
+          "caller": "_topological_order",
+          "callee": "remaining.remove",
+          "lineNumber": 63
+        },
+        {
+          "caller": "build_plan",
+          "callee": "datetime.now(UTC).date",
+          "lineNumber": 81
+        },
+        {
+          "caller": "build_plan",
+          "callee": "datetime.now",
+          "lineNumber": 81
+        },
+        {
+          "caller": "build_plan",
+          "callee": "_topological_order",
+          "lineNumber": 86
+        },
+        {
+          "caller": "build_plan",
+          "callee": "max",
+          "lineNumber": 88
+        },
+        {
+          "caller": "build_plan",
+          "callee": "len",
+          "lineNumber": 88
+        },
+        {
+          "caller": "place",
+          "callee": "min",
+          "lineNumber": 97
+        },
+        {
+          "caller": "place",
+          "callee": "int",
+          "lineNumber": 97
+        },
+        {
+          "caller": "place",
+          "callee": "items.append",
+          "lineNumber": 98
+        },
+        {
+          "caller": "place",
+          "callee": "PlanItem",
+          "lineNumber": 99
+        },
+        {
+          "caller": "build_plan",
+          "callee": "place",
+          "lineNumber": 120
+        },
+        {
+          "caller": "build_plan",
+          "callee": "items.append",
+          "lineNumber": 128
+        },
+        {
+          "caller": "build_plan",
+          "callee": "PlanItem",
+          "lineNumber": 129
+        },
+        {
+          "caller": "build_plan",
+          "callee": "min",
+          "lineNumber": 134
+        },
+        {
+          "caller": "validate_plan",
+          "callee": "datetime.now(UTC).date",
+          "lineNumber": 161
+        },
+        {
+          "caller": "validate_plan",
+          "callee": "datetime.now",
+          "lineNumber": 161
+        },
+        {
+          "caller": "validate_plan",
+          "callee": "max",
+          "lineNumber": 166
+        },
+        {
+          "caller": "validate_plan",
+          "callee": "errors.append",
+          "lineNumber": 168
+        },
+        {
+          "caller": "validate_plan",
+          "callee": "max",
+          "lineNumber": 170
+        },
+        {
+          "caller": "validate_plan",
+          "callee": "errors.append",
+          "lineNumber": 172
+        },
+        {
+          "caller": "validate_plan",
+          "callee": "by_topic.setdefault(item.topic_id, []).append",
+          "lineNumber": 179
+        },
+        {
+          "caller": "validate_plan",
+          "callee": "by_topic.setdefault",
+          "lineNumber": 179
+        },
+        {
+          "caller": "validate_plan",
+          "callee": "errors.append",
+          "lineNumber": 181
+        },
+        {
+          "caller": "validate_plan",
+          "callee": "errors.append",
+          "lineNumber": 183
+        },
+        {
+          "caller": "validate_plan",
+          "callee": "sorted",
+          "lineNumber": 189
+        },
+        {
+          "caller": "validate_plan",
+          "callee": "prereq_map.get",
+          "lineNumber": 190
+        },
+        {
+          "caller": "validate_plan",
+          "callee": "errors.append",
+          "lineNumber": 192
+        },
+        {
+          "caller": "validate_plan",
+          "callee": "sum",
+          "lineNumber": 198
+        },
+        {
+          "caller": "validate_plan",
+          "callee": "max",
+          "lineNumber": 199
+        },
+        {
+          "caller": "validate_plan",
+          "callee": "PlanValidation",
+          "lineNumber": 200
+        },
+        {
+          "caller": "adapt_plan",
+          "callee": "set",
+          "lineNumber": 215
+        },
+        {
+          "caller": "adapt_plan",
+          "callee": "new_items.append",
+          "lineNumber": 222
+        },
+        {
+          "caller": "adapt_plan",
+          "callee": "new_items.append",
+          "lineNumber": 230
+        },
+        {
+          "caller": "adapt_plan",
+          "callee": "PlanItem",
+          "lineNumber": 231
+        },
+        {
+          "caller": "adapt_plan",
+          "callee": "new_items.append",
+          "lineNumber": 243
+        },
+        {
+          "caller": "adapt_plan",
+          "callee": "_renormalise",
+          "lineNumber": 247
+        },
+        {
+          "caller": "_renormalise",
+          "callee": "items.sort",
+          "lineNumber": 252
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 8,
+        "functionCount": 5,
+        "classCount": 3
+      }
+    }
+  ]
+}

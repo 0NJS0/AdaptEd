@@ -1,0 +1,19 @@
+{
+  "projectRoot": "/home/njs/Desktop/AdaptED/AdaptEd",
+  "batchFiles": [
+    {"path": ".python-version", "language": "unknown", "sizeLines": 1, "fileCategory": "code"},
+    {"path": ".ua/.understandignore", "language": "unknown", "sizeLines": 75, "fileCategory": "code"},
+    {"path": "src/adapted/__init__.py", "language": "python", "sizeLines": 3, "fileCategory": "code"},
+    {"path": "src/adapted/api/routers/__init__.py", "language": "python", "sizeLines": 0, "fileCategory": "code"},
+    {"path": "src/adapted/ui/app.py", "language": "python", "sizeLines": 1010, "fileCategory": "code"},
+    {"path": "src/adapted/ui/client.py", "language": "python", "sizeLines": 293, "fileCategory": "code"}
+  ],
+  "batchImportData": {
+    ".python-version": [],
+    ".ua/.understandignore": [],
+    "src/adapted/__init__.py": [],
+    "src/adapted/api/routers/__init__.py": [],
+    "src/adapted/ui/app.py": [],
+    "src/adapted/ui/client.py": []
+  }
+}

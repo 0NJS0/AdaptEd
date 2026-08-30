@@ -1,0 +1,3224 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 14,
+  "filesSkipped": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 14,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 14,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "src/adapted/agents/lesson_agent.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 150,
+      "nonEmptyLines": 128,
+      "classes": [
+        {
+          "name": "SectionOut",
+          "startLine": 20,
+          "endLine": 22,
+          "methods": [],
+          "properties": [
+            "name",
+            "content"
+          ]
+        },
+        {
+          "name": "LessonOutput",
+          "startLine": 25,
+          "endLine": 29,
+          "methods": [],
+          "properties": [
+            "title",
+            "level",
+            "sections",
+            "references"
+          ]
+        },
+        {
+          "name": "LessonAgent",
+          "startLine": 32,
+          "endLine": 150,
+          "methods": [
+            "__init__",
+            "process",
+            "output_is_empty",
+            "_build_request"
+          ],
+          "properties": [
+            "actions"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "SectionOut",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "LessonOutput",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "LessonAgent",
+          "line": 32,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "super().__init__",
+          "lineNumber": 38
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 38
+        },
+        {
+          "caller": "process",
+          "callee": "payload.get",
+          "lineNumber": 46
+        },
+        {
+          "caller": "process",
+          "callee": "payload.get",
+          "lineNumber": 47
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.get",
+          "lineNumber": 49
+        },
+        {
+          "caller": "process",
+          "callee": "ValueError",
+          "lineNumber": 51
+        },
+        {
+          "caller": "process",
+          "callee": "retrieve",
+          "lineNumber": 54
+        },
+        {
+          "caller": "process",
+          "callee": "retrieve",
+          "lineNumber": 62
+        },
+        {
+          "caller": "process",
+          "callee": "c.to_dict",
+          "lineNumber": 69
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.scalars",
+          "lineNumber": 72
+        },
+        {
+          "caller": "process",
+          "callee": "select(LearningObjective).where",
+          "lineNumber": 73
+        },
+        {
+          "caller": "process",
+          "callee": "select",
+          "lineNumber": 73
+        },
+        {
+          "caller": "process",
+          "callee": "build_profile",
+          "lineNumber": 80
+        },
+        {
+          "caller": "process",
+          "callee": "LessonOutput.model_json_schema",
+          "lineNumber": 90
+        },
+        {
+          "caller": "process",
+          "callee": "self._build_request",
+          "lineNumber": 91
+        },
+        {
+          "caller": "process",
+          "callee": "self.provider.generate",
+          "lineNumber": 94
+        },
+        {
+          "caller": "process",
+          "callee": "LessonOutput.model_validate",
+          "lineNumber": 95
+        },
+        {
+          "caller": "process",
+          "callee": "Lesson",
+          "lineNumber": 97
+        },
+        {
+          "caller": "process",
+          "callee": "lesson.model_dump",
+          "lineNumber": 103
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.add",
+          "lineNumber": 106
+        },
+        {
+          "caller": "process",
+          "callee": "self.db.flush",
+          "lineNumber": 107
+        },
+        {
+          "caller": "process",
+          "callee": "lesson.model_dump",
+          "lineNumber": 111
+        },
+        {
+          "caller": "output_is_empty",
+          "callee": "output.get",
+          "lineNumber": 116
+        },
+        {
+          "caller": "_build_request",
+          "callee": "json.dumps",
+          "lineNumber": 129
+        },
+        {
+          "caller": "_build_request",
+          "callee": "json.dumps",
+          "lineNumber": 132
+        },
+        {
+          "caller": "_build_request",
+          "callee": "'; '.join",
+          "lineNumber": 133
+        },
+        {
+          "caller": "_build_request",
+          "callee": "LLMRequest",
+          "lineNumber": 139
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 3,
+        "functionCount": 0,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "src/adapted/config.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 89,
+      "nonEmptyLines": 70,
+      "functions": [
+        {
+          "name": "get_settings",
+          "startLine": 85,
+          "endLine": 86,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "Settings",
+          "startLine": 11,
+          "endLine": 81,
+          "methods": [
+            "redacted_database_url",
+            "cors_origin_list",
+            "storage_path"
+          ],
+          "properties": [
+            "app_name",
+            "app_env",
+            "debug",
+            "secret_key",
+            "cors_origins",
+            "storage_dir",
+            "database_url",
+            "llm_provider",
+            "openrouter_base_url",
+            "openrouter_api_key",
+            "llm_model",
+            "embed_model",
+            "embed_provider",
+            "embedding_dim",
+            "searxng_url",
+            "searxng_insecure",
+            "jwt_algorithm",
+            "access_token_expire_minutes",
+            "default_daily_study_minutes",
+            "max_upload_bytes",
+            "rag_top_k",
+            "agent_max_retries",
+            "agent_retry_backoff_seconds",
+            "llm_timeout_seconds"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "Settings",
+          "line": 11,
+          "isDefault": false
+        },
+        {
+          "name": "get_settings",
+          "line": 84,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "redacted_database_url",
+          "callee": "url.partition",
+          "lineNumber": 66
+        },
+        {
+          "caller": "redacted_database_url",
+          "callee": "rest.rpartition",
+          "lineNumber": 67
+        },
+        {
+          "caller": "redacted_database_url",
+          "callee": "userinfo.partition",
+          "lineNumber": 69
+        },
+        {
+          "caller": "cors_origin_list",
+          "callee": "o.strip",
+          "lineNumber": 75
+        },
+        {
+          "caller": "cors_origin_list",
+          "callee": "self.cors_origins.split",
+          "lineNumber": 75
+        },
+        {
+          "caller": "cors_origin_list",
+          "callee": "o.strip",
+          "lineNumber": 75
+        },
+        {
+          "caller": "storage_path",
+          "callee": "Path",
+          "lineNumber": 79
+        },
+        {
+          "caller": "storage_path",
+          "callee": "p.mkdir",
+          "lineNumber": 80
+        },
+        {
+          "caller": "get_settings",
+          "callee": "Settings",
+          "lineNumber": 86
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/adapted/llm/base.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 47,
+      "nonEmptyLines": 36,
+      "classes": [
+        {
+          "name": "LLMRequest",
+          "startLine": 9,
+          "endLine": 23,
+          "methods": [],
+          "properties": [
+            "task",
+            "prompt",
+            "schema",
+            "meta",
+            "temperature"
+          ]
+        },
+        {
+          "name": "LLMProvider",
+          "startLine": 26,
+          "endLine": 47,
+          "methods": [
+            "generate",
+            "embed",
+            "is_mock"
+          ],
+          "properties": [
+            "name"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "LLMRequest",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "LLMProvider",
+          "line": 26,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "src/adapted/llm/mock.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 527,
+      "nonEmptyLines": 486,
+      "functions": [
+        {
+          "name": "_stable_seed",
+          "startLine": 95,
+          "endLine": 97,
+          "params": []
+        },
+        {
+          "name": "_detect_subject",
+          "startLine": 100,
+          "endLine": 105,
+          "params": [
+            "text"
+          ]
+        },
+        {
+          "name": "_mock_curriculum",
+          "startLine": 108,
+          "endLine": 157,
+          "params": [
+            "meta"
+          ]
+        },
+        {
+          "name": "_mock_lesson",
+          "startLine": 160,
+          "endLine": 228,
+          "params": [
+            "meta"
+          ]
+        },
+        {
+          "name": "_mock_quiz",
+          "startLine": 335,
+          "endLine": 410,
+          "params": [
+            "meta"
+          ]
+        },
+        {
+          "name": "_mock_grade",
+          "startLine": 413,
+          "endLine": 451,
+          "params": [
+            "meta"
+          ]
+        },
+        {
+          "name": "_token_overlap",
+          "startLine": 454,
+          "endLine": 459,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "_mock_recommendation",
+          "startLine": 462,
+          "endLine": 478,
+          "params": [
+            "meta"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "MockProvider",
+          "startLine": 481,
+          "endLine": 527,
+          "methods": [
+            "generate",
+            "embed",
+            "_embed",
+            "is_mock"
+          ],
+          "properties": [
+            "HANDLERS"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_stable_seed",
+          "line": 95,
+          "isDefault": false
+        },
+        {
+          "name": "_detect_subject",
+          "line": 100,
+          "isDefault": false
+        },
+        {
+          "name": "_mock_curriculum",
+          "line": 108,
+          "isDefault": false
+        },
+        {
+          "name": "_mock_lesson",
+          "line": 160,
+          "isDefault": false
+        },
+        {
+          "name": "_mock_quiz",
+          "line": 335,
+          "isDefault": false
+        },
+        {
+          "name": "_mock_grade",
+          "line": 413,
+          "isDefault": false
+        },
+        {
+          "name": "_token_overlap",
+          "line": 454,
+          "isDefault": false
+        },
+        {
+          "name": "_mock_recommendation",
+          "line": 462,
+          "isDefault": false
+        },
+        {
+          "name": "MockProvider",
+          "line": 481,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_stable_seed",
+          "callee": "hashlib.sha256(\"|\".join(str(p) for p in parts).encode()).hexdigest",
+          "lineNumber": 96
+        },
+        {
+          "caller": "_stable_seed",
+          "callee": "hashlib.sha256",
+          "lineNumber": 96
+        },
+        {
+          "caller": "_stable_seed",
+          "callee": "\"|\".join(str(p) for p in parts).encode",
+          "lineNumber": 96
+        },
+        {
+          "caller": "_stable_seed",
+          "callee": "\"|\".join",
+          "lineNumber": 96
+        },
+        {
+          "caller": "_stable_seed",
+          "callee": "str",
+          "lineNumber": 96
+        },
+        {
+          "caller": "_stable_seed",
+          "callee": "int",
+          "lineNumber": 97
+        },
+        {
+          "caller": "_detect_subject",
+          "callee": "text.lower",
+          "lineNumber": 101
+        },
+        {
+          "caller": "_mock_curriculum",
+          "callee": "str(meta.get(\"subject\", \"\")).lower",
+          "lineNumber": 109
+        },
+        {
+          "caller": "_mock_curriculum",
+          "callee": "str",
+          "lineNumber": 109
+        },
+        {
+          "caller": "_mock_curriculum",
+          "callee": "meta.get",
+          "lineNumber": 109
+        },
+        {
+          "caller": "_mock_curriculum",
+          "callee": "str(meta.get(\"doc_filename\", \"\")).lower",
+          "lineNumber": 110
+        },
+        {
+          "caller": "_mock_curriculum",
+          "callee": "str",
+          "lineNumber": 110
+        },
+        {
+          "caller": "_mock_curriculum",
+          "callee": "meta.get",
+          "lineNumber": 110
+        },
+        {
+          "caller": "_mock_curriculum",
+          "callee": "str(meta.get(\"text_excerpt\", \"\"))[:2000].lower",
+          "lineNumber": 111
+        },
+        {
+          "caller": "_mock_curriculum",
+          "callee": "str",
+          "lineNumber": 111
+        },
+        {
+          "caller": "_mock_curriculum",
+          "callee": "meta.get",
+          "lineNumber": 111
+        },
+        {
+          "caller": "_mock_curriculum",
+          "callee": "_detect_subject",
+          "lineNumber": 112
+        },
+        {
+          "caller": "_mock_curriculum",
+          "callee": "enumerate",
+          "lineNumber": 116
+        },
+        {
+          "caller": "_mock_curriculum",
+          "callee": "t['title'].lower",
+          "lineNumber": 120
+        },
+        {
+          "caller": "_mock_curriculum",
+          "callee": "t['title'].lower",
+          "lineNumber": 123
+        },
+        {
+          "caller": "_mock_curriculum",
+          "callee": "t['title'].lower",
+          "lineNumber": 124
+        },
+        {
+          "caller": "_mock_curriculum",
+          "callee": "PREREQ_MAP.get",
+          "lineNumber": 126
+        },
+        {
+          "caller": "_mock_curriculum",
+          "callee": "chapters.append",
+          "lineNumber": 130
+        },
+        {
+          "caller": "_mock_curriculum",
+          "callee": "chr",
+          "lineNumber": 146
+        },
+        {
+          "caller": "_mock_curriculum",
+          "callee": "chr",
+          "lineNumber": 149
+        },
+        {
+          "caller": "_mock_curriculum",
+          "callee": "range",
+          "lineNumber": 152
+        },
+        {
+          "caller": "_mock_curriculum",
+          "callee": "range",
+          "lineNumber": 155
+        },
+        {
+          "caller": "_mock_lesson",
+          "callee": "str",
+          "lineNumber": 161
+        },
+        {
+          "caller": "_mock_lesson",
+          "callee": "meta.get",
+          "lineNumber": 161
+        },
+        {
+          "caller": "_mock_lesson",
+          "callee": "str",
+          "lineNumber": 162
+        },
+        {
+          "caller": "_mock_lesson",
+          "callee": "meta.get",
+          "lineNumber": 162
+        },
+        {
+          "caller": "_mock_lesson",
+          "callee": "meta.get",
+          "lineNumber": 163
+        },
+        {
+          "caller": "_mock_lesson",
+          "callee": "str",
+          "lineNumber": 164
+        },
+        {
+          "caller": "_mock_lesson",
+          "callee": "c.get",
+          "lineNumber": 164
+        },
+        {
+          "caller": "_mock_lesson",
+          "callee": "c.get",
+          "lineNumber": 164
+        },
+        {
+          "caller": "_mock_lesson",
+          "callee": "meta.get",
+          "lineNumber": 165
+        },
+        {
+          "caller": "_mock_lesson",
+          "callee": "explanation_parts.append",
+          "lineNumber": 169
+        },
+        {
+          "caller": "_mock_lesson",
+          "callee": "len",
+          "lineNumber": 170
+        },
+        {
+          "caller": "_mock_lesson",
+          "callee": "explanation_parts.append",
+          "lineNumber": 171
+        },
+        {
+          "caller": "_mock_lesson",
+          "callee": "explanation_parts.append",
+          "lineNumber": 173
+        },
+        {
+          "caller": "_mock_lesson",
+          "callee": "\"\\n\\n\".join",
+          "lineNumber": 177
+        },
+        {
+          "caller": "_mock_lesson",
+          "callee": "\"\\n\".join",
+          "lineNumber": 185
+        },
+        {
+          "caller": "_mock_lesson",
+          "callee": "str",
+          "lineNumber": 221
+        },
+        {
+          "caller": "_mock_lesson",
+          "callee": "c.get",
+          "lineNumber": 221
+        },
+        {
+          "caller": "_mock_lesson",
+          "callee": "c.get",
+          "lineNumber": 222
+        },
+        {
+          "caller": "_mock_lesson",
+          "callee": "str",
+          "lineNumber": 223
+        },
+        {
+          "caller": "_mock_lesson",
+          "callee": "c.get",
+          "lineNumber": 223
+        },
+        {
+          "caller": "_mock_lesson",
+          "callee": "c.get",
+          "lineNumber": 226
+        },
+        {
+          "caller": "_mock_lesson",
+          "callee": "c.get",
+          "lineNumber": 226
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "str",
+          "lineNumber": 336
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "meta.get",
+          "lineNumber": 336
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "int",
+          "lineNumber": 337
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "meta.get",
+          "lineNumber": 337
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "float",
+          "lineNumber": 338
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "meta.get",
+          "lineNumber": 338
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "meta.get",
+          "lineNumber": 339
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "meta.get",
+          "lineNumber": 340
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "meta.get",
+          "lineNumber": 341
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "str",
+          "lineNumber": 342
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "random.Random",
+          "lineNumber": 344
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "_stable_seed",
+          "lineNumber": 344
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "_QUESTION_BANK.get",
+          "lineNumber": 346
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "len",
+          "lineNumber": 349
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "str",
+          "lineNumber": 351
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "list",
+          "lineNumber": 353
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "rng.shuffle",
+          "lineNumber": 354
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "questions.append",
+          "lineNumber": 355
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "len",
+          "lineNumber": 367
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "_stable_seed",
+          "lineNumber": 368
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "len",
+          "lineNumber": 368
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "len",
+          "lineNumber": 369
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "random.Random",
+          "lineNumber": 371
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "len",
+          "lineNumber": 372
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "len",
+          "lineNumber": 373
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "len",
+          "lineNumber": 373
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "questions.append",
+          "lineNumber": 375
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "questions.append",
+          "lineNumber": 387
+        },
+        {
+          "caller": "_mock_quiz",
+          "callee": "questions.append",
+          "lineNumber": 399
+        },
+        {
+          "caller": "_mock_grade",
+          "callee": "str(meta.get(\"student_response\", \"\")).strip().lower",
+          "lineNumber": 414
+        },
+        {
+          "caller": "_mock_grade",
+          "callee": "str(meta.get(\"student_response\", \"\")).strip",
+          "lineNumber": 414
+        },
+        {
+          "caller": "_mock_grade",
+          "callee": "str",
+          "lineNumber": 414
+        },
+        {
+          "caller": "_mock_grade",
+          "callee": "meta.get",
+          "lineNumber": 414
+        },
+        {
+          "caller": "_mock_grade",
+          "callee": "str(meta.get(\"correct_answer\", \"\")).strip().lower",
+          "lineNumber": 415
+        },
+        {
+          "caller": "_mock_grade",
+          "callee": "str(meta.get(\"correct_answer\", \"\")).strip",
+          "lineNumber": 415
+        },
+        {
+          "caller": "_mock_grade",
+          "callee": "str",
+          "lineNumber": 415
+        },
+        {
+          "caller": "_mock_grade",
+          "callee": "meta.get",
+          "lineNumber": 415
+        },
+        {
+          "caller": "_mock_grade",
+          "callee": "float",
+          "lineNumber": 416
+        },
+        {
+          "caller": "_mock_grade",
+          "callee": "meta.get",
+          "lineNumber": 416
+        },
+        {
+          "caller": "normalize",
+          "callee": "re.sub",
+          "lineNumber": 428
+        },
+        {
+          "caller": "normalize",
+          "callee": "\" \".join",
+          "lineNumber": 429
+        },
+        {
+          "caller": "normalize",
+          "callee": "s.split",
+          "lineNumber": 429
+        },
+        {
+          "caller": "_mock_grade",
+          "callee": "_token_overlap",
+          "lineNumber": 431
+        },
+        {
+          "caller": "_mock_grade",
+          "callee": "normalize",
+          "lineNumber": 431
+        },
+        {
+          "caller": "_mock_grade",
+          "callee": "normalize",
+          "lineNumber": 431
+        },
+        {
+          "caller": "_mock_grade",
+          "callee": "round",
+          "lineNumber": 438
+        },
+        {
+          "caller": "_token_overlap",
+          "callee": "set",
+          "lineNumber": 455
+        },
+        {
+          "caller": "_token_overlap",
+          "callee": "a.split",
+          "lineNumber": 455
+        },
+        {
+          "caller": "_token_overlap",
+          "callee": "set",
+          "lineNumber": 455
+        },
+        {
+          "caller": "_token_overlap",
+          "callee": "b.split",
+          "lineNumber": 455
+        },
+        {
+          "caller": "_token_overlap",
+          "callee": "len",
+          "lineNumber": 458
+        },
+        {
+          "caller": "_token_overlap",
+          "callee": "max",
+          "lineNumber": 459
+        },
+        {
+          "caller": "_token_overlap",
+          "callee": "len",
+          "lineNumber": 459
+        },
+        {
+          "caller": "_token_overlap",
+          "callee": "len",
+          "lineNumber": 459
+        },
+        {
+          "caller": "_mock_recommendation",
+          "callee": "meta.get",
+          "lineNumber": 463
+        },
+        {
+          "caller": "_mock_recommendation",
+          "callee": "meta.get",
+          "lineNumber": 464
+        },
+        {
+          "caller": "_mock_recommendation",
+          "callee": "actions.append",
+          "lineNumber": 467
+        },
+        {
+          "caller": "_mock_recommendation",
+          "callee": "', '.join",
+          "lineNumber": 468
+        },
+        {
+          "caller": "_mock_recommendation",
+          "callee": "actions.append",
+          "lineNumber": 471
+        },
+        {
+          "caller": "_mock_recommendation",
+          "callee": "', '.join",
+          "lineNumber": 471
+        },
+        {
+          "caller": "_mock_recommendation",
+          "callee": "actions.append",
+          "lineNumber": 473
+        },
+        {
+          "caller": "_mock_recommendation",
+          "callee": "', '.join",
+          "lineNumber": 475
+        },
+        {
+          "caller": "_mock_recommendation",
+          "callee": "', '.join",
+          "lineNumber": 476
+        },
+        {
+          "caller": "_mock_recommendation",
+          "callee": "\" \".join",
+          "lineNumber": 478
+        },
+        {
+          "caller": "generate",
+          "callee": "self.HANDLERS.get",
+          "lineNumber": 498
+        },
+        {
+          "caller": "generate",
+          "callee": "handler",
+          "lineNumber": 501
+        },
+        {
+          "caller": "embed",
+          "callee": "self._embed",
+          "lineNumber": 508
+        },
+        {
+          "caller": "_embed",
+          "callee": "np.zeros",
+          "lineNumber": 511
+        },
+        {
+          "caller": "_embed",
+          "callee": "re.findall",
+          "lineNumber": 512
+        },
+        {
+          "caller": "_embed",
+          "callee": "text.lower",
+          "lineNumber": 512
+        },
+        {
+          "caller": "_embed",
+          "callee": "range",
+          "lineNumber": 515
+        },
+        {
+          "caller": "_embed",
+          "callee": "len",
+          "lineNumber": 515
+        },
+        {
+          "caller": "_embed",
+          "callee": "_stable_seed",
+          "lineNumber": 517
+        },
+        {
+          "caller": "_embed",
+          "callee": "_stable_seed",
+          "lineNumber": 519
+        },
+        {
+          "caller": "_embed",
+          "callee": "np.linalg.norm",
+          "lineNumber": 520
+        },
+        {
+          "caller": "_embed",
+          "callee": "vec.tolist",
+          "lineNumber": 523
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 9,
+        "functionCount": 8,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/adapted/llm/openai_compatible.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 83,
+      "nonEmptyLines": 72,
+      "classes": [
+        {
+          "name": "OpenAICompatibleProvider",
+          "startLine": 15,
+          "endLine": 83,
+          "methods": [
+            "__init__",
+            "generate",
+            "embed",
+            "is_mock"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "OpenAICompatibleProvider",
+          "line": 15,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "OpenAI",
+          "lineNumber": 24
+        },
+        {
+          "caller": "__init__",
+          "callee": "embed_model.lower",
+          "lineNumber": 33
+        },
+        {
+          "caller": "generate",
+          "callee": "json.dumps",
+          "lineNumber": 36
+        },
+        {
+          "caller": "generate",
+          "callee": "self.client.chat.completions.create",
+          "lineNumber": 42
+        },
+        {
+          "caller": "generate",
+          "callee": "json.loads",
+          "lineNumber": 52
+        },
+        {
+          "caller": "generate",
+          "callee": "log.error",
+          "lineNumber": 54
+        },
+        {
+          "caller": "embed",
+          "callee": "self.client.embeddings.create",
+          "lineNumber": 69
+        },
+        {
+          "caller": "embed",
+          "callee": "len",
+          "lineNumber": 73
+        },
+        {
+          "caller": "embed",
+          "callee": "ValueError",
+          "lineNumber": 74
+        },
+        {
+          "caller": "embed",
+          "callee": "len",
+          "lineNumber": 76
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/adapted/llm/registry.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 50,
+      "nonEmptyLines": 38,
+      "functions": [
+        {
+          "name": "get_provider",
+          "startLine": 14,
+          "endLine": 25,
+          "params": []
+        },
+        {
+          "name": "get_embed_provider",
+          "startLine": 28,
+          "endLine": 40,
+          "params": []
+        },
+        {
+          "name": "get_provider_cached",
+          "startLine": 44,
+          "endLine": 45,
+          "params": []
+        },
+        {
+          "name": "get_embed_provider_cached",
+          "startLine": 49,
+          "endLine": 50,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "get_provider",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "get_embed_provider",
+          "line": 28,
+          "isDefault": false
+        },
+        {
+          "name": "get_provider_cached",
+          "line": 43,
+          "isDefault": false
+        },
+        {
+          "name": "get_embed_provider_cached",
+          "line": 48,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_provider",
+          "callee": "MockProvider",
+          "lineNumber": 16
+        },
+        {
+          "caller": "get_provider",
+          "callee": "OpenAICompatibleProvider",
+          "lineNumber": 18
+        },
+        {
+          "caller": "get_provider",
+          "callee": "settings.openrouter_base_url.rstrip",
+          "lineNumber": 19
+        },
+        {
+          "caller": "get_provider",
+          "callee": "log.warning",
+          "lineNumber": 24
+        },
+        {
+          "caller": "get_provider",
+          "callee": "MockProvider",
+          "lineNumber": 25
+        },
+        {
+          "caller": "get_embed_provider",
+          "callee": "OpenAICompatibleProvider",
+          "lineNumber": 34
+        },
+        {
+          "caller": "get_embed_provider",
+          "callee": "settings.openrouter_base_url.rstrip",
+          "lineNumber": 35
+        },
+        {
+          "caller": "get_embed_provider",
+          "callee": "MockProvider",
+          "lineNumber": 40
+        },
+        {
+          "caller": "get_provider_cached",
+          "callee": "get_provider",
+          "lineNumber": 45
+        },
+        {
+          "caller": "get_embed_provider_cached",
+          "callee": "get_embed_provider",
+          "lineNumber": 50
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 4,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/adapted/main.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 87,
+      "nonEmptyLines": 73,
+      "functions": [
+        {
+          "name": "lifespan",
+          "startLine": 16,
+          "endLine": 25,
+          "params": [
+            "app"
+          ]
+        },
+        {
+          "name": "create_app",
+          "startLine": 28,
+          "endLine": 84,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "lifespan",
+          "line": 15,
+          "isDefault": false
+        },
+        {
+          "name": "create_app",
+          "line": 28,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "lifespan",
+          "callee": "init_db",
+          "lineNumber": 17
+        },
+        {
+          "caller": "lifespan",
+          "callee": "log.info",
+          "lineNumber": 18
+        },
+        {
+          "caller": "create_app",
+          "callee": "FastAPI",
+          "lineNumber": 29
+        },
+        {
+          "caller": "create_app",
+          "callee": "app.add_middleware",
+          "lineNumber": 35
+        },
+        {
+          "caller": "create_app",
+          "callee": "app.include_router",
+          "lineNumber": 58
+        },
+        {
+          "caller": "create_app",
+          "callee": "app.include_router",
+          "lineNumber": 59
+        },
+        {
+          "caller": "create_app",
+          "callee": "app.include_router",
+          "lineNumber": 60
+        },
+        {
+          "caller": "create_app",
+          "callee": "app.include_router",
+          "lineNumber": 61
+        },
+        {
+          "caller": "create_app",
+          "callee": "app.include_router",
+          "lineNumber": 62
+        },
+        {
+          "caller": "create_app",
+          "callee": "app.include_router",
+          "lineNumber": 63
+        },
+        {
+          "caller": "create_app",
+          "callee": "app.include_router",
+          "lineNumber": 64
+        },
+        {
+          "caller": "create_app",
+          "callee": "app.include_router",
+          "lineNumber": 65
+        },
+        {
+          "caller": "create_app",
+          "callee": "app.include_router",
+          "lineNumber": 66
+        },
+        {
+          "caller": "create_app",
+          "callee": "app.include_router",
+          "lineNumber": 67
+        },
+        {
+          "caller": "create_app",
+          "callee": "app.include_router",
+          "lineNumber": 68
+        },
+        {
+          "caller": "create_app",
+          "callee": "app.include_router",
+          "lineNumber": 69
+        },
+        {
+          "caller": "create_app",
+          "callee": "app.include_router",
+          "lineNumber": 70
+        },
+        {
+          "caller": "create_app",
+          "callee": "app.get",
+          "lineNumber": 72
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/adapted/memory/curriculum_memory.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 111,
+      "nonEmptyLines": 92,
+      "functions": [
+        {
+          "name": "collection_for",
+          "startLine": 16,
+          "endLine": 17,
+          "params": [
+            "course_id"
+          ]
+        },
+        {
+          "name": "ensure_collection",
+          "startLine": 20,
+          "endLine": 23,
+          "params": [
+            "course_id",
+            "dim"
+          ]
+        },
+        {
+          "name": "index_document",
+          "startLine": 26,
+          "endLine": 84,
+          "params": [
+            "db",
+            "document",
+            "parsed",
+            "dim"
+          ]
+        },
+        {
+          "name": "assign_chunk_topics",
+          "startLine": 87,
+          "endLine": 97,
+          "params": [
+            "db",
+            "course_id",
+            "chapter_id",
+            "topic_id",
+            "chunk_ids"
+          ]
+        },
+        {
+          "name": "chunks_for_topic",
+          "startLine": 100,
+          "endLine": 101,
+          "params": [
+            "db",
+            "topic_id"
+          ]
+        },
+        {
+          "name": "chunks_by_course",
+          "startLine": 104,
+          "endLine": 111,
+          "params": [
+            "db",
+            "course_id"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "collection_for",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "ensure_collection",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "index_document",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "assign_chunk_topics",
+          "line": 87,
+          "isDefault": false
+        },
+        {
+          "name": "chunks_for_topic",
+          "line": 100,
+          "isDefault": false
+        },
+        {
+          "name": "chunks_by_course",
+          "line": 104,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ensure_collection",
+          "callee": "get_vector_store().ensure_collection",
+          "lineNumber": 21
+        },
+        {
+          "caller": "ensure_collection",
+          "callee": "get_vector_store",
+          "lineNumber": 21
+        },
+        {
+          "caller": "ensure_collection",
+          "callee": "collection_for",
+          "lineNumber": 22
+        },
+        {
+          "caller": "index_document",
+          "callee": "collection_for",
+          "lineNumber": 36
+        },
+        {
+          "caller": "index_document",
+          "callee": "get_vector_store",
+          "lineNumber": 37
+        },
+        {
+          "caller": "index_document",
+          "callee": "store.ensure_collection",
+          "lineNumber": 38
+        },
+        {
+          "caller": "index_document",
+          "callee": "store.delete_by_document",
+          "lineNumber": 39
+        },
+        {
+          "caller": "index_document",
+          "callee": "db.execute",
+          "lineNumber": 41
+        },
+        {
+          "caller": "index_document",
+          "callee": "delete(ContentChunk).where",
+          "lineNumber": 41
+        },
+        {
+          "caller": "index_document",
+          "callee": "delete",
+          "lineNumber": 41
+        },
+        {
+          "caller": "index_document",
+          "callee": "chunk_document",
+          "lineNumber": 43
+        },
+        {
+          "caller": "index_document",
+          "callee": "embed_texts",
+          "lineNumber": 45
+        },
+        {
+          "caller": "index_document",
+          "callee": "zip",
+          "lineNumber": 49
+        },
+        {
+          "caller": "index_document",
+          "callee": "ContentChunk",
+          "lineNumber": 50
+        },
+        {
+          "caller": "index_document",
+          "callee": "db.add",
+          "lineNumber": 60
+        },
+        {
+          "caller": "index_document",
+          "callee": "db.flush",
+          "lineNumber": 61
+        },
+        {
+          "caller": "index_document",
+          "callee": "rows.append",
+          "lineNumber": 62
+        },
+        {
+          "caller": "index_document",
+          "callee": "points.append",
+          "lineNumber": 63
+        },
+        {
+          "caller": "index_document",
+          "callee": "get_vector_store().upsert",
+          "lineNumber": 82
+        },
+        {
+          "caller": "index_document",
+          "callee": "get_vector_store",
+          "lineNumber": 82
+        },
+        {
+          "caller": "index_document",
+          "callee": "db.flush",
+          "lineNumber": 83
+        },
+        {
+          "caller": "assign_chunk_topics",
+          "callee": "db.get",
+          "lineNumber": 93
+        },
+        {
+          "caller": "assign_chunk_topics",
+          "callee": "db.flush",
+          "lineNumber": 97
+        },
+        {
+          "caller": "chunks_for_topic",
+          "callee": "list",
+          "lineNumber": 101
+        },
+        {
+          "caller": "chunks_for_topic",
+          "callee": "db.scalars(select(ContentChunk).where(ContentChunk.topic_id == topic_id)).all",
+          "lineNumber": 101
+        },
+        {
+          "caller": "chunks_for_topic",
+          "callee": "db.scalars",
+          "lineNumber": 101
+        },
+        {
+          "caller": "chunks_for_topic",
+          "callee": "select(ContentChunk).where",
+          "lineNumber": 101
+        },
+        {
+          "caller": "chunks_for_topic",
+          "callee": "select",
+          "lineNumber": 101
+        },
+        {
+          "caller": "chunks_by_course",
+          "callee": "list",
+          "lineNumber": 105
+        },
+        {
+          "caller": "chunks_by_course",
+          "callee": "db.scalars(\n            select(ContentChunk)\n            .where(ContentChunk.course_id == course_id)\n            .order_by(ContentChunk.chunk_index)\n        ).all",
+          "lineNumber": 106
+        },
+        {
+          "caller": "chunks_by_course",
+          "callee": "db.scalars",
+          "lineNumber": 106
+        },
+        {
+          "caller": "chunks_by_course",
+          "callee": "select(ContentChunk)\n            .where(ContentChunk.course_id == course_id)\n            .order_by",
+          "lineNumber": 107
+        },
+        {
+          "caller": "chunks_by_course",
+          "callee": "select(ContentChunk)\n            .where",
+          "lineNumber": 107
+        },
+        {
+          "caller": "chunks_by_course",
+          "callee": "select",
+          "lineNumber": 107
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 6,
+        "functionCount": 6,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/adapted/rag/chunker.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 68,
+      "nonEmptyLines": 57,
+      "functions": [
+        {
+          "name": "chunk_document",
+          "startLine": 20,
+          "endLine": 68,
+          "params": [
+            "parsed",
+            "max_chars",
+            "overlap"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "Chunk",
+          "startLine": 12,
+          "endLine": 17,
+          "methods": [],
+          "properties": [
+            "index",
+            "content",
+            "page_start",
+            "page_end",
+            "heading"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "Chunk",
+          "line": 11,
+          "isDefault": false
+        },
+        {
+          "name": "chunk_document",
+          "line": 20,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "chunk_document",
+          "callee": "page.text.split",
+          "lineNumber": 25
+        },
+        {
+          "caller": "chunk_document",
+          "callee": "line.strip",
+          "lineNumber": 26
+        },
+        {
+          "caller": "chunk_document",
+          "callee": "units.append",
+          "lineNumber": 29
+        },
+        {
+          "caller": "chunk_document",
+          "callee": "set",
+          "lineNumber": 34
+        },
+        {
+          "caller": "flush",
+          "callee": "\"\\n\".join",
+          "lineNumber": 42
+        },
+        {
+          "caller": "flush",
+          "callee": "min",
+          "lineNumber": 43
+        },
+        {
+          "caller": "flush",
+          "callee": "max",
+          "lineNumber": 44
+        },
+        {
+          "caller": "flush",
+          "callee": "chunks.append",
+          "lineNumber": 45
+        },
+        {
+          "caller": "flush",
+          "callee": "Chunk",
+          "lineNumber": 45
+        },
+        {
+          "caller": "flush",
+          "callee": "len",
+          "lineNumber": 48
+        },
+        {
+          "caller": "flush",
+          "callee": "len",
+          "lineNumber": 50
+        },
+        {
+          "caller": "flush",
+          "callee": "set",
+          "lineNumber": 51
+        },
+        {
+          "caller": "chunk_document",
+          "callee": "HEADING_RE.match",
+          "lineNumber": 54
+        },
+        {
+          "caller": "chunk_document",
+          "callee": "flush",
+          "lineNumber": 55
+        },
+        {
+          "caller": "chunk_document",
+          "callee": "current.append",
+          "lineNumber": 57
+        },
+        {
+          "caller": "chunk_document",
+          "callee": "len",
+          "lineNumber": 58
+        },
+        {
+          "caller": "chunk_document",
+          "callee": "current_pages.add",
+          "lineNumber": 60
+        },
+        {
+          "caller": "chunk_document",
+          "callee": "flush",
+          "lineNumber": 62
+        },
+        {
+          "caller": "chunk_document",
+          "callee": "flush",
+          "lineNumber": 65
+        },
+        {
+          "caller": "chunk_document",
+          "callee": "Chunk",
+          "lineNumber": 67
+        },
+        {
+          "caller": "chunk_document",
+          "callee": "\" \".join",
+          "lineNumber": 67
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/adapted/rag/embeddings.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 23,
+      "nonEmptyLines": 15,
+      "functions": [
+        {
+          "name": "_embed_single",
+          "startLine": 10,
+          "endLine": 11,
+          "params": [
+            "text",
+            "mode"
+          ]
+        },
+        {
+          "name": "embed_texts",
+          "startLine": 14,
+          "endLine": 19,
+          "params": [
+            "texts",
+            "mode"
+          ]
+        },
+        {
+          "name": "embed_text",
+          "startLine": 22,
+          "endLine": 23,
+          "params": [
+            "text",
+            "mode"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_embed_single",
+          "line": 9,
+          "isDefault": false
+        },
+        {
+          "name": "embed_texts",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "embed_text",
+          "line": 22,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_embed_single",
+          "callee": "tuple",
+          "lineNumber": 11
+        },
+        {
+          "caller": "_embed_single",
+          "callee": "get_embed_provider_cached().embed",
+          "lineNumber": 11
+        },
+        {
+          "caller": "_embed_single",
+          "callee": "get_embed_provider_cached",
+          "lineNumber": 11
+        },
+        {
+          "caller": "embed_texts",
+          "callee": "len",
+          "lineNumber": 17
+        },
+        {
+          "caller": "embed_texts",
+          "callee": "list",
+          "lineNumber": 18
+        },
+        {
+          "caller": "embed_texts",
+          "callee": "_embed_single",
+          "lineNumber": 18
+        },
+        {
+          "caller": "embed_texts",
+          "callee": "get_embed_provider_cached().embed",
+          "lineNumber": 19
+        },
+        {
+          "caller": "embed_texts",
+          "callee": "get_embed_provider_cached",
+          "lineNumber": 19
+        },
+        {
+          "caller": "embed_text",
+          "callee": "list",
+          "lineNumber": 23
+        },
+        {
+          "caller": "embed_text",
+          "callee": "_embed_single",
+          "lineNumber": 23
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/adapted/rag/parser.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 93,
+      "nonEmptyLines": 70,
+      "functions": [
+        {
+          "name": "parse_document",
+          "startLine": 37,
+          "endLine": 49,
+          "params": [
+            "path",
+            "filename"
+          ]
+        },
+        {
+          "name": "_parse_pdf",
+          "startLine": 52,
+          "endLine": 68,
+          "params": [
+            "path",
+            "filename"
+          ]
+        },
+        {
+          "name": "_parse_text",
+          "startLine": 71,
+          "endLine": 74,
+          "params": [
+            "path",
+            "filename"
+          ]
+        },
+        {
+          "name": "_parse_docx",
+          "startLine": 77,
+          "endLine": 86,
+          "params": [
+            "path",
+            "filename"
+          ]
+        },
+        {
+          "name": "_clean",
+          "startLine": 89,
+          "endLine": 93,
+          "params": [
+            "text"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "UnsupportedDocumentError",
+          "startLine": 10,
+          "endLine": 11,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "Page",
+          "startLine": 15,
+          "endLine": 17,
+          "methods": [],
+          "properties": [
+            "number",
+            "text"
+          ]
+        },
+        {
+          "name": "ParsedDocument",
+          "startLine": 21,
+          "endLine": 31,
+          "methods": [
+            "full_text",
+            "page_count"
+          ],
+          "properties": [
+            "filename",
+            "pages"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "UnsupportedDocumentError",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "Page",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "ParsedDocument",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "parse_document",
+          "line": 37,
+          "isDefault": false
+        },
+        {
+          "name": "_parse_pdf",
+          "line": 52,
+          "isDefault": false
+        },
+        {
+          "name": "_parse_text",
+          "line": 71,
+          "isDefault": false
+        },
+        {
+          "name": "_parse_docx",
+          "line": 77,
+          "isDefault": false
+        },
+        {
+          "name": "_clean",
+          "line": 89,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "full_text",
+          "callee": "\"\\n\\n\".join",
+          "lineNumber": 27
+        },
+        {
+          "caller": "page_count",
+          "callee": "len",
+          "lineNumber": 31
+        },
+        {
+          "caller": "parse_document",
+          "callee": "Path(filename).suffix.lower",
+          "lineNumber": 38
+        },
+        {
+          "caller": "parse_document",
+          "callee": "Path",
+          "lineNumber": 38
+        },
+        {
+          "caller": "parse_document",
+          "callee": "UnsupportedDocumentError",
+          "lineNumber": 40
+        },
+        {
+          "caller": "parse_document",
+          "callee": "', '.join",
+          "lineNumber": 41
+        },
+        {
+          "caller": "parse_document",
+          "callee": "sorted",
+          "lineNumber": 41
+        },
+        {
+          "caller": "parse_document",
+          "callee": "_parse_pdf",
+          "lineNumber": 44
+        },
+        {
+          "caller": "parse_document",
+          "callee": "_parse_text",
+          "lineNumber": 46
+        },
+        {
+          "caller": "parse_document",
+          "callee": "_parse_docx",
+          "lineNumber": 48
+        },
+        {
+          "caller": "parse_document",
+          "callee": "UnsupportedDocumentError",
+          "lineNumber": 49
+        },
+        {
+          "caller": "_parse_pdf",
+          "callee": "PdfReader",
+          "lineNumber": 54
+        },
+        {
+          "caller": "_parse_pdf",
+          "callee": "str",
+          "lineNumber": 54
+        },
+        {
+          "caller": "_parse_pdf",
+          "callee": "UnsupportedDocumentError",
+          "lineNumber": 56
+        },
+        {
+          "caller": "_parse_pdf",
+          "callee": "enumerate",
+          "lineNumber": 58
+        },
+        {
+          "caller": "_parse_pdf",
+          "callee": "page.extract_text",
+          "lineNumber": 60
+        },
+        {
+          "caller": "_parse_pdf",
+          "callee": "_clean",
+          "lineNumber": 63
+        },
+        {
+          "caller": "_parse_pdf",
+          "callee": "text.strip",
+          "lineNumber": 64
+        },
+        {
+          "caller": "_parse_pdf",
+          "callee": "pages.append",
+          "lineNumber": 65
+        },
+        {
+          "caller": "_parse_pdf",
+          "callee": "Page",
+          "lineNumber": 65
+        },
+        {
+          "caller": "_parse_pdf",
+          "callee": "UnsupportedDocumentError",
+          "lineNumber": 67
+        },
+        {
+          "caller": "_parse_pdf",
+          "callee": "ParsedDocument",
+          "lineNumber": 68
+        },
+        {
+          "caller": "_parse_text",
+          "callee": "path.read_text",
+          "lineNumber": 72
+        },
+        {
+          "caller": "_parse_text",
+          "callee": "_clean",
+          "lineNumber": 73
+        },
+        {
+          "caller": "_parse_text",
+          "callee": "ParsedDocument",
+          "lineNumber": 74
+        },
+        {
+          "caller": "_parse_text",
+          "callee": "Page",
+          "lineNumber": 74
+        },
+        {
+          "caller": "_parse_docx",
+          "callee": "DocxDocument",
+          "lineNumber": 81
+        },
+        {
+          "caller": "_parse_docx",
+          "callee": "str",
+          "lineNumber": 81
+        },
+        {
+          "caller": "_parse_docx",
+          "callee": "p.text.strip",
+          "lineNumber": 82
+        },
+        {
+          "caller": "_parse_docx",
+          "callee": "UnsupportedDocumentError",
+          "lineNumber": 84
+        },
+        {
+          "caller": "_parse_docx",
+          "callee": "_clean",
+          "lineNumber": 85
+        },
+        {
+          "caller": "_parse_docx",
+          "callee": "\"\\n\".join",
+          "lineNumber": 85
+        },
+        {
+          "caller": "_parse_docx",
+          "callee": "ParsedDocument",
+          "lineNumber": 86
+        },
+        {
+          "caller": "_parse_docx",
+          "callee": "Page",
+          "lineNumber": 86
+        },
+        {
+          "caller": "_clean",
+          "callee": "text.replace",
+          "lineNumber": 90
+        },
+        {
+          "caller": "_clean",
+          "callee": "re.sub",
+          "lineNumber": 91
+        },
+        {
+          "caller": "_clean",
+          "callee": "re.sub",
+          "lineNumber": 92
+        },
+        {
+          "caller": "_clean",
+          "callee": "text.strip",
+          "lineNumber": 93
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 8,
+        "functionCount": 5,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "src/adapted/rag/retriever.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 85,
+      "nonEmptyLines": 76,
+      "functions": [
+        {
+          "name": "retrieve",
+          "startLine": 35,
+          "endLine": 67,
+          "params": [
+            "collection",
+            "query",
+            "course_id",
+            "chapter_id",
+            "topic_id",
+            "limit"
+          ]
+        },
+        {
+          "name": "format_context",
+          "startLine": 70,
+          "endLine": 85,
+          "params": [
+            "chunks",
+            "with_citations"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "RetrievedChunk",
+          "startLine": 12,
+          "endLine": 32,
+          "methods": [
+            "to_dict"
+          ],
+          "properties": [
+            "content",
+            "score",
+            "source",
+            "page",
+            "heading",
+            "chapter_id",
+            "topic_id",
+            "course_id"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "RetrievedChunk",
+          "line": 11,
+          "isDefault": false
+        },
+        {
+          "name": "retrieve",
+          "line": 35,
+          "isDefault": false
+        },
+        {
+          "name": "format_context",
+          "line": 70,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "to_dict",
+          "callee": "round",
+          "lineNumber": 25
+        },
+        {
+          "caller": "to_dict",
+          "callee": "float",
+          "lineNumber": 25
+        },
+        {
+          "caller": "retrieve",
+          "callee": "embed_text",
+          "lineNumber": 44
+        },
+        {
+          "caller": "retrieve",
+          "callee": "get_vector_store().search",
+          "lineNumber": 45
+        },
+        {
+          "caller": "retrieve",
+          "callee": "get_vector_store",
+          "lineNumber": 45
+        },
+        {
+          "caller": "retrieve",
+          "callee": "chunks.append",
+          "lineNumber": 55
+        },
+        {
+          "caller": "retrieve",
+          "callee": "RetrievedChunk",
+          "lineNumber": 56
+        },
+        {
+          "caller": "retrieve",
+          "callee": "str",
+          "lineNumber": 57
+        },
+        {
+          "caller": "retrieve",
+          "callee": "h.get",
+          "lineNumber": 57
+        },
+        {
+          "caller": "retrieve",
+          "callee": "float",
+          "lineNumber": 58
+        },
+        {
+          "caller": "retrieve",
+          "callee": "h.get",
+          "lineNumber": 58
+        },
+        {
+          "caller": "retrieve",
+          "callee": "h.get",
+          "lineNumber": 59
+        },
+        {
+          "caller": "retrieve",
+          "callee": "h.get",
+          "lineNumber": 60
+        },
+        {
+          "caller": "retrieve",
+          "callee": "h.get",
+          "lineNumber": 61
+        },
+        {
+          "caller": "retrieve",
+          "callee": "h.get",
+          "lineNumber": 62
+        },
+        {
+          "caller": "retrieve",
+          "callee": "h.get",
+          "lineNumber": 63
+        },
+        {
+          "caller": "retrieve",
+          "callee": "h.get",
+          "lineNumber": 64
+        },
+        {
+          "caller": "format_context",
+          "callee": "enumerate",
+          "lineNumber": 74
+        },
+        {
+          "caller": "format_context",
+          "callee": "parts.append",
+          "lineNumber": 79
+        },
+        {
+          "caller": "format_context",
+          "callee": "parts.append",
+          "lineNumber": 81
+        },
+        {
+          "caller": "format_context",
+          "callee": "', '.join",
+          "lineNumber": 83
+        },
+        {
+          "caller": "format_context",
+          "callee": "lines.append",
+          "lineNumber": 84
+        },
+        {
+          "caller": "format_context",
+          "callee": "\"\\n\\n---\\n\\n\".join",
+          "lineNumber": 85
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 3,
+        "functionCount": 2,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/adapted/rag/vector_store.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 238,
+      "nonEmptyLines": 213,
+      "functions": [
+        {
+          "name": "get_vector_store",
+          "startLine": 225,
+          "endLine": 229,
+          "params": []
+        },
+        {
+          "name": "reset_vector_store",
+          "startLine": 232,
+          "endLine": 234,
+          "params": []
+        },
+        {
+          "name": "_temp_vector_store",
+          "startLine": 237,
+          "endLine": 238,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "VectorStore",
+          "startLine": 15,
+          "endLine": 219,
+          "methods": [
+            "__init__",
+            "ensure_collection",
+            "delete_collection",
+            "upsert",
+            "delete_by_document",
+            "search",
+            "_filters_sql",
+            "_search_postgres"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "VectorStore",
+          "line": 15,
+          "isDefault": false
+        },
+        {
+          "name": "get_vector_store",
+          "line": 225,
+          "isDefault": false
+        },
+        {
+          "name": "reset_vector_store",
+          "line": 232,
+          "isDefault": false
+        },
+        {
+          "name": "_temp_vector_store",
+          "line": 237,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ensure_collection",
+          "callee": "SessionLocal",
+          "lineNumber": 33
+        },
+        {
+          "caller": "ensure_collection",
+          "callee": "session.execute",
+          "lineNumber": 35
+        },
+        {
+          "caller": "ensure_collection",
+          "callee": "text",
+          "lineNumber": 35
+        },
+        {
+          "caller": "ensure_collection",
+          "callee": "session.commit",
+          "lineNumber": 43
+        },
+        {
+          "caller": "ensure_collection",
+          "callee": "session.execute",
+          "lineNumber": 45
+        },
+        {
+          "caller": "ensure_collection",
+          "callee": "text",
+          "lineNumber": 46
+        },
+        {
+          "caller": "ensure_collection",
+          "callee": "session.commit",
+          "lineNumber": 53
+        },
+        {
+          "caller": "ensure_collection",
+          "callee": "log.warning",
+          "lineNumber": 55
+        },
+        {
+          "caller": "ensure_collection",
+          "callee": "session.close",
+          "lineNumber": 58
+        },
+        {
+          "caller": "delete_collection",
+          "callee": "collection.removeprefix",
+          "lineNumber": 61
+        },
+        {
+          "caller": "delete_collection",
+          "callee": "SessionLocal",
+          "lineNumber": 62
+        },
+        {
+          "caller": "delete_collection",
+          "callee": "session.execute",
+          "lineNumber": 64
+        },
+        {
+          "caller": "delete_collection",
+          "callee": "text",
+          "lineNumber": 65
+        },
+        {
+          "caller": "delete_collection",
+          "callee": "session.commit",
+          "lineNumber": 69
+        },
+        {
+          "caller": "delete_collection",
+          "callee": "session.close",
+          "lineNumber": 72
+        },
+        {
+          "caller": "upsert",
+          "callee": "SessionLocal",
+          "lineNumber": 90
+        },
+        {
+          "caller": "upsert",
+          "callee": "session.get",
+          "lineNumber": 93
+        },
+        {
+          "caller": "upsert",
+          "callee": "session.add",
+          "lineNumber": 97
+        },
+        {
+          "caller": "upsert",
+          "callee": "ContentChunk",
+          "lineNumber": 98
+        },
+        {
+          "caller": "upsert",
+          "callee": "payload.get",
+          "lineNumber": 100
+        },
+        {
+          "caller": "upsert",
+          "callee": "payload.get",
+          "lineNumber": 101
+        },
+        {
+          "caller": "upsert",
+          "callee": "payload.get",
+          "lineNumber": 102
+        },
+        {
+          "caller": "upsert",
+          "callee": "payload.get",
+          "lineNumber": 103
+        },
+        {
+          "caller": "upsert",
+          "callee": "payload.get",
+          "lineNumber": 104
+        },
+        {
+          "caller": "upsert",
+          "callee": "payload.get",
+          "lineNumber": 105
+        },
+        {
+          "caller": "upsert",
+          "callee": "payload.get",
+          "lineNumber": 106
+        },
+        {
+          "caller": "upsert",
+          "callee": "payload.get",
+          "lineNumber": 107
+        },
+        {
+          "caller": "upsert",
+          "callee": "payload.get",
+          "lineNumber": 108
+        },
+        {
+          "caller": "upsert",
+          "callee": "session.commit",
+          "lineNumber": 113
+        },
+        {
+          "caller": "upsert",
+          "callee": "session.flush",
+          "lineNumber": 115
+        },
+        {
+          "caller": "upsert",
+          "callee": "session.close",
+          "lineNumber": 118
+        },
+        {
+          "caller": "delete_by_document",
+          "callee": "SessionLocal",
+          "lineNumber": 122
+        },
+        {
+          "caller": "delete_by_document",
+          "callee": "session.execute",
+          "lineNumber": 124
+        },
+        {
+          "caller": "delete_by_document",
+          "callee": "text",
+          "lineNumber": 125
+        },
+        {
+          "caller": "delete_by_document",
+          "callee": "session.commit",
+          "lineNumber": 129
+        },
+        {
+          "caller": "delete_by_document",
+          "callee": "session.close",
+          "lineNumber": 132
+        },
+        {
+          "caller": "search",
+          "callee": "collection.removeprefix",
+          "lineNumber": 146
+        },
+        {
+          "caller": "search",
+          "callee": "self._search_postgres",
+          "lineNumber": 147
+        },
+        {
+          "caller": "_filters_sql",
+          "callee": "conds.append",
+          "lineNumber": 165
+        },
+        {
+          "caller": "_filters_sql",
+          "callee": "conds.append",
+          "lineNumber": 168
+        },
+        {
+          "caller": "_filters_sql",
+          "callee": "conds.append",
+          "lineNumber": 171
+        },
+        {
+          "caller": "_search_postgres",
+          "callee": "self._filters_sql",
+          "lineNumber": 185
+        },
+        {
+          "caller": "_search_postgres",
+          "callee": "conds.append",
+          "lineNumber": 186
+        },
+        {
+          "caller": "_search_postgres",
+          "callee": "\" AND \".join",
+          "lineNumber": 187
+        },
+        {
+          "caller": "_search_postgres",
+          "callee": "\",\".join",
+          "lineNumber": 191
+        },
+        {
+          "caller": "_search_postgres",
+          "callee": "SessionLocal",
+          "lineNumber": 209
+        },
+        {
+          "caller": "_search_postgres",
+          "callee": "db.execute(text(sql), params).mappings().all",
+          "lineNumber": 210
+        },
+        {
+          "caller": "_search_postgres",
+          "callee": "db.execute(text(sql), params).mappings",
+          "lineNumber": 210
+        },
+        {
+          "caller": "_search_postgres",
+          "callee": "db.execute",
+          "lineNumber": 210
+        },
+        {
+          "caller": "_search_postgres",
+          "callee": "text",
+          "lineNumber": 210
+        },
+        {
+          "caller": "_search_postgres",
+          "callee": "log.warning",
+          "lineNumber": 212
+        },
+        {
+          "caller": "_search_postgres",
+          "callee": "dict",
+          "lineNumber": 216
+        },
+        {
+          "caller": "_search_postgres",
+          "callee": "round",
+          "lineNumber": 217
+        },
+        {
+          "caller": "_search_postgres",
+          "callee": "float",
+          "lineNumber": 217
+        },
+        {
+          "caller": "_search_postgres",
+          "callee": "out.append",
+          "lineNumber": 218
+        },
+        {
+          "caller": "get_vector_store",
+          "callee": "VectorStore",
+          "lineNumber": 228
+        },
+        {
+          "caller": "_temp_vector_store",
+          "callee": "VectorStore",
+          "lineNumber": 238
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 4,
+        "functionCount": 3,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/adapted/tools/registry.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 160,
+      "nonEmptyLines": 137,
+      "functions": [
+        {
+          "name": "_rag_retrieve",
+          "startLine": 22,
+          "endLine": 37,
+          "params": [
+            "collection",
+            "query",
+            "course_id",
+            "topic_id",
+            "limit"
+          ]
+        },
+        {
+          "name": "_web_search",
+          "startLine": 40,
+          "endLine": 71,
+          "params": [
+            "query",
+            "max_results"
+          ]
+        },
+        {
+          "name": "_format_chunks",
+          "startLine": 74,
+          "endLine": 75,
+          "params": [
+            "chunks"
+          ]
+        },
+        {
+          "name": "get_tools",
+          "startLine": 78,
+          "endLine": 110,
+          "params": []
+        },
+        {
+          "name": "_validate_plan",
+          "startLine": 113,
+          "endLine": 137,
+          "params": [
+            "items",
+            "exam_date",
+            "daily_minutes"
+          ]
+        },
+        {
+          "name": "_calc_mastery",
+          "startLine": 140,
+          "endLine": 143,
+          "params": [
+            "current",
+            "attempts",
+            "score_percent"
+          ]
+        },
+        {
+          "name": "_check_duplicate",
+          "startLine": 146,
+          "endLine": 160,
+          "params": [
+            "course_id",
+            "prompt"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "Tool",
+          "startLine": 15,
+          "endLine": 19,
+          "methods": [],
+          "properties": [
+            "name",
+            "description",
+            "fn",
+            "parameters"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "Tool",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "_rag_retrieve",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "_web_search",
+          "line": 40,
+          "isDefault": false
+        },
+        {
+          "name": "_format_chunks",
+          "line": 74,
+          "isDefault": false
+        },
+        {
+          "name": "get_tools",
+          "line": 78,
+          "isDefault": false
+        },
+        {
+          "name": "_validate_plan",
+          "line": 113,
+          "isDefault": false
+        },
+        {
+          "name": "_calc_mastery",
+          "line": 140,
+          "isDefault": false
+        },
+        {
+          "name": "_check_duplicate",
+          "line": 146,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_rag_retrieve",
+          "callee": "retrieve",
+          "lineNumber": 30
+        },
+        {
+          "caller": "_rag_retrieve",
+          "callee": "c.to_dict",
+          "lineNumber": 37
+        },
+        {
+          "caller": "_web_search",
+          "callee": "logging.getLogger(\"adapted.tools\").info",
+          "lineNumber": 43
+        },
+        {
+          "caller": "_web_search",
+          "callee": "logging.getLogger",
+          "lineNumber": 43
+        },
+        {
+          "caller": "_web_search",
+          "callee": "httpx.get",
+          "lineNumber": 52
+        },
+        {
+          "caller": "_web_search",
+          "callee": "settings.searxng_url.rstrip",
+          "lineNumber": 53
+        },
+        {
+          "caller": "_web_search",
+          "callee": "resp.raise_for_status",
+          "lineNumber": 58
+        },
+        {
+          "caller": "_web_search",
+          "callee": "resp.json().get",
+          "lineNumber": 60
+        },
+        {
+          "caller": "_web_search",
+          "callee": "resp.json",
+          "lineNumber": 60
+        },
+        {
+          "caller": "_web_search",
+          "callee": "results.append",
+          "lineNumber": 61
+        },
+        {
+          "caller": "_web_search",
+          "callee": "item.get",
+          "lineNumber": 63
+        },
+        {
+          "caller": "_web_search",
+          "callee": "item.get",
+          "lineNumber": 64
+        },
+        {
+          "caller": "_web_search",
+          "callee": "item.get",
+          "lineNumber": 65
+        },
+        {
+          "caller": "_web_search",
+          "callee": "logging.getLogger(\"adapted.tools\").warning",
+          "lineNumber": 70
+        },
+        {
+          "caller": "_web_search",
+          "callee": "logging.getLogger",
+          "lineNumber": 70
+        },
+        {
+          "caller": "_web_search",
+          "callee": "str",
+          "lineNumber": 70
+        },
+        {
+          "caller": "_format_chunks",
+          "callee": "c.to_dict",
+          "lineNumber": 75
+        },
+        {
+          "caller": "get_tools",
+          "callee": "Tool",
+          "lineNumber": 80
+        },
+        {
+          "caller": "get_tools",
+          "callee": "Tool",
+          "lineNumber": 86
+        },
+        {
+          "caller": "get_tools",
+          "callee": "Tool",
+          "lineNumber": 92
+        },
+        {
+          "caller": "get_tools",
+          "callee": "Tool",
+          "lineNumber": 98
+        },
+        {
+          "caller": "get_tools",
+          "callee": "Tool",
+          "lineNumber": 104
+        },
+        {
+          "caller": "_validate_plan",
+          "callee": "PlanItem",
+          "lineNumber": 119
+        },
+        {
+          "caller": "_validate_plan",
+          "callee": "i.get",
+          "lineNumber": 121
+        },
+        {
+          "caller": "_validate_plan",
+          "callee": "validate_plan",
+          "lineNumber": 136
+        },
+        {
+          "caller": "_calc_mastery",
+          "callee": "update_mastery",
+          "lineNumber": 143
+        },
+        {
+          "caller": "_check_duplicate",
+          "callee": "SessionLocal",
+          "lineNumber": 151
+        },
+        {
+          "caller": "_check_duplicate",
+          "callee": "db.scalars(\n            select(Question.question_hash).where(Question.course_id == course_id)\n        ).all",
+          "lineNumber": 155
+        },
+        {
+          "caller": "_check_duplicate",
+          "callee": "db.scalars",
+          "lineNumber": 155
+        },
+        {
+          "caller": "_check_duplicate",
+          "callee": "select(Question.question_hash).where",
+          "lineNumber": 156
+        },
+        {
+          "caller": "_check_duplicate",
+          "callee": "select",
+          "lineNumber": 156
+        },
+        {
+          "caller": "_check_duplicate",
+          "callee": "question_hash",
+          "lineNumber": 158
+        },
+        {
+          "caller": "_check_duplicate",
+          "callee": "set",
+          "lineNumber": 158
+        },
+        {
+          "caller": "_check_duplicate",
+          "callee": "db.close",
+          "lineNumber": 160
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 8,
+        "functionCount": 7,
+        "classCount": 1
+      }
+    }
+  ]
+}

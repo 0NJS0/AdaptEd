@@ -83,13 +83,18 @@ def class_analytics(
     curriculum_progress = 0.0
     topics = list(db.scalars(select(Topic).where(Topic.course_id == course_id)))
     if topics:
-        tested = [
-            m
-            for sid in students
-            for m in db.scalars(select(StudentMastery).where(StudentMastery.student_id == sid))
-        ]
-        avg = sum(m.mastery for m in tested) / len(tested) if tested else 0.0
-        curriculum_progress = round(avg, 2)
+        topic_ids = [t.id for t in topics]
+        tested = list(
+            db.scalars(
+                select(StudentMastery).where(
+                    StudentMastery.student_id.in_(students),
+                    StudentMastery.topic_id.in_(topic_ids),
+                )
+            )
+        )
+        if tested:
+            avg_pct = sum(m.mastery for m in tested) / len(tested)
+            curriculum_progress = max(0.0, min(1.0, avg_pct / 100.0))
 
     return {
         "course_id": course_id,

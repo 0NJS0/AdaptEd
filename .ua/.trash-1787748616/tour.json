@@ -1,0 +1,140 @@
+[
+  {
+    "order": 1,
+    "title": "Application Entry Point",
+    "description": "Start where the server starts: main.py defines create_app(), the FastAPI application factory that initialises the PostgreSQL/pgvector schema on startup, wires CORS, registers all thirteen API routers (auth, courses, curriculum, lessons, quizzes, study plans, students, teacher, users, agent ops, logs), and exposes GET /health. Every route you will meet later in this tour hangs off this one factory. Note that README.md is intentionally an empty placeholder - the project's real conventions and running history live in AGENTS.md and PROGRESS.md.",
+    "nodeIds": ["file:src/adapted/main.py", "document:README.md"]
+  },
+  {
+    "order": 2,
+    "title": "Configuration & Project Setup",
+    "description": "Building on the app factory from Step 1, config.py is the central pydantic-settings object loaded from the repo-root .env: PostgreSQL DATABASE_URL, OpenRouter chat/embedding credentials and model names, EMBEDDING_DIM=2048, JWT secrets, RAG limits and retry knobs. Nearly every module in the graph imports these settings (fan-in 16), so understanding what is tunable here explains behaviour everywhere else. .env.example documents every variable, and pyproject.toml declares the stack itself: FastAPI, SQLAlchemy, pgvector, Streamlit and OpenAI/LangGraph dependencies managed with uv.",
+    "nodeIds": ["file:src/adapted/config.py", "config:.env.example", "config:pyproject.toml"]
+  },
+  {
+    "order": 3,
+    "title": "Database Bootstrap: Postgres + pgvector",
+    "description": "session.py has the highest fan-in of any infrastructure module (22 importers): it resolves and connect-probes the database URL at import time and fails fast if Postgres is unreachable - there is deliberately no SQLite fallback. It exposes SessionLocal, the get_db dependency and session_scope helpers used by every router and worker thread, plus init/reset routines that create the pgvector extension. base.py supplies the shared declarative Base and the pgvector-aware VectorColumn used by the embedding columns you will see in Step 11.",
+    "nodeIds": ["file:src/adapted/database/session.py", "file:src/adapted/database/base.py"],
+    "languageLesson": "SQLAlchemy's TypeDecorator pattern lets base.py wrap the Postgres-only pgvector Vector(2048) type behind one portable Python column type, so ORM models stay readable while the SQL side gets native vector storage."
+  },
+  {
+    "order": 4,
+    "title": "Domain Models: Identity & Teaching",
+    "description": "These three modules define the teaching domain's vocabulary. user.py holds User accounts with a role discriminator plus Teacher and Student profiles (department, grade level, daily study budget). course.py adds teacher-owned Courses, Enrollments joining students to courses, and uploaded Documents tracked through their parsing status - the entry point for everything the AI pipeline produces. curriculum.py stores the generated hierarchy: Chapters grouping ordered Topics with prerequisites and learning objectives, and ContentChunk rows carrying embedded textbook passages assigned to topics for later retrieval.",
+    "nodeIds": [
+      "file:src/adapted/models/user.py",
+      "file:src/adapted/models/course.py",
+      "file:src/adapted/models/curriculum.py"
+    ]
+  },
+  {
+    "order": 5,
+    "title": "Learning Records & Observability Tables",
+    "description": "Where Step 4 stored the static teaching domain, learning.py records the dynamic learning flow: versioned StudyPlans with daily items, generated Lessons and Questions, Quizzes, student QuizAttempts whose individual Answers carry both AI-grading scores and a persistent needs_teacher_review flag, and finalized Grades. memory.py persists each student's evolving state - per-topic mastery with trend history, an append-only study log, detected misconceptions, learning preferences and agent recommendations. observability.py backs the Operations UI with AgentTask runs, inter-agent AgentMessages and an AuditLog of audited user actions.",
+    "nodeIds": [
+      "file:src/adapted/models/learning.py",
+      "file:src/adapted/models/memory.py",
+      "file:src/adapted/models/observability.py"
+    ]
+  },
+  {
+    "order": 6,
+    "title": "Security, Guards & API Contracts",
+    "description": "This step shows how every request is authenticated and validated. passwords.py wraps bcrypt hashing and constant-time verification, while jwt.py issues and decodes expiring HS-signed access tokens. deps.py (fan-in 12) is the shared dependency layer: JWT bearer extraction, role-based guards such as TeacherDep, and ownership/enrollment assertion helpers that every router reuses. schemas/api.py is the complete Pydantic v2 contract layer covering requests and responses for all thirteen routers - the single source of truth for what the API accepts and returns.",
+    "nodeIds": [
+      "file:src/adapted/security/passwords.py",
+      "file:src/adapted/security/jwt.py",
+      "file:src/adapted/api/deps.py",
+      "file:src/adapted/schemas/api.py"
+    ],
+    "languageLesson": "FastAPI dependency injection: functions like get_db or current_teacher are declared once in deps.py and pulled into endpoints via Depends() parameters, so authentication and session handling are composed declaratively instead of repeated in each router."
+  },
+  {
+    "order": 7,
+    "title": "The REST Surface",
+    "description": "These four routers illustrate the patterns shared by all thirteen registered in Step 1. auth.py creates Users plus their Teacher/Student profiles on registration and issues JWT TokenResponses. courses.py spans course creation, enrollment, document upload/status, and cascading deletes (document, contents, whole course) with audit logging and on-disk file cleanup - the widest router by fan-out. quizzes.py shows the async pattern: fast authorization checks first, then attempt/answer rows persisted before the grading chain launches in the background. teacher.py serves class rosters, analytics, per-student grade histories, and the review queue scoped strictly to the teacher's own low-confidence subjective answers.",
+    "nodeIds": [
+      "file:src/adapted/api/routers/auth.py",
+      "file:src/adapted/api/routers/courses.py",
+      "file:src/adapted/api/routers/quizzes.py",
+      "file:src/adapted/api/routers/teacher.py"
+    ]
+  },
+  {
+    "order": 8,
+    "title": "Async Task Runner & Agent Orchestration",
+    "description": "LLM calls on free models are slow, so nothing blocks a request: runner.py persists an AgentTask row and submits the pipeline to a ThreadPoolExecutor, letting endpoints return status='started' plus a task_id within milliseconds, and guarantees failure marking even on crashes. supervisor.py classifies intents (analyze_curriculum, generate_lesson, quiz_submit, ...) into agent action chains and starts the task. graph/runtime.py is the LangGraph-style executor that threads a GraphState payload through those chains, running each agent inside savepoint-backed retries with backoff and empty-output detection. message.py's MessageBus records every inter-agent send/mark event so the whole conversation is observable in the Operations UI.",
+    "nodeIds": [
+      "file:src/adapted/tasks/runner.py",
+      "file:src/adapted/agents/supervisor.py",
+      "file:src/adapted/graph/runtime.py",
+      "file:src/adapted/agents/message.py"
+    ],
+    "languageLesson": "concurrent.futures.ThreadPoolExecutor offloads blocking LLM calls from request threads. Because SQLAlchemy sessions are not thread-safe, each pool worker builds its own SessionLocal() rather than sharing the request's session."
+  },
+  {
+    "order": 9,
+    "title": "Agent Framework & Content Agents",
+    "description": "base.py defines the BaseAgent contract every pipeline agent extends: a process() hook, Pydantic validate_output, and an output_is_empty hook that drives retry-on-empty when the flaky free LLM returns schema-valid but useless payloads like {\"chapters\": []}. Three content-producing agents build on it: curriculum_agent parses an uploaded document, RAG-indexes it, and persists chapters/topics/objectives idempotently by title; lesson_agent combines retrieved textbook chunks, learning objectives and the student profile into a levelled lesson; quiz_agent generates schema-constrained questions, dedupes them by hash, and tops up from the existing question bank.",
+    "nodeIds": [
+      "file:src/adapted/agents/base.py",
+      "file:src/adapted/agents/curriculum_agent.py",
+      "file:src/adapted/agents/lesson_agent.py",
+      "file:src/adapted/agents/quiz_agent.py"
+    ],
+    "languageLesson": "Template Method via Python ABCs: BaseAgent.handle() centrally adds timing, MessageBus status marks and error capture around the abstract process() hook, so subclasses supply only the varying behaviour."
+  },
+  {
+    "order": 10,
+    "title": "The Adaptive Feedback Loop",
+    "description": "After a quiz submit (Step 7), four agents close the adaptation loop. grading_agent grades deterministically for MCQ/true-false/numerical answers but uses the LLM with confidence scores for short answers, flagging anything below threshold as needs_teacher_review. performance_agent converts the graded attempt into per-topic mastery updates, study history and recurring-misconception detections, emitting weak/strong topic lists. recommendation_agent picks the next best action (e.g. review_topic) and renders it as a learner-facing narrative. planner_agent then delegates to the deterministic scheduler to rebuild a new versioned StudyPlan targeted at the weak topics - the system literally rewrites tomorrow's plan after every assessment.",
+    "nodeIds": [
+      "file:src/adapted/agents/grading_agent.py",
+      "file:src/adapted/agents/performance_agent.py",
+      "file:src/adapted/agents/recommendation_agent.py",
+      "file:src/adapted/agents/planner_agent.py"
+    ]
+  },
+  {
+    "order": 11,
+    "title": "RAG Knowledge Pipeline",
+    "description": "This five-stage pipeline grounds every generated lesson and quiz in the actual uploaded textbook. parser.py extracts clean per-page text from PDF, TXT/MD and DOCX; chunker.py splits pages into overlapping heading-aware chunks that carry page ranges so answers can cite their source; embeddings.py embeds texts in passage mode for indexing and query mode for search over the query-aware Nemotron model; vector_store.py performs idempotent ContentChunk upserts and cosine top-k search with course-scoped metadata filters directly against pgvector; retriever.py formats the top chunks into citation-ready context blocks that the content agents from Step 9 inject into their prompts.",
+    "nodeIds": [
+      "file:src/adapted/rag/parser.py",
+      "file:src/adapted/rag/chunker.py",
+      "file:src/adapted/rag/embeddings.py",
+      "file:src/adapted/rag/vector_store.py",
+      "file:src/adapted/rag/retriever.py"
+    ]
+  },
+  {
+    "order": 12,
+    "title": "LLM Provider Abstraction",
+    "description": "The agents never talk to a vendor SDK directly. base.py defines the provider-agnostic contract: a request envelope pairing a prompt with its JSON schema, plus abstract chat/embed methods. openai_compatible.py implements it for OpenRouter's free models - JSON-schema-constrained generation, dimension-validated embeddings, attribution headers and the configured 120-second timeout bounding every call. mock.py fabricates deterministic curricula, lessons, quizzes and grades offline for fully reproducible test runs. registry.py maps configured provider names to implementations behind lru-cached accessors, degrading gracefully to MockProvider when credentials are absent.",
+    "nodeIds": [
+      "file:src/adapted/llm/base.py",
+      "file:src/adapted/llm/openai_compatible.py",
+      "file:src/adapted/llm/mock.py",
+      "file:src/adapted/llm/registry.py"
+    ],
+    "languageLesson": "functools.lru_cache turns the registry's plain factory functions into per-process singletons: providers (and their HTTP clients) are constructed once and reused across every agent run."
+  },
+  {
+    "order": 13,
+    "title": "Deterministic Services & Student Memory",
+    "description": "Not everything should be an LLM call. mastery.py is the pure math core: exponential-moving-average mastery updates, trend computation and status-label thresholds. analytics.py splits mastery into weak/strong topic sets, detects recurring misconceptions per MCQ distractor, and rolls students up into class-wide summaries. scheduler.py builds study plans deterministically - topological ordering over prerequisites, day packing weighted toward low mastery and nearing exams - and validates coverage and minute budgets. student_memory.py aggregates mastery, misconceptions, preferences, attempts, conversations and study history into the StudentProfile snapshot that personalizes prompts in Steps 9-10.",
+    "nodeIds": [
+      "file:src/adapted/services/mastery.py",
+      "file:src/adapted/services/analytics.py",
+      "file:src/adapted/services/scheduler.py",
+      "file:src/adapted/memory/student_memory.py"
+    ]
+  },
+  {
+    "order": 14,
+    "title": "Streamlit Frontend",
+    "description": "The tour ends where users begin. app.py is the Streamlit entrypoint providing login/register, role-based sidebar navigation, and every teacher view (dashboard, curriculum with document upload and agent triggers, class analytics, review queue, operations) plus every student view (dashboard, study plan, learn, quizzes, progress, recommendations). It polls background tasks started in Step 8 and notifies users in place while lessons and gradings run. client.py is the thin httpx REST client wrapping all backend endpoints with bearer-token headers and clean APIError translation - the only bridge between UI state and the API surface you met in Steps 6-7.",
+    "nodeIds": ["file:src/adapted/ui/app.py", "file:src/adapted/ui/client.py"]
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "projectRoot": "/home/njs/Desktop/AdaptED/AdaptEd",
+  "batchFiles": [
+    {"path": ".env.example", "language": "config", "sizeLines": 37, "fileCategory": "config"},
+    {"path": "README.md", "language": "markdown", "sizeLines": 0, "fileCategory": "docs"},
+    {"path": "opencode.json", "language": "json", "sizeLines": 3, "fileCategory": "config"},
+    {"path": "pyproject.toml", "language": "toml", "sizeLines": 50, "fileCategory": "config"}
+  ],
+  "batchImportData": {
+    ".env.example": [],
+    "README.md": [],
+    "opencode.json": [],
+    "pyproject.toml": []
+  }
+}

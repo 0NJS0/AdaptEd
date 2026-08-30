@@ -1,0 +1,16 @@
+{
+  "fixedSectionOk": true,
+  "nodesRecovered": 0,
+  "edgesRestored": 0,
+  "crossBatchEdgesAdded": 0,
+  "typesRemapped": 0,
+  "complexityRemapped": 0,
+  "notes": [
+    "Merge accounting verified: input 325 nodes / 769 edges -> output 325 / 766; the only delta is the 3 reported dropped edges. No node loss.",
+    "The 3 'could not fix' dropped edges (config:opencode.json -> document:AGENTS.md, config:opencode.json -> document:PROGRESS.md, document:README.md -> document:PROGRESS.md) stay dropped: AGENTS.md and PROGRESS.md are gitignored local-only files never enumerated by the scanner (git ls-files --exclude-standard), so their nodes legitimately do not exist and were intentionally NOT re-created.",
+    "Cross-batch import verification against importMap (66 entries, 175 resolved pairs): all 174 genuine cross-file pairs already exist as 'imports' edges in the assembled graph (100% coverage); 0 edges needed to be added.",
+    "One importMap pair was skipped as bogus: src/adapted/security/jwt.py -> src/adapted/security/jwt.py. The source file's 'import jwt' refers to the external PyJWT package; the resolver mis-resolved it to the project's own jwt.py. Adding this self-loop would encode a false dependency; upstream resolver may want an stdlib/site-packages exclusion for bare module names that collide with project files.",
+    "Post-fix integrity sweep of assembled graph: 0 duplicate node ids, 0 duplicate edges, 0 dangling edges, 0 self-loops, 0 unknown node types, 0 non-standard complexity values. No modifications to assembled-graph.json were necessary.",
+    "Node type distribution sane: 149 function, 110 class, 60 file, 5 config, 1 document (README.md); edge distribution dominated by contains/exports/imports as expected."
+  ]
+}

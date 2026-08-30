@@ -1,0 +1,1332 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 4,
+  "filesSkipped": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 4,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 4,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "src/adapted/api/routers/teacher.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 205,
+      "nonEmptyLines": 186,
+      "functions": [
+        {
+          "name": "class_students",
+          "startLine": 32,
+          "endLine": 53,
+          "params": [
+            "course_id",
+            "teacher",
+            "db"
+          ]
+        },
+        {
+          "name": "class_analytics",
+          "startLine": 57,
+          "endLine": 101,
+          "params": [
+            "course_id",
+            "teacher",
+            "db"
+          ]
+        },
+        {
+          "name": "student_grades",
+          "startLine": 105,
+          "endLine": 139,
+          "params": [
+            "course_id",
+            "student_id",
+            "teacher",
+            "db"
+          ]
+        },
+        {
+          "name": "pending_review",
+          "startLine": 143,
+          "endLine": 182,
+          "params": [
+            "teacher",
+            "db"
+          ]
+        },
+        {
+          "name": "override_grade",
+          "startLine": 186,
+          "endLine": 205,
+          "params": [
+            "answer_id",
+            "body",
+            "teacher",
+            "db"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "class_students",
+          "line": 31,
+          "isDefault": false
+        },
+        {
+          "name": "class_analytics",
+          "line": 56,
+          "isDefault": false
+        },
+        {
+          "name": "student_grades",
+          "line": 104,
+          "isDefault": false
+        },
+        {
+          "name": "pending_review",
+          "line": 142,
+          "isDefault": false
+        },
+        {
+          "name": "override_grade",
+          "line": 185,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "class_students",
+          "callee": "Depends",
+          "lineNumber": 35
+        },
+        {
+          "caller": "class_students",
+          "callee": "assert_course_owner",
+          "lineNumber": 37
+        },
+        {
+          "caller": "class_students",
+          "callee": "db.execute(\n        select(Student, User)\n        .join(User, User.id == Student.user_id)\n        .join(Enrollment, Enrollment.student_id == Student.user_id)\n        .where(Enrollment.course_id == course_id)\n    ).all",
+          "lineNumber": 38
+        },
+        {
+          "caller": "class_students",
+          "callee": "db.execute",
+          "lineNumber": 38
+        },
+        {
+          "caller": "class_students",
+          "callee": "select(Student, User)\n        .join(User, User.id == Student.user_id)\n        .join(Enrollment, Enrollment.student_id == Student.user_id)\n        .where",
+          "lineNumber": 39
+        },
+        {
+          "caller": "class_students",
+          "callee": "select(Student, User)\n        .join(User, User.id == Student.user_id)\n        .join",
+          "lineNumber": 39
+        },
+        {
+          "caller": "class_students",
+          "callee": "select(Student, User)\n        .join",
+          "lineNumber": 39
+        },
+        {
+          "caller": "class_students",
+          "callee": "select",
+          "lineNumber": 39
+        },
+        {
+          "caller": "class_analytics",
+          "callee": "Depends",
+          "lineNumber": 60
+        },
+        {
+          "caller": "class_analytics",
+          "callee": "assert_course_owner",
+          "lineNumber": 62
+        },
+        {
+          "caller": "class_analytics",
+          "callee": "db.get",
+          "lineNumber": 63
+        },
+        {
+          "caller": "class_analytics",
+          "callee": "list",
+          "lineNumber": 65
+        },
+        {
+          "caller": "class_analytics",
+          "callee": "db.scalars",
+          "lineNumber": 65
+        },
+        {
+          "caller": "class_analytics",
+          "callee": "select(Enrollment).where",
+          "lineNumber": 65
+        },
+        {
+          "caller": "class_analytics",
+          "callee": "select",
+          "lineNumber": 65
+        },
+        {
+          "caller": "class_analytics",
+          "callee": "build_profile",
+          "lineNumber": 70
+        },
+        {
+          "caller": "class_analytics",
+          "callee": "recs.append",
+          "lineNumber": 73
+        },
+        {
+          "caller": "class_analytics",
+          "callee": "mastery_svc.build_record",
+          "lineNumber": 74
+        },
+        {
+          "caller": "class_analytics",
+          "callee": "class_topic_summary",
+          "lineNumber": 80
+        },
+        {
+          "caller": "class_analytics",
+          "callee": "list",
+          "lineNumber": 84
+        },
+        {
+          "caller": "class_analytics",
+          "callee": "db.scalars",
+          "lineNumber": 84
+        },
+        {
+          "caller": "class_analytics",
+          "callee": "select(Topic).where",
+          "lineNumber": 84
+        },
+        {
+          "caller": "class_analytics",
+          "callee": "select",
+          "lineNumber": 84
+        },
+        {
+          "caller": "class_analytics",
+          "callee": "db.scalars",
+          "lineNumber": 89
+        },
+        {
+          "caller": "class_analytics",
+          "callee": "select(StudentMastery).where",
+          "lineNumber": 89
+        },
+        {
+          "caller": "class_analytics",
+          "callee": "select",
+          "lineNumber": 89
+        },
+        {
+          "caller": "class_analytics",
+          "callee": "sum",
+          "lineNumber": 91
+        },
+        {
+          "caller": "class_analytics",
+          "callee": "len",
+          "lineNumber": 91
+        },
+        {
+          "caller": "class_analytics",
+          "callee": "round",
+          "lineNumber": 92
+        },
+        {
+          "caller": "class_analytics",
+          "callee": "len",
+          "lineNumber": 97
+        },
+        {
+          "caller": "student_grades",
+          "callee": "Depends",
+          "lineNumber": 109
+        },
+        {
+          "caller": "student_grades",
+          "callee": "assert_course_owner",
+          "lineNumber": 111
+        },
+        {
+          "caller": "student_grades",
+          "callee": "list",
+          "lineNumber": 112
+        },
+        {
+          "caller": "student_grades",
+          "callee": "db.scalars",
+          "lineNumber": 113
+        },
+        {
+          "caller": "student_grades",
+          "callee": "select(QuizAttempt)\n            .where(QuizAttempt.student_id == student_id)\n            .order_by",
+          "lineNumber": 114
+        },
+        {
+          "caller": "student_grades",
+          "callee": "select(QuizAttempt)\n            .where",
+          "lineNumber": 114
+        },
+        {
+          "caller": "student_grades",
+          "callee": "select",
+          "lineNumber": 114
+        },
+        {
+          "caller": "student_grades",
+          "callee": "QuizAttempt.submitted_at.desc",
+          "lineNumber": 116
+        },
+        {
+          "caller": "student_grades",
+          "callee": "db.get",
+          "lineNumber": 121
+        },
+        {
+          "caller": "student_grades",
+          "callee": "db.scalars(select(Grade).where(Grade.attempt_id == a.id)).first",
+          "lineNumber": 124
+        },
+        {
+          "caller": "student_grades",
+          "callee": "db.scalars",
+          "lineNumber": 124
+        },
+        {
+          "caller": "student_grades",
+          "callee": "select(Grade).where",
+          "lineNumber": 124
+        },
+        {
+          "caller": "student_grades",
+          "callee": "select",
+          "lineNumber": 124
+        },
+        {
+          "caller": "student_grades",
+          "callee": "out.append",
+          "lineNumber": 125
+        },
+        {
+          "caller": "pending_review",
+          "callee": "Depends",
+          "lineNumber": 145
+        },
+        {
+          "caller": "pending_review",
+          "callee": "list",
+          "lineNumber": 149
+        },
+        {
+          "caller": "pending_review",
+          "callee": "db.scalars",
+          "lineNumber": 150
+        },
+        {
+          "caller": "pending_review",
+          "callee": "select(Answer)\n            .join(QuizAttempt, QuizAttempt.id == Answer.attempt_id)\n            .join(Quiz, Quiz.id == QuizAttempt.quiz_id)\n            .join(Course, Course.id == Quiz.course_id)\n            .where(\n                Course.teacher_id == teacher.id,\n                Answer.grading_status == \"ai_graded\",\n                Answer.needs_teacher_review.is_(True),\n            )\n            .order_by(Answer.ai_confidence.asc().nulls_last())\n            .limit",
+          "lineNumber": 151
+        },
+        {
+          "caller": "pending_review",
+          "callee": "select(Answer)\n            .join(QuizAttempt, QuizAttempt.id == Answer.attempt_id)\n            .join(Quiz, Quiz.id == QuizAttempt.quiz_id)\n            .join(Course, Course.id == Quiz.course_id)\n            .where(\n                Course.teacher_id == teacher.id,\n                Answer.grading_status == \"ai_graded\",\n                Answer.needs_teacher_review.is_(True),\n            )\n            .order_by",
+          "lineNumber": 151
+        },
+        {
+          "caller": "pending_review",
+          "callee": "select(Answer)\n            .join(QuizAttempt, QuizAttempt.id == Answer.attempt_id)\n            .join(Quiz, Quiz.id == QuizAttempt.quiz_id)\n            .join(Course, Course.id == Quiz.course_id)\n            .where",
+          "lineNumber": 151
+        },
+        {
+          "caller": "pending_review",
+          "callee": "select(Answer)\n            .join(QuizAttempt, QuizAttempt.id == Answer.attempt_id)\n            .join(Quiz, Quiz.id == QuizAttempt.quiz_id)\n            .join",
+          "lineNumber": 151
+        },
+        {
+          "caller": "pending_review",
+          "callee": "select(Answer)\n            .join(QuizAttempt, QuizAttempt.id == Answer.attempt_id)\n            .join",
+          "lineNumber": 151
+        },
+        {
+          "caller": "pending_review",
+          "callee": "select(Answer)\n            .join",
+          "lineNumber": 151
+        },
+        {
+          "caller": "pending_review",
+          "callee": "select",
+          "lineNumber": 151
+        },
+        {
+          "caller": "pending_review",
+          "callee": "Answer.needs_teacher_review.is_",
+          "lineNumber": 158
+        },
+        {
+          "caller": "pending_review",
+          "callee": "Answer.ai_confidence.asc().nulls_last",
+          "lineNumber": 160
+        },
+        {
+          "caller": "pending_review",
+          "callee": "Answer.ai_confidence.asc",
+          "lineNumber": 160
+        },
+        {
+          "caller": "pending_review",
+          "callee": "db.get",
+          "lineNumber": 166
+        },
+        {
+          "caller": "pending_review",
+          "callee": "out.append",
+          "lineNumber": 169
+        },
+        {
+          "caller": "override_grade",
+          "callee": "Depends",
+          "lineNumber": 190
+        },
+        {
+          "caller": "override_grade",
+          "callee": "db.get",
+          "lineNumber": 193
+        },
+        {
+          "caller": "override_grade",
+          "callee": "HTTPException",
+          "lineNumber": 195
+        },
+        {
+          "caller": "override_grade",
+          "callee": "float",
+          "lineNumber": 197
+        },
+        {
+          "caller": "override_grade",
+          "callee": "str",
+          "lineNumber": 199
+        },
+        {
+          "caller": "override_grade",
+          "callee": "bool",
+          "lineNumber": 203
+        },
+        {
+          "caller": "override_grade",
+          "callee": "db.commit",
+          "lineNumber": 204
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 5,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/adapted/memory/student_memory.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 224,
+      "nonEmptyLines": 201,
+      "functions": [
+        {
+          "name": "build_profile",
+          "startLine": 37,
+          "endLine": 137,
+          "params": [
+            "db",
+            "student_id",
+            "course_id"
+          ]
+        },
+        {
+          "name": "update_topic_mastery",
+          "startLine": 140,
+          "endLine": 166,
+          "params": [
+            "db",
+            "student_id",
+            "topic_id",
+            "score_percent"
+          ]
+        },
+        {
+          "name": "record_study",
+          "startLine": 169,
+          "endLine": 188,
+          "params": [
+            "db",
+            "student_id",
+            "course_id",
+            "activity_type",
+            "topic_id",
+            "ref_id",
+            "details"
+          ]
+        },
+        {
+          "name": "record_conversation",
+          "startLine": 191,
+          "endLine": 209,
+          "params": [
+            "db",
+            "student_id",
+            "course_id",
+            "focus",
+            "summary"
+          ]
+        },
+        {
+          "name": "set_preference",
+          "startLine": 212,
+          "endLine": 224,
+          "params": [
+            "db",
+            "user_id",
+            "key",
+            "value"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "StudentProfile",
+          "startLine": 23,
+          "endLine": 34,
+          "methods": [],
+          "properties": [
+            "student_id",
+            "course_id",
+            "mastery",
+            "overall_mastery",
+            "weak_topics",
+            "strong_topics",
+            "misconceptions",
+            "preferences",
+            "recent_quiz",
+            "conversation_foci",
+            "study_history_recent"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "StudentProfile",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "build_profile",
+          "line": 37,
+          "isDefault": false
+        },
+        {
+          "name": "update_topic_mastery",
+          "line": 140,
+          "isDefault": false
+        },
+        {
+          "name": "record_study",
+          "line": 169,
+          "isDefault": false
+        },
+        {
+          "name": "record_conversation",
+          "line": 191,
+          "isDefault": false
+        },
+        {
+          "name": "set_preference",
+          "line": 212,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "build_profile",
+          "callee": "select(StudentMastery).where",
+          "lineNumber": 38
+        },
+        {
+          "caller": "build_profile",
+          "callee": "select",
+          "lineNumber": 38
+        },
+        {
+          "caller": "build_profile",
+          "callee": "q.join(Topic).where",
+          "lineNumber": 40
+        },
+        {
+          "caller": "build_profile",
+          "callee": "q.join",
+          "lineNumber": 40
+        },
+        {
+          "caller": "build_profile",
+          "callee": "list",
+          "lineNumber": 41
+        },
+        {
+          "caller": "build_profile",
+          "callee": "db.scalars(q).all",
+          "lineNumber": 41
+        },
+        {
+          "caller": "build_profile",
+          "callee": "db.scalars",
+          "lineNumber": 41
+        },
+        {
+          "caller": "build_profile",
+          "callee": "records.append",
+          "lineNumber": 46
+        },
+        {
+          "caller": "build_profile",
+          "callee": "mastery_svc.build_record",
+          "lineNumber": 47
+        },
+        {
+          "caller": "build_profile",
+          "callee": "list",
+          "lineNumber": 48
+        },
+        {
+          "caller": "build_profile",
+          "callee": "analytics.weak_and_strong",
+          "lineNumber": 52
+        },
+        {
+          "caller": "build_profile",
+          "callee": "round",
+          "lineNumber": 54
+        },
+        {
+          "caller": "build_profile",
+          "callee": "sum",
+          "lineNumber": 54
+        },
+        {
+          "caller": "build_profile",
+          "callee": "len",
+          "lineNumber": 54
+        },
+        {
+          "caller": "build_profile",
+          "callee": "db.scalars",
+          "lineNumber": 65
+        },
+        {
+          "caller": "build_profile",
+          "callee": "select(Misconception)\n            .where(Misconception.student_id == student_id, Misconception.status == \"open\")\n            .order_by",
+          "lineNumber": 66
+        },
+        {
+          "caller": "build_profile",
+          "callee": "select(Misconception)\n            .where",
+          "lineNumber": 66
+        },
+        {
+          "caller": "build_profile",
+          "callee": "select",
+          "lineNumber": 66
+        },
+        {
+          "caller": "build_profile",
+          "callee": "Misconception.created_at.desc",
+          "lineNumber": 68
+        },
+        {
+          "caller": "build_profile",
+          "callee": "db.scalars",
+          "lineNumber": 74
+        },
+        {
+          "caller": "build_profile",
+          "callee": "select(LearningPreference).where",
+          "lineNumber": 75
+        },
+        {
+          "caller": "build_profile",
+          "callee": "select",
+          "lineNumber": 75
+        },
+        {
+          "caller": "build_profile",
+          "callee": "db.scalars(\n        select(QuizAttempt)\n        .where(QuizAttempt.student_id == student_id)\n        .order_by(QuizAttempt.submitted_at.desc().nulls_last())\n        .limit(1)\n    ).first",
+          "lineNumber": 79
+        },
+        {
+          "caller": "build_profile",
+          "callee": "db.scalars",
+          "lineNumber": 79
+        },
+        {
+          "caller": "build_profile",
+          "callee": "select(QuizAttempt)\n        .where(QuizAttempt.student_id == student_id)\n        .order_by(QuizAttempt.submitted_at.desc().nulls_last())\n        .limit",
+          "lineNumber": 80
+        },
+        {
+          "caller": "build_profile",
+          "callee": "select(QuizAttempt)\n        .where(QuizAttempt.student_id == student_id)\n        .order_by",
+          "lineNumber": 80
+        },
+        {
+          "caller": "build_profile",
+          "callee": "select(QuizAttempt)\n        .where",
+          "lineNumber": 80
+        },
+        {
+          "caller": "build_profile",
+          "callee": "select",
+          "lineNumber": 80
+        },
+        {
+          "caller": "build_profile",
+          "callee": "QuizAttempt.submitted_at.desc().nulls_last",
+          "lineNumber": 82
+        },
+        {
+          "caller": "build_profile",
+          "callee": "QuizAttempt.submitted_at.desc",
+          "lineNumber": 82
+        },
+        {
+          "caller": "build_profile",
+          "callee": "db.scalars",
+          "lineNumber": 102
+        },
+        {
+          "caller": "build_profile",
+          "callee": "select(ConversationMemory)\n            .where(ConversationMemory.student_id == student_id)\n            .order_by(ConversationMemory.frequency.desc())\n            .limit",
+          "lineNumber": 103
+        },
+        {
+          "caller": "build_profile",
+          "callee": "select(ConversationMemory)\n            .where(ConversationMemory.student_id == student_id)\n            .order_by",
+          "lineNumber": 103
+        },
+        {
+          "caller": "build_profile",
+          "callee": "select(ConversationMemory)\n            .where",
+          "lineNumber": 103
+        },
+        {
+          "caller": "build_profile",
+          "callee": "select",
+          "lineNumber": 103
+        },
+        {
+          "caller": "build_profile",
+          "callee": "ConversationMemory.frequency.desc",
+          "lineNumber": 105
+        },
+        {
+          "caller": "build_profile",
+          "callee": "db.scalars",
+          "lineNumber": 117
+        },
+        {
+          "caller": "build_profile",
+          "callee": "select(StudyHistory)\n            .where(StudyHistory.student_id == student_id)\n            .order_by(StudyHistory.occurred_at.desc())\n            .limit",
+          "lineNumber": 118
+        },
+        {
+          "caller": "build_profile",
+          "callee": "select(StudyHistory)\n            .where(StudyHistory.student_id == student_id)\n            .order_by",
+          "lineNumber": 118
+        },
+        {
+          "caller": "build_profile",
+          "callee": "select(StudyHistory)\n            .where",
+          "lineNumber": 118
+        },
+        {
+          "caller": "build_profile",
+          "callee": "select",
+          "lineNumber": 118
+        },
+        {
+          "caller": "build_profile",
+          "callee": "StudyHistory.occurred_at.desc",
+          "lineNumber": 120
+        },
+        {
+          "caller": "build_profile",
+          "callee": "StudentProfile",
+          "lineNumber": 125
+        },
+        {
+          "caller": "update_topic_mastery",
+          "callee": "db.scalars(\n        select(StudentMastery).where(\n            StudentMastery.student_id == student_id, StudentMastery.topic_id == topic_id\n        )\n    ).first",
+          "lineNumber": 143
+        },
+        {
+          "caller": "update_topic_mastery",
+          "callee": "db.scalars",
+          "lineNumber": 143
+        },
+        {
+          "caller": "update_topic_mastery",
+          "callee": "select(StudentMastery).where",
+          "lineNumber": 144
+        },
+        {
+          "caller": "update_topic_mastery",
+          "callee": "select",
+          "lineNumber": 144
+        },
+        {
+          "caller": "update_topic_mastery",
+          "callee": "StudentMastery",
+          "lineNumber": 149
+        },
+        {
+          "caller": "update_topic_mastery",
+          "callee": "db.add",
+          "lineNumber": 156
+        },
+        {
+          "caller": "update_topic_mastery",
+          "callee": "list",
+          "lineNumber": 157
+        },
+        {
+          "caller": "update_topic_mastery",
+          "callee": "history.append",
+          "lineNumber": 158
+        },
+        {
+          "caller": "update_topic_mastery",
+          "callee": "round",
+          "lineNumber": 158
+        },
+        {
+          "caller": "update_topic_mastery",
+          "callee": "float",
+          "lineNumber": 158
+        },
+        {
+          "caller": "update_topic_mastery",
+          "callee": "mastery_svc.update_mastery",
+          "lineNumber": 161
+        },
+        {
+          "caller": "update_topic_mastery",
+          "callee": "float",
+          "lineNumber": 161
+        },
+        {
+          "caller": "update_topic_mastery",
+          "callee": "mastery_svc.compute_trend",
+          "lineNumber": 162
+        },
+        {
+          "caller": "update_topic_mastery",
+          "callee": "mastery_svc.status_for",
+          "lineNumber": 163
+        },
+        {
+          "caller": "update_topic_mastery",
+          "callee": "func.now",
+          "lineNumber": 164
+        },
+        {
+          "caller": "update_topic_mastery",
+          "callee": "db.flush",
+          "lineNumber": 165
+        },
+        {
+          "caller": "record_study",
+          "callee": "StudyHistory",
+          "lineNumber": 178
+        },
+        {
+          "caller": "record_study",
+          "callee": "db.add",
+          "lineNumber": 186
+        },
+        {
+          "caller": "record_study",
+          "callee": "db.flush",
+          "lineNumber": 187
+        },
+        {
+          "caller": "record_conversation",
+          "callee": "db.scalars(\n        select(ConversationMemory).where(\n            ConversationMemory.student_id == student_id,\n            ConversationMemory.focus_topic == focus,\n        )\n    ).first",
+          "lineNumber": 194
+        },
+        {
+          "caller": "record_conversation",
+          "callee": "db.scalars",
+          "lineNumber": 194
+        },
+        {
+          "caller": "record_conversation",
+          "callee": "select(ConversationMemory).where",
+          "lineNumber": 195
+        },
+        {
+          "caller": "record_conversation",
+          "callee": "select",
+          "lineNumber": 195
+        },
+        {
+          "caller": "record_conversation",
+          "callee": "ConversationMemory",
+          "lineNumber": 201
+        },
+        {
+          "caller": "record_conversation",
+          "callee": "db.add",
+          "lineNumber": 204
+        },
+        {
+          "caller": "record_conversation",
+          "callee": "func.now",
+          "lineNumber": 208
+        },
+        {
+          "caller": "record_conversation",
+          "callee": "db.flush",
+          "lineNumber": 209
+        },
+        {
+          "caller": "set_preference",
+          "callee": "db.scalars(\n        select(LearningPreference).where(\n            LearningPreference.user_id == user_id, LearningPreference.pref_key == key\n        )\n    ).first",
+          "lineNumber": 213
+        },
+        {
+          "caller": "set_preference",
+          "callee": "db.scalars",
+          "lineNumber": 213
+        },
+        {
+          "caller": "set_preference",
+          "callee": "select(LearningPreference).where",
+          "lineNumber": 214
+        },
+        {
+          "caller": "set_preference",
+          "callee": "select",
+          "lineNumber": 214
+        },
+        {
+          "caller": "set_preference",
+          "callee": "LearningPreference",
+          "lineNumber": 219
+        },
+        {
+          "caller": "set_preference",
+          "callee": "db.add",
+          "lineNumber": 220
+        },
+        {
+          "caller": "set_preference",
+          "callee": "db.flush",
+          "lineNumber": 223
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 6,
+        "functionCount": 5,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/adapted/services/analytics.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 109,
+      "nonEmptyLines": 99,
+      "functions": [
+        {
+          "name": "weak_and_strong",
+          "startLine": 9,
+          "endLine": 29,
+          "params": [
+            "records"
+          ]
+        },
+        {
+          "name": "detect_misconceptions",
+          "startLine": 32,
+          "endLine": 83,
+          "params": [
+            "answers"
+          ]
+        },
+        {
+          "name": "class_topic_summary",
+          "startLine": 86,
+          "endLine": 109,
+          "params": [
+            "mastery_by_student"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "weak_and_strong",
+          "line": 9,
+          "isDefault": false
+        },
+        {
+          "name": "detect_misconceptions",
+          "line": 32,
+          "isDefault": false
+        },
+        {
+          "name": "class_topic_summary",
+          "line": 86,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "weak_and_strong",
+          "callee": "sorted",
+          "lineNumber": 11
+        },
+        {
+          "caller": "weak_and_strong",
+          "callee": "sorted",
+          "lineNumber": 15
+        },
+        {
+          "caller": "detect_misconceptions",
+          "callee": "Counter",
+          "lineNumber": 37
+        },
+        {
+          "caller": "detect_misconceptions",
+          "callee": "Counter",
+          "lineNumber": 38
+        },
+        {
+          "caller": "detect_misconceptions",
+          "callee": "a.get",
+          "lineNumber": 42
+        },
+        {
+          "caller": "detect_misconceptions",
+          "callee": "q.get",
+          "lineNumber": 43
+        },
+        {
+          "caller": "detect_misconceptions",
+          "callee": "q.get",
+          "lineNumber": 44
+        },
+        {
+          "caller": "detect_misconceptions",
+          "callee": "a.get",
+          "lineNumber": 47
+        },
+        {
+          "caller": "detect_misconceptions",
+          "callee": "a.get",
+          "lineNumber": 48
+        },
+        {
+          "caller": "detect_misconceptions",
+          "callee": "a.get",
+          "lineNumber": 50
+        },
+        {
+          "caller": "detect_misconceptions",
+          "callee": "isinstance",
+          "lineNumber": 51
+        },
+        {
+          "caller": "detect_misconceptions",
+          "callee": "response.get",
+          "lineNumber": 51
+        },
+        {
+          "caller": "detect_misconceptions",
+          "callee": "str",
+          "lineNumber": 52
+        },
+        {
+          "caller": "detect_misconceptions",
+          "callee": "wrong_choice_counts.items",
+          "lineNumber": 55
+        },
+        {
+          "caller": "detect_misconceptions",
+          "callee": "findings.append",
+          "lineNumber": 57
+        },
+        {
+          "caller": "detect_misconceptions",
+          "callee": "topic_titles.get",
+          "lineNumber": 60
+        },
+        {
+          "caller": "detect_misconceptions",
+          "callee": "wrong_topic_counts.items",
+          "lineNumber": 69
+        },
+        {
+          "caller": "detect_misconceptions",
+          "callee": "findings.append",
+          "lineNumber": 71
+        },
+        {
+          "caller": "detect_misconceptions",
+          "callee": "topic_titles.get",
+          "lineNumber": 74
+        },
+        {
+          "caller": "class_topic_summary",
+          "callee": "defaultdict",
+          "lineNumber": 90
+        },
+        {
+          "caller": "class_topic_summary",
+          "callee": "mastery_by_student.values",
+          "lineNumber": 91
+        },
+        {
+          "caller": "class_topic_summary",
+          "callee": "rec[\"mastery\"].append",
+          "lineNumber": 95
+        },
+        {
+          "caller": "class_topic_summary",
+          "callee": "topic_records.items",
+          "lineNumber": 97
+        },
+        {
+          "caller": "class_topic_summary",
+          "callee": "sum",
+          "lineNumber": 100
+        },
+        {
+          "caller": "class_topic_summary",
+          "callee": "len",
+          "lineNumber": 100
+        },
+        {
+          "caller": "class_topic_summary",
+          "callee": "summary.append",
+          "lineNumber": 101
+        },
+        {
+          "caller": "class_topic_summary",
+          "callee": "round",
+          "lineNumber": 105
+        },
+        {
+          "caller": "class_topic_summary",
+          "callee": "len",
+          "lineNumber": 106
+        },
+        {
+          "caller": "class_topic_summary",
+          "callee": "sorted",
+          "lineNumber": 109
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/adapted/services/mastery.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 70,
+      "nonEmptyLines": 55,
+      "functions": [
+        {
+          "name": "status_for",
+          "startLine": 25,
+          "endLine": 34,
+          "params": [
+            "mastery"
+          ]
+        },
+        {
+          "name": "update_mastery",
+          "startLine": 37,
+          "endLine": 40,
+          "params": [
+            "current",
+            "attempts",
+            "latest_score_percent"
+          ]
+        },
+        {
+          "name": "compute_trend",
+          "startLine": 43,
+          "endLine": 48,
+          "params": [
+            "history",
+            "window"
+          ]
+        },
+        {
+          "name": "classify",
+          "startLine": 51,
+          "endLine": 52,
+          "params": [
+            "mastery"
+          ]
+        },
+        {
+          "name": "build_record",
+          "startLine": 55,
+          "endLine": 70,
+          "params": [
+            "topic_id",
+            "topic_title",
+            "mastery",
+            "attempts",
+            "history"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "MasteryRecord",
+          "startLine": 15,
+          "endLine": 22,
+          "methods": [],
+          "properties": [
+            "topic_id",
+            "topic_title",
+            "mastery",
+            "attempts",
+            "trend",
+            "status",
+            "history"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "MasteryRecord",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "status_for",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "update_mastery",
+          "line": 37,
+          "isDefault": false
+        },
+        {
+          "name": "compute_trend",
+          "line": 43,
+          "isDefault": false
+        },
+        {
+          "name": "classify",
+          "line": 51,
+          "isDefault": false
+        },
+        {
+          "name": "build_record",
+          "line": 55,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "update_mastery",
+          "callee": "float",
+          "lineNumber": 39
+        },
+        {
+          "caller": "update_mastery",
+          "callee": "round",
+          "lineNumber": 40
+        },
+        {
+          "caller": "compute_trend",
+          "callee": "len",
+          "lineNumber": 44
+        },
+        {
+          "caller": "compute_trend",
+          "callee": "round",
+          "lineNumber": 48
+        },
+        {
+          "caller": "compute_trend",
+          "callee": "max",
+          "lineNumber": 48
+        },
+        {
+          "caller": "compute_trend",
+          "callee": "len",
+          "lineNumber": 48
+        },
+        {
+          "caller": "classify",
+          "callee": "status_for",
+          "lineNumber": 52
+        },
+        {
+          "caller": "build_record",
+          "callee": "MasteryRecord",
+          "lineNumber": 62
+        },
+        {
+          "caller": "build_record",
+          "callee": "round",
+          "lineNumber": 65
+        },
+        {
+          "caller": "build_record",
+          "callee": "float",
+          "lineNumber": 65
+        },
+        {
+          "caller": "build_record",
+          "callee": "compute_trend",
+          "lineNumber": 67
+        },
+        {
+          "caller": "build_record",
+          "callee": "status_for",
+          "lineNumber": 68
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 6,
+        "functionCount": 5,
+        "classCount": 1
+      }
+    }
+  ]
+}
