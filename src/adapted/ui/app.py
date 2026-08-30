@@ -152,30 +152,23 @@ _NAV_ICONS = {
     "Recommendations": "💡",
 }
 
+# Light, version-safe polish only: gentle spacing + hover, no element hiding.
 _SIDEBAR_CSS = """
 <style>
-section[data-testid="stSidebar"] div[role="radiogroup"] { gap: 2px; }
 section[data-testid="stSidebar"] div[role="radiogroup"] label {
-    display: flex; align-items: center; width: 100%;
-    padding: 9px 12px; border-radius: 10px; margin: 1px 0; cursor: pointer;
-    transition: background .12s ease;
+    padding: 4px 8px; border-radius: 8px;
 }
 section[data-testid="stSidebar"] div[role="radiogroup"] label:hover {
-    background: rgba(120,140,170,.14);
+    background: rgba(120,140,170,.12);
 }
-section[data-testid="stSidebar"] div[role="radiogroup"] label p { font-size: 15px; margin: 0; }
-/* hide the default radio dot so items read as a nav menu */
-section[data-testid="stSidebar"] div[role="radiogroup"] label > div:first-of-type { display: none; }
-/* highlight the active item (modern browsers support :has) */
-section[data-testid="stSidebar"] div[role="radiogroup"] label:has(input:checked) {
-    background: rgba(42,78,124,.16);
-    box-shadow: inset 3px 0 0 #2A4E7C;
-}
-section[data-testid="stSidebar"] div[role="radiogroup"] label:has(input:checked) p {
-    font-weight: 700;
-}
+section[data-testid="stSidebar"] div[role="radiogroup"] label p { font-size: 15px; }
 </style>
 """
+
+
+def _clear_console_view() -> None:
+    """Leaving the console when the user picks a sidebar page."""
+    st.session_state.view = None
 
 
 def sidebar() -> str | None:
@@ -188,14 +181,7 @@ def sidebar() -> str | None:
 
     nav = ["Dashboard"]
     if role == "teacher":
-        nav += [
-            "Curriculum",
-            "Class",
-            "Review Queue",
-            "OBE Mapping",
-            "Agent Console",
-            "Operations",
-        ]
+        nav += ["Curriculum", "Class", "Review Queue", "OBE Mapping", "Operations"]
     else:
         nav += ["Study Plan", "Learn", "Quizzes", "My Progress", "Recommendations"]
 
@@ -212,11 +198,36 @@ def sidebar() -> str | None:
         key="nav_radio",
         label_visibility="collapsed",
         format_func=lambda x: f"{_NAV_ICONS.get(x, '•')}  {x}",
+        on_change=_clear_console_view,
     )
     st.sidebar.divider()
     if st.sidebar.button("🚪 Sign out", use_container_width=True):
         logout()
     return choice
+
+
+def top_nav() -> None:
+    """A slim upper navigation bar with a separate entry to the Agent Console.
+
+    Teacher-only. The console opens as its own view (independent of the sidebar
+    menu) so it reads as a distinct tool; picking any sidebar page returns here.
+    """
+    user = _user()
+    if user.get("role") != "teacher":
+        return
+    in_console = st.session_state.get("view") == "agent_console"
+    left, right = st.columns([0.72, 0.28])
+    with left:
+        st.markdown("### 🛰️ Agent Console" if in_console else "🎓 **AdaptED**")
+    with right:
+        if in_console:
+            if st.button("← Back to app", use_container_width=True):
+                st.session_state.view = None
+                st.rerun()
+        elif st.button("🛰️ Open Agent Console", use_container_width=True):
+            st.session_state.view = "agent_console"
+            st.rerun()
+    st.divider()
 
 
 # ============================================================ COMMON WIDGETS
@@ -1757,9 +1768,17 @@ def main() -> None:
     if not _ensure_client():
         return
     choice = sidebar()
+    user = _user()
+    top_nav()
+
+    # The Agent Console is a separate top-nav view, not a sidebar page.
+    if user.get("role") == "teacher" and st.session_state.get("view") == "agent_console":
+        agent_console()
+        _render_pending_task(_client())
+        return
+
     if not choice:
         return
-    user = _user()
     if choice == "Dashboard":
         if user.get("role") == "teacher":
             teacher_dashboard()
@@ -1773,8 +1792,6 @@ def main() -> None:
         teacher_review_queue()
     elif choice == "OBE Mapping":
         teacher_obe()
-    elif choice == "Agent Console":
-        agent_console()
     elif choice == "Operations":
         operations_view()
     elif choice == "Study Plan":
