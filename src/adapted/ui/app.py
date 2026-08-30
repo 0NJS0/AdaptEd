@@ -636,7 +636,8 @@ def teacher_class() -> None:
         st.error(aerr)
         return
     st.metric("Students", analytics.get("student_count", 0))
-    st.metric("Curriculum progress", f"{analytics.get('curriculum_progress', 0):.0%}")
+    # curriculum_progress is an average mastery on a 0-100 scale, not a 0-1 fraction
+    st.metric("Curriculum progress", f"{analytics.get('curriculum_progress', 0):.0f}%")
 
     st.subheader("Topic mastery across the class")
     for t in analytics.get("topic_mastery", []):
